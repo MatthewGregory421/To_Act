@@ -1,9 +1,12 @@
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
-public class PlayerMovement_E : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
-    private PlayerCombat_E combat;
+    private PlayerCombat combat;
+
+    private PlayerInputActions inputActions;
 
     [SerializeField] private LayerMask enemyLayer;
     [SerializeField] private LayerMask obsticleLayer;
@@ -25,7 +28,8 @@ public class PlayerMovement_E : MonoBehaviour
     public LayerMask groundLayer;
 
     public Rigidbody2D rb;
-    private float moveInput;
+    private Vector2 moveInput;
+    private Vector2 attackInput;
     public bool isGrounded;
 
     [Header("Crouch Settings")]
@@ -56,16 +60,50 @@ public class PlayerMovement_E : MonoBehaviour
     public int lookHorizontal;
     public int lookVertical;
 
+    private SpriteRenderer spriteRenderer;
+
+    private void Awake()
+    {
+        inputActions = new PlayerInputActions();
+    }
+
+    private void OnEnable()
+    {
+        inputActions.Enable();
+
+        inputActions.Player.Jump.performed += OnJump;
+
+        inputActions.Player.Crouch.performed += OnCrouchStart;
+        inputActions.Player.Crouch.canceled += OnCrouchEnd;
+
+        inputActions.Player.Attack.performed += OnAttack;
+        inputActions.Player.Attack.canceled += OnAttack;
+    }
+
+    private void OnDisable()
+    {
+        inputActions.Player.Jump.performed -= OnJump;
+
+        inputActions.Player.Crouch.performed -= OnCrouchStart;
+        inputActions.Player.Crouch.canceled -= OnCrouchEnd;
+
+        inputActions.Player.Attack.performed -= OnAttack;
+        inputActions.Player.Attack.canceled -= OnAttack;
+
+        inputActions.Disable();
+    }
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         capsule = GetComponent<CapsuleCollider2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
 
         originalColliderSize = capsule.size;
         originalColliderOffset = capsule.offset;
 
         // Add this line:
-        combat = GetComponent<PlayerCombat_E>();
+        combat = GetComponent<PlayerCombat>();
 
 
         if (combat == null)
@@ -74,15 +112,18 @@ public class PlayerMovement_E : MonoBehaviour
 
     private void Update()
     {
-        HandleMovementInput();
-        HandleJump();
-        HandleLookDirection();
+        moveInput = inputActions.Player.Move.ReadValue<Vector2>();
+
+        HandleFacingDirection();
+        HandleAttackDirection();
+
         CheckGrounded();
     }
 
     private void FixedUpdate()
     {
         float speed = moveSpeed;
+
         if (isCrouching)
             speed *= crouchSpeedMultiplyer;
 
@@ -92,105 +133,122 @@ public class PlayerMovement_E : MonoBehaviour
         // Check for wall in movement direction
         RaycastHit2D wallHit = Physics2D.Raycast(
             transform.position,
-            new Vector2(moveInput, 0),
+            new Vector2(moveInput.x, 0),
             0.6f,
             obsticleLayer
         );
 
-        if (wallHit && moveInput != 0)
+        if (wallHit && moveInput.x != 0)
         {
             velocity.x = 0; // stop sticking
         }
         else
         {
-            velocity.x = moveInput * speed;
+            velocity.x = moveInput.x * speed;
         }
 
         rb.linearVelocity = velocity;
-        
+
 
         // Apply ground slam downward force
         if (isGroundSlamming)
         {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, -groundSlamSpeed); // pull straight down
+            rb.linearVelocity = new Vector2(
+                rb.linearVelocity.x,
+                -groundSlamSpeed
+            );
         }
     }
 
-    void HandleMovementInput()
+    void HandleFacingDirection()
     {
-        moveInput = 0f;
-
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (moveInput.x > 0)
         {
-            moveInput = -1f;
+            spriteRenderer.flipX = false;
         }
-        else if (Input.GetKey(KeyCode.RightArrow))
+        else if (moveInput.x < 0)
         {
-            moveInput = 1f;
+            spriteRenderer.flipX = true;
         }
     }
 
-    void HandleLookDirection()
+    void HandleAttackDirection()
     {
         lookHorizontal = 0;
         lookVertical = 0;
 
-
-        bool left = Input.GetKey(KeyCode.LeftArrow);
-        bool right = Input.GetKey(KeyCode.RightArrow);
-
-        if (left && !right)
-            lookHorizontal = -1;
-        else if (right && !left)
-            lookHorizontal = 1;
-
-
-        bool up = Input.GetKey(KeyCode.UpArrow);
-        bool down = Input.GetKey(KeyCode.DownArrow);
-
-        if (up && !down)
+        // Vertical attack priority
+        if (attackInput.y > 0)
+        {
             lookVertical = 1;
-        else if (down && !up)
+        }
+        else if (attackInput.y < 0)
+        {
             lookVertical = -1;
+        }
+        else if (attackInput.x > 0)
+        {
+            lookHorizontal = 1;
+        }
+        else if (attackInput.x < 0)
+        {
+            lookHorizontal = -1;
+        }
+    }
 
+    void OnJump(InputAction.CallbackContext context)
+    {
+        if (isCrouching)
+            return;
 
-        bool crouchPressed = Input.GetKey(KeyCode.C);
+        if (isGrounded)
+        {
+            rb.linearVelocity = new Vector2(
+                rb.linearVelocity.x,
+                jumpForce
+            );
 
-        if (crouchPressed && isGrounded)
+            canDoubleJump = true;
+
+            jumpEvent.Invoke();
+        }
+        else if (doubleJumpEnabled && canDoubleJump)
+        {
+            rb.linearVelocity = new Vector2(
+                rb.linearVelocity.x,
+                jumpForce
+            );
+
+            canDoubleJump = false;
+
+            doubleJumpEvent.Invoke();
+        }
+    }
+
+    void OnAttack(InputAction.CallbackContext context)
+    {
+        attackInput = context.ReadValue<Vector2>();
+    }
+
+    void OnCrouchStart(InputAction.CallbackContext context)
+    {
+        if (isGrounded)
         {
             if (!isCrouching)
                 EnterCrouch();
 
             isCrouching = true;
         }
-        else
-        {
-            if (isCrouching && !IsCeilingAbove())
-                ExitCrouch();
-        }
     }
 
-    void HandleJump()
+    void OnCrouchEnd(InputAction.CallbackContext context)
     {
-        if (isCrouching)
-            return;
-
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (isCrouching && !IsCeilingAbove())
         {
-            if (isGrounded)
-            {
-                rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
-                canDoubleJump = true;
-                jumpEvent.Invoke();
-            }
-            else if (doubleJumpEnabled && canDoubleJump)
-            {
-                rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
-                canDoubleJump = false;
-                doubleJumpEvent.Invoke();
-            }
+            ExitCrouch();
         }
     }
+
 
     public void SetEnemyCollision(bool enabled)
     {
@@ -200,10 +258,15 @@ public class PlayerMovement_E : MonoBehaviour
         {
             if ((enemyLayer.value & (1 << i)) != 0)
             {
-                Physics2D.IgnoreLayerCollision(playerLayer, i, !enabled);
+                Physics2D.IgnoreLayerCollision(
+                    playerLayer,
+                    i,
+                    !enabled
+                );
             }
         }
     }
+
 
     void CheckGrounded()
     {
@@ -223,10 +286,10 @@ public class PlayerMovement_E : MonoBehaviour
             canDoubleJump = true;
             canGroundSlam = true;
 
-            // If player was ground slamming, spawn indicators
             if (isGroundSlamming)
             {
                 combat.SpawnGroundSlamIndicators();
+
                 isGroundSlamming = false;
 
                 SetEnemyCollision(true);
@@ -243,7 +306,9 @@ public class PlayerMovement_E : MonoBehaviour
 
         capsule.offset = new Vector2(
             originalColliderOffset.x,
-            originalColliderOffset.y - (originalColliderSize.y * (1 - crouchHeightMultiplier) / 2f)
+            originalColliderOffset.y -
+            (originalColliderSize.y *
+            (1 - crouchHeightMultiplier) / 2f)
         );
     }
 
@@ -251,6 +316,7 @@ public class PlayerMovement_E : MonoBehaviour
     {
         capsule.size = originalColliderSize;
         capsule.offset = originalColliderOffset;
+
         isCrouching = false;
     }
 

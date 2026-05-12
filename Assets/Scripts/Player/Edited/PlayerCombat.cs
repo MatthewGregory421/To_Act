@@ -1,10 +1,14 @@
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerCombat : MonoBehaviour
 {
-    private PlayerMovement_E movement;
-    public PlayerSFXManager sfxManager;
+    private PlayerMovement movement;
+
+    private PlayerInputActions inputActions;
+
+    private bool attackPressed;
 
     [Header("Attack Settings")]
     public float attackCooldown = 0.3f;
@@ -32,15 +36,39 @@ public class PlayerCombat : MonoBehaviour
 
     private int lastHorizontal = 1;
 
+    void Awake()
+    {
+        inputActions = new PlayerInputActions();
+    }
+
+    void OnEnable()
+    {
+        inputActions.Enable();
+
+        inputActions.Player.Attack.performed += OnAttack;
+    }
+
+    void OnDisable()
+    {
+        inputActions.Player.Attack.performed -= OnAttack;
+
+        inputActions.Disable();
+    }
+
     void Start()
     {
-        movement = GetComponent<PlayerMovement_E>();
+        movement = GetComponent<PlayerMovement>();
     }
 
     void Update()
     {
         UpdateLastHorizontal();
         HandleAttack();
+    }
+
+    void OnAttack(InputAction.CallbackContext context)
+    {
+        attackPressed = true;
     }
 
     void UpdateLastHorizontal()
@@ -56,23 +84,24 @@ public class PlayerCombat : MonoBehaviour
 
         int ver = movement.lookVertical;
 
-        if (!movement.isGrounded && ver < 0 && Input.GetKeyDown(KeyCode.D) && !movement.isGroundSlamming)
+        if (!movement.isGrounded && ver < 0 && attackPressed && !movement.isGroundSlamming)
         {
             enemiesHit.Clear();
             movement.isGroundSlamming = true;
-            sfxManager.PlayPlayerGroundSlamEmitter();
             movement.rb.linearVelocity = Vector2.zero;
             movement.SetEnemyCollision(false);
             attackTimer = attackCooldown;
             return;
         }
 
-        if (Input.GetKeyDown(KeyCode.D) && attackTimer <= 0)
+        if (attackPressed && attackTimer <= 0)
         {
             enemiesHit.Clear();
             PerformAttack();
             attackTimer = attackCooldown;
         }
+
+        attackPressed = false;
     }
 
     void PerformAttack()
@@ -96,8 +125,6 @@ public class PlayerCombat : MonoBehaviour
         Vector3 spawnPos = transform.position + (Vector3)(dir * attackDistance);
         GameObject indicator = Instantiate(attackPrefab, spawnPos, Quaternion.identity);
         Destroy(indicator, 0.5f);
-
-        sfxManager.PlayPlayerAttackEmitter();
 
         // Damage check
         Collider2D[] hits = Physics2D.OverlapCircleAll(spawnPos, 0.5f);
