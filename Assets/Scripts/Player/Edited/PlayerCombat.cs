@@ -6,7 +6,7 @@ public class PlayerCombat : MonoBehaviour
 {
     private PlayerMovement movement;
 
-    private PlayerInputActions inputActions;
+    //private PlayerInputActions inputActions;
 
     private bool attackPressed;
 
@@ -38,21 +38,21 @@ public class PlayerCombat : MonoBehaviour
 
     void Awake()
     {
-        inputActions = new PlayerInputActions();
+        //inputActions = new PlayerInputActions();
     }
 
     void OnEnable()
     {
-        inputActions.Enable();
+       // inputActions.Enable();
 
-        inputActions.Player.Attack.performed += OnAttack;
+       // inputActions.Player.Attack.performed += OnAttack;
     }
 
     void OnDisable()
     {
-        inputActions.Player.Attack.performed -= OnAttack;
+       // inputActions.Player.Attack.performed -= OnAttack;
 
-        inputActions.Disable();
+        //inputActions.Disable();
     }
 
     void Start()

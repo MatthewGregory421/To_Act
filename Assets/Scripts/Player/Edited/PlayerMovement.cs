@@ -6,8 +6,6 @@ public class PlayerMovement : MonoBehaviour
 {
     private PlayerCombat combat;
 
-    private PlayerInputActions inputActions;
-
     [SerializeField] private LayerMask enemyLayer;
     [SerializeField] private LayerMask obsticleLayer;
 
@@ -19,8 +17,6 @@ public class PlayerMovement : MonoBehaviour
     public bool doubleJumpEnabled = true; // toggle in inspector
     private bool canDoubleJump;
     public bool canJump = true;
-    public UnityEvent jumpEvent;
-    public UnityEvent doubleJumpEvent;
 
     [Header("Ground Check")]
     public Transform groundCheck;
@@ -28,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask groundLayer;
 
     public Rigidbody2D rb;
-    private Vector2 moveInput;
+    private float moveInput;
     private Vector2 attackInput;
     public bool isGrounded;
 
@@ -62,35 +58,34 @@ public class PlayerMovement : MonoBehaviour
 
     private SpriteRenderer spriteRenderer;
 
-    private void Awake()
+    public void Move(InputAction.CallbackContext context)
     {
-        inputActions = new PlayerInputActions();
+        moveInput = context.ReadValue<float>();
     }
 
-    private void OnEnable()
+    public void Jump(InputAction.CallbackContext context)
     {
-        inputActions.Enable();
-
-        inputActions.Player.Jump.performed += OnJump;
-
-        inputActions.Player.Crouch.performed += OnCrouchStart;
-        inputActions.Player.Crouch.canceled += OnCrouchEnd;
-
-        inputActions.Player.Attack.performed += OnAttack;
-        inputActions.Player.Attack.canceled += OnAttack;
+        if (context.performed)
+        {
+            OnJump(context);
+        }
     }
 
-    private void OnDisable()
+    public void Attack(InputAction.CallbackContext context)
     {
-        inputActions.Player.Jump.performed -= OnJump;
+        attackInput = context.ReadValue<Vector2>();
+    }
 
-        inputActions.Player.Crouch.performed -= OnCrouchStart;
-        inputActions.Player.Crouch.canceled -= OnCrouchEnd;
-
-        inputActions.Player.Attack.performed -= OnAttack;
-        inputActions.Player.Attack.canceled -= OnAttack;
-
-        inputActions.Disable();
+    public void Crouch(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            OnCrouchStart(context);
+        }
+        else if (context.canceled)
+        {
+            OnCrouchEnd(context);
+        }
     }
 
     private void Start()
@@ -112,12 +107,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        moveInput = inputActions.Player.Move.ReadValue<Vector2>();
-
         HandleFacingDirection();
         HandleAttackDirection();
 
         CheckGrounded();
+
+        Debug.Log(moveInput);
     }
 
     private void FixedUpdate()
@@ -133,18 +128,18 @@ public class PlayerMovement : MonoBehaviour
         // Check for wall in movement direction
         RaycastHit2D wallHit = Physics2D.Raycast(
             transform.position,
-            new Vector2(moveInput.x, 0),
+            new Vector2(moveInput, 0),
             0.6f,
             obsticleLayer
         );
 
-        if (wallHit && moveInput.x != 0)
+        if (wallHit && moveInput != 0)
         {
             velocity.x = 0; // stop sticking
         }
         else
         {
-            velocity.x = moveInput.x * speed;
+            velocity.x = moveInput * speed;
         }
 
         rb.linearVelocity = velocity;
@@ -162,11 +157,11 @@ public class PlayerMovement : MonoBehaviour
 
     void HandleFacingDirection()
     {
-        if (moveInput.x > 0)
+        if (moveInput > 0)
         {
             spriteRenderer.flipX = false;
         }
-        else if (moveInput.x < 0)
+        else if (moveInput < 0)
         {
             spriteRenderer.flipX = true;
         }
@@ -209,8 +204,6 @@ public class PlayerMovement : MonoBehaviour
             );
 
             canDoubleJump = true;
-
-            jumpEvent.Invoke();
         }
         else if (doubleJumpEnabled && canDoubleJump)
         {
@@ -220,8 +213,6 @@ public class PlayerMovement : MonoBehaviour
             );
 
             canDoubleJump = false;
-
-            doubleJumpEvent.Invoke();
         }
     }
 
