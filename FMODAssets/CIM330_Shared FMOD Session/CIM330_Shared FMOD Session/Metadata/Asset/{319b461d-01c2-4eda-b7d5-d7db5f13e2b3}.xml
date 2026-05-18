@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="EncodableAsset" id="{319b461d-01c2-4eda-b7d5-d7db5f13e2b3}">
+		<property name="assetPath">
+			<value>SFX Assets/Enemy SFX/SAD/Sadness impact/Sad 2.0/</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{76bd9cd1-baab-4003-97b3-f3d79e34a964}</destination>
+		</relationship>
+	</object>
+</objects>
