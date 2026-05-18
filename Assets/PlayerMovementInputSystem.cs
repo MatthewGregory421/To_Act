@@ -11,6 +11,13 @@ public class PlayerMovementInputSystem : MonoBehaviour
     public float moveSpeed = 5f;
     private float horizontalMovement;
 
+    public int facingDirection = 1;
+
+    [Header("Movement Feel")]
+    public float acceleration = 20f;
+    public float deceleration = 25f;
+    public float airControlMultiplier = 0.6f;
+
     [Header("Jump")]
     public float jumpForce = 10f;
 
@@ -23,7 +30,7 @@ public class PlayerMovementInputSystem : MonoBehaviour
     public float groundCheckRadius = 0.2f; 
     public LayerMask groundLayer;
 
-    private bool isGrounded;
+    public bool isGrounded;
 
     [Header("Crouch")]
     public bool isCrouching;
@@ -38,6 +45,16 @@ public class PlayerMovementInputSystem : MonoBehaviour
     public float ceilingCheckRadius = 0.2f;
     public LayerMask ceilingLayer;
 
+    [Header("Wall Check")]
+    public Transform wallCheck;
+    public float wallCheckDistance = 0.6f;
+    public LayerMask obstacleLayer;
+
+    public bool isTouchingWall;
+
+    [Header("Wall Slide")]
+    public float wallSlideSpeed = 2f;
+
     private void Start()
     {
         originalColliderSize = capsule.size;
@@ -48,6 +65,8 @@ public class PlayerMovementInputSystem : MonoBehaviour
     void Update()
     {
         CheckGrounded();
+        HandleLookDirection();
+        CheckWall();
     }
 
     private void FixedUpdate()
@@ -55,11 +74,36 @@ public class PlayerMovementInputSystem : MonoBehaviour
         float speed = moveSpeed;
 
         if (isCrouching)
-        {
             speed *= crouchSpeedMultiplier;
+
+        float targetSpeed = horizontalMovement * speed;
+
+        Vector2 velocity = rb.linearVelocity;
+
+        float accel = acceleration;
+
+        if (!isGrounded)
+            accel *= airControlMultiplier;
+
+        if (Mathf.Abs(horizontalMovement) < 0.01f)
+            accel = deceleration;
+
+        // horizontal movement smoothing
+        velocity.x = Mathf.MoveTowards(
+            velocity.x,
+            targetSpeed,
+            accel * Time.fixedDeltaTime
+        );
+
+        // WALL SLIDE LOGIC
+        bool isFalling = velocity.y < 0;
+
+        if (!isGrounded && isTouchingWall && isFalling)
+        {
+            velocity.y = Mathf.Max(velocity.y, -wallSlideSpeed);
         }
 
-        rb.linearVelocity = new Vector2(horizontalMovement * speed, rb.linearVelocity.y);
+        rb.linearVelocity = velocity;
     }
 
     public void Move(InputAction.CallbackContext context)
@@ -131,6 +175,24 @@ public class PlayerMovementInputSystem : MonoBehaviour
         capsule.offset = originalColliderOffset;
     }
 
+    private void HandleLookDirection()
+    {
+        if (horizontalMovement > 0.01f)
+        {
+            facingDirection = 1;
+        }
+        else if (horizontalMovement < -0.01f)
+        {
+            facingDirection = -1;
+        }
+
+        transform.localScale = new Vector3(
+            facingDirection,
+            1f,
+            1f
+        );
+    }
+
     private bool IsCeilingAbove()
     {
         return Physics2D.OverlapCircle(ceilingCheck.position, ceilingCheckRadius, ceilingLayer);
@@ -149,5 +211,17 @@ public class PlayerMovementInputSystem : MonoBehaviour
         {
             TryExitCrouch();
         }
+    }
+
+    private void CheckWall()
+    {
+        Vector2 dir = new Vector2(facingDirection, 0);
+
+        isTouchingWall = Physics2D.Raycast(
+            wallCheck.position,
+            dir,
+            wallCheckDistance,
+            obstacleLayer
+        );
     }
 }
