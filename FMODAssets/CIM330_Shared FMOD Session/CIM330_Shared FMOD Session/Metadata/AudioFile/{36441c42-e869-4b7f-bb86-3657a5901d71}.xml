@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{36441c42-e869-4b7f-bb86-3657a5901d71}">
+		<property name="assetPath">
+			<value>SFX Assets/Player SFX/Abilities/Shield/Shield deactivate 1.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>1.1874583333333333</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{76bd9cd1-baab-4003-97b3-f3d79e34a964}</destination>
+		</relationship>
+	</object>
+</objects>

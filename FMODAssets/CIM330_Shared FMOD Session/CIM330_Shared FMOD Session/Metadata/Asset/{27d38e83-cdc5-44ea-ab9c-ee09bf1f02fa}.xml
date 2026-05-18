@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="EncodableAsset" id="{27d38e83-cdc5-44ea-ab9c-ee09bf1f02fa}">
+		<property name="assetPath">
+			<value>Musical Re-Writes/Anger Re-Write 12_05/</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{76bd9cd1-baab-4003-97b3-f3d79e34a964}</destination>
+		</relationship>
+	</object>
+</objects>
