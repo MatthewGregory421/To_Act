@@ -26,13 +26,6 @@ public class MainMenu : MonoBehaviour
         optionsPanel.SetActive(true);
     }
 
-    // Closes the options menu
-    public void CloseOptions()
-    {
-        optionsPanel.SetActive(false);
-        mainMenuPanel.SetActive(true);
-    }
-
     // Quits the application
     public void QuitGame()
     {
