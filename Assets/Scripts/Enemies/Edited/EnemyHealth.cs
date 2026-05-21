@@ -29,6 +29,7 @@ public class EnemyHealth : MonoBehaviour
     private void Die()
     {
         Debug.Log($"{gameObject.name} died");
+        TestLevelCounter.Instance.AddKill();
 
         // Optional: play death animation / spawn effects here
 
