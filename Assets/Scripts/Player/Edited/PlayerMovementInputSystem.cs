@@ -7,6 +7,8 @@ public class PlayerMovementInputSystem : MonoBehaviour
     public Rigidbody2D rb;
     public CapsuleCollider2D capsule;
 
+    public PlayerSFXManager playerSFXManager;
+
     [Header("Movement")]
     public float moveSpeed = 5f;
     private float horizontalMovement;
@@ -118,6 +120,8 @@ public class PlayerMovementInputSystem : MonoBehaviour
 
         if (isCrouching)
             return;
+
+        playerSFXManager.PlayPlayerJump();
 
         if (isGrounded)
         {
