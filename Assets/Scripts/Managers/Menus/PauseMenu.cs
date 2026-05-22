@@ -3,6 +3,8 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
+    public UISFXManager uiSFXManager;
+
     [Header("Pause Menu")]
     public GameObject pauseMenuUI;
 
@@ -29,6 +31,8 @@ public class PauseMenu : MonoBehaviour
     // =========================
     public void PauseGame()
     {
+        uiSFXManager.PlayUIOpenMenu();
+
         pauseMenuUI.SetActive(true);
 
         Time.timeScale = 0f;
@@ -41,6 +45,8 @@ public class PauseMenu : MonoBehaviour
     // =========================
     public void ResumeGame()
     {
+        uiSFXManager.PlayUICloseMenu();
+
         pauseMenuUI.SetActive(false);
 
         Time.timeScale = 1f;
@@ -53,6 +59,8 @@ public class PauseMenu : MonoBehaviour
     // =========================
     public void ReloadLastSave()
     {
+        uiSFXManager.PlayUIConfirm();
+
         Time.timeScale = 1f;
 
         // Replace this with your future save system
@@ -64,6 +72,8 @@ public class PauseMenu : MonoBehaviour
     // =========================
     public void QuitToMainMenu()
     {
+        uiSFXManager.PlayUIConfirm();
+
         Time.timeScale = 1f;
 
         SceneManager.LoadScene("MainMenu");

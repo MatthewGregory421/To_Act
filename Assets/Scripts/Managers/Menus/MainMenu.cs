@@ -26,7 +26,7 @@ public class MainMenu : MonoBehaviour
     // Opens the options menu
     public void OpenOptions()
     {
-        uiSFXManager.PlayUIConfirm();
+        uiSFXManager.PlayUIOpenMenu();
         mainMenuPanel.SetActive(false);
         optionsPanel.SetActive(true);
     }

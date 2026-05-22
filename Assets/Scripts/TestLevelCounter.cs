@@ -1,8 +1,11 @@
-using UnityEngine;
 using TMPro;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TestLevelCounter : MonoBehaviour
 {
+    public UISFXManager uiSFXManager;
+
     public static TestLevelCounter Instance;
 
     public int totalEnemies = 9;
@@ -37,5 +40,14 @@ public class TestLevelCounter : MonoBehaviour
     void UpdateText()
     {
         counterText.text = defeatedEnemies + " / " + totalEnemies + " enemies defeated";
+    }
+
+    public void QuitToMainMenu()
+    {
+        uiSFXManager.PlayUIConfirm();
+
+        Time.timeScale = 1f;
+
+        SceneManager.LoadScene("MainMenu");
     }
 }
