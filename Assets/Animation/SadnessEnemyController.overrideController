@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: SadnessEnemyController
+  m_Controller: {fileID: 9100000, guid: c1b7f5a345f784f48a13b02ab1291699, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: -7712205237887687522, guid: 7e751a57fae3a5f49a8ac6afad4a6c23, type: 3}
+    m_OverrideClip: {fileID: 3462471770094082677, guid: 3f896632915efa44eb676917f833fd82, type: 3}
+  - m_OriginalClip: {fileID: 4620060711064815946, guid: aaaf50072632c2f4aaca1443a28afe97, type: 3}
+    m_OverrideClip: {fileID: -8635205996909204767, guid: 7812d4929f2fc2147886b848c862087c, type: 3}
+  - m_OriginalClip: {fileID: -7155750260391811876, guid: 01a0429dfa7bddb4b829f451116ef7cb, type: 3}
+    m_OverrideClip: {fileID: 7913492739520322407, guid: c089854fb89235b4fbdea27f7f848f37, type: 3}
+  - m_OriginalClip: {fileID: 5033550659198443415, guid: 96fc8264916beae4db6e85ee0e036bcd, type: 3}
+    m_OverrideClip: {fileID: -4413361951372735948, guid: 274921f773df16043bdb0b19cb36607e, type: 3}
