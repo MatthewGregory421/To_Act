@@ -7,6 +7,8 @@ public class PlayerCombatInputSystem : MonoBehaviour
     public PlayerMovementInputSystem movement;
     public Rigidbody2D rb;
 
+    public PlayerSFXManager playerSFXManager;
+
     [Header("Projectile")]
     public GameObject projectilePrefab;
 
@@ -92,12 +94,16 @@ public class PlayerCombatInputSystem : MonoBehaviour
         {
             shootDirection = Vector2.up;
             shootPoint = upShootPoint;
+
+            playerSFXManager.PlayPlayerAttack();
         }
         // DOWN SLAM
         else if (y < -0.1f)
         {
             shootDirection = Vector2.down;
             shootPoint = downShootPoint;
+
+            playerSFXManager.PlayGroundSlam();
 
             // Ground slam only in air
             if (!movement.isGrounded)
@@ -116,6 +122,8 @@ public class PlayerCombatInputSystem : MonoBehaviour
                 : Vector2.left;
 
             shootPoint = sideShootPoint;
+
+            playerSFXManager.PlayPlayerAttack();
         }
 
         ShootProjectile(

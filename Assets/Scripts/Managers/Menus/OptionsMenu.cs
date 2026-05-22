@@ -4,6 +4,8 @@ using TMPro;
 
 public class OptionsMenu : MonoBehaviour
 {
+    public UISFXManager uiSFXManager;
+
     [Header("Panels")]
     public GameObject mainMenuPanel;
     public GameObject optionsPanel;
@@ -96,6 +98,7 @@ public class OptionsMenu : MonoBehaviour
     // =========================
     public void CloseOptions()
     {
+        uiSFXManager.PlayUIBack();
         optionsPanel.SetActive(false);
         mainMenuPanel.SetActive(true);
     }
