@@ -6,7 +6,7 @@ public class PlayerAnimations : MonoBehaviour
 
     private bool grounded;
     private bool blocking;
-    private bool crouch;
+    public bool crouch;
     private bool groundslam;
     private float velocity;
 

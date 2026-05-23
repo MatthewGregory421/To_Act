@@ -8,6 +8,7 @@ public class PlayerMovementInputSystem : MonoBehaviour
     public CapsuleCollider2D capsule;
 
     public PlayerSFXManager playerSFXManager;
+    public PlayerAnimations playerAnimations;
 
     [Header("Movement")]
     public float moveSpeed = 5f;
@@ -19,6 +20,12 @@ public class PlayerMovementInputSystem : MonoBehaviour
     public float acceleration = 20f;
     public float deceleration = 25f;
     public float airControlMultiplier = 0.6f;
+
+    [Header("Footsteps")]
+    private bool footstepsPlaying;
+    public float footstepInterval = 0.4f;
+
+    private float footstepTimer;
 
     [Header("Jump")]
     public float jumpForce = 10f;
@@ -105,6 +112,26 @@ public class PlayerMovementInputSystem : MonoBehaviour
             velocity.y = Mathf.Max(velocity.y, -wallSlideSpeed);
         }
 
+        bool isMoving = Mathf.Abs(rb.linearVelocity.x) > 0.1f;
+
+        if (isMoving && isGrounded)
+        {
+            footstepTimer -= Time.fixedDeltaTime;
+
+            if (footstepTimer <= 0f)
+            {
+                playerSFXManager.PlayPlayerFootsteps();
+
+                float speedPercent = Mathf.Abs(rb.linearVelocity.x) / moveSpeed;
+
+                footstepTimer = Mathf.Lerp(0.6f, 0.25f, speedPercent);
+            }
+        }
+        else
+        {
+            footstepTimer = 0f;
+        }
+
         rb.linearVelocity = velocity;
     }
 
@@ -121,17 +148,19 @@ public class PlayerMovementInputSystem : MonoBehaviour
         if (isCrouching)
             return;
 
-        playerSFXManager.PlayPlayerJump();
-
         if (isGrounded)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+
+            playerSFXManager.PlayPlayerJump();
 
             canDoubleJump = true;
         }
         else if (doubleJumpEnabled && canDoubleJump)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+
+            playerSFXManager.PlayPlayerJump();
 
             canDoubleJump = false;
         }
@@ -142,6 +171,7 @@ public class PlayerMovementInputSystem : MonoBehaviour
         if (context.performed && isGrounded)
         {
             EnterCrouch();
+            //playerAnimations.crouch = true;
         }
 
         if (context.canceled)
