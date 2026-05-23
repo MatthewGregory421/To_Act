@@ -42,6 +42,11 @@ public class TestLevelCounter : MonoBehaviour
         counterText.text = defeatedEnemies + " / " + totalEnemies + " enemies defeated";
     }
 
+    public void CloseWinScreen()
+    {
+        winText.SetActive(false);
+    }
+
     public void QuitToMainMenu()
     {
         uiSFXManager.PlayUIConfirm();
