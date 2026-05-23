@@ -1,0 +1,1937 @@
+fileFormatVersion: 2
+guid: 0f3ed2bee2825dc4c84163962838604c
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6683943610420699847
+    second: SADNESSIDLE_0
+  - first:
+      213: 2348309327498673451
+    second: SADNESSIDLE_1
+  - first:
+      213: -7658169900038392470
+    second: SADNESSIDLE_2
+  - first:
+      213: 104592336577060657
+    second: SADNESSIDLE_3
+  - first:
+      213: -8435391562807304473
+    second: SADNESSIDLE_4
+  - first:
+      213: 6017250913020885352
+    second: SADNESSIDLE_5
+  - first:
+      213: 616380252016638006
+    second: SADNESSIDLE_6
+  - first:
+      213: 5419208329987006957
+    second: SADNESSIDLE_7
+  - first:
+      213: 1202100955277575861
+    second: SADNESSIDLE_8
+  - first:
+      213: -6427245969022760752
+    second: SADNESSIDLE_9
+  - first:
+      213: -359112699238467855
+    second: SADNESSIDLE_10
+  - first:
+      213: 857933536763338765
+    second: SADNESSIDLE_11
+  - first:
+      213: 7535274986692239519
+    second: SADNESSIDLE_12
+  - first:
+      213: -5490131664224923913
+    second: SADNESSIDLE_13
+  - first:
+      213: -6358399862444063179
+    second: SADNESSIDLE_14
+  - first:
+      213: 9017071700141779821
+    second: SADNESSIDLE_15
+  - first:
+      213: -2974745750298029049
+    second: SADNESSIDLE_16
+  - first:
+      213: 3303131200010612172
+    second: SADNESSIDLE_17
+  - first:
+      213: -5949786339336482332
+    second: SADNESSIDLE_18
+  - first:
+      213: 6780626995846050896
+    second: SADNESSIDLE_19
+  - first:
+      213: -608122183977331639
+    second: SADNESSIDLE_20
+  - first:
+      213: 8914459489078994804
+    second: SADNESSIDLE_21
+  - first:
+      213: -4803134677064086685
+    second: SADNESSIDLE_22
+  - first:
+      213: -2391155352465457629
+    second: SADNESSIDLE_23
+  - first:
+      213: -7002904864294630393
+    second: SADNESSIDLE_24
+  - first:
+      213: 3372320713149266635
+    second: SADNESSIDLE_25
+  - first:
+      213: 4991082822402946707
+    second: SADNESSIDLE_26
+  - first:
+      213: 6006353331964729382
+    second: SADNESSIDLE_27
+  - first:
+      213: -7653487715397205652
+    second: SADNESSIDLE_28
+  - first:
+      213: -8890128386296206452
+    second: SADNESSIDLE_29
+  - first:
+      213: -7377730232466166454
+    second: SADNESSIDLE_30
+  - first:
+      213: 1248866185042159783
+    second: SADNESSIDLE_31
+  - first:
+      213: -3848773212197703406
+    second: SADNESSIDLE_32
+  - first:
+      213: -4585888541116805045
+    second: SADNESSIDLE_33
+  - first:
+      213: -4408322552902893770
+    second: SADNESSIDLE_34
+  - first:
+      213: 1450241044019379154
+    second: SADNESSIDLE_35
+  - first:
+      213: -3050804771075583377
+    second: SADNESSIDLE_36
+  - first:
+      213: 7467897085509917965
+    second: SADNESSIDLE_37
+  - first:
+      213: -3849775435594976281
+    second: SADNESSIDLE_38
+  - first:
+      213: -1749975479358864483
+    second: SADNESSIDLE_39
+  - first:
+      213: -9062649439496363726
+    second: SADNESSIDLE_40
+  - first:
+      213: 6944282447333207194
+    second: SADNESSIDLE_41
+  - first:
+      213: -7460868518183215782
+    second: SADNESSIDLE_42
+  - first:
+      213: 7664892064429655643
+    second: SADNESSIDLE_43
+  - first:
+      213: -6248447535781442042
+    second: SADNESSIDLE_44
+  - first:
+      213: 7809687258901471863
+    second: SADNESSIDLE_45
+  - first:
+      213: 5026820259807943050
+    second: SADNESSIDLE_46
+  - first:
+      213: 4970451333709262464
+    second: SADNESSIDLE_47
+  - first:
+      213: 5111463773946218803
+    second: SADNESSIDLE_48
+  - first:
+      213: -1315487093517822836
+    second: SADNESSIDLE_49
+  - first:
+      213: -6337008006851666479
+    second: SADNESSIDLE_50
+  - first:
+      213: -5040932271541030569
+    second: SADNESSIDLE_51
+  - first:
+      213: 1120134891509903762
+    second: SADNESSIDLE_52
+  - first:
+      213: -3534826449552433945
+    second: SADNESSIDLE_53
+  - first:
+      213: -9102140845131991896
+    second: SADNESSIDLE_54
+  - first:
+      213: 4185905498266041129
+    second: SADNESSIDLE_55
+  - first:
+      213: -8215116252398296276
+    second: SADNESSIDLE_56
+  - first:
+      213: 8895113105458501584
+    second: SADNESSIDLE_57
+  - first:
+      213: -931764645330080008
+    second: SADNESSIDLE_58
+  - first:
+      213: 7453929445070778762
+    second: SADNESSIDLE_59
+  - first:
+      213: 7741812644978806531
+    second: SADNESSIDLE_60
+  - first:
+      213: 7939775652323889864
+    second: SADNESSIDLE_61
+  - first:
+      213: -7426841055045889023
+    second: SADNESSIDLE_62
+  - first:
+      213: -8014692778780547568
+    second: SADNESSIDLE_63
+  - first:
+      213: 4885582478349091407
+    second: SADNESSIDLE_64
+  - first:
+      213: -7412674728759493867
+    second: SADNESSIDLE_65
+  - first:
+      213: -2125623683807865962
+    second: SADNESSIDLE_66
+  - first:
+      213: -3306229949221859804
+    second: SADNESSIDLE_67
+  - first:
+      213: 8105158002199983983
+    second: SADNESSIDLE_68
+  - first:
+      213: -3920784504798333014
+    second: SADNESSIDLE_69
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: SADNESSIDLE_0
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 2
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c22ed5fc4322cc50800000000000000
+      internalID: 6683943610420699847
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SADNESSIDLE_1
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 0
+        width: 7
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2d7b4834eed69020800000000000000
+      internalID: 2348309327498673451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SADNESSIDLE_2
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 4
+        width: 17
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a657f96fc07b8b590800000000000000
+      internalID: -7658169900038392470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SADNESSIDLE_3
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 0
+        width: 8
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 13f57eb0d26937100800000000000000
+      internalID: 104592336577060657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SADNESSIDLE_4
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 2
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ee1b85f0187fea80800000000000000
+      internalID: -8435391562807304473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SADNESSIDLE_5
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 2
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 869310b13d1918350800000000000000
+      internalID: 6017250913020885352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SADNESSIDLE_6
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 0
+        width: 7
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6387400d292dd8800800000000000000
+      internalID: 616380252016638006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SADNESSIDLE_7
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 4
+        width: 17
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de1a6b09345e43b40800000000000000
+      internalID: 5419208329987006957
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SADNESSIDLE_8
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 0
+        width: 8
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b64a772378bea010800000000000000
+      internalID: 1202100955277575861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SADNESSIDLE_9
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 2
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d8465c18d5ddc6a0800000000000000
+      internalID: -6427245969022760752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SADNESSIDLE_10
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 2
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f63f8717ec240bf0800000000000000
+      internalID: -359112699238467855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SADNESSIDLE_11
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 0
+        width: 7
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d006ca3910ef7eb00800000000000000
+      internalID: 857933536763338765
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SADNESSIDLE_12
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 4
+        width: 17
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f906da24daca29860800000000000000
+      internalID: 7535274986692239519
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SADNESSIDLE_13
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 0
+        width: 8
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7fecfbfd6522fc3b0800000000000000
+      internalID: -5490131664224923913
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SADNESSIDLE_14
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 2
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 536012b630d62c7a0800000000000000
+      internalID: -6358399862444063179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SADNESSIDLE_15
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 2
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6bad21dfe2132d70800000000000000
+      internalID: 9017071700141779821
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SADNESSIDLE_16
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 0
+        width: 7
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7041260408497b6d0800000000000000
+      internalID: -2974745750298029049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SADNESSIDLE_17
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 4
+        width: 17
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ccd642f535417dd20800000000000000
+      internalID: 3303131200010612172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SADNESSIDLE_18
+      rect:
+        serializedVersion: 2
+        x: 172
+        y: 0
+        width: 8
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e1906209dc1e6da0800000000000000
+      internalID: -5949786339336482332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SADNESSIDLE_19
+      rect:
+        serializedVersion: 2
+        x: 178
+        y: 2
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 054f3d1d350a91e50800000000000000
+      internalID: 6780626995846050896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SADNESSIDLE_20
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 1
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9441ffb78148f87f0800000000000000
+      internalID: -608122183977331639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SADNESSIDLE_21
+      rect:
+        serializedVersion: 2
+        x: 215
+        y: 0
+        width: 7
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 477e92baca586bb70800000000000000
+      internalID: 8914459489078994804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SADNESSIDLE_22
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 0
+        width: 17
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36b0c359576d75db0800000000000000
+      internalID: -4803134677064086685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SADNESSIDLE_23
+      rect:
+        serializedVersion: 2
+        x: 229
+        y: 2
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 32eb58530e8e0ded0800000000000000
+      internalID: -2391155352465457629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SADNESSIDLE_24
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 1
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70c0ddff02fa0de90800000000000000
+      internalID: -7002904864294630393
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SADNESSIDLE_25
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 0
+        width: 7
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bca34ff32d3ecce20800000000000000
+      internalID: 3372320713149266635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SADNESSIDLE_26
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 0
+        width: 17
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 396b1e11263e34540800000000000000
+      internalID: 4991082822402946707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SADNESSIDLE_27
+      rect:
+        serializedVersion: 2
+        x: 279
+        y: 2
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 628dd3b488ada5350800000000000000
+      internalID: 6006353331964729382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SADNESSIDLE_28
+      rect:
+        serializedVersion: 2
+        x: 309
+        y: 1
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c610fe6097959c590800000000000000
+      internalID: -7653487715397205652
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SADNESSIDLE_29
+      rect:
+        serializedVersion: 2
+        x: 315
+        y: 0
+        width: 7
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8ba237a55bef9480800000000000000
+      internalID: -8890128386296206452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SADNESSIDLE_30
+      rect:
+        serializedVersion: 2
+        x: 316
+        y: 0
+        width: 17
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4da13541790d9990800000000000000
+      internalID: -7377730232466166454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SADNESSIDLE_31
+      rect:
+        serializedVersion: 2
+        x: 329
+        y: 2
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a86f63bd2dd45110800000000000000
+      internalID: 1248866185042159783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SADNESSIDLE_32
+      rect:
+        serializedVersion: 2
+        x: 359
+        y: 1
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 211bae9b729669ac0800000000000000
+      internalID: -3848773212197703406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SADNESSIDLE_33
+      rect:
+        serializedVersion: 2
+        x: 365
+        y: 0
+        width: 7
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b40d23f3ba6ab50c0800000000000000
+      internalID: -4585888541116805045
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SADNESSIDLE_34
+      rect:
+        serializedVersion: 2
+        x: 366
+        y: 0
+        width: 17
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63f31e29efd72d2c0800000000000000
+      internalID: -4408322552902893770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SADNESSIDLE_35
+      rect:
+        serializedVersion: 2
+        x: 379
+        y: 2
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2db777bbb8a402410800000000000000
+      internalID: 1450241044019379154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SADNESSIDLE_36
+      rect:
+        serializedVersion: 2
+        x: 410
+        y: 0
+        width: 23
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6219fc793d59a5d0800000000000000
+      internalID: -3050804771075583377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SADNESSIDLE_37
+      rect:
+        serializedVersion: 2
+        x: 429
+        y: 1
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0d5ef825dc43a760800000000000000
+      internalID: 7467897085509917965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SADNESSIDLE_38
+      rect:
+        serializedVersion: 2
+        x: 460
+        y: 0
+        width: 23
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e3365863a9d29ac0800000000000000
+      internalID: -3849775435594976281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SADNESSIDLE_39
+      rect:
+        serializedVersion: 2
+        x: 479
+        y: 1
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d93cb23c296d6b7e0800000000000000
+      internalID: -1749975479358864483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SADNESSIDLE_40
+      rect:
+        serializedVersion: 2
+        x: 510
+        y: 0
+        width: 23
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2312deac9500b3280800000000000000
+      internalID: -9062649439496363726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SADNESSIDLE_41
+      rect:
+        serializedVersion: 2
+        x: 529
+        y: 1
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a9ca64de71c0f5060800000000000000
+      internalID: 6944282447333207194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SADNESSIDLE_42
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 0
+        width: 23
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5d5bc1bc9ba57890800000000000000
+      internalID: -7460868518183215782
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SADNESSIDLE_43
+      rect:
+        serializedVersion: 2
+        x: 579
+        y: 1
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b564a06e8ba2f5a60800000000000000
+      internalID: 7664892064429655643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SADNESSIDLE_44
+      rect:
+        serializedVersion: 2
+        x: 610
+        y: 0
+        width: 23
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 60e0518621e0949a0800000000000000
+      internalID: -6248447535781442042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SADNESSIDLE_45
+      rect:
+        serializedVersion: 2
+        x: 629
+        y: 1
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 77267b93f25916c60800000000000000
+      internalID: 7809687258901471863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SADNESSIDLE_46
+      rect:
+        serializedVersion: 2
+        x: 658
+        y: 2
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a89d69f946ad2c540800000000000000
+      internalID: 5026820259807943050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SADNESSIDLE_47
+      rect:
+        serializedVersion: 2
+        x: 664
+        y: 0
+        width: 21
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 08e6b1747279af440800000000000000
+      internalID: 4970451333709262464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SADNESSIDLE_48
+      rect:
+        serializedVersion: 2
+        x: 708
+        y: 2
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 339875088319fe640800000000000000
+      internalID: 5111463773946218803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SADNESSIDLE_49
+      rect:
+        serializedVersion: 2
+        x: 714
+        y: 0
+        width: 21
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c84524c45737ebde0800000000000000
+      internalID: -1315487093517822836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SADNESSIDLE_50
+      rect:
+        serializedVersion: 2
+        x: 758
+        y: 3
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1dddccceacc6e08a0800000000000000
+      internalID: -6337008006851666479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SADNESSIDLE_51
+      rect:
+        serializedVersion: 2
+        x: 764
+        y: 5
+        width: 17
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7517ef99ec20b0ab0800000000000000
+      internalID: -5040932271541030569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SADNESSIDLE_52
+      rect:
+        serializedVersion: 2
+        x: 765
+        y: 0
+        width: 7
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 291f7f4cfb48b8f00800000000000000
+      internalID: 1120134891509903762
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SADNESSIDLE_53
+      rect:
+        serializedVersion: 2
+        x: 772
+        y: 0
+        width: 8
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ec95cb8216c1fec0800000000000000
+      internalID: -3534826449552433945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SADNESSIDLE_54
+      rect:
+        serializedVersion: 2
+        x: 779
+        y: 3
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a475566023bea180800000000000000
+      internalID: -9102140845131991896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SADNESSIDLE_55
+      rect:
+        serializedVersion: 2
+        x: 808
+        y: 3
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92b708f6fd2571a30800000000000000
+      internalID: 4185905498266041129
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SADNESSIDLE_56
+      rect:
+        serializedVersion: 2
+        x: 814
+        y: 5
+        width: 17
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c23e2434b4b0efd80800000000000000
+      internalID: -8215116252398296276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SADNESSIDLE_57
+      rect:
+        serializedVersion: 2
+        x: 815
+        y: 0
+        width: 7
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d796c7bd3ac17b70800000000000000
+      internalID: 8895113105458501584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SADNESSIDLE_58
+      rect:
+        serializedVersion: 2
+        x: 822
+        y: 0
+        width: 8
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8fe25d4edf4b113f0800000000000000
+      internalID: -931764645330080008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SADNESSIDLE_59
+      rect:
+        serializedVersion: 2
+        x: 829
+        y: 3
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a81b442765da17760800000000000000
+      internalID: 7453929445070778762
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SADNESSIDLE_60
+      rect:
+        serializedVersion: 2
+        x: 859
+        y: 3
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 30fc69d2591707b60800000000000000
+      internalID: 7741812644978806531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SADNESSIDLE_61
+      rect:
+        serializedVersion: 2
+        x: 865
+        y: 0
+        width: 7
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c29f0993efbf2e60800000000000000
+      internalID: 7939775652323889864
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SADNESSIDLE_62
+      rect:
+        serializedVersion: 2
+        x: 866
+        y: 5
+        width: 17
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 104d3b6d86f8ee890800000000000000
+      internalID: -7426841055045889023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SADNESSIDLE_63
+      rect:
+        serializedVersion: 2
+        x: 872
+        y: 0
+        width: 8
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 016a5e0a16716c090800000000000000
+      internalID: -8014692778780547568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SADNESSIDLE_64
+      rect:
+        serializedVersion: 2
+        x: 878
+        y: 3
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f42cede01631dc340800000000000000
+      internalID: 4885582478349091407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SADNESSIDLE_65
+      rect:
+        serializedVersion: 2
+        x: 909
+        y: 3
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51b76c4bb93e02990800000000000000
+      internalID: -7412674728759493867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SADNESSIDLE_66
+      rect:
+        serializedVersion: 2
+        x: 915
+        y: 0
+        width: 7
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 693997885844082e0800000000000000
+      internalID: -2125623683807865962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SADNESSIDLE_67
+      rect:
+        serializedVersion: 2
+        x: 916
+        y: 5
+        width: 17
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 42e8fdad069ed12d0800000000000000
+      internalID: -3306229949221859804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SADNESSIDLE_68
+      rect:
+        serializedVersion: 2
+        x: 922
+        y: 0
+        width: 8
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f677b81924e4b7070800000000000000
+      internalID: 8105158002199983983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SADNESSIDLE_69
+      rect:
+        serializedVersion: 2
+        x: 928
+        y: 3
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa7b3ae14439699c0800000000000000
+      internalID: -3920784504798333014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      SADNESSIDLE_0: 6683943610420699847
+      SADNESSIDLE_1: 2348309327498673451
+      SADNESSIDLE_10: -359112699238467855
+      SADNESSIDLE_11: 857933536763338765
+      SADNESSIDLE_12: 7535274986692239519
+      SADNESSIDLE_13: -5490131664224923913
+      SADNESSIDLE_14: -6358399862444063179
+      SADNESSIDLE_15: 9017071700141779821
+      SADNESSIDLE_16: -2974745750298029049
+      SADNESSIDLE_17: 3303131200010612172
+      SADNESSIDLE_18: -5949786339336482332
+      SADNESSIDLE_19: 6780626995846050896
+      SADNESSIDLE_2: -7658169900038392470
+      SADNESSIDLE_20: -608122183977331639
+      SADNESSIDLE_21: 8914459489078994804
+      SADNESSIDLE_22: -4803134677064086685
+      SADNESSIDLE_23: -2391155352465457629
+      SADNESSIDLE_24: -7002904864294630393
+      SADNESSIDLE_25: 3372320713149266635
+      SADNESSIDLE_26: 4991082822402946707
+      SADNESSIDLE_27: 6006353331964729382
+      SADNESSIDLE_28: -7653487715397205652
+      SADNESSIDLE_29: -8890128386296206452
+      SADNESSIDLE_3: 104592336577060657
+      SADNESSIDLE_30: -7377730232466166454
+      SADNESSIDLE_31: 1248866185042159783
+      SADNESSIDLE_32: -3848773212197703406
+      SADNESSIDLE_33: -4585888541116805045
+      SADNESSIDLE_34: -4408322552902893770
+      SADNESSIDLE_35: 1450241044019379154
+      SADNESSIDLE_36: -3050804771075583377
+      SADNESSIDLE_37: 7467897085509917965
+      SADNESSIDLE_38: -3849775435594976281
+      SADNESSIDLE_39: -1749975479358864483
+      SADNESSIDLE_4: -8435391562807304473
+      SADNESSIDLE_40: -9062649439496363726
+      SADNESSIDLE_41: 6944282447333207194
+      SADNESSIDLE_42: -7460868518183215782
+      SADNESSIDLE_43: 7664892064429655643
+      SADNESSIDLE_44: -6248447535781442042
+      SADNESSIDLE_45: 7809687258901471863
+      SADNESSIDLE_46: 5026820259807943050
+      SADNESSIDLE_47: 4970451333709262464
+      SADNESSIDLE_48: 5111463773946218803
+      SADNESSIDLE_49: -1315487093517822836
+      SADNESSIDLE_5: 6017250913020885352
+      SADNESSIDLE_50: -6337008006851666479
+      SADNESSIDLE_51: -5040932271541030569
+      SADNESSIDLE_52: 1120134891509903762
+      SADNESSIDLE_53: -3534826449552433945
+      SADNESSIDLE_54: -9102140845131991896
+      SADNESSIDLE_55: 4185905498266041129
+      SADNESSIDLE_56: -8215116252398296276
+      SADNESSIDLE_57: 8895113105458501584
+      SADNESSIDLE_58: -931764645330080008
+      SADNESSIDLE_59: 7453929445070778762
+      SADNESSIDLE_6: 616380252016638006
+      SADNESSIDLE_60: 7741812644978806531
+      SADNESSIDLE_61: 7939775652323889864
+      SADNESSIDLE_62: -7426841055045889023
+      SADNESSIDLE_63: -8014692778780547568
+      SADNESSIDLE_64: 4885582478349091407
+      SADNESSIDLE_65: -7412674728759493867
+      SADNESSIDLE_66: -2125623683807865962
+      SADNESSIDLE_67: -3306229949221859804
+      SADNESSIDLE_68: 8105158002199983983
+      SADNESSIDLE_69: -3920784504798333014
+      SADNESSIDLE_7: 5419208329987006957
+      SADNESSIDLE_8: 1202100955277575861
+      SADNESSIDLE_9: -6427245969022760752
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

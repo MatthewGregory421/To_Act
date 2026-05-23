@@ -1,0 +1,897 @@
+fileFormatVersion: 2
+guid: f8f760b3a987f784d8812b736ac5b2ee
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 471992008429309342
+    second: ANGERIDLE_0
+  - first:
+      213: 2116804682625387335
+    second: ANGERIDLE_1
+  - first:
+      213: -5353904941567975069
+    second: ANGERIDLE_2
+  - first:
+      213: 7782490926588450454
+    second: ANGERIDLE_3
+  - first:
+      213: -2691812090496302169
+    second: ANGERIDLE_4
+  - first:
+      213: -2714213519904773151
+    second: ANGERIDLE_5
+  - first:
+      213: 2103037506659753032
+    second: ANGERIDLE_6
+  - first:
+      213: -3444192582684530877
+    second: ANGERIDLE_7
+  - first:
+      213: 3203416196313320159
+    second: ANGERIDLE_8
+  - first:
+      213: 2823347818618985828
+    second: ANGERIDLE_9
+  - first:
+      213: 2668848232733568954
+    second: ANGERIDLE_10
+  - first:
+      213: 8390249104218646985
+    second: ANGERIDLE_11
+  - first:
+      213: -255792566380271086
+    second: ANGERIDLE_12
+  - first:
+      213: -2149600701620968178
+    second: ANGERIDLE_13
+  - first:
+      213: -2983111333940368208
+    second: ANGERIDLE_14
+  - first:
+      213: -8188786656007643830
+    second: ANGERIDLE_15
+  - first:
+      213: 7166872734990774017
+    second: ANGERIDLE_16
+  - first:
+      213: -4912624318576542705
+    second: ANGERIDLE_17
+  - first:
+      213: 6942309886076268293
+    second: ANGERIDLE_18
+  - first:
+      213: -8336877399747950826
+    second: ANGERIDLE_19
+  - first:
+      213: -3777349138459336831
+    second: ANGERIDLE_20
+  - first:
+      213: 5123461639739536315
+    second: ANGERIDLE_21
+  - first:
+      213: 6965661793107133582
+    second: ANGERIDLE_22
+  - first:
+      213: -4579983052544167447
+    second: ANGERIDLE_23
+  - first:
+      213: 8236759264151106393
+    second: ANGERIDLE_24
+  - first:
+      213: 4912995742360654096
+    second: ANGERIDLE_25
+  - first:
+      213: 1003022608741482550
+    second: ANGERIDLE_26
+  - first:
+      213: 2195998478524474861
+    second: ANGERIDLE_27
+  - first:
+      213: -771892717597477624
+    second: ANGERIDLE_28
+  - first:
+      213: -3183681470941958418
+    second: ANGERIDLE_29
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ANGERIDLE_0
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 0
+        width: 21
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e9d804f1b3adc8600800000000000000
+      internalID: 471992008429309342
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ANGERIDLE_1
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 4
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74b05ceb4a6606d10800000000000000
+      internalID: 2116804682625387335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ANGERIDLE_2
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 0
+        width: 21
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 361e1a462db13b5b0800000000000000
+      internalID: -5353904941567975069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ANGERIDLE_3
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 4
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 696510ba346f00c60800000000000000
+      internalID: 7782490926588450454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ANGERIDLE_4
+      rect:
+        serializedVersion: 2
+        x: 110
+        y: 0
+        width: 21
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a3cddf5a23c4aad0800000000000000
+      internalID: -2691812090496302169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ANGERIDLE_5
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 4
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1eb63852f2d255ad0800000000000000
+      internalID: -2714213519904773151
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ANGERIDLE_6
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 21
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84c17cd487d7f2d10800000000000000
+      internalID: 2103037506659753032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ANGERIDLE_7
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 4
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 347ad0b1815c330d0800000000000000
+      internalID: -3444192582684530877
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ANGERIDLE_8
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 0
+        width: 21
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fda0df0ee02d47c20800000000000000
+      internalID: 3203416196313320159
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ANGERIDLE_9
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 5
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 46d982ed1eb8e2720800000000000000
+      internalID: 2823347818618985828
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ANGERIDLE_10
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 0
+        width: 21
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: abf6387d357a90520800000000000000
+      internalID: 2668848232733568954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ANGERIDLE_11
+      rect:
+        serializedVersion: 2
+        x: 278
+        y: 5
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c9edf95b17207470800000000000000
+      internalID: 8390249104218646985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ANGERIDLE_12
+      rect:
+        serializedVersion: 2
+        x: 309
+        y: 4
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 21ae7b0240e337cf0800000000000000
+      internalID: -255792566380271086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ANGERIDLE_13
+      rect:
+        serializedVersion: 2
+        x: 313
+        y: 0
+        width: 18
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e05a3fa0d851b22e0800000000000000
+      internalID: -2149600701620968178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ANGERIDLE_14
+      rect:
+        serializedVersion: 2
+        x: 328
+        y: 5
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0bcea070c0cd996d0800000000000000
+      internalID: -2983111333940368208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ANGERIDLE_15
+      rect:
+        serializedVersion: 2
+        x: 359
+        y: 4
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4d94332ce59b5e80800000000000000
+      internalID: -8188786656007643830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ANGERIDLE_16
+      rect:
+        serializedVersion: 2
+        x: 363
+        y: 0
+        width: 18
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 10fae8fd7c8d57360800000000000000
+      internalID: 7166872734990774017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ANGERIDLE_17
+      rect:
+        serializedVersion: 2
+        x: 378
+        y: 5
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0cbc40e53ad2dbb0800000000000000
+      internalID: -4912624318576542705
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ANGERIDLE_18
+      rect:
+        serializedVersion: 2
+        x: 411
+        y: 0
+        width: 20
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 50f22483f0a085060800000000000000
+      internalID: 6942309886076268293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ANGERIDLE_19
+      rect:
+        serializedVersion: 2
+        x: 428
+        y: 3
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6178a04fc267d4c80800000000000000
+      internalID: -8336877399747950826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ANGERIDLE_20
+      rect:
+        serializedVersion: 2
+        x: 461
+        y: 0
+        width: 20
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18fd089c8f8249bc0800000000000000
+      internalID: -3777349138459336831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ANGERIDLE_21
+      rect:
+        serializedVersion: 2
+        x: 478
+        y: 3
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb3f30157313a1740800000000000000
+      internalID: 5123461639739536315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ANGERIDLE_22
+      rect:
+        serializedVersion: 2
+        x: 511
+        y: 0
+        width: 20
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8449a3ce700ba060800000000000000
+      internalID: 6965661793107133582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ANGERIDLE_23
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 3
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e1bbc3fda1a070c0800000000000000
+      internalID: -4579983052544167447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ANGERIDLE_24
+      rect:
+        serializedVersion: 2
+        x: 561
+        y: 0
+        width: 20
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 953722819e8de4270800000000000000
+      internalID: 8236759264151106393
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ANGERIDLE_25
+      rect:
+        serializedVersion: 2
+        x: 578
+        y: 3
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 011d966f8977e2440800000000000000
+      internalID: 4912995742360654096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ANGERIDLE_26
+      rect:
+        serializedVersion: 2
+        x: 611
+        y: 0
+        width: 20
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 630c8b79fb37bed00800000000000000
+      internalID: 1003022608741482550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ANGERIDLE_27
+      rect:
+        serializedVersion: 2
+        x: 628
+        y: 3
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de5efb73bf0c97e10800000000000000
+      internalID: 2195998478524474861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ANGERIDLE_28
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 0
+        width: 21
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 80534eab9afa945f0800000000000000
+      internalID: -771892717597477624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ANGERIDLE_29
+      rect:
+        serializedVersion: 2
+        x: 677
+        y: 4
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eeee28ee19a41d3d0800000000000000
+      internalID: -3183681470941958418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      ANGERIDLE_0: 471992008429309342
+      ANGERIDLE_1: 2116804682625387335
+      ANGERIDLE_10: 2668848232733568954
+      ANGERIDLE_11: 8390249104218646985
+      ANGERIDLE_12: -255792566380271086
+      ANGERIDLE_13: -2149600701620968178
+      ANGERIDLE_14: -2983111333940368208
+      ANGERIDLE_15: -8188786656007643830
+      ANGERIDLE_16: 7166872734990774017
+      ANGERIDLE_17: -4912624318576542705
+      ANGERIDLE_18: 6942309886076268293
+      ANGERIDLE_19: -8336877399747950826
+      ANGERIDLE_2: -5353904941567975069
+      ANGERIDLE_20: -3777349138459336831
+      ANGERIDLE_21: 5123461639739536315
+      ANGERIDLE_22: 6965661793107133582
+      ANGERIDLE_23: -4579983052544167447
+      ANGERIDLE_24: 8236759264151106393
+      ANGERIDLE_25: 4912995742360654096
+      ANGERIDLE_26: 1003022608741482550
+      ANGERIDLE_27: 2195998478524474861
+      ANGERIDLE_28: -771892717597477624
+      ANGERIDLE_29: -3183681470941958418
+      ANGERIDLE_3: 7782490926588450454
+      ANGERIDLE_4: -2691812090496302169
+      ANGERIDLE_5: -2714213519904773151
+      ANGERIDLE_6: 2103037506659753032
+      ANGERIDLE_7: -3444192582684530877
+      ANGERIDLE_8: 3203416196313320159
+      ANGERIDLE_9: 2823347818618985828
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="ParameterPreset" id="{1a458ac4-d654-411d-8fdd-d3b88373568c}">
+		<property name="name">
+			<value>PlayerSpecialSelector</value>
+		</property>
+		<relationship name="folder">
+			<destination>{0874962d-f056-497f-bb75-1f12376125fd}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{0735a08b-5ece-4cb5-a764-69229456f61f}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{0735a08b-5ece-4cb5-a764-69229456f61f}">
+		<property name="parameterType">
+			<value>2</value>
+		</property>
+		<property name="maximum">
+			<value>2</value>
+		</property>
+		<property name="enumerationLabels">
+			<value>Shield</value>
+			<value>GroundSlam</value>
+		</property>
+		<property name="isGlobal">
+			<value>true</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+		<property name="isExposedRecursively">
+			<value>false</value>
+		</property>
+	</object>
+</objects>

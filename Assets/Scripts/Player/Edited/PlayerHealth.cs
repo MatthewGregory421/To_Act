@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 public class PlayerHealth : MonoBehaviour
 {
 
-    public DeathManager deathManager;
+    //public DeathManager deathManager;
 
     private bool isDead;
 
@@ -69,6 +69,6 @@ public class PlayerHealth : MonoBehaviour
 
         Debug.Log("Player died!");
 
-        deathManager.PlayerDied();
+        //deathManager.PlayerDied();
     }
 }

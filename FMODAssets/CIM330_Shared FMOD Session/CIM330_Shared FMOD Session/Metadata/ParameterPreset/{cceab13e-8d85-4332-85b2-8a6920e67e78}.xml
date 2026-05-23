@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="ParameterPreset" id="{cceab13e-8d85-4332-85b2-8a6920e67e78}">
+		<property name="name">
+			<value>UISelector</value>
+		</property>
+		<relationship name="folder">
+			<destination>{0874962d-f056-497f-bb75-1f12376125fd}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{ae6be87b-7e92-49e8-95c1-08267d8f2780}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{ae6be87b-7e92-49e8-95c1-08267d8f2780}">
+		<property name="parameterType">
+			<value>2</value>
+		</property>
+		<property name="maximum">
+			<value>5</value>
+		</property>
+		<property name="enumerationLabels">
+			<value>Back</value>
+			<value>Close Menu</value>
+			<value>Confirm</value>
+			<value>Forward</value>
+			<value>Open Menu</value>
+		</property>
+		<property name="isGlobal">
+			<value>true</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+		<property name="isExposedRecursively">
+			<value>false</value>
+		</property>
+	</object>
+</objects>
