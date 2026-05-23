@@ -8,7 +8,7 @@ public class PlayerMovementInputSystem : MonoBehaviour
     public CapsuleCollider2D capsule;
 
     public PlayerSFXManager playerSFXManager;
-    public PlayerAnimations playerAnimations;
+    //public PlayerAnimations playerAnimations;
 
     [Header("Movement")]
     public float moveSpeed = 5f;
@@ -22,7 +22,6 @@ public class PlayerMovementInputSystem : MonoBehaviour
     public float airControlMultiplier = 0.6f;
 
     [Header("Footsteps")]
-    private bool footstepsPlaying;
     public float footstepInterval = 0.4f;
 
     private float footstepTimer;
@@ -171,7 +170,6 @@ public class PlayerMovementInputSystem : MonoBehaviour
         if (context.performed && isGrounded)
         {
             EnterCrouch();
-            //playerAnimations.crouch = true;
         }
 
         if (context.canceled)
