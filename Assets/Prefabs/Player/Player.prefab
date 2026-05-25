@@ -106,13 +106,15 @@ GameObject:
   m_Component:
   - component: {fileID: 8034821831225191078}
   - component: {fileID: 498229039030277070}
+  - component: {fileID: 6318914192480660900}
+  - component: {fileID: 3338646419838579827}
   m_Layer: 9
   m_Name: Shield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8034821831225191078
 Transform:
   m_ObjectHideFlags: 0
@@ -183,6 +185,55 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &6318914192480660900
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4153617515208640560}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -0.00000047683716, y: 0}
+  m_Radius: 0.49999997
+--- !u!114 &3338646419838579827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4153617515208640560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da46cba41cddee447ab1fe88d06e43a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sfxManager: {fileID: 0}
 --- !u!1 &5365073451652466878
 GameObject:
   m_ObjectHideFlags: 0
@@ -379,6 +430,7 @@ GameObject:
   - component: {fileID: 2497298793376529229}
   - component: {fileID: 891080748193600368}
   - component: {fileID: 1631968302464345722}
+  - component: {fileID: 5209876767883424714}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -730,7 +782,7 @@ MonoBehaviour:
     m_Bits: 64
   isTouchingWall: 0
   wallSlideSpeed: 2
-  shieldBubble: {fileID: 0}
+  shieldBubble: {fileID: 4153617515208640560}
   shieldDuration: 2
   shieldCooldown: 3
 --- !u!114 &4102738230455616327
@@ -809,6 +861,18 @@ MonoBehaviour:
   maxHealth: 5
   currentHealth: 0
   knockbackForce: 15
+--- !u!114 &5209876767883424714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6455173188378048971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20afc3054194ecb49afbb25e2cdfe41e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7128744153994376599
 GameObject:
   m_ObjectHideFlags: 0
