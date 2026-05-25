@@ -4,11 +4,11 @@ public class PlayerAnimations : MonoBehaviour
 {
     [SerializeField] private Animator animator;
 
-    private bool grounded;
-    private bool blocking;
+    public bool grounded;
+    public bool blocking;
     public bool crouch;
-    private bool groundslam;
-    private float velocity;
+    public bool groundslam;
+    public float velocity;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

@@ -5,10 +5,10 @@ public class PlayerMovementInputSystem : MonoBehaviour
 {
     [Header("References")]
     public Rigidbody2D rb;
-    public CapsuleCollider2D capsule;
+    public BoxCollider2D box;
 
     public PlayerSFXManager playerSFXManager;
-    //public PlayerAnimations playerAnimations;
+    public PlayerAnimations playerAnimations;
 
     [Header("Movement")]
     public float moveSpeed = 5f;
@@ -65,8 +65,8 @@ public class PlayerMovementInputSystem : MonoBehaviour
 
     private void Start()
     {
-        originalColliderSize = capsule.size;
-        originalColliderOffset = capsule.offset;
+        originalColliderSize = box.size;
+        originalColliderOffset = box.offset;
     }
 
 
@@ -75,6 +75,9 @@ public class PlayerMovementInputSystem : MonoBehaviour
         CheckGrounded();
         HandleLookDirection();
         CheckWall();
+
+        playerAnimations.grounded = isGrounded;
+        playerAnimations.crouch = isCrouching;
     }
 
     private void FixedUpdate()
@@ -132,6 +135,8 @@ public class PlayerMovementInputSystem : MonoBehaviour
         }
 
         rb.linearVelocity = velocity;
+
+        playerAnimations.velocity = Mathf.Abs(rb.linearVelocity.x);
     }
 
     public void Move(InputAction.CallbackContext context)
@@ -152,6 +157,7 @@ public class PlayerMovementInputSystem : MonoBehaviour
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
 
             playerSFXManager.PlayPlayerJump();
+            playerAnimations.SetTrigger("Jump");
 
             canDoubleJump = true;
         }
@@ -160,6 +166,7 @@ public class PlayerMovementInputSystem : MonoBehaviour
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
 
             playerSFXManager.PlayPlayerJump();
+            playerAnimations.SetTrigger("Jump");
 
             canDoubleJump = false;
         }
@@ -185,9 +192,9 @@ public class PlayerMovementInputSystem : MonoBehaviour
     {
         isCrouching = true;
 
-        capsule.size = new Vector2(originalColliderSize.x, originalColliderSize.y * crouchHeightMultiplier);
+        box.size = new Vector2(originalColliderSize.x, originalColliderSize.y * crouchHeightMultiplier);
 
-        capsule.offset = new Vector2(originalColliderOffset.x, originalColliderOffset.y - (originalColliderSize.y * (1 - crouchHeightMultiplier) / 2f));
+        box.offset = new Vector2(originalColliderOffset.x, originalColliderOffset.y - (originalColliderSize.y * (1 - crouchHeightMultiplier) / 2f));
 
     }
 
@@ -203,8 +210,8 @@ public class PlayerMovementInputSystem : MonoBehaviour
     {
         isCrouching = false;
 
-        capsule.size = originalColliderSize;
-        capsule.offset = originalColliderOffset;
+        box.size = originalColliderSize;
+        box.offset = originalColliderOffset;
     }
 
     private void HandleLookDirection()
