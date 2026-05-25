@@ -13,7 +13,7 @@ public class MainMenu : MonoBehaviour
     public void PlayGame()
     {
         uiSFXManager.PlayUIConfirm();
-        SceneManager.LoadScene("GameScene");
+        SceneManager.LoadScene("Bootstrap");
     }
 
     // Loads the weekly testing scene
