@@ -63,6 +63,19 @@ public class PlayerMovementInputSystem : MonoBehaviour
     [Header("Wall Slide")]
     public float wallSlideSpeed = 2f;
 
+    [Header("Shield")]
+    public GameObject shieldBubble;
+
+    public float shieldDuration = 2f;
+    public float shieldCooldown = 3f;
+
+    private float shieldTimer;
+    private float cooldownTimer;
+
+    private bool isShieldActive;
+    private bool isOnCooldown;
+    private bool shieldSFXPlayed;
+
     private void Start()
     {
         originalColliderSize = box.size;
@@ -75,6 +88,8 @@ public class PlayerMovementInputSystem : MonoBehaviour
         CheckGrounded();
         HandleLookDirection();
         CheckWall();
+
+        HandleShieldTimers();
 
         playerAnimations.grounded = isGrounded;
         playerAnimations.crouch = isCrouching;
@@ -188,6 +203,14 @@ public class PlayerMovementInputSystem : MonoBehaviour
         }
     }
 
+    public void Shield(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            TryActivateShield();
+        }
+    }
+
     private void EnterCrouch()
     {
         isCrouching = true;
@@ -212,6 +235,79 @@ public class PlayerMovementInputSystem : MonoBehaviour
 
         box.size = originalColliderSize;
         box.offset = originalColliderOffset;
+    }
+
+    private void TryActivateShield()
+    {
+        if (isOnCooldown || isShieldActive)
+            return;
+
+        ActivateShield();
+    }
+
+    private void ActivateShield()
+    {
+        isShieldActive = true;
+        shieldTimer = shieldDuration;
+
+        if (shieldBubble != null)
+            shieldBubble.SetActive(true);
+
+        // ANIMATION
+        playerAnimations.blocking = true;
+
+        if (!shieldSFXPlayed)
+        {
+            playerSFXManager.PlayShieldActive();
+            shieldSFXPlayed = true;
+        }
+    }
+
+    private void DeactivateShield()
+    {
+        isShieldActive = false;
+
+        if (shieldBubble != null)
+            shieldBubble.SetActive(false);
+
+        // ANIMATION
+        playerAnimations.blocking = false;
+
+        // SFX (ONCE)
+        playerSFXManager.PlayShieldDeactive();
+        shieldSFXPlayed = false;
+    }
+
+    private void HandleShieldTimers()
+    {
+        // ACTIVE SHIELD
+        if (isShieldActive)
+        {
+            shieldTimer -= Time.deltaTime;
+
+            if (shieldTimer <= 0f)
+            {
+                DeactivateShield();
+                StartCooldown();
+            }
+        }
+
+        // COOLDOWN
+        if (isOnCooldown)
+        {
+            cooldownTimer -= Time.deltaTime;
+
+            if (cooldownTimer <= 0f)
+            {
+                isOnCooldown = false;
+            }
+        }
+    }
+
+    private void StartCooldown()
+    {
+        isOnCooldown = true;
+        cooldownTimer = shieldCooldown;
     }
 
     private void HandleLookDirection()
