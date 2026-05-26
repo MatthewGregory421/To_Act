@@ -31,7 +31,7 @@ public class PlayerProjectile : MonoBehaviour
         // ENEMY
         if (((1 << layer) & enemyLayer) != 0)
         {
-            collision.GetComponent<EnemyHealth>()?.TakeDamage(damage);
+            collision.GetComponent<EnemyBase>()?.TakeDamage(damage);
             Destroy(gameObject);
             return;
         }
