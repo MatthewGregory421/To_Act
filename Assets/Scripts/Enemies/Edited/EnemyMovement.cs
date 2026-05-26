@@ -3,10 +3,7 @@ using UnityEngine;
 public class EnemyMovement : EnemyBase
 {
     [Header("Movement")]
-    private int direction = 1;
-
-    [Header("Detection")]
-    public float detectionRange = 6f;
+    [SerializeField] private int direction = 1;
 
     [Header("Ground Check")]
     public Transform groundCheckPoint;
@@ -17,32 +14,38 @@ public class EnemyMovement : EnemyBase
     public Transform edgeCheckPoint;
     public float edgeCheckDistance = 0.5f;
 
-    [Header("Edge Behaviour")]
-    public float edgePauseTime = 0.4f;
+    [Header("Edge Pause")]
+    public float edgePauseTime = 0.3f;
     private float edgePauseTimer;
-    private bool isPausedAtEdge;
+    private bool isEdgePaused;
 
     [Header("Wall Detection")]
     public Transform wallCheckPoint;
     public float wallCheckDistance = 0.3f;
     public LayerMask wallLayer;
 
+    [Header("Behaviour")]
+    public bool canMove = true;
+
+    public System.Action OnHitEdge;
+
     protected virtual void Update()
     {
         if (isDead) return;
 
-        bool chasing = PlayerDetected();
-
-        HandleEdgePause();
-
-        Move(chasing);
-
-        // Only run environment checks when NOT paused
-        if (!isPausedAtEdge)
+        if (isEdgePaused)
         {
+            HandleEdgePause();
+            return;
+        }
+
+        if (canMove)
+        {
+            Move();
+
             if (IsGrounded())
             {
-                CheckEdge(chasing);
+                CheckEdge();
                 CheckWall();
             }
         }
@@ -52,89 +55,25 @@ public class EnemyMovement : EnemyBase
     // MOVEMENT
     // =========================
 
-    void Move(bool chasing)
+    void Move()
     {
-        if (isPausedAtEdge)
-        {
-            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
-            return;
-        }
-
-        if (chasing)
-        {
-            direction = PlayerDirection();
-        }
-        else
-        {
-            PatrolMovement();
-        }
-
         rb.linearVelocity = new Vector2(direction * moveSpeed, rb.linearVelocity.y);
 
         FaceDirection(direction);
     }
 
     // =========================
-    // PATROL LOGIC
+    // EXTERNAL CONTROL
     // =========================
 
-    void PatrolMovement()
+    public void SetDirection(int newDirection)
     {
-        if (!IsGrounded())
-        {
-            return;
-        }
-
-        RaycastHit2D hit = Physics2D.Raycast(
-            edgeCheckPoint.position,
-            Vector2.down,
-            edgeCheckDistance,
-            groundLayer
-        );
-
-        if (hit.collider == null)
-        {
-            TriggerEdgePause();
-        }
+        direction = newDirection;
     }
 
-    // =========================
-    // PLAYER DETECTION
-    // =========================
-
-    bool PlayerDetected()
+    public int GetDirection()
     {
-        if (player == null) return false;
-
-        float distance = Vector2.Distance(transform.position, player.position);
-
-        if (distance > detectionRange)
-            return false;
-
-        Vector2 origin = transform.position;
-        Vector2 dir = ((Vector2)player.position - origin).normalized;
-
-        RaycastHit2D hit = Physics2D.Raycast(
-            origin,
-            dir,
-            detectionRange,
-            wallLayer | groundLayer
-        );
-
-        if (hit.collider == null)
-            return true;
-
-        if (hit.collider.transform == player)
-            return true;
-
-        return false;
-    }
-
-    int PlayerDirection()
-    {
-        if (player == null) return direction;
-
-        return player.position.x > transform.position.x ? 1 : -1;
+        return direction;
     }
 
     // =========================
@@ -152,37 +91,10 @@ public class EnemyMovement : EnemyBase
     }
 
     // =========================
-    // EDGE PAUSE SYSTEM
+    // EDGE CHECK
     // =========================
 
-    void HandleEdgePause()
-    {
-        if (!isPausedAtEdge) return;
-
-        edgePauseTimer -= Time.deltaTime;
-
-        if (edgePauseTimer <= 0f)
-        {
-            isPausedAtEdge = false;
-
-            // ensure movement is "released" before flipping
-            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
-
-            Flip();
-        }
-    }
-
-    void TriggerEdgePause()
-    {
-        isPausedAtEdge = true;
-        edgePauseTimer = edgePauseTime;
-    }
-
-    // =========================
-    // CHECKS
-    // =========================
-
-    void CheckEdge(bool chasing)
+    void CheckEdge()
     {
         RaycastHit2D hit = Physics2D.Raycast(
             edgeCheckPoint.position,
@@ -193,18 +105,29 @@ public class EnemyMovement : EnemyBase
 
         if (hit.collider == null)
         {
-            if (chasing)
-            {
-                // pause instead of flipping while chasing
-                TriggerEdgePause();
-            }
-            else
-            {
-                // patrol behaviour = flip
-                Flip();
-            }
+            isEdgePaused = true;
+            edgePauseTimer = edgePauseTime;
         }
     }
+
+    void HandleEdgePause()
+    {
+        rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
+
+        edgePauseTimer -= Time.deltaTime;
+
+        if (edgePauseTimer <= 0f)
+        {
+            isEdgePaused = false;
+            Flip();
+
+            OnHitEdge?.Invoke();
+        }
+    }
+
+    // =========================
+    // WALL CHECK
+    // =========================
 
     void CheckWall()
     {
@@ -241,23 +164,31 @@ public class EnemyMovement : EnemyBase
         if (groundCheckPoint != null)
         {
             Gizmos.color = Color.yellow;
-            Gizmos.DrawRay(groundCheckPoint.position, Vector2.down * groundCheckDistance);
+            Gizmos.DrawRay(
+                groundCheckPoint.position,
+                Vector2.down * groundCheckDistance
+            );
         }
 
         if (edgeCheckPoint != null)
         {
             Gizmos.color = Color.green;
-            Gizmos.DrawRay(edgeCheckPoint.position, Vector2.down * edgeCheckDistance);
+            Gizmos.DrawRay(
+                edgeCheckPoint.position,
+                Vector2.down * edgeCheckDistance
+            );
         }
 
         if (wallCheckPoint != null)
         {
             Gizmos.color = Color.red;
-            Vector2 dir = Vector2.right * (Application.isPlaying ? direction : 1);
-            Gizmos.DrawRay(wallCheckPoint.position, dir * wallCheckDistance);
-        }
 
-        Gizmos.color = Color.cyan;
-        Gizmos.DrawWireSphere(transform.position, detectionRange);
+            Vector2 dir = Vector2.right * (Application.isPlaying ? direction : 1);
+
+            Gizmos.DrawRay(
+                wallCheckPoint.position,
+                dir * wallCheckDistance
+            );
+        }
     }
 }
