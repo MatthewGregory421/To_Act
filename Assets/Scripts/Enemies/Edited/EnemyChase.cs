@@ -67,14 +67,18 @@ public class EnemyChase : MonoBehaviour
 
     void ChasePlayer()
     {
-        if (player.position.x > transform.position.x)
+        float deltaX = player.position.x - transform.position.x;
+
+        if (Mathf.Abs(deltaX) < 0.4f)
         {
+            enemyMovement.SetDirection(0); // full stop idle
+            return;
+        }
+
+        if (deltaX > 0)
             enemyMovement.SetDirection(1);
-        }
         else
-        {
             enemyMovement.SetDirection(-1);
-        }
     }
 
     void HandleChaseLock()
