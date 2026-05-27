@@ -57,8 +57,13 @@ public class EnemyMovement : EnemyBase
 
     void Move()
     {
-        rb.linearVelocity = new Vector2(direction * moveSpeed, rb.linearVelocity.y);
+        if (!canMove)
+        {
+            rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
+            return;
+        }
 
+        rb.linearVelocity = new Vector2(direction * moveSpeed, rb.linearVelocity.y);
         FaceDirection(direction);
     }
 
@@ -123,6 +128,18 @@ public class EnemyMovement : EnemyBase
 
             OnHitEdge?.Invoke();
         }
+    }
+
+    public bool HasGroundAhead()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(
+            edgeCheckPoint.position,
+            Vector2.down,
+            edgeCheckDistance,
+            groundLayer
+        );
+
+        return hit.collider != null;
     }
 
     // =========================
