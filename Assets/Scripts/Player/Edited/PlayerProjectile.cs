@@ -6,7 +6,6 @@ public class PlayerProjectile : MonoBehaviour
     public int damage = 1;
 
     public LayerMask enemyLayer;
-    public LayerMask solidLayers;
 
     private Rigidbody2D rb;
     private Vector2 moveDirection;
@@ -28,21 +27,24 @@ public class PlayerProjectile : MonoBehaviour
 
         int layer = collision.gameObject.layer;
 
-        // ENEMY
+        // ENEMY HIT ONLY
         if (((1 << layer) & enemyLayer) != 0)
         {
-            collision.GetComponent<EnemyBase>()?.TakeDamage(damage);
+            Vector2 dir = rb.linearVelocity.normalized;
+            collision.GetComponent<EnemyBase>()?.TakeDamage(damage, dir);
+
             Destroy(gameObject);
             return;
         }
 
-        // SOLID
-        if (((1 << layer) & solidLayers) != 0)
+        // IMPORTANT CHANGE:
+        // Ignore shield completely
+        if (collision.CompareTag("PlayerShield"))
         {
-            Destroy(gameObject);
             return;
         }
 
+        // Optional: only destroy on actual world collision if you want
         Destroy(gameObject);
     }
 }

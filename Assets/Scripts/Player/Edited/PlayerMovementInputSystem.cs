@@ -10,6 +10,8 @@ public class PlayerMovementInputSystem : MonoBehaviour
     public PlayerSFXManager playerSFXManager;
     public PlayerAnimations playerAnimations;
 
+    public PlayerHealth playerHealth;
+
     [Header("Movement")]
     public float moveSpeed = 5f;
     private float horizontalMovement;
@@ -76,6 +78,13 @@ public class PlayerMovementInputSystem : MonoBehaviour
     private bool isOnCooldown;
     private bool shieldSFXPlayed;
 
+    [Header("Dazed State")]
+    public bool isDazed;
+    private float dazedTimer;
+
+    [Header("Dazed Movement")]
+    public float dazedSpeedMultiplier = 0.25f;
+
     private void Start()
     {
         originalColliderSize = box.size;
@@ -90,9 +99,19 @@ public class PlayerMovementInputSystem : MonoBehaviour
         CheckWall();
 
         HandleShieldTimers();
+        HandleDazed();
 
         playerAnimations.grounded = isGrounded;
         playerAnimations.crouch = isCrouching;
+
+        //if (isDazed)
+        //{
+        //    playerAnimations.SetBool("Dazed", true);
+        //}
+        //else
+        // {
+        //    playerAnimations.SetBool("Dazed", false);
+        //}
     }
 
     private void FixedUpdate()
@@ -101,6 +120,9 @@ public class PlayerMovementInputSystem : MonoBehaviour
 
         if (isCrouching)
             speed *= crouchSpeedMultiplier;
+
+        if (isDazed)
+            speed *= dazedSpeedMultiplier;
 
         float targetSpeed = horizontalMovement * speed;
 
@@ -154,6 +176,10 @@ public class PlayerMovementInputSystem : MonoBehaviour
         playerAnimations.velocity = Mathf.Abs(rb.linearVelocity.x);
     }
 
+    // =========================
+    // INPUT
+    // =========================
+
     public void Move(InputAction.CallbackContext context)
     {
         horizontalMovement = context.ReadValue<Vector2>().x;
@@ -165,6 +191,9 @@ public class PlayerMovementInputSystem : MonoBehaviour
             return;
 
         if (isCrouching)
+            return;
+
+        if (isDazed)
             return;
 
         if (isGrounded)
@@ -189,6 +218,9 @@ public class PlayerMovementInputSystem : MonoBehaviour
 
     public void Crouch(InputAction.CallbackContext context)
     {
+        if (isDazed)
+            return;
+
         if (context.performed && isGrounded)
         {
             EnterCrouch();
@@ -205,11 +237,18 @@ public class PlayerMovementInputSystem : MonoBehaviour
 
     public void Shield(InputAction.CallbackContext context)
     {
+        if (isDazed)
+            return;
+
         if (context.performed)
         {
             TryActivateShield();
         }
     }
+
+    // =========================
+    // CROUCH
+    // =========================
 
     private void EnterCrouch()
     {
@@ -237,6 +276,10 @@ public class PlayerMovementInputSystem : MonoBehaviour
         box.offset = originalColliderOffset;
     }
 
+    // =========================
+    // SHIELD
+    // =========================
+
     private void TryActivateShield()
     {
         if (isOnCooldown || isShieldActive)
@@ -248,6 +291,7 @@ public class PlayerMovementInputSystem : MonoBehaviour
     private void ActivateShield()
     {
         isShieldActive = true;
+        playerHealth.isInvincible = true;
         shieldTimer = shieldDuration;
 
         if (shieldBubble != null)
@@ -266,6 +310,7 @@ public class PlayerMovementInputSystem : MonoBehaviour
     private void DeactivateShield()
     {
         isShieldActive = false;
+        playerHealth.isInvincible = false;
 
         if (shieldBubble != null)
             shieldBubble.SetActive(false);
@@ -310,6 +355,35 @@ public class PlayerMovementInputSystem : MonoBehaviour
         cooldownTimer = shieldCooldown;
     }
 
+    // =========================
+    // DAZED SYSTEM LOGIC
+    // =========================
+
+    private void HandleDazed()
+    {
+        if (!isDazed)
+            return;
+
+        dazedTimer -= Time.deltaTime;
+
+        rb.linearVelocity = new Vector2(rb.linearVelocity.x * 0.5f, rb.linearVelocity.y);
+
+        if (dazedTimer <= 0f)
+        {
+            isDazed = false;
+        }
+    }
+
+    public void Stun(float duration)
+    {
+        isDazed = true;
+        dazedTimer = duration;
+    }
+
+    // =========================
+    // LOOK DIRECTION
+    // =========================
+
     private void HandleLookDirection()
     {
         if (horizontalMovement > 0.01f)
@@ -327,6 +401,10 @@ public class PlayerMovementInputSystem : MonoBehaviour
             1f
         );
     }
+
+    // =========================
+    // CHECKS
+    // =========================
 
     private bool IsCeilingAbove()
     {

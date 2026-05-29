@@ -9,7 +9,7 @@ public class PlayerHealth : MonoBehaviour
     //public DeathManager deathManager;
 
     private bool isDead;
-    private bool isInvincible;
+    public bool isInvincible;
 
     [Header("Health")]
     public int maxHealth = 5;

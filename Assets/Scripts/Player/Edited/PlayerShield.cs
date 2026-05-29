@@ -6,13 +6,12 @@ public class PlayerShield : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // only care about enemy projectiles
-        EnemyProjectile projectile = collision.GetComponent<EnemyProjectile>();
+        // ONLY enemy projectiles should interact
+        if (!collision.CompareTag("EnemyProjectile"))
+            return;
 
-        if (projectile != null)
-        {
-            sfxManager.PlayShieldConnect();
-            Destroy(collision.gameObject);
-        }
+        sfxManager.PlayShieldConnect();
+
+        Destroy(collision.gameObject);
     }
 }

@@ -29,15 +29,12 @@ public class EnemyMovement : EnemyBase
 
     public System.Action OnHitEdge;
 
-    protected virtual void Update()
+    protected override void Update()
     {
-        if (isDead) return;
+        base.Update();
 
-        if (isEdgePaused)
-        {
-            HandleEdgePause();
+        if (isDead || isKnockedBack || isEdgePaused)
             return;
-        }
 
         if (canMove)
         {
@@ -57,11 +54,8 @@ public class EnemyMovement : EnemyBase
 
     void Move()
     {
-        if (!canMove)
-        {
-            rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
+        if (!canMove || isKnockedBack)
             return;
-        }
 
         rb.linearVelocity = new Vector2(direction * moveSpeed, rb.linearVelocity.y);
         FaceDirection(direction);
