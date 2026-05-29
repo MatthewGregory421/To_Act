@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 3338646419838579827}
   m_Layer: 9
   m_Name: Shield
-  m_TagString: Untagged
+  m_TagString: PlayerShield
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -753,6 +753,7 @@ MonoBehaviour:
   box: {fileID: 4182899772243204076}
   playerSFXManager: {fileID: 0}
   playerAnimations: {fileID: 891080748193600368}
+  playerHealth: {fileID: 1631968302464345722}
   moveSpeed: 5
   facingDirection: 1
   acceleration: 20
@@ -785,6 +786,8 @@ MonoBehaviour:
   shieldBubble: {fileID: 4153617515208640560}
   shieldDuration: 2
   shieldCooldown: 3
+  isDazed: 0
+  dazedSpeedMultiplier: 0.25
 --- !u!114 &4102738230455616327
 MonoBehaviour:
   m_ObjectHideFlags: 0

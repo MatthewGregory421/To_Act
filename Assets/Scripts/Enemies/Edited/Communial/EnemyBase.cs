@@ -10,8 +10,14 @@ public class EnemyBase : MonoBehaviour
     public int maxHealth = 3;
     protected int currentHealth;
 
+    [Header("Knockback")]
+    public float knockbackForce = 20f;
+    public bool isKnockedBack;
+    private float knockbackTimer;
+
     [Header("State")]
     public bool isDead;
+    public bool isInvincible;
 
     [Header("Death")]
     public bool destroyOnDeath = true;
@@ -31,16 +37,43 @@ public class EnemyBase : MonoBehaviour
         }
     }
 
-    public virtual void TakeDamage(int damage)
+    protected virtual void Update()
     {
-        if (isDead) return;
+        if (isKnockedBack)
+        {
+            knockbackTimer -= Time.deltaTime;
+
+            if (knockbackTimer <= 0f)
+                isKnockedBack = false;
+        }
+    }
+
+    public virtual void TakeDamage(int damage, Vector2 hitDirection)
+    {
+        if (isDead || isInvincible) return;
 
         currentHealth -= damage;
 
         Debug.Log($"{gameObject.name} took {damage} damage. HP: {currentHealth}");
 
+        Knockback(-hitDirection, knockbackForce);
+
         if (currentHealth <= 0)
             Die();
+    }
+
+    public void Knockback(Vector2 direction, float force)
+    {
+        if (rb == null || isDead) return;
+
+        direction.Normalize();
+
+        isKnockedBack = true;
+        knockbackTimer = 0.2f;
+
+        rb.linearVelocity = new Vector2(
+            direction.x * force,
+            rb.linearVelocity.y + force * 0.2f);
     }
 
     protected virtual void Die()
@@ -50,6 +83,12 @@ public class EnemyBase : MonoBehaviour
         isDead = true;
 
         Debug.Log($"{gameObject.name} died");
+
+        EnemyDrops drops = GetComponent<EnemyDrops>();
+        if (drops != null)
+        {
+            drops.HandleDeath();
+        }
 
         if (rb != null)
             rb.linearVelocity = Vector2.zero;
