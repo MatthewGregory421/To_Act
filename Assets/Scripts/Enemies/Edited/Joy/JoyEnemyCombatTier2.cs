@@ -6,9 +6,9 @@ public class JoyEnemyCombatTier2 : MonoBehaviour
 {
     [Header("References")]
     public EnemyBase enemyBase;
+    public EnemyMovement enemyMovement;
     public EnemyChase chase;
     public Rigidbody2D rb;
-    public Transform player;
 
     [Header("Ground Check")]
     public LayerMask groundLayer;
@@ -60,7 +60,7 @@ public class JoyEnemyCombatTier2 : MonoBehaviour
     void Update()
     {
         if (enemyBase.isDead) return;
-        if (player == null) return;
+        if (enemyMovement.player == null) return;
 
         HandleContactCooldown();
 
@@ -80,7 +80,7 @@ public class JoyEnemyCombatTier2 : MonoBehaviour
         if (attacksUntilLaugh <= 0)
         {
             float distance =
-                Vector2.Distance(transform.position, player.position);
+                Vector2.Distance(transform.position, enemyMovement.player.position);
 
             // only laugh if player is close enough
             if (distance <= laughRange)
@@ -160,7 +160,7 @@ public class JoyEnemyCombatTier2 : MonoBehaviour
         {
             timer += Time.deltaTime;
 
-            float distance = Vector2.Distance(transform.position, player.position);
+            float distance = Vector2.Distance(transform.position, enemyMovement.player.position);
 
             if (distance > maxChaseDistanceDuringWindup || !chase.chasing)
             {
@@ -176,7 +176,7 @@ public class JoyEnemyCombatTier2 : MonoBehaviour
         // =========================
         state = AttackState.Attacking;
 
-        int dir = player.position.x > transform.position.x ? 1 : -1;
+        int dir = enemyMovement.player.position.x > transform.position.x ? 1 : -1;
 
         Vector2 jumpDir = new Vector2(dir * horizontalBias, 1f).normalized;
 
@@ -238,12 +238,12 @@ public class JoyEnemyCombatTier2 : MonoBehaviour
         // =========================
 
         float distance =
-            Vector2.Distance(transform.position, player.position);
+            Vector2.Distance(transform.position, enemyMovement.player.position);
 
         if (distance <= laughRange)
         {
             PlayerMovementInputSystem movement =
-                player.GetComponent<PlayerMovementInputSystem>();
+                enemyMovement.player.GetComponent<PlayerMovementInputSystem>();
 
             if (movement != null)
             {

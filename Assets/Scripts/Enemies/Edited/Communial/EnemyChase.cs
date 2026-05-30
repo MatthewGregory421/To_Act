@@ -4,7 +4,6 @@ public class EnemyChase : MonoBehaviour
 {
     [Header("References")]
     public EnemyMovement enemyMovement;
-    public Transform player;
 
     [Header("Detection")]
     public float detectionRange = 6f;
@@ -22,7 +21,7 @@ public class EnemyChase : MonoBehaviour
 
     void Update()
     {
-        if (player == null) return;
+        if (enemyMovement.player == null) return;
 
         HandleChaseLock();
         DetectPlayer();
@@ -39,7 +38,7 @@ public class EnemyChase : MonoBehaviour
 
     void DetectPlayer()
     {
-        float distance = Vector2.Distance(transform.position, player.position);
+        float distance = Vector2.Distance(transform.position, enemyMovement.player.position);
 
         if (distance <= detectionRange && HasLineOfSight())
         {
@@ -67,7 +66,7 @@ public class EnemyChase : MonoBehaviour
 
     void ChasePlayer()
     {
-        float deltaX = player.position.x - transform.position.x;
+        float deltaX = enemyMovement.player.position.x - transform.position.x;
 
         if (Mathf.Abs(deltaX) < 0.4f)
         {
@@ -109,7 +108,7 @@ public class EnemyChase : MonoBehaviour
 
     bool HasLineOfSight()
     {
-        Vector2 direction = player.position - transform.position;
+        Vector2 direction = enemyMovement.player.position - transform.position;
 
         RaycastHit2D hit = Physics2D.Raycast(
             transform.position,
@@ -120,7 +119,7 @@ public class EnemyChase : MonoBehaviour
 
         if (hit.collider != null)
         {
-            return hit.collider.transform == player;
+            return hit.collider.transform == enemyMovement.player;
         }
 
         return false;
@@ -135,13 +134,13 @@ public class EnemyChase : MonoBehaviour
         Gizmos.color = Color.cyan;
         Gizmos.DrawWireSphere(transform.position, detectionRange);
 
-        if (player != null)
+        if (enemyMovement.player != null)
         {
             Gizmos.color = chasing ? Color.red : Color.white;
 
             Gizmos.DrawLine(
                 transform.position,
-                player.position
+                enemyMovement.player.position
             );
         }
     }

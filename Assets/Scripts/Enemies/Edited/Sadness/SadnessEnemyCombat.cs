@@ -4,9 +4,8 @@ public class SadnessEnemyCombat : MonoBehaviour
 {
     [Header("References")]
     public EnemyBase enemyBase;
-    public EnemyMovement movement;
+    public EnemyMovement enemyMovement;
     public EnemyProjectileSpawner projectileSpawner;
-    public Transform player;
 
     [Header("Detection")]
     public float detectionRange = 8f;
@@ -34,18 +33,18 @@ public class SadnessEnemyCombat : MonoBehaviour
 
     private void OnEnable()
     {
-        movement.OnHitEdge += HandleEdgePause;
+        enemyMovement.OnHitEdge += HandleEdgePause;
     }
 
     private void OnDisable()
     {
-        movement.OnHitEdge -= HandleEdgePause;
+        enemyMovement.OnHitEdge -= HandleEdgePause;
     }
 
     private void Update()
     {
         if (enemyBase.isDead) return;
-        if (player == null) return;
+        if (enemyMovement.player == null) return;
 
         HandleMovementLock();
 
@@ -56,13 +55,13 @@ public class SadnessEnemyCombat : MonoBehaviour
 
         if (!playerDetected)
         {
-            movement.canMove = true;
+            enemyMovement.canMove = true;
             return;
         }
 
         if (movementLocked)
         {
-            movement.canMove = false;
+            enemyMovement.canMove = false;
             return;
         }
 
@@ -77,7 +76,7 @@ public class SadnessEnemyCombat : MonoBehaviour
     {
         float distance = Vector2.Distance(
             transform.position,
-            player.position
+            enemyMovement.player.position
         );
 
         if (distance <= detectionRange && HasLineOfSight())
@@ -97,7 +96,7 @@ public class SadnessEnemyCombat : MonoBehaviour
     bool HasLineOfSight()
     {
         Vector2 direction =
-            player.position - transform.position;
+            enemyMovement.player.position - transform.position;
 
         RaycastHit2D hit = Physics2D.Raycast(
             transform.position,
@@ -108,7 +107,7 @@ public class SadnessEnemyCombat : MonoBehaviour
 
         if (hit.collider != null)
         {
-            return hit.collider.transform == player;
+            return hit.collider.transform == enemyMovement.player;
         }
 
         return false;
@@ -120,7 +119,7 @@ public class SadnessEnemyCombat : MonoBehaviour
 
     void HandleSpacing()
     {
-        float deltaX = player.position.x - transform.position.x;
+        float deltaX = enemyMovement.player.position.x - transform.position.x;
         float distance = Mathf.Abs(deltaX);
 
         // ALWAYS face player while active
@@ -133,7 +132,7 @@ public class SadnessEnemyCombat : MonoBehaviour
 
         if (atEdge)
         {
-            movement.canMove = false;
+            enemyMovement.canMove = false;
             return;
         }
 
@@ -144,8 +143,8 @@ public class SadnessEnemyCombat : MonoBehaviour
         {
             int dir = (deltaX > 0) ? -1 : 1;
 
-            movement.SetDirection(dir);
-            movement.canMove = true;
+            enemyMovement.SetDirection(dir);
+            enemyMovement.canMove = true;
             return;
         }
 
@@ -156,23 +155,23 @@ public class SadnessEnemyCombat : MonoBehaviour
         {
             int dir = (deltaX > 0) ? 1 : -1;
 
-            movement.SetDirection(dir);
-            movement.canMove = true;
+            enemyMovement.SetDirection(dir);
+            enemyMovement.canMove = true;
             return;
         }
 
         // =========================
         // IDEAL RANGE -> STOP
         // =========================
-        movement.canMove = false;
+        enemyMovement.canMove = false;
     }
 
     void FacePlayer(float deltaX)
     {
         if (deltaX > 0)
-            movement.SetDirection(1);
+            enemyMovement.SetDirection(1);
         else
-            movement.SetDirection(-1);
+            enemyMovement.SetDirection(-1);
 
         Vector3 scale = transform.localScale;
 
@@ -234,14 +233,14 @@ public class SadnessEnemyCombat : MonoBehaviour
             detectionRange
         );
 
-        if (player != null)
+        if (enemyMovement.player != null)
         {
             Gizmos.color =
                 playerDetected ? Color.red : Color.white;
 
             Gizmos.DrawLine(
                 transform.position,
-                player.position
+                enemyMovement.player.position
             );
         }
     }

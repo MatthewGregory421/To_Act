@@ -28,17 +28,12 @@ public class EnemyBase : MonoBehaviour
     protected virtual void Awake()
     {
         currentHealth = maxHealth;
-
-        if (player == null)
-        {
-            GameObject found = GameObject.FindGameObjectWithTag("Player");
-            if (found != null)
-                player = found.transform;
-        }
     }
 
     protected virtual void Update()
     {
+        TryFindPlayer();
+
         if (isKnockedBack)
         {
             knockbackTimer -= Time.deltaTime;
@@ -97,6 +92,19 @@ public class EnemyBase : MonoBehaviour
             Destroy(gameObject);
         else
             gameObject.SetActive(false);
+    }
+
+    protected void TryFindPlayer()
+    {
+        if (player != null)
+            return;
+
+        GameObject found = GameObject.FindGameObjectWithTag("Player");
+
+        if (found != null)
+        {
+            player = found.transform;
+        }
     }
 
     // =========================

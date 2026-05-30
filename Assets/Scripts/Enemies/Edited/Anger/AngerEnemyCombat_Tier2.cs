@@ -6,7 +6,6 @@ public class AngerEnemyCombat_Tier2 : MonoBehaviour
     [Header("References")]
     public EnemyMovement enemyMovement;
     public EnemyChase enemyChase;
-    public Transform player;
     public Rigidbody2D rb;
 
     [Header("Attack Settings")]
@@ -36,12 +35,12 @@ public class AngerEnemyCombat_Tier2 : MonoBehaviour
 
     void Update()
     {
-        if (player == null || enemyMovement == null) return;
+        if (enemyMovement.player == null || enemyMovement == null) return;
         if (enemyMovement.isDead) return;
 
         cooldownTimer -= Time.deltaTime;
 
-        float distance = Vector2.Distance(transform.position, player.position);
+        float distance = Vector2.Distance(transform.position, enemyMovement.player.position);
 
         bool inNormalRange = distance <= normalAttackRange;
         bool inChargeRange = distance <= chargeAttackRange;
@@ -92,7 +91,7 @@ public class AngerEnemyCombat_Tier2 : MonoBehaviour
         // wind-up telegraph
         yield return new WaitForSeconds(chargeWindUpTime);
 
-        Vector2 dir = (player.position - transform.position).normalized;
+        Vector2 dir = (enemyMovement.player.position - transform.position).normalized;
 
         float timer = 0f;
 
@@ -107,7 +106,7 @@ public class AngerEnemyCombat_Tier2 : MonoBehaviour
 
         rb.linearVelocity = Vector2.zero;
 
-        float distance = Vector2.Distance(transform.position, player.position);
+        float distance = Vector2.Distance(transform.position, enemyMovement.player.position);
 
         if (distance <= chargeHitRadius)
         {
@@ -125,9 +124,9 @@ public class AngerEnemyCombat_Tier2 : MonoBehaviour
     // =========================
     void TryDealDamage(int dmg, float knockback)
     {
-        Vector2 hitDir = (player.position - transform.position).normalized;
+        Vector2 hitDir = (enemyMovement.player.position - transform.position).normalized;
 
-        var playerHealth = player.GetComponent<PlayerHealth>();
+        var playerHealth = enemyMovement.player.GetComponent<PlayerHealth>();
         if (playerHealth != null)
         {
             playerHealth.TakeDamage(dmg, hitDir);

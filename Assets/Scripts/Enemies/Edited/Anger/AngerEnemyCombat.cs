@@ -6,7 +6,6 @@ public class AngerEnemyCombat : MonoBehaviour
     [Header("References")]
     public EnemyMovement enemyMovement;
     public EnemyChase enemyChase;
-    public Transform player;
 
     [Header("Attack Settings")]
     public float attackRange = 2f;
@@ -21,12 +20,12 @@ public class AngerEnemyCombat : MonoBehaviour
 
     void Update()
     {
-        if (player == null || enemyMovement == null) return;
+        if (enemyMovement.player == null || enemyMovement == null) return;
         if (enemyMovement.isDead) return;
 
         cooldownTimer -= Time.deltaTime;
 
-        float distance = Vector2.Distance(transform.position, player.position);
+        float distance = Vector2.Distance(transform.position, enemyMovement.player.position);
 
         bool inRange = distance <= attackRange;
         bool canAttack = cooldownTimer <= 0f;
@@ -48,7 +47,7 @@ public class AngerEnemyCombat : MonoBehaviour
         // WIND UP
         yield return new WaitForSeconds(windUpTime);
 
-        float distance = Vector2.Distance(transform.position, player.position);
+        float distance = Vector2.Distance(transform.position, enemyMovement.player.position);
 
         if (distance <= attackRange)
         {
@@ -66,9 +65,9 @@ public class AngerEnemyCombat : MonoBehaviour
 
     void DealDamage()
     {
-        Vector2 hitDir = (player.position - transform.position).normalized;
+        Vector2 hitDir = (enemyMovement.player.position - transform.position).normalized;
 
-        var playerHealth = player.GetComponent<PlayerHealth>();
+        var playerHealth = enemyMovement.player.GetComponent<PlayerHealth>();
         if (playerHealth != null)
         {
             playerHealth.TakeDamage(damage, hitDir);
