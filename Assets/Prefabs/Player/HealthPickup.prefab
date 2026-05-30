@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 1295700351657128837}
   - component: {fileID: 5884265481704914099}
   - component: {fileID: 7982772839239193407}
-  - component: {fileID: 788977319332889203}
-  m_Layer: 0
+  - component: {fileID: 2922628192762619271}
+  m_Layer: 14
   m_Name: HealthPickup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -162,13 +162,13 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.5
---- !u!61 &788977319332889203
+--- !u!61 &2922628192762619271
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -202,7 +202,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.017763972, y: 0.00000008940697}
+  m_Offset: {x: 0.015338361, y: 0.035794288}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -212,5 +212,5 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.3907788, y: 1.4263055}
+  m_Size: {x: 1.3374902, y: 1.3579426}
   m_EdgeRadius: 0

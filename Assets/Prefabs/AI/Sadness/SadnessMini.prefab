@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6313961220193008699}
   - component: {fileID: 1732964101824814890}
   - component: {fileID: 7773803214688166517}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: SadnessMini
   m_TagString: Untagged
   m_Icon: {fileID: 0}

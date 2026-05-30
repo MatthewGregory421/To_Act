@@ -294,7 +294,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyMovement: {fileID: 3818176034474020918}
-  player: {fileID: 0}
   detectionRange: 6
   lineOfSightMask:
     serializedVersion: 2
@@ -314,9 +313,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyBase: {fileID: 6660973595143874830}
+  enemyMovement: {fileID: 3818176034474020918}
   chase: {fileID: 7517342378695697869}
   rb: {fileID: 7388948013277507345}
-  player: {fileID: 0}
   groundLayer:
     serializedVersion: 2
     m_Bits: 128

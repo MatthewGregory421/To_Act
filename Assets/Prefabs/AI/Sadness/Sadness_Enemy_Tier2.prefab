@@ -389,9 +389,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyBase: {fileID: 4321403250036066107}
-  movement: {fileID: 89268650317244167}
+  enemyMovement: {fileID: 89268650317244167}
   projectileSpawner: {fileID: 1876615254929525560}
-  player: {fileID: 0}
   detectionRange: 8
   lineOfSightMask:
     serializedVersion: 2

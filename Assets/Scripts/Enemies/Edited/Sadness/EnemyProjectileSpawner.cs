@@ -14,6 +14,8 @@ public class EnemyProjectileSpawner : MonoBehaviour
 
     private void Update()
     {
+        TryFindAimTarget();
+
         if (aimTarget == null || projectilePrefab == null) return;
 
         timer -= Time.deltaTime;
@@ -24,6 +26,20 @@ public class EnemyProjectileSpawner : MonoBehaviour
             timer = fireRate;
         }
     }
+
+    private void TryFindAimTarget()
+    {
+        if (aimTarget != null) return;
+
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player == null) return;
+
+        Transform found = player.transform.Find("AimTarget");
+
+        if (found != null)
+            aimTarget = found;
+    }
+
 
     private void Shoot()
     {

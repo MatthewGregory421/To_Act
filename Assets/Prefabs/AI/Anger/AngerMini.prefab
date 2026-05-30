@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3446062480202679517}
   - component: {fileID: 6628251379978492239}
   - component: {fileID: 2345007313635632602}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: AngerMini
   m_TagString: Untagged
   m_Icon: {fileID: 0}

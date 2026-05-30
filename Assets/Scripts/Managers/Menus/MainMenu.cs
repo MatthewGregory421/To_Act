@@ -20,7 +20,8 @@ public class MainMenu : MonoBehaviour
     public void LoadTestingScene()
     {
         uiSFXManager.PlayUIConfirm();
-        SceneManager.LoadScene("PlayerTestingScene");
+        SceneManager.LoadScene("TestingBootstrap" +
+            "");
     }
 
     // Opens the options menu
