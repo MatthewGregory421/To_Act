@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b75c95f34a00d4e8c04f76b73312e6, type: 3}
+  m_Name: Breakables End
+  m_EditorClassIdentifier: 
+  m_AnimatedSprites:
+  - {fileID: -8379708268926810057, guid: 7436ca9b19f9c414dbaae536a946b8dc, type: 3}
+  - {fileID: -8834801534513900372, guid: 7456a9cdb5fdf4b0687332470c51f055, type: 3}
+  - {fileID: 589597163983473403, guid: 752cd7636356d43dc85501ca8d9f40a9, type: 3}
+  - {fileID: -8565786938410879172, guid: 5fdc86927d94e4de08d98420537f20be, type: 3}
+  - {fileID: 86852831451165698, guid: bedd0bd3e26b74acd910d826565456c6, type: 3}
+  - {fileID: 6175342803842726228, guid: 259527458ec8d4800ab520d5c99c90fd, type: 3}
+  - {fileID: -5409135853557986913, guid: 4c77eb19e58e7463ea78701cb0c791bb, type: 3}
+  - {fileID: 7666451551287766690, guid: c2bbf1c89e281444c91635f9b23de35f, type: 3}
+  m_MinSpeed: 5
+  m_MaxSpeed: 5
+  m_AnimationStartTime: 0
+  m_AnimationStartFrame: 0
+  m_TileColliderType: 0
+  m_TileAnimationFlags: 0
