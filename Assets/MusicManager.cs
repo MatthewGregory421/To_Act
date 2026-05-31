@@ -39,6 +39,11 @@ public class MusicManager : MonoBehaviour
         RuntimeManager.StudioSystem.setParameterByName(musicSelector, 3);
     }
 
+    public void JoyMusicSelect()
+    {
+        RuntimeManager.StudioSystem.setParameterByName(musicSelector, 4);
+    }
+
      public void DeathStingerSelect()
     {
         RuntimeManager.StudioSystem.setParameterByName(Dead, 1);
