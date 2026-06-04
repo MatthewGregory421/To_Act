@@ -17,11 +17,11 @@ public class PlayerSFXManager : MonoBehaviour
     [ParamRef]
     private string PlayerSpecialController = null;
 
-    //public void PlayPlayerDash() 
-    //{
-       // RuntimeManager.StudioSystem.setParameterByName(PlayerActionSelector, 0);
-        //PlayerSFX.Play();
-    //}
+    public void PlayPlayerHealthUp() 
+    {
+        RuntimeManager.StudioSystem.setParameterByName(PlayerActionSelector, 6);
+        PlayerSFX.Play();
+    }
 
     public void PlayPlayerJump() 
     {
