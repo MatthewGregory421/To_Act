@@ -13,14 +13,15 @@ public class MainMenu : MonoBehaviour
     public void PlayGame()
     {
         uiSFXManager.PlayUIConfirm();
-        SceneManager.LoadScene("GameScene");
+        SceneManager.LoadScene("Bootstrap");
     }
 
     // Loads the weekly testing scene
     public void LoadTestingScene()
     {
         uiSFXManager.PlayUIConfirm();
-        SceneManager.LoadScene("PlayerTestingScene");
+        SceneManager.LoadScene("TestingBootstrap" +
+            "");
     }
 
     // Opens the options menu

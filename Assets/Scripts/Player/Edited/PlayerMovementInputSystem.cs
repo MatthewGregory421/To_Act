@@ -5,10 +5,12 @@ public class PlayerMovementInputSystem : MonoBehaviour
 {
     [Header("References")]
     public Rigidbody2D rb;
-    public CapsuleCollider2D capsule;
+    public BoxCollider2D box;
 
     public PlayerSFXManager playerSFXManager;
-    //public PlayerAnimations playerAnimations;
+    public PlayerAnimations playerAnimations;
+
+    public PlayerHealth playerHealth;
 
     [Header("Movement")]
     public float moveSpeed = 5f;
@@ -63,10 +65,30 @@ public class PlayerMovementInputSystem : MonoBehaviour
     [Header("Wall Slide")]
     public float wallSlideSpeed = 2f;
 
+    [Header("Shield")]
+    public GameObject shieldBubble;
+
+    public float shieldDuration = 2f;
+    public float shieldCooldown = 3f;
+
+    private float shieldTimer;
+    private float cooldownTimer;
+
+    private bool isShieldActive;
+    private bool isOnCooldown;
+    private bool shieldSFXPlayed;
+
+    [Header("Dazed State")]
+    public bool isDazed;
+    private float dazedTimer;
+
+    [Header("Dazed Movement")]
+    public float dazedSpeedMultiplier = 0.25f;
+
     private void Start()
     {
-        originalColliderSize = capsule.size;
-        originalColliderOffset = capsule.offset;
+        originalColliderSize = box.size;
+        originalColliderOffset = box.offset;
     }
 
 
@@ -75,6 +97,21 @@ public class PlayerMovementInputSystem : MonoBehaviour
         CheckGrounded();
         HandleLookDirection();
         CheckWall();
+
+        HandleShieldTimers();
+        HandleDazed();
+
+        playerAnimations.grounded = isGrounded;
+        playerAnimations.crouch = isCrouching;
+
+        //if (isDazed)
+        //{
+        //    playerAnimations.SetBool("Dazed", true);
+        //}
+        //else
+        // {
+        //    playerAnimations.SetBool("Dazed", false);
+        //}
     }
 
     private void FixedUpdate()
@@ -83,6 +120,9 @@ public class PlayerMovementInputSystem : MonoBehaviour
 
         if (isCrouching)
             speed *= crouchSpeedMultiplier;
+
+        if (isDazed)
+            speed *= dazedSpeedMultiplier;
 
         float targetSpeed = horizontalMovement * speed;
 
@@ -132,7 +172,13 @@ public class PlayerMovementInputSystem : MonoBehaviour
         }
 
         rb.linearVelocity = velocity;
+
+        playerAnimations.velocity = Mathf.Abs(rb.linearVelocity.x);
     }
+
+    // =========================
+    // INPUT
+    // =========================
 
     public void Move(InputAction.CallbackContext context)
     {
@@ -147,11 +193,15 @@ public class PlayerMovementInputSystem : MonoBehaviour
         if (isCrouching)
             return;
 
+        if (isDazed)
+            return;
+
         if (isGrounded)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
 
             playerSFXManager.PlayPlayerJump();
+            playerAnimations.SetTrigger("Jump");
 
             canDoubleJump = true;
         }
@@ -160,6 +210,7 @@ public class PlayerMovementInputSystem : MonoBehaviour
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
 
             playerSFXManager.PlayPlayerJump();
+            playerAnimations.SetTrigger("Jump");
 
             canDoubleJump = false;
         }
@@ -167,6 +218,9 @@ public class PlayerMovementInputSystem : MonoBehaviour
 
     public void Crouch(InputAction.CallbackContext context)
     {
+        if (isDazed)
+            return;
+
         if (context.performed && isGrounded)
         {
             EnterCrouch();
@@ -181,13 +235,28 @@ public class PlayerMovementInputSystem : MonoBehaviour
         }
     }
 
+    public void Shield(InputAction.CallbackContext context)
+    {
+        if (isDazed)
+            return;
+
+        if (context.performed)
+        {
+            TryActivateShield();
+        }
+    }
+
+    // =========================
+    // CROUCH
+    // =========================
+
     private void EnterCrouch()
     {
         isCrouching = true;
 
-        capsule.size = new Vector2(originalColliderSize.x, originalColliderSize.y * crouchHeightMultiplier);
+        box.size = new Vector2(originalColliderSize.x, originalColliderSize.y * crouchHeightMultiplier);
 
-        capsule.offset = new Vector2(originalColliderOffset.x, originalColliderOffset.y - (originalColliderSize.y * (1 - crouchHeightMultiplier) / 2f));
+        box.offset = new Vector2(originalColliderOffset.x, originalColliderOffset.y - (originalColliderSize.y * (1 - crouchHeightMultiplier) / 2f));
 
     }
 
@@ -203,9 +272,117 @@ public class PlayerMovementInputSystem : MonoBehaviour
     {
         isCrouching = false;
 
-        capsule.size = originalColliderSize;
-        capsule.offset = originalColliderOffset;
+        box.size = originalColliderSize;
+        box.offset = originalColliderOffset;
     }
+
+    // =========================
+    // SHIELD
+    // =========================
+
+    private void TryActivateShield()
+    {
+        if (isOnCooldown || isShieldActive)
+            return;
+
+        ActivateShield();
+    }
+
+    private void ActivateShield()
+    {
+        isShieldActive = true;
+        playerHealth.isInvincible = true;
+        shieldTimer = shieldDuration;
+
+        if (shieldBubble != null)
+            shieldBubble.SetActive(true);
+
+        // ANIMATION
+        playerAnimations.blocking = true;
+
+        if (!shieldSFXPlayed)
+        {
+            playerSFXManager.PlayShieldActive();
+            shieldSFXPlayed = true;
+        }
+    }
+
+    private void DeactivateShield()
+    {
+        isShieldActive = false;
+        playerHealth.isInvincible = false;
+
+        if (shieldBubble != null)
+            shieldBubble.SetActive(false);
+
+        // ANIMATION
+        playerAnimations.blocking = false;
+
+        // SFX (ONCE)
+        playerSFXManager.PlayShieldDeactive();
+        shieldSFXPlayed = false;
+    }
+
+    private void HandleShieldTimers()
+    {
+        // ACTIVE SHIELD
+        if (isShieldActive)
+        {
+            shieldTimer -= Time.deltaTime;
+
+            if (shieldTimer <= 0f)
+            {
+                DeactivateShield();
+                StartCooldown();
+            }
+        }
+
+        // COOLDOWN
+        if (isOnCooldown)
+        {
+            cooldownTimer -= Time.deltaTime;
+
+            if (cooldownTimer <= 0f)
+            {
+                isOnCooldown = false;
+            }
+        }
+    }
+
+    private void StartCooldown()
+    {
+        isOnCooldown = true;
+        cooldownTimer = shieldCooldown;
+    }
+
+    // =========================
+    // DAZED SYSTEM LOGIC
+    // =========================
+
+    private void HandleDazed()
+    {
+        if (!isDazed)
+            return;
+
+        dazedTimer -= Time.deltaTime;
+
+        rb.linearVelocity = new Vector2(rb.linearVelocity.x * 0.5f, rb.linearVelocity.y);
+
+        if (dazedTimer <= 0f)
+        {
+            isDazed = false;
+        }
+    }
+
+    public void Stun(float duration)
+    {
+        isDazed = true;
+        dazedTimer = duration;
+    }
+
+    // =========================
+    // LOOK DIRECTION
+    // =========================
 
     private void HandleLookDirection()
     {
@@ -224,6 +401,10 @@ public class PlayerMovementInputSystem : MonoBehaviour
             1f
         );
     }
+
+    // =========================
+    // CHECKS
+    // =========================
 
     private bool IsCeilingAbove()
     {

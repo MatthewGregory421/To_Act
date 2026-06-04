@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - Ground
+  - Obsticle
+  - EnemyProjectile
+  - PlayerShield
+  - EnemyShield
+  - NarrationBox
   layers:
   - Default
   - TransparentFX
@@ -13,13 +19,13 @@ TagManager:
   - UI
   - Obsticle
   - Ground
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - PlayerShield
+  - EnemyProjectile
+  - PlayerProjectile
+  - EnemyShield
+  - Ghost
+  - Collide with nothing
   - 
   - 
   - 

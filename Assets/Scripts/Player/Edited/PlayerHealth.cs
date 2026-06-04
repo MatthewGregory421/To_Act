@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 
 public class PlayerHealth : MonoBehaviour
@@ -8,6 +9,7 @@ public class PlayerHealth : MonoBehaviour
     //public DeathManager deathManager;
 
     private bool isDead;
+    public bool isInvincible;
 
     [Header("Health")]
     public int maxHealth = 5;
@@ -15,6 +17,9 @@ public class PlayerHealth : MonoBehaviour
 
     [Header("Damage Effects")]
     public float knockbackForce = 5f;
+
+    [Header("I-Frames")]
+    public float invincibilityDuration = 1f;
 
     private Rigidbody2D rb;
 
@@ -27,6 +32,9 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(int damage, Vector2 knockbackDirection)
     {
+        if (isDead || isInvincible)
+            return;
+
         currentHealth -= damage;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
 
@@ -39,7 +47,21 @@ public class PlayerHealth : MonoBehaviour
         );
 
         if (currentHealth <= 0)
+        {
             Die();
+            return;
+        }
+
+        StartCoroutine(InvincibilityFrames());
+    }
+
+    private IEnumerator InvincibilityFrames()
+    {
+        isInvincible = true;
+
+        yield return new WaitForSeconds(invincibilityDuration);
+
+        isInvincible = false;
     }
 
     public void Knockback(
