@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b75c95f34a00d4e8c04f76b73312e6, type: 3}
+  m_Name: Breakable Mids
+  m_EditorClassIdentifier: 
+  m_AnimatedSprites:
+  - {fileID: 21300000, guid: 16fc8337519594cca9d5ed2c0c8b4382, type: 3}
+  - {fileID: 21300000, guid: 0a9bffab766da48b2bbbec341f9628ef, type: 3}
+  - {fileID: 21300000, guid: bbbd451c4b933432a9e1955e463b4341, type: 3}
+  - {fileID: 21300000, guid: b724d9e80bf5c420995f570fd220214d, type: 3}
+  - {fileID: 21300000, guid: 4fee68038d9a147aaa6a64351f138579, type: 3}
+  - {fileID: 21300000, guid: 1a65637d862604c8395d1c07f53dc8bc, type: 3}
+  - {fileID: 21300000, guid: 9f8669a73371e4834a89458e7f13ec66, type: 3}
+  - {fileID: 21300000, guid: 9e005e51fa6a34d46abec646e483eed6, type: 3}
+  m_MinSpeed: 5
+  m_MaxSpeed: 5
+  m_AnimationStartTime: 0
+  m_AnimationStartFrame: 0
+  m_TileColliderType: 0
+  m_TileAnimationFlags: 0
