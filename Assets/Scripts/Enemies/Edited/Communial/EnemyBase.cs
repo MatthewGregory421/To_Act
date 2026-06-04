@@ -41,6 +41,8 @@ public class EnemyBase : MonoBehaviour
             if (knockbackTimer <= 0f)
                 isKnockedBack = false;
         }
+
+        print("current health = " + currentHealth);
     }
 
     public virtual void TakeDamage(int damage, Vector2 hitDirection)
@@ -51,7 +53,7 @@ public class EnemyBase : MonoBehaviour
 
         Debug.Log($"{gameObject.name} took {damage} damage. HP: {currentHealth}");
 
-        Knockback(-hitDirection, knockbackForce);
+        Knockback(hitDirection, knockbackForce);
 
         if (currentHealth <= 0)
             Die();
@@ -66,9 +68,8 @@ public class EnemyBase : MonoBehaviour
         isKnockedBack = true;
         knockbackTimer = 0.2f;
 
-        rb.linearVelocity = new Vector2(
-            direction.x * force,
-            rb.linearVelocity.y + force * 0.2f);
+        rb.linearVelocity = Vector2.zero;
+        rb.AddForce(direction * force, ForceMode2D.Impulse);
     }
 
     protected virtual void Die()
