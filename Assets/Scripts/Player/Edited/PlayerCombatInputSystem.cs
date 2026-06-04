@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -28,6 +29,16 @@ public class PlayerCombatInputSystem : MonoBehaviour
     [Header("Ground Slam")]
     public float slamForce = 20f;
 
+    private readonly HashSet<GameObject> slammedEnemies = new HashSet<GameObject>();
+    private readonly HashSet<GameObject> slammedObjects = new HashSet<GameObject>();
+    private bool isSlamming;
+
+    private bool wasGrounded;
+
+    [SerializeField] private float slamRadius = 2.5f;
+    [SerializeField] private LayerMask enemyLayer;
+    [SerializeField] private LayerMask floorLayer;
+
     private void Awake()
     {
         if (movement == null)
@@ -45,6 +56,15 @@ public class PlayerCombatInputSystem : MonoBehaviour
     {
         if (attackTimer > 0)
             attackTimer -= Time.deltaTime;
+
+        // detect landing
+        if (isSlamming && !wasGrounded && movement.isGrounded)
+        {
+            GroundSlamImpact();
+            isSlamming = false;
+        }
+
+        wasGrounded = movement.isGrounded;
     }
 
     // =====================================
@@ -100,19 +120,21 @@ public class PlayerCombatInputSystem : MonoBehaviour
         // DOWN SLAM
         else if (y < -0.1f)
         {
-            shootDirection = Vector2.down;
-            shootPoint = downShootPoint;
-
             playerSFXManager.PlayGroundSlam();
 
-            // Ground slam only in air
             if (!movement.isGrounded)
             {
                 rb.linearVelocity = new Vector2(
                     rb.linearVelocity.x,
                     -slamForce
                 );
+
+                isSlamming = true;
+                slammedEnemies.Clear();
+                slammedObjects.Clear();
             }
+
+            return;
         }
         // NORMAL SHOT (FACE DIRECTION)
         else
@@ -152,6 +174,55 @@ public class PlayerCombatInputSystem : MonoBehaviour
         if (projectileScript != null)
         {
             projectileScript.SetDirection(direction);
+        }
+    }
+
+    private void GroundSlamImpact()
+    {
+        Collider2D[] hits = Physics2D.OverlapCircleAll(
+            transform.position,
+            slamRadius
+        );
+
+        foreach (Collider2D hit in hits)
+        {
+            GameObject obj = hit.gameObject;
+
+            if (slammedObjects.Contains(obj))
+                continue;
+
+            slammedObjects.Add(obj);
+
+            // =========================
+            // 1. SHIELD PRIORITY
+            // =========================
+            SadnessShield shield = obj.GetComponentInParent<SadnessShield>();
+            if (shield != null && shield.isActive)
+            {
+                shield.BreakShield();
+                continue;
+            }
+
+            // =========================
+            // 2. ENEMY DAMAGE
+            // =========================
+            EnemyBase enemy = obj.GetComponentInParent<EnemyBase>();
+            if (enemy != null)
+            {
+                Vector2 dir = (enemy.transform.position - transform.position).normalized;
+                enemy.TakeDamage(1, dir);
+                continue;
+            }
+
+            // =========================
+            // 3. DESTRUCTIBLE FLOOR
+            // =========================
+            DestructibleFloor floor = obj.GetComponent<DestructibleFloor>();
+            if (floor != null)
+            {
+                floor.TakeSlamHit(1);
+                continue;
+            }
         }
     }
 }

@@ -30,4 +30,16 @@ public class SadnessShield : MonoBehaviour
             Destroy(collision.gameObject);
         }
     }
+    public void BreakShield()
+    {
+        if (!isActive)
+            return;
+
+        isActive = false;
+
+        enemyBase.isInvincible = false;
+
+        gameObject.SetActive(false);
+    }
+
 }
