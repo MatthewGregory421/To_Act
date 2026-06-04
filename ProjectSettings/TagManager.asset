@@ -9,6 +9,7 @@ TagManager:
   - EnemyProjectile
   - PlayerShield
   - EnemyShield
+  - NarrationBox
   layers:
   - Default
   - TransparentFX

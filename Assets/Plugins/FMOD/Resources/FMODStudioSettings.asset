@@ -564,6 +564,7 @@ MonoBehaviour:
   - Master
   Banks:
   - Music
+  - Narration
   - SFX
   BanksToLoad:
   - Master

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="ParameterPreset" id="{23f341e0-4051-4610-a891-efb76b4a95b4}">
+		<property name="name">
+			<value>NarratorSelect</value>
+		</property>
+		<relationship name="folder">
+			<destination>{0874962d-f056-497f-bb75-1f12376125fd}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{c4ab953e-cbfa-47c7-85c7-b0f44393d9ab}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{c4ab953e-cbfa-47c7-85c7-b0f44393d9ab}">
+		<property name="parameterType">
+			<value>2</value>
+		</property>
+		<property name="maximum">
+			<value>15</value>
+		</property>
+		<property name="enumerationLabels">
+			<value>Line1</value>
+			<value>Line2</value>
+			<value>Line3</value>
+			<value>Line4</value>
+			<value>Line5</value>
+			<value>Line6</value>
+			<value>Line7</value>
+			<value>Line8</value>
+			<value>Line9</value>
+			<value>Line10</value>
+			<value>Line11</value>
+			<value>Line12</value>
+			<value>Line13</value>
+			<value>Line14</value>
+			<value>Line15</value>
+		</property>
+		<property name="isGlobal">
+			<value>true</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+		<property name="isExposedRecursively">
+			<value>false</value>
+		</property>
+	</object>
+</objects>
