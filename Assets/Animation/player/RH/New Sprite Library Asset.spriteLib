@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5e6fedc2472449cead18ef23b5cb30d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Library:
+  - m_Name: Player Projectiles
+    m_Hash: 1023600987
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: PlayerProjectile1_0
+      m_Hash: 648115892
+      m_Sprite: {fileID: 4619411775562847877, guid: d02fc0632db2d4b2c8ffb04a3dec5403, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 4619411775562847877, guid: d02fc0632db2d4b2c8ffb04a3dec5403, type: 3}
+    - m_Name: PlayerProjectile2_0
+      m_Hash: 619170029
+      m_Sprite: {fileID: -6438811262987847647, guid: 8008366a077c34648b4c2fed5cc7b44e, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -6438811262987847647, guid: 8008366a077c34648b4c2fed5cc7b44e, type: 3}
+    - m_Name: PlayerProjectile3_0
+      m_Hash: 623223514
+      m_Sprite: {fileID: -7970162631133335372, guid: 314f2ff8e497a451c870374758b6a698, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -7970162631133335372, guid: 314f2ff8e497a451c870374758b6a698, type: 3}
+    - m_Name: PlayerProjectile4_0
+      m_Hash: 543863903
+      m_Sprite: {fileID: 1417878207109477246, guid: 324d7ae01638640778509fcd0c0ee372, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 1417878207109477246, guid: 324d7ae01638640778509fcd0c0ee372, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 4
+  m_PrimaryLibraryGUID: 
+  m_ModificationHash: 639161028734114900
+  m_Version: 1
