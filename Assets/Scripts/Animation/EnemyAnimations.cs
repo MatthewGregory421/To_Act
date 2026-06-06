@@ -3,7 +3,8 @@ using UnityEngine;
 public class EnemyAnimations : MonoBehaviour
 {
     [SerializeField] private Animator animator;
-    bool moving;
+    public bool moving;
+    public bool special;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -15,6 +16,7 @@ public class EnemyAnimations : MonoBehaviour
     void Update()
     {
         animator.SetBool("Moving", moving);
+        animator.SetBool("Special", special);
     }
 
     public void EnemyAttack()
@@ -24,5 +26,10 @@ public class EnemyAnimations : MonoBehaviour
     public void EnemyTakeDamage()
     {
         animator.SetTrigger("TakeDamage");
+    }
+
+    public void SpecialConnect()
+    {
+        animator.SetTrigger("SpecialConnect");
     }
 }

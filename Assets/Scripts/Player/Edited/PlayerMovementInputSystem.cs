@@ -104,14 +104,14 @@ public class PlayerMovementInputSystem : MonoBehaviour
         playerAnimations.grounded = isGrounded;
         playerAnimations.crouch = isCrouching;
 
-        //if (isDazed)
-        //{
-        //    playerAnimations.SetBool("Dazed", true);
-        //}
-        //else
-        // {
-        //    playerAnimations.SetBool("Dazed", false);
-        //}
+        if (isDazed)
+        {
+            playerAnimations.SetBool("Dazed", true);
+        }
+        else
+         {
+            playerAnimations.SetBool("Dazed", false);
+        }
     }
 
     private void FixedUpdate()
@@ -201,7 +201,7 @@ public class PlayerMovementInputSystem : MonoBehaviour
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
 
             playerSFXManager.PlayPlayerJump();
-            playerAnimations.SetTrigger("Jump");
+            
 
             canDoubleJump = true;
         }
@@ -210,7 +210,7 @@ public class PlayerMovementInputSystem : MonoBehaviour
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
 
             playerSFXManager.PlayPlayerJump();
-            playerAnimations.SetTrigger("Jump");
+            
 
             canDoubleJump = false;
         }

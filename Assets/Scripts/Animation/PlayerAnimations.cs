@@ -9,6 +9,7 @@ public class PlayerAnimations : MonoBehaviour
     public bool crouch;
     public bool groundslam;
     public float velocity;
+    bool doublejump = true;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -24,11 +25,35 @@ public class PlayerAnimations : MonoBehaviour
         animator.SetBool("Crouch", crouch);
         animator.SetBool("GroundSlam", groundslam);
         animator.SetFloat("Velocity", velocity);
+
+        if(Input.GetKeyDown(KeyCode.Space)){
+            if (grounded)
+            {
+                SetTrigger("Jump");
+            }
+            else { 
+            
+            if(doublejump)
+                {
+                    SetTrigger("Jump");
+                    doublejump = false;
+                }
+            }
+        }
+        if(grounded)
+        {
+             doublejump = true;
+        }
+            
+    }
+    public void SetBool(string name, bool value)
+    {
+        animator.SetBool(name, value);
     }
 
     public void SetTrigger(string trigger)
     {
         animator.SetTrigger(trigger);
-        //Damage, Attack, Jump
+        //Damage, Attack, Jump, take damage
     }
 }
