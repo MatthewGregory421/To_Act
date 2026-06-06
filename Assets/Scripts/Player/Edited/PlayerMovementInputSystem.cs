@@ -104,6 +104,7 @@ public class PlayerMovementInputSystem : MonoBehaviour
         playerAnimations.grounded = isGrounded;
         playerAnimations.crouch = isCrouching;
 
+        /*
         if (isDazed)
         {
             playerAnimations.SetBool("Dazed", true);
@@ -112,6 +113,7 @@ public class PlayerMovementInputSystem : MonoBehaviour
          {
             playerAnimations.SetBool("Dazed", false);
         }
+        */
     }
 
     private void FixedUpdate()
