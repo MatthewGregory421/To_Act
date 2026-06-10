@@ -464,6 +464,7 @@ MonoBehaviour:
   isKnockedBack: 0
   isDead: 0
   isInvincible: 0
+  enemyID: Sadness1_Sadness1_1
   destroyOnDeath: 1
   moveSpeed: 3
 --- !u!114 &6671126641480878815
@@ -485,6 +486,7 @@ MonoBehaviour:
   isKnockedBack: 0
   isDead: 0
   isInvincible: 0
+  enemyID: 
   destroyOnDeath: 1
   moveSpeed: 3
   direction: 1

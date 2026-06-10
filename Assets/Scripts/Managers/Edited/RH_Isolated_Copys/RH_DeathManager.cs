@@ -7,7 +7,7 @@ public class RH_DeathManager : MonoBehaviour
 
     private void Start()
     {
-        deathCanvas.SetActive(false);
+        //deathCanvas.SetActive(false);
     }
 
     public void PlayerDied()

@@ -19,6 +19,9 @@ public class EnemyBase : MonoBehaviour
     public bool isDead;
     public bool isInvincible;
 
+    [Header("Persistence")]
+    public string enemyID;
+
     [Header("Death")]
     public bool destroyOnDeath = true;
 
@@ -28,6 +31,16 @@ public class EnemyBase : MonoBehaviour
     protected virtual void Awake()
     {
         currentHealth = maxHealth;
+
+        // NEW: persistence check
+        if (WorldStateManager.Instance != null)
+        {
+            if (WorldStateManager.Instance.IsEnemyDead(enemyID))
+            {
+                gameObject.SetActive(false);
+                return;
+            }
+        }
     }
 
     protected virtual void Update()
@@ -79,6 +92,11 @@ public class EnemyBase : MonoBehaviour
         isDead = true;
 
         Debug.Log($"{gameObject.name} died");
+
+        if (WorldStateManager.Instance != null)
+        {
+            WorldStateManager.Instance.KillEnemy(enemyID);
+        }
 
         EnemyDrops drops = GetComponent<EnemyDrops>();
         if (drops != null)
