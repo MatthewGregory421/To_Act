@@ -120,14 +120,14 @@ public class PlayerCombatInputSystem : MonoBehaviour
         // DOWN SLAM
         else if (y < -0.1f)
         {
+            if (!movement.hasGroundSlam)
+                return;
+
             playerSFXManager.PlayGroundSlam();
 
             if (!movement.isGrounded)
             {
-                rb.linearVelocity = new Vector2(
-                    rb.linearVelocity.x,
-                    -slamForce
-                );
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, -slamForce);
 
                 isSlamming = true;
                 slammedEnemies.Clear();

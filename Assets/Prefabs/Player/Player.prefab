@@ -705,7 +705,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.88464314}
+  m_Offset: {x: -0.0063369274, y: 0.8846431}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -715,7 +715,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.2772961, y: 1.7879505}
+  m_Size: {x: 1.3343282, y: 1.7879505}
   m_EdgeRadius: 0
 --- !u!114 &1002483662590323061
 MonoBehaviour:
@@ -884,6 +884,8 @@ MonoBehaviour:
   playerSFXManager: {fileID: 0}
   playerAnimations: {fileID: 2930959834354033973}
   playerHealth: {fileID: 1631968302464345722}
+  hasShield: 0
+  hasGroundSlam: 0
   moveSpeed: 5
   facingDirection: 1
   acceleration: 20
@@ -891,7 +893,7 @@ MonoBehaviour:
   airControlMultiplier: 0.6
   footstepInterval: 0.4
   jumpForce: 10
-  doubleJumpEnabled: 0
+  doubleJumpEnabled: 1
   groundCheck: {fileID: 5943848701776944366}
   groundCheckRadius: 0.2
   groundLayer:
@@ -939,6 +941,13 @@ MonoBehaviour:
   downShootPoint: {fileID: 7306517194562909507}
   attackCooldown: 0.3
   slamForce: 20
+  slamRadius: 2.5
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  floorLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!95 &2497298793376529229
 Animator:
   serializedVersion: 7

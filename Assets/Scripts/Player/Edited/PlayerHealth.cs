@@ -1,15 +1,14 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 using System.Collections;
 
 
 public class PlayerHealth : MonoBehaviour
 {
 
-    //public DeathManager deathManager;
-
     private bool isDead;
     public bool isInvincible;
+
+    private PlayerMovementInputSystem movement;
 
     [Header("Health")]
     public int maxHealth = 5;
@@ -28,6 +27,8 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = maxHealth;
 
         rb = GetComponent<Rigidbody2D>();
+
+        movement = GetComponent<PlayerMovementInputSystem>();
     }
 
     public void TakeDamage(int damage, Vector2 knockbackDirection)
@@ -89,8 +90,38 @@ public class PlayerHealth : MonoBehaviour
 
         isDead = true;
 
-        Debug.Log("Player died!");
+        StartCoroutine(RespawnRoutine());
+    }
 
-        //deathManager.PlayerDied();
+    private IEnumerator RespawnRoutine()
+    {
+        if (movement != null)
+            movement.enabled = false;
+
+        yield return FadeManager.Instance.FadeOut();
+
+        currentHealth = maxHealth;
+        isDead = false;
+
+        string sceneName = WorldStateManager.Instance.GetCurrentScene();
+        string benchID = WorldStateManager.Instance.GetCurrentBench();
+
+        // IMPORTANT: let SceneTransitionManager handle spawn + fade
+        SceneTransitionManager.Instance.TransitionToScene(sceneName, benchID);
+
+        // wait until transition finishes
+        while (SceneTransitionManager.Instance.IsTransitioning)
+            yield return null;
+
+        if (rb != null)
+            rb.linearVelocity = Vector2.zero;
+
+        if (movement != null)
+            movement.enabled = true;
+    }
+
+    public void FullHeal()
+    {
+        currentHealth = maxHealth;
     }
 }

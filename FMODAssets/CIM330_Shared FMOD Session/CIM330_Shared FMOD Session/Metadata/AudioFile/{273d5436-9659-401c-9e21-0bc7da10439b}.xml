@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{273d5436-9659-401c-9e21-0bc7da10439b}">
+		<property name="assetPath">
+			<value>VOWAVS/SL11T.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>3</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{76bd9cd1-baab-4003-97b3-f3d79e34a964}</destination>
+		</relationship>
+	</object>
+</objects>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{47c8bc56-e1d7-41cd-85ac-2b303ec5771b}">
+		<property name="assetPath">
+			<value>1006wavsRH/SadHubSolo_CIM330_HubReWrite_HOWARD_1030726 Project.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>42.666666666666664</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{76bd9cd1-baab-4003-97b3-f3d79e34a964}</destination>
+		</relationship>
+	</object>
+</objects>

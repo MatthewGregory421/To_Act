@@ -12,6 +12,10 @@ public class PlayerMovementInputSystem : MonoBehaviour
 
     public PlayerHealth playerHealth;
 
+    [Header("Abilities")]
+    public bool hasShield;
+    public bool hasGroundSlam;
+
     [Header("Movement")]
     public float moveSpeed = 5f;
     private float horizontalMovement;
@@ -284,6 +288,9 @@ public class PlayerMovementInputSystem : MonoBehaviour
 
     private void TryActivateShield()
     {
+        if (!hasShield)
+            return;
+
         if (isOnCooldown || isShieldActive)
             return;
 

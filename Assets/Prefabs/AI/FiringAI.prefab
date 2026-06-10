@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5992252336622186565}
   - component: {fileID: 4487778178177760539}
-  - component: {fileID: 6393708201256864881}
   - component: {fileID: 6160573165376642870}
   - component: {fileID: 1022110377503943966}
   m_Layer: 3
@@ -43,7 +42,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1786735588538170406}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -91,21 +90,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6393708201256864881
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1786735588538170406}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7389a65269d57bc4e913b4c8b77dc8ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 3
-  currentHealth: 0
-  destroyOnDeath: 1
 --- !u!70 &6160573165376642870
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -157,8 +141,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 1183213129730527439, guid: 43166b139d43c164b8e13ecf1d01622b, type: 3}
   firePoint: {fileID: 2426857685620632088}
-  target: {fileID: 0}
-  fireRate: 1.5
+  aimTarget: {fileID: 0}
+  fireRate: 0.2
 --- !u!1 &3829337391824071895
 GameObject:
   m_ObjectHideFlags: 0
@@ -184,7 +168,7 @@ Transform:
   m_GameObject: {fileID: 3829337391824071895}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: 0, z: 0}
+  m_LocalPosition: {x: -0.07, y: -2.64, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
