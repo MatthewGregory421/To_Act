@@ -6,9 +6,13 @@ public class SceneTransitionManager : MonoBehaviour
 {
     public static SceneTransitionManager Instance;
 
+    [Header("References")]
     public Transform player;
+    public MonoBehaviour playerMovement;
 
     private string currentScene;
+
+    private bool isTransitioning;
 
     private void Awake()
     {
@@ -30,6 +34,13 @@ public class SceneTransitionManager : MonoBehaviour
 
     private IEnumerator LoadFirstScene(string sceneName, string spawnID)
     {
+        isTransitioning = true;
+
+        if (playerMovement != null)
+            playerMovement.enabled = false;
+
+        yield return FadeManager.Instance.FadeOut();
+
         AsyncOperation op = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
 
         while (!op.isDone)
@@ -50,15 +61,32 @@ public class SceneTransitionManager : MonoBehaviour
         }
 
         currentScene = sceneName;
+
+        yield return FadeManager.Instance.FadeIn();
+
+        if (playerMovement != null)
+            playerMovement.enabled = true;
+
+        isTransitioning = false;
     }
 
     public void TransitionToScene(string targetScene, string spawnPointID)
     {
+        if (isTransitioning)
+            return;
+
         StartCoroutine(TransitionRoutine(targetScene, spawnPointID));
     }
 
     private IEnumerator TransitionRoutine(string targetScene, string spawnPointID)
     {
+        isTransitioning = true;
+
+        if (playerMovement != null)
+            playerMovement.enabled = false;
+
+        yield return FadeManager.Instance.FadeOut();
+
         string oldScene = currentScene;
 
         AsyncOperation op = SceneManager.LoadSceneAsync(targetScene, LoadSceneMode.Additive);
@@ -86,5 +114,49 @@ public class SceneTransitionManager : MonoBehaviour
         }
 
         currentScene = targetScene;
+
+        yield return FadeManager.Instance.FadeIn();
+
+        if (playerMovement != null)
+            playerMovement.enabled = true;
+
+        isTransitioning = false;
+    }
+
+    public IEnumerator RespawnToBench(string targetScene, Vector3 targetPosition)
+    {
+        if (playerMovement != null)
+            playerMovement.enabled = false;
+
+        if (currentScene != targetScene)
+        {
+            string oldScene = currentScene;
+
+            AsyncOperation op =
+                SceneManager.LoadSceneAsync(targetScene, LoadSceneMode.Additive);
+
+            while (!op.isDone)
+                yield return null;
+
+            Scene newScene = SceneManager.GetSceneByName(targetScene);
+            SceneManager.SetActiveScene(newScene);
+
+            if (!string.IsNullOrEmpty(oldScene))
+            {
+                yield return SceneManager.UnloadSceneAsync(oldScene);
+            }
+
+            currentScene = targetScene;
+        }
+
+        player.position = targetPosition;
+
+        if (playerMovement != null)
+            playerMovement.enabled = true;
+    }
+
+    public string GetCurrentScene()
+    {
+        return currentScene;
     }
 }

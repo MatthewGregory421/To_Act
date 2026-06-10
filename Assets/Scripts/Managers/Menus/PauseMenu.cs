@@ -31,6 +31,8 @@ public class PauseMenu : MonoBehaviour
     // =========================
     public void PauseGame()
     {
+        Debug.Log("PauseMenu opened");
+
         uiSFXManager.PlayUIOpenMenu();
 
         pauseMenuUI.SetActive(true);
@@ -45,6 +47,8 @@ public class PauseMenu : MonoBehaviour
     // =========================
     public void ResumeGame()
     {
+        Debug.Log("PauseMneu closed");
+
         uiSFXManager.PlayUICloseMenu();
 
         pauseMenuUI.SetActive(false);
@@ -59,6 +63,8 @@ public class PauseMenu : MonoBehaviour
     // =========================
     public void ReloadLastSave()
     {
+        Debug.Log("Loading last saved bench");
+
         uiSFXManager.PlayUIConfirm();
 
         Time.timeScale = 1f;
@@ -72,6 +78,8 @@ public class PauseMenu : MonoBehaviour
     // =========================
     public void QuitToMainMenu()
     {
+        Debug.Log("Returning to menu");
+
         uiSFXManager.PlayUIConfirm();
 
         Time.timeScale = 1f;

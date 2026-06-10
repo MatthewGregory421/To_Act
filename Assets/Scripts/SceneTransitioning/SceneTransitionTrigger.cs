@@ -11,4 +11,4 @@ public class SceneTransitionTrigger : MonoBehaviour
 
         SceneTransitionManager.Instance.TransitionToScene(targetScene, targetSpawnID);
     }
-}
+} 

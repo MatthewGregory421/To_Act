@@ -1,15 +1,14 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 using System.Collections;
 
 
 public class PlayerHealth : MonoBehaviour
 {
 
-    //public DeathManager deathManager;
-
     private bool isDead;
     public bool isInvincible;
+
+    private PlayerMovementInputSystem movement;
 
     [Header("Health")]
     public int maxHealth = 5;
@@ -28,6 +27,8 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = maxHealth;
 
         rb = GetComponent<Rigidbody2D>();
+
+        movement = GetComponent<PlayerMovementInputSystem>();
     }
 
     public void TakeDamage(int damage, Vector2 knockbackDirection)
@@ -89,8 +90,50 @@ public class PlayerHealth : MonoBehaviour
 
         isDead = true;
 
-        Debug.Log("Player died!");
+        StartCoroutine(RespawnRoutine());
+    }
 
-        //deathManager.PlayerDied();
+    private IEnumerator RespawnRoutine()
+    {
+        if (movement != null)
+            movement.enabled = false;
+
+        yield return FadeManager.Instance.FadeOut();
+
+        currentHealth = maxHealth;
+        isDead = false;
+
+        string targetScene =
+            WorldStateManager.Instance.GetCurrentScene();
+
+        Vector3 targetPosition =
+            WorldStateManager.Instance.GetBenchPosition();
+
+        yield return SceneTransitionManager.Instance.RespawnToBench(
+            targetScene,
+            targetPosition
+        );
+
+        // 2. Move player AFTER scene is ready
+        transform.position = WorldStateManager.Instance.GetBenchPosition();
+
+        if (rb != null)
+            rb.linearVelocity = Vector2.zero;
+
+        yield return FadeManager.Instance.FadeIn();
+
+        if (movement != null)
+            movement.enabled = true;
+    }
+
+    private void RespawnAtBench()
+    {
+        Vector3 pos = WorldStateManager.Instance.GetBenchPosition();
+        transform.position = pos;
+    }
+
+    public void FullHeal()
+    {
+        currentHealth = maxHealth;
     }
 }
