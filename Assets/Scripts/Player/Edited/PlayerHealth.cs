@@ -103,33 +103,21 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = maxHealth;
         isDead = false;
 
-        string targetScene =
-            WorldStateManager.Instance.GetCurrentScene();
+        string sceneName = WorldStateManager.Instance.GetCurrentScene();
+        string benchID = WorldStateManager.Instance.GetCurrentBench();
 
-        Vector3 targetPosition =
-            WorldStateManager.Instance.GetBenchPosition();
+        // IMPORTANT: let SceneTransitionManager handle spawn + fade
+        SceneTransitionManager.Instance.TransitionToScene(sceneName, benchID);
 
-        yield return SceneTransitionManager.Instance.RespawnToBench(
-            targetScene,
-            targetPosition
-        );
-
-        // 2. Move player AFTER scene is ready
-        transform.position = WorldStateManager.Instance.GetBenchPosition();
+        // wait until transition finishes
+        while (SceneTransitionManager.Instance.IsTransitioning)
+            yield return null;
 
         if (rb != null)
             rb.linearVelocity = Vector2.zero;
 
-        yield return FadeManager.Instance.FadeIn();
-
         if (movement != null)
             movement.enabled = true;
-    }
-
-    private void RespawnAtBench()
-    {
-        Vector3 pos = WorldStateManager.Instance.GetBenchPosition();
-        transform.position = pos;
     }
 
     public void FullHeal()

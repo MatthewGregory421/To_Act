@@ -9555,7 +9555,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetScene: Hub
-  targetSpawnID: Hub_Spawn
+  targetSpawnID: Hub_Spawn1
 --- !u!1001 &2038230944
 PrefabInstance:
   m_ObjectHideFlags: 0

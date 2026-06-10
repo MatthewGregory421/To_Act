@@ -2,10 +2,8 @@ using UnityEngine;
 
 public class Bench : MonoBehaviour
 {
-    [Header("Bench ID")]
     public string benchID;
 
-    [Header("Optional")]
     public bool healPlayer = true;
     public bool resetEnemiesOnRest = true;
 
@@ -25,23 +23,26 @@ public class Bench : MonoBehaviour
     {
         Debug.Log("Sitting at bench: " + benchID);
 
-        // Set respawn point
-        WorldStateManager.Instance.SetCurrentBench(benchID, transform.position);
-
-        // Remember which scene this bench belongs to
+        WorldStateManager.Instance.SetCurrentBench(benchID);
         WorldStateManager.Instance.SetCurrentScene(gameObject.scene.name);
 
-        // Optional heal hook
+        int slot = PlayerPrefs.GetInt("SelectedSlot");
+
+        PlayerMovementInputSystem player =
+            FindObjectOfType<PlayerMovementInputSystem>();
+
+        if (player != null)
+        {
+            SaveManager.Instance.SaveGame(player, gameObject.scene.name, slot);
+        }
+
         if (healPlayer)
         {
             PlayerHealth ph = FindObjectOfType<PlayerHealth>();
             if (ph != null)
-            {
                 ph.FullHeal();
-            }
         }
 
-        // Optional enemy reset (Hollow Knight style)
         if (resetEnemiesOnRest)
         {
             WorldStateManager.Instance.RestAtBench();

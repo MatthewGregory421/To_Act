@@ -654,7 +654,7 @@ Transform:
   m_GameObject: {fileID: 870627105}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 19.97, y: -1.14, z: 0.08529008}
+  m_LocalPosition: {x: 19.97, y: 0.92, z: 0.08529008}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1052,7 +1052,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6b4272544406c640bc81dad490c3ea9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnID: Hub_Spawn
+  spawnID: Hub_Spawn1
 --- !u!4 &1528620741
 Transform:
   m_ObjectHideFlags: 0
@@ -1062,7 +1062,7 @@ Transform:
   m_GameObject: {fileID: 1528620739}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.18, y: -1.05, z: 0.08529008}
+  m_LocalPosition: {x: -1.18, y: 0.49, z: 0.08529008}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

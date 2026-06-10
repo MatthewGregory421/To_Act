@@ -8,7 +8,6 @@ public class WorldStateManager : MonoBehaviour
     private HashSet<string> deadEnemies = new HashSet<string>();
 
     private string currentBenchID;
-    private Vector3 currentBenchPosition;
 
     private string currentSceneName;
 
@@ -38,10 +37,9 @@ public class WorldStateManager : MonoBehaviour
         return deadEnemies.Contains(enemyID);
     }
 
-    public void SetCurrentBench(string benchID, Vector3 position)
+    public void SetCurrentBench(string benchID)
     {
         currentBenchID = benchID;
-        currentBenchPosition = position;
     }
 
     public string GetCurrentBench()
@@ -52,11 +50,6 @@ public class WorldStateManager : MonoBehaviour
         }
 
         return currentBenchID;
-    }
-
-    public Vector3 GetBenchPosition()
-    {
-        return currentBenchPosition;
     }
 
     public void RestAtBench()
@@ -72,5 +65,11 @@ public class WorldStateManager : MonoBehaviour
     public string GetCurrentScene()
     {
         return currentSceneName;
+    }
+
+    public void ApplySave(SaveData data)
+    {
+        currentSceneName = data.sceneName;
+        currentBenchID = data.benchID;
     }
 }

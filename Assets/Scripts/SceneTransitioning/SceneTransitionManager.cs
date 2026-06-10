@@ -6,13 +6,15 @@ public class SceneTransitionManager : MonoBehaviour
 {
     public static SceneTransitionManager Instance;
 
-    [Header("References")]
+    [Header("Player References")]
     public Transform player;
     public MonoBehaviour playerMovement;
 
-    private string currentScene;
+    [SerializeField] private bool isTransitioning;
+    public bool IsTransitioning => isTransitioning;
 
-    private bool isTransitioning;
+    [Header("Spawn Offset")]
+    [SerializeField] private float spawnYOffset = 0.5f;
 
     private void Awake()
     {
@@ -26,70 +28,37 @@ public class SceneTransitionManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    // Called by Bootstrap
-    public void StartGame(string firstScene, string spawnPointID)
-    {
-        StartCoroutine(LoadFirstScene(firstScene, spawnPointID));
-    }
-
-    private IEnumerator LoadFirstScene(string sceneName, string spawnID)
-    {
-        isTransitioning = true;
-
-        if (playerMovement != null)
-            playerMovement.enabled = false;
-
-        yield return FadeManager.Instance.FadeOut();
-
-        AsyncOperation op = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
-
-        while (!op.isDone)
-            yield return null;
-
-        Scene newScene = SceneManager.GetSceneByName(sceneName);
-        SceneManager.SetActiveScene(newScene);
-
-        SpawnPoint[] spawnPoints = FindObjectsOfType<SpawnPoint>();
-
-        foreach (var sp in spawnPoints)
-        {
-            if (sp.spawnID == spawnID)
-            {
-                player.position = sp.transform.position;
-                break;
-            }
-        }
-
-        currentScene = sceneName;
-
-        yield return FadeManager.Instance.FadeIn();
-
-        if (playerMovement != null)
-            playerMovement.enabled = true;
-
-        isTransitioning = false;
-    }
-
-    public void TransitionToScene(string targetScene, string spawnPointID)
+    // =========================
+    // PUBLIC ENTRY POINT (USE THIS ALWAYS)
+    // =========================
+    public void TransitionToScene(string targetScene, string spawnID)
     {
         if (isTransitioning)
             return;
 
-        StartCoroutine(TransitionRoutine(targetScene, spawnPointID));
+        StartCoroutine(TransitionRoutine(targetScene, spawnID));
     }
 
-    private IEnumerator TransitionRoutine(string targetScene, string spawnPointID)
+    // =========================
+    // MAIN TRANSITION FLOW
+    // =========================
+    private IEnumerator TransitionRoutine(string targetScene, string spawnID)
     {
         isTransitioning = true;
 
+        // LOCK PLAYER
         if (playerMovement != null)
             playerMovement.enabled = false;
 
+        Rigidbody2D rb = player ? player.GetComponent<Rigidbody2D>() : null;
+        if (rb != null)
+            rb.linearVelocity = Vector2.zero;
+
+        // FADE OUT
         yield return FadeManager.Instance.FadeOut();
 
-        string oldScene = currentScene;
-
-        AsyncOperation op = SceneManager.LoadSceneAsync(targetScene, LoadSceneMode.Additive);
+        // LOAD SCENE
+        AsyncOperation op = SceneManager.LoadSceneAsync(targetScene, LoadSceneMode.Single);
 
         while (!op.isDone)
             yield return null;
@@ -97,23 +66,66 @@ public class SceneTransitionManager : MonoBehaviour
         Scene newScene = SceneManager.GetSceneByName(targetScene);
         SceneManager.SetActiveScene(newScene);
 
-        SpawnPoint[] spawnPoints = FindObjectsOfType<SpawnPoint>();
+        // WAIT ONE FRAME (important for spawn objects to exist)
+        yield return null;
 
-        foreach (var sp in spawnPoints)
+        // SPAWN PLAYER
+        SpawnPoint[] spawns = FindObjectsOfType<SpawnPoint>();
+
+        bool foundSpawn = false;
+
+        foreach (var sp in spawns)
         {
-            if (sp.spawnID == spawnPointID)
+            if (sp.spawnID == spawnID)
             {
-                player.position = sp.transform.position;
+                player.position = sp.transform.position + Vector3.up * spawnYOffset;
+                foundSpawn = true;
                 break;
             }
         }
 
-        if (!string.IsNullOrEmpty(oldScene))
+        if (!foundSpawn)
         {
-            SceneManager.UnloadSceneAsync(oldScene);
+            Debug.LogWarning($"Spawn ID not found: {spawnID}");
         }
 
-        currentScene = targetScene;
+        // STOP PHYSICS AFTER TELEPORT
+        if (rb != null)
+            rb.linearVelocity = Vector2.zero;
+
+        // FADE IN
+        yield return FadeManager.Instance.FadeIn();
+
+        // UNLOCK PLAYER
+        if (playerMovement != null)
+            playerMovement.enabled = true;
+
+        isTransitioning = false;
+    }
+
+    // =========================
+    // DIRECT LOAD (ONLY USE FOR SPECIAL CASES LIKE BOOTSTRAP)
+    // =========================
+    public IEnumerator LoadSceneDirect(string sceneName)
+    {
+        if (isTransitioning)
+            yield break;
+
+        isTransitioning = true;
+
+        if (playerMovement != null)
+            playerMovement.enabled = false;
+
+        yield return FadeManager.Instance.FadeOut();
+
+        AsyncOperation op = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
+
+        while (!op.isDone)
+            yield return null;
+
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName(sceneName));
+
+        yield return null;
 
         yield return FadeManager.Instance.FadeIn();
 
@@ -121,42 +133,5 @@ public class SceneTransitionManager : MonoBehaviour
             playerMovement.enabled = true;
 
         isTransitioning = false;
-    }
-
-    public IEnumerator RespawnToBench(string targetScene, Vector3 targetPosition)
-    {
-        if (playerMovement != null)
-            playerMovement.enabled = false;
-
-        if (currentScene != targetScene)
-        {
-            string oldScene = currentScene;
-
-            AsyncOperation op =
-                SceneManager.LoadSceneAsync(targetScene, LoadSceneMode.Additive);
-
-            while (!op.isDone)
-                yield return null;
-
-            Scene newScene = SceneManager.GetSceneByName(targetScene);
-            SceneManager.SetActiveScene(newScene);
-
-            if (!string.IsNullOrEmpty(oldScene))
-            {
-                yield return SceneManager.UnloadSceneAsync(oldScene);
-            }
-
-            currentScene = targetScene;
-        }
-
-        player.position = targetPosition;
-
-        if (playerMovement != null)
-            playerMovement.enabled = true;
-    }
-
-    public string GetCurrentScene()
-    {
-        return currentScene;
     }
 }
