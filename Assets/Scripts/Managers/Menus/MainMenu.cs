@@ -33,6 +33,8 @@ public class MainMenu : MonoBehaviour
     {
         uiSFXManager?.PlayUIConfirm();
 
+        RefreshSlotUI();
+
         mainMenuPanel.SetActive(false);
         slotSelectPanel.SetActive(true);
     }
@@ -89,6 +91,8 @@ public class MainMenu : MonoBehaviour
         SaveManager.Instance.DeleteSave(slotPendingDelete);
 
         deleteConfirmPanel.SetActive(false);
+
+        RefreshSlotUI();
     }
 
     public void NewGame(int slot)
@@ -120,6 +124,12 @@ public class MainMenu : MonoBehaviour
         optionsPanel.SetActive(false);
 
         RefreshSlotUI();
+    }
+
+    public void BackToMainMenu()
+    {
+        uiSFXManager?.PlayUIOpenMenu();
+        ShowMainMenu();
     }
 
     private void RefreshSlotUI()

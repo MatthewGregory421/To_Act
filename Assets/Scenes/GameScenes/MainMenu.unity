@@ -3843,6 +3843,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pendingMode: 0
   pendingSlot: 0
+  currentSlot: -1
 --- !u!4 &801584420
 Transform:
   m_ObjectHideFlags: 0
@@ -7068,7 +7069,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 192527666}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: BackToMain
+        m_MethodName: BackToMainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
