@@ -33,7 +33,7 @@ public class Bench : MonoBehaviour
 
         if (player != null)
         {
-            SaveManager.Instance.SaveGame(player, gameObject.scene.name, slot);
+            SaveManager.Instance.SaveGame(player, gameObject.scene.name, SaveManager.Instance.currentSlot);
         }
 
         if (healPlayer)
