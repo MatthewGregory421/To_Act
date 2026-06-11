@@ -25,7 +25,7 @@ public class UIbridge : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       shieldCooldown.value = 1 - sCooldownValue;
+       shieldCooldown.value = 1 - shieldCooldownValue;
        slamCooldown.value = 1 - slamCooldownValue;
     }
 
