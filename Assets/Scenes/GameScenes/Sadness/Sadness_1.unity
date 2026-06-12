@@ -983,6 +983,38 @@ PrefabInstance:
       propertyPath: enemyID
       value: Sadness1_Sadness1_2
       objectReference: {fileID: 0}
+    - target: {fileID: 537975769456945249, guid: 1ebcdf294ad1e6442998040f28570672, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 572443252667960555, guid: 1ebcdf294ad1e6442998040f28570672, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1561545531398849499, guid: 1ebcdf294ad1e6442998040f28570672, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2226271605377465758, guid: 1ebcdf294ad1e6442998040f28570672, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4522566109931221721, guid: 1ebcdf294ad1e6442998040f28570672, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5176235650100195635, guid: 1ebcdf294ad1e6442998040f28570672, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5468228147711896611, guid: 1ebcdf294ad1e6442998040f28570672, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6671126641480878815, guid: 1ebcdf294ad1e6442998040f28570672, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7550600533241315401, guid: 1ebcdf294ad1e6442998040f28570672, type: 3}
       propertyPath: m_Name
       value: Sadness_Enemy (1)
