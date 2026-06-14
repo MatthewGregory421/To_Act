@@ -10,6 +10,7 @@ TagManager:
   - PlayerShield
   - EnemyShield
   - NarrationBox
+  - PauseMenuUI
   layers:
   - Default
   - TransparentFX

@@ -9,6 +9,20 @@ public class UISFXManager : MonoBehaviour
     [ParamRef]
     private string UISelector = null;
 
+    public static UISFXManager Instance;
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
+
     public void PlayUIBack() 
     {
         RuntimeManager.StudioSystem.setParameterByName(UISelector, 0);
