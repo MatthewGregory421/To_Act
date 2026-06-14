@@ -14,6 +14,7 @@ public class SaveManager : MonoBehaviour
 
     public SaveMode pendingMode = SaveMode.None;
     public int pendingSlot = -1;
+    public int currentSlot = -1;
 
     private void Awake()
     {
@@ -31,12 +32,14 @@ public class SaveManager : MonoBehaviour
     {
         pendingMode = SaveMode.NewGame;
         pendingSlot = slot;
+        currentSlot = slot;
     }
 
     public void RequestLoadGame(int slot)
     {
         pendingMode = SaveMode.LoadGame;
         pendingSlot = slot;
+        currentSlot = slot;
     }
 
     public bool HasRequest()
@@ -85,7 +88,11 @@ public class SaveManager : MonoBehaviour
 
     public void DeleteSave(int slot)
     {
-        if (File.Exists(GetPath(slot)))
-            File.Delete(GetPath(slot));
+        string path = GetPath(slot);
+
+        Debug.Log($"Deleting save: {path}");
+
+        if (File.Exists(path))
+            File.Delete(path);
     }
 }
