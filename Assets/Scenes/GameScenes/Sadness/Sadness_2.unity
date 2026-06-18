@@ -3153,7 +3153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetScene: Sadness_1
-  targetSpawnID: Sadness_2_Spawn2
+  targetSpawnID: Sadness_1_Spawn2
 --- !u!4 &1356206779
 Transform:
   m_ObjectHideFlags: 0

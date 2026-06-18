@@ -750,6 +750,7 @@ GameObject:
   - component: {fileID: 991360688}
   - component: {fileID: 991360689}
   - component: {fileID: 991360690}
+  - component: {fileID: 991360691}
   m_Layer: 0
   m_Name: Bench
   m_TagString: Untagged
@@ -841,6 +842,19 @@ MonoBehaviour:
   benchID: Hub_Bench
   healPlayer: 1
   resetEnemiesOnRest: 1
+--- !u!114 &991360691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 991360687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6b4272544406c640bc81dad490c3ea9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnID: Hun_Bench
 --- !u!1 &1305215891
 GameObject:
   m_ObjectHideFlags: 0
