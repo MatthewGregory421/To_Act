@@ -13,6 +13,10 @@ public class MusicManager : MonoBehaviour
    [ParamRef]
    private string Dead = null;
 
+   [SerializeField]
+   [ParamRef]
+   private string musicState = null;
+
 
     public void PlayMusic()
     {
@@ -47,5 +51,20 @@ public class MusicManager : MonoBehaviour
      public void DeathStingerSelect()
     {
         RuntimeManager.StudioSystem.setParameterByName(Dead, 1);
+    }
+
+     public void NeutralStateMusic()
+    {
+        RuntimeManager.StudioSystem.setParameterByName(musicState, 1);
+    }
+
+     public void TenseStateMusic()
+    {
+        RuntimeManager.StudioSystem.setParameterByName(musicState, 2);
+    }
+
+     public void EnergeticStateMusic()
+    {
+        RuntimeManager.StudioSystem.setParameterByName(musicState, 3);
     }
 }
