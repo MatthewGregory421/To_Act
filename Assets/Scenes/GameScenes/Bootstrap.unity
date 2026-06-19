@@ -184,6 +184,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1631968302464345722, guid: a56d984244eaa4143bdc3a3fc0045298, type: 3}
+      propertyPath: playerSFXManager
+      value: 
+      objectReference: {fileID: 1216116240}
     - target: {fileID: 4102738230455616327, guid: a56d984244eaa4143bdc3a3fc0045298, type: 3}
       propertyPath: slamRadius
       value: 5

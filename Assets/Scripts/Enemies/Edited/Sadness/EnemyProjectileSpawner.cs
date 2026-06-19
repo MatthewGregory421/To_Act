@@ -7,6 +7,8 @@ public class EnemyProjectileSpawner : MonoBehaviour
     public Transform firePoint;
     public Transform aimTarget;
 
+    public System.Action onShoot;
+
     [Header("Settings")]
     public float fireRate = 1.5f;
 
@@ -43,6 +45,8 @@ public class EnemyProjectileSpawner : MonoBehaviour
 
     private void Shoot()
     {
+        onShoot?.Invoke();
+
         GameObject proj = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
 
         Vector2 direction = (aimTarget.position - firePoint.position).normalized;

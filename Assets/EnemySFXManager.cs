@@ -17,7 +17,21 @@ public class EnemySFXManager : MonoBehaviour
     [ParamRef]
     private string EnemySpecialSelector = null;
 
-    
+    public static EnemySFXManager Instance { get; private set; }
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
+
+
     //AngerSFX
     public void PlayAngerIdle() 
     {

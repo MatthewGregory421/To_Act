@@ -10,6 +10,8 @@ public class EnemyBase : MonoBehaviour
     public int maxHealth = 3;
     protected int currentHealth;
 
+    public System.Action OnDamaged;
+
     [Header("Knockback")]
     public float knockbackForce = 20f;
     public bool isKnockedBack;
@@ -55,7 +57,8 @@ public class EnemyBase : MonoBehaviour
                 isKnockedBack = false;
         }
 
-        print("current health = " + currentHealth);
+        if (currentHealth <= 0)
+            Debug.Log($"{gameObject.name} HP: {currentHealth}");
     }
 
     public virtual void TakeDamage(int damage, Vector2 hitDirection)
@@ -63,6 +66,8 @@ public class EnemyBase : MonoBehaviour
         if (isDead || isInvincible) return;
 
         currentHealth -= damage;
+
+        OnDamaged?.Invoke();
 
         Debug.Log($"{gameObject.name} took {damage} damage. HP: {currentHealth}");
 
