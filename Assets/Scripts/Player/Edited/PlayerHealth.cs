@@ -9,6 +9,7 @@ public class PlayerHealth : MonoBehaviour
     public bool isInvincible;
 
     private PlayerMovementInputSystem movement;
+    public PlayerSFXManager playerSFXManager;
 
     [Header("Health")]
     public int maxHealth = 5;
@@ -38,6 +39,8 @@ public class PlayerHealth : MonoBehaviour
 
         currentHealth -= damage;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+
+        playerSFXManager.PlayPlayerDamage();
 
         Debug.Log("Player took damage! HP: " + currentHealth);
 

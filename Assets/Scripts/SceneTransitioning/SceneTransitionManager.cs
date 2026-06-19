@@ -66,6 +66,8 @@ public class SceneTransitionManager : MonoBehaviour
         Scene newScene = SceneManager.GetSceneByName(targetScene);
         SceneManager.SetActiveScene(newScene);
 
+        HandleMusicForScene(targetScene);
+
         // WAIT ONE FRAME (important for spawn objects to exist)
         yield return null;
 
@@ -133,5 +135,35 @@ public class SceneTransitionManager : MonoBehaviour
             playerMovement.enabled = true;
 
         isTransitioning = false;
+    }
+
+    private void HandleMusicForScene(string sceneName)
+    {
+        if (MusicManager.Instance == null)
+        {
+            Debug.LogWarning("[Music] MusicManager instance missing!");
+            return;
+        }
+
+        Debug.Log($"[Music] Scene triggered music check: {sceneName}");
+
+        MusicManager.MusicState state = sceneName switch
+        {
+            "MainMenu" => MusicManager.MusicState.Menu,
+            "Hub" => MusicManager.MusicState.Hub,
+
+            "Anger_1" => MusicManager.MusicState.Anger,
+
+            "Sadness_1" => MusicManager.MusicState.Sadness,
+            "Sadness_2" => MusicManager.MusicState.Sadness, // SAME STATE = NO RESTART
+
+            "Joy_1" => MusicManager.MusicState.Joy,
+
+            _ => MusicManager.MusicState.Hub
+        };
+
+        Debug.Log($"[Music] Resolved state: {state} for scene: {sceneName}");
+
+        MusicManager.Instance.SetMusic(state);
     }
 }

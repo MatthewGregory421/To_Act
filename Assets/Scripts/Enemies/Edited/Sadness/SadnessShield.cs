@@ -5,6 +5,8 @@ public class SadnessShield : MonoBehaviour
     [Header("References")]
     public EnemyBase enemyBase;
 
+    private EnemySFXManager SFX => EnemySFXManager.Instance;
+
     [Header("Shield State")]
     public bool isActive = true;
 
@@ -28,6 +30,8 @@ public class SadnessShield : MonoBehaviour
         if (projectile != null)
         {
             Destroy(collision.gameObject);
+
+            SFX?.PlaySadnessSpecialConnect();
         }
     }
     public void BreakShield()
@@ -38,6 +42,8 @@ public class SadnessShield : MonoBehaviour
         isActive = false;
 
         enemyBase.isInvincible = false;
+
+        SFX?.PlaySadnessSpecialDeactive();
 
         gameObject.SetActive(false);
     }

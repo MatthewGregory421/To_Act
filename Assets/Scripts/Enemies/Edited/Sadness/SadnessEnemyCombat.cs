@@ -7,6 +7,8 @@ public class SadnessEnemyCombat : MonoBehaviour
     public EnemyMovement enemyMovement;
     public EnemyProjectileSpawner projectileSpawner;
 
+    private EnemySFXManager SFX => EnemySFXManager.Instance;
+
     [Header("Detection")]
     public float detectionRange = 8f;
 
@@ -19,6 +21,7 @@ public class SadnessEnemyCombat : MonoBehaviour
 
     [Header("Behaviour")]
     public bool playerDetected;
+    private bool wasPlayerDetected;
 
     [Header("Edge Behaviour")]
     public float pauseAfterEdge = 1.5f;
@@ -34,11 +37,19 @@ public class SadnessEnemyCombat : MonoBehaviour
     private void OnEnable()
     {
         enemyMovement.OnHitEdge += HandleEdgePause;
+
+        projectileSpawner.onShoot += PlayShootSFX;
+
+        enemyBase.OnDamaged += HandleDamageSFX;
     }
 
     private void OnDisable()
     {
         enemyMovement.OnHitEdge -= HandleEdgePause;
+
+        projectileSpawner.onShoot -= PlayShootSFX;
+
+        enemyBase.OnDamaged -= HandleDamageSFX;
     }
 
     private void Update()
@@ -53,6 +64,13 @@ public class SadnessEnemyCombat : MonoBehaviour
         // enable / disable shooting
         projectileSpawner.enabled = playerDetected;
 
+        if (!playerDetected && wasPlayerDetected)
+        {
+            SFX?.PlaySadnessIdle();
+        }
+
+        wasPlayerDetected = playerDetected;
+
         if (!playerDetected)
         {
             enemyMovement.canMove = true;
@@ -66,6 +84,17 @@ public class SadnessEnemyCombat : MonoBehaviour
         }
 
         HandleSpacing();
+    }
+
+    void HandleDamageSFX()
+    {
+        SFX?.PlaySadnessDamage();
+    }
+
+    void PlayShootSFX()
+    {
+        if (!playerDetected) return;
+        SFX?.PlaySadnessAttack();
     }
 
     // =========================
