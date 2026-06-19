@@ -3,7 +3,9 @@ using FMODUnity;
 
 public class MusicManager : MonoBehaviour
 {
-   public StudioEventEmitter Music;
+    public static MusicManager Instance;
+
+    public StudioEventEmitter Music;
 
    [SerializeField]
    [ParamRef]
@@ -13,38 +15,76 @@ public class MusicManager : MonoBehaviour
    [ParamRef]
    private string Dead = null;
 
+    private int currentMusicState = -1;
 
-    public void PlayMusic()
+    public enum MusicState
     {
-        Music.Play();
+        Menu,
+        Hub,
+        Anger,
+        Sadness,
+        Joy
     }
 
-    public void MenuMusicSelect()
+    private void Awake()
     {
-        RuntimeManager.StudioSystem.setParameterByName(musicSelector, 0);
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
-     public void HubMusicSelect()
+    private void Start()
     {
-        RuntimeManager.StudioSystem.setParameterByName(musicSelector, 1);
+        if (Music != null && !Music.IsPlaying())
+        {
+            Music.Play();
+        }
     }
 
-     public void AngerMusicSelect()
+    // =========================
+    // CORE MUSIC SWITCH
+    // =========================
+    private void SetMusicState(int state)
     {
-        RuntimeManager.StudioSystem.setParameterByName(musicSelector, 2);
+        Debug.Log($"[MusicManager] Requested state: {state}, Current state: {currentMusicState}");
+
+        if (currentMusicState == state)
+        {
+            Debug.Log($"[MusicManager] Staying on same music state: {state}");
+            return;
+        }
+
+        Debug.Log($"[MusicManager] Switching music state: {currentMusicState} - {state}");
+
+        currentMusicState = state;
+
+        RuntimeManager.StudioSystem.setParameterByName(musicSelector, state);
+
+        Debug.Log($"[MusicManager] Now playing state: {currentMusicState}");
     }
 
-     public void SadnessMusicSelect()
+    // =========================
+    // PUBLIC API
+    // =========================
+    public void SetMusic(MusicState state)
     {
-        RuntimeManager.StudioSystem.setParameterByName(musicSelector, 3);
+        Debug.Log($"[MusicManager] SetMusic called with enum: {state}");
+
+        SetMusicState((int)state);
     }
 
-    public void JoyMusicSelect()
-    {
-        RuntimeManager.StudioSystem.setParameterByName(musicSelector, 4);
-    }
+    public void MenuMusicSelect() => SetMusicState(0);
+    public void HubMusicSelect() => SetMusicState(1);
+    public void AngerMusicSelect() => SetMusicState(2);
+    public void SadnessMusicSelect() => SetMusicState(3);
+    public void JoyMusicSelect() => SetMusicState(4);
 
-     public void DeathStingerSelect()
+    public void DeathStingerSelect()
     {
         RuntimeManager.StudioSystem.setParameterByName(Dead, 1);
     }

@@ -61,8 +61,6 @@ public class BootstrapController : MonoBehaviour
             yield break;
         }
 
-        yield return FadeManager.Instance.FadeOut();
-
         yield return SceneTransitionManager.Instance.LoadSceneDirect(data.sceneName);
 
         Bench bench = BenchUtility.FindBench(data.benchID);
@@ -74,8 +72,6 @@ public class BootstrapController : MonoBehaviour
         var pm = player.GetComponent<PlayerMovementInputSystem>();
         pm.hasShield = data.hasShield;
         pm.hasGroundSlam = data.hasGroundSlam;
-
-        yield return FadeManager.Instance.FadeIn();
 
         SaveManager.Instance.Clear();
     }

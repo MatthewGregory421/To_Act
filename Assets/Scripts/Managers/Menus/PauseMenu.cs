@@ -3,8 +3,6 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    public UISFXManager uiSFXManager;
-
     [Header("Pause Menu")]
     public GameObject pauseMenuUI;
 
@@ -12,17 +10,15 @@ public class PauseMenu : MonoBehaviour
 
     private void Update()
     {
-        // ESC key toggles pause
+        if (pauseMenuUI == null)
+            return;
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (isPaused)
-            {
                 ResumeGame();
-            }
             else
-            {
                 PauseGame();
-            }
         }
     }
 
@@ -31,9 +27,12 @@ public class PauseMenu : MonoBehaviour
     // =========================
     public void PauseGame()
     {
+        if (pauseMenuUI == null)
+            return;
+
         Debug.Log("PauseMenu opened");
 
-        uiSFXManager.PlayUIOpenMenu();
+        UISFXManager.Instance?.PlayUIOpenMenu();
 
         pauseMenuUI.SetActive(true);
 
@@ -49,7 +48,7 @@ public class PauseMenu : MonoBehaviour
     {
         Debug.Log("PauseMneu closed");
 
-        uiSFXManager.PlayUICloseMenu();
+        UISFXManager.Instance?.PlayUICloseMenu();
 
         pauseMenuUI.SetActive(false);
 
@@ -63,14 +62,18 @@ public class PauseMenu : MonoBehaviour
     // =========================
     public void ReloadLastSave()
     {
-        Debug.Log("Loading last saved bench");
-
-        uiSFXManager.PlayUIConfirm();
+        UISFXManager.Instance?.PlayUIConfirm();
 
         Time.timeScale = 1f;
 
-        // Replace this with your future save system
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        isPaused = false;
+        pauseMenuUI.SetActive(false);
+
+        SaveManager.Instance.RequestLoadGame(
+            SaveManager.Instance.currentSlot
+        );
+
+        SceneManager.LoadScene("Bootstrap");
     }
 
     // =========================
@@ -78,12 +81,15 @@ public class PauseMenu : MonoBehaviour
     // =========================
     public void QuitToMainMenu()
     {
-        Debug.Log("Returning to menu");
-
-        uiSFXManager.PlayUIConfirm();
+        UISFXManager.Instance?.PlayUIConfirm();
 
         Time.timeScale = 1f;
 
-        SceneManager.LoadScene("MainMenu");
+        isPaused = false;
+        pauseMenuUI.SetActive(false);
+
+        StartCoroutine(
+            SceneTransitionManager.Instance.LoadSceneDirect("MainMenu")
+        );
     }
 }
