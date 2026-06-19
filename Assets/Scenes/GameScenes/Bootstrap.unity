@@ -192,6 +192,10 @@ PrefabInstance:
       propertyPath: playerSFXManager
       value: 
       objectReference: {fileID: 1216116240}
+    - target: {fileID: 4102738230455616327, guid: a56d984244eaa4143bdc3a3fc0045298, type: 3}
+      propertyPath: projectilePrefab
+      value: 
+      objectReference: {fileID: 1123419673703903008, guid: 3367524d1500b4f6fbc8c08b07497bb8, type: 3}
     - target: {fileID: 6455173188378048971, guid: a56d984244eaa4143bdc3a3fc0045298, type: 3}
       propertyPath: m_Name
       value: Player
