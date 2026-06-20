@@ -440,6 +440,7 @@
 		<property name="timelockedOffset">
 			<value>0.125</value>
 		</property>
+		<property name="name" />
 		<relationship name="triggerConditions">
 			<destination>{f9a4fb73-ebf0-4555-9b7b-bc7ad12f951d}</destination>
 		</relationship>

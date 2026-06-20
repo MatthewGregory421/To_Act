@@ -1,102 +1,73 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using FMODUnity;
 
 public class NarrationManager : MonoBehaviour
 {
-    public StudioEventEmitter Narration;
+    [SerializeField] private EventReference narrationEvent;
 
-   [SerializeField]
-   [ParamRef]
-   private string narrationSelector = null;
+    [Header("FMOD Parameters")]
+    [SerializeField] private string areaParameter = "Music Selector";
+    [SerializeField] private string narratorParameter = "NarratorSelect";
 
-    // these works for both areas since the area selection is run through the music selector global param
-    public void Narration1()
+    [Header("Area")]
+    [SerializeField] private float areaValue = 1f; // Hub = 1, Sadness = 3, etc.
+
+    [Header("Narration Durations")]
+    [SerializeField] private float[] narrationDurations;
+
+    [Header("Spacing")]
+    [SerializeField] private float gapBetweenLines = 0.25f;
+
+    private readonly Queue<int> narrationQueue = new Queue<int>();
+    private bool isPlaying = false;
+
+    public bool IsPlaying => isPlaying;
+
+    public void RequestNarration(int index)
     {
-        RuntimeManager.StudioSystem.setParameterByName(narrationSelector, 0);
-        Narration.Play();
+        Debug.Log($"Narration requested: {index}");
+
+        narrationQueue.Enqueue(index);
+
+        if (!isPlaying)
+        {
+            StartCoroutine(PlayNarrationQueue());
+        }
     }
 
-    public void Narration2()
+    private IEnumerator PlayNarrationQueue()
     {
-        RuntimeManager.StudioSystem.setParameterByName(narrationSelector, 1);
-        Narration.Play();
+        isPlaying = true;
+
+        while (narrationQueue.Count > 0)
+        {
+            int index = narrationQueue.Dequeue();
+
+            Debug.Log($"Playing narration area {areaValue}, line {index}");
+
+            RuntimeManager.StudioSystem.setParameterByName(areaParameter, areaValue);
+            RuntimeManager.StudioSystem.setParameterByName(narratorParameter, index);
+
+            RuntimeManager.PlayOneShot(narrationEvent);
+
+            float duration = GetDuration(index);
+
+            yield return new WaitForSeconds(duration + gapBetweenLines);
+        }
+
+        isPlaying = false;
     }
 
-    public void Narration3()
+    private float GetDuration(int index)
     {
-        RuntimeManager.StudioSystem.setParameterByName(narrationSelector, 2);
-        Narration.Play();
-    }
+        if (index >= 0 && index < narrationDurations.Length)
+        {
+            return narrationDurations[index];
+        }
 
-    public void Narration4()
-    {
-        RuntimeManager.StudioSystem.setParameterByName(narrationSelector, 3);
-        Narration.Play();
-    }
-
-    public void Narration5()
-    {
-        RuntimeManager.StudioSystem.setParameterByName(narrationSelector, 4);
-        Narration.Play();
-    }
-
-    public void Narration6()
-    {
-        RuntimeManager.StudioSystem.setParameterByName(narrationSelector, 5);
-        Narration.Play();
-    }
-
-    public void Narration7()
-    {
-        RuntimeManager.StudioSystem.setParameterByName(narrationSelector, 6);
-        Narration.Play();
-    }
-
-    public void Narration8()
-    {
-        RuntimeManager.StudioSystem.setParameterByName(narrationSelector, 7);
-        Narration.Play();
-    }
-
-    public void Narration9()
-    {
-        RuntimeManager.StudioSystem.setParameterByName(narrationSelector, 8);
-        Narration.Play();
-    }
-
-    public void Narration10()
-    {
-        RuntimeManager.StudioSystem.setParameterByName(narrationSelector, 9);
-        Narration.Play();
-    }
-
-    public void Narration11()
-    {
-        RuntimeManager.StudioSystem.setParameterByName(narrationSelector, 10);
-        Narration.Play();
-    }
-
-    public void Narration12()
-    {
-        RuntimeManager.StudioSystem.setParameterByName(narrationSelector, 11);
-        Narration.Play();
-    }
-
-    public void Narration13()
-    {
-        RuntimeManager.StudioSystem.setParameterByName(narrationSelector, 12);
-        Narration.Play();
-    }
-
-    public void Narration14()
-    {
-        RuntimeManager.StudioSystem.setParameterByName(narrationSelector,13);
-        Narration.Play();
-    }
-
-    public void Narration15()
-    {
-        RuntimeManager.StudioSystem.setParameterByName(narrationSelector, 14);
-        Narration.Play();
+        Debug.LogWarning($"No duration set for narration index {index}. Using fallback duration.");
+        return 5f;
     }
 }
