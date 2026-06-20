@@ -101,16 +101,18 @@ public class PlayerHealth : MonoBehaviour
         if (movement != null)
             movement.enabled = false;
 
-        yield return FadeManager.Instance.FadeOut();
-
         currentHealth = maxHealth;
         isDead = false;
 
         string sceneName = WorldStateManager.Instance.GetCurrentScene();
         string benchID = WorldStateManager.Instance.GetCurrentBench();
 
+
+        Debug.Log("Respawn scene: " + sceneName);
+        Debug.Log("Respawn bench/spawn ID: " + benchID);
+
         // IMPORTANT: let SceneTransitionManager handle spawn + fade
-        SceneTransitionManager.Instance.TransitionToScene(sceneName, benchID);
+        SceneTransitionManager.Instance.RespawnAtBench(sceneName, benchID);
 
         // wait until transition finishes
         while (SceneTransitionManager.Instance.IsTransitioning)
