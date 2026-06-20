@@ -2,8 +2,11 @@ using UnityEngine;
 
 public class NarrationTrigger : MonoBehaviour
 {
-    public NarrationManager manager;
-    public int index;
+    [SerializeField] private NarrationManager manager;
+
+    [SerializeField]
+    [Min(0)]
+    private int index;
 
     private bool triggered;
 
@@ -14,7 +17,7 @@ public class NarrationTrigger : MonoBehaviour
 
         triggered = true;
 
-        manager.PlayNarration(index);
+        manager.RequestNarration(index);
 
         GetComponent<Collider2D>().enabled = false;
         enabled = false;
