@@ -50,12 +50,5 @@ public class EnemyProjectile : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-
-        // OTHER ENEMIES
-        if (((1 << layer) & enemyLayer) != 0)
-        {
-            Destroy(gameObject);
-            return;
-        }
     }
 }

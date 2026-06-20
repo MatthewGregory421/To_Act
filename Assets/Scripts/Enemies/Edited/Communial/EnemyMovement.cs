@@ -33,8 +33,14 @@ public class EnemyMovement : EnemyBase
     {
         base.Update();
 
-        if (isDead || isKnockedBack || isEdgePaused)
+        if (isDead || isKnockedBack)
             return;
+
+        if (isEdgePaused)
+        {
+            HandleEdgePause();
+            return;
+        }
 
         if (canMove)
         {
@@ -152,6 +158,22 @@ public class EnemyMovement : EnemyBase
         );
 
         if (hit.collider != null)
+        {
+            Flip();
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (((1 << collision.gameObject.layer) & wallLayer) != 0)
+        {
+            Flip();
+            return;
+        }
+
+        EnemyBase otherEnemy = collision.gameObject.GetComponent<EnemyBase>();
+
+        if (otherEnemy != null)
         {
             Flip();
         }
