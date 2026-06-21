@@ -72,7 +72,9 @@ public class SceneTransitionManager : MonoBehaviour
         yield return null;
 
         // SPAWN PLAYER
-        SpawnPoint[] spawns = FindObjectsOfType<SpawnPoint>();
+        SpawnPoint[] spawns = FindObjectsByType<SpawnPoint>(
+            FindObjectsSortMode.None
+        );
 
         bool foundSpawn = false;
 

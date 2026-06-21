@@ -29,7 +29,7 @@ public class Bench : MonoBehaviour
         int slot = PlayerPrefs.GetInt("SelectedSlot");
 
         PlayerMovementInputSystem player =
-            FindObjectOfType<PlayerMovementInputSystem>();
+            FindFirstObjectByType<PlayerMovementInputSystem>();
 
         if (player != null)
         {
@@ -38,7 +38,7 @@ public class Bench : MonoBehaviour
 
         if (healPlayer)
         {
-            PlayerHealth ph = FindObjectOfType<PlayerHealth>();
+            PlayerHealth ph = FindFirstObjectByType<PlayerHealth>();
             if (ph != null)
                 ph.FullHeal();
         }

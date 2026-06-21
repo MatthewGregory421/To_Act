@@ -4,7 +4,9 @@ public static class BenchUtility
 {
     public static Bench FindBench(string benchID)
     {
-        Bench[] benches = GameObject.FindObjectsOfType<Bench>();
+        Bench[] benches = Object.FindObjectsByType<Bench>(
+            FindObjectsSortMode.None
+        );
 
         foreach (var bench in benches)
         {
