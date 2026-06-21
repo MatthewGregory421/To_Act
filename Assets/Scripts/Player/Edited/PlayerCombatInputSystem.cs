@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Tilemaps;
+using UnityEngine.SceneManagement;
 
 public class PlayerCombatInputSystem : MonoBehaviour
 {
@@ -28,6 +30,7 @@ public class PlayerCombatInputSystem : MonoBehaviour
 
     [Header("Ground Slam")]
     public float slamForce = 20f;
+    [SerializeField] private float slamBounceForce = 4f;
 
     private readonly HashSet<GameObject> slammedEnemies = new HashSet<GameObject>();
     private readonly HashSet<GameObject> slammedObjects = new HashSet<GameObject>();
@@ -35,9 +38,45 @@ public class PlayerCombatInputSystem : MonoBehaviour
 
     private bool wasGrounded;
 
+    [Header("Tilemap Destruction")]
+    [SerializeField] private Tilemap destructibleTilemap;
+    [SerializeField] private string destructibleTilemapName = "DestructibleTilemap";
+    [SerializeField] private int slamTileBreakRadius = 2;
+
     [SerializeField] private float slamRadius = 2.5f;
     [SerializeField] private LayerMask enemyLayer;
     [SerializeField] private LayerMask floorLayer;
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        FindDestructibleTilemap();
+    }
+
+    private void FindDestructibleTilemap()
+    {
+        GameObject found = GameObject.Find(destructibleTilemapName);
+
+        if (found != null)
+        {
+            destructibleTilemap = found.GetComponent<Tilemap>();
+            Debug.Log("Found destructible tilemap: " + found.name);
+        }
+        else
+        {
+            destructibleTilemap = null;
+            Debug.Log("No destructible tilemap found in this scene.");
+        }
+    }
 
     private void Awake()
     {
@@ -46,6 +85,8 @@ public class PlayerCombatInputSystem : MonoBehaviour
 
         if (rb == null)
             rb = GetComponent<Rigidbody2D>();
+
+        FindDestructibleTilemap();
     }
 
     // =====================================
@@ -224,5 +265,40 @@ public class PlayerCombatInputSystem : MonoBehaviour
                 continue;
             }
         }
+        BreakTileBelowPlayer();
+
+        rb.linearVelocity = new Vector2(rb.linearVelocity.x, slamBounceForce);
+    }
+
+    private void BreakTileBelowPlayer()
+    {
+        if (destructibleTilemap == null)
+        {
+            Debug.LogWarning("No destructible tilemap assigned.");
+            return;
+        }
+
+        Vector3 hitPosition = transform.position + Vector3.down * 1.1f;
+        Vector3Int centerCell = destructibleTilemap.WorldToCell(hitPosition);
+
+        for (int x = -slamTileBreakRadius; x <= slamTileBreakRadius; x++)
+        {
+            for (int y = -slamTileBreakRadius; y <= slamTileBreakRadius; y++)
+            {
+                Vector3Int cellPosition = new Vector3Int(
+                    centerCell.x + x,
+                    centerCell.y + y,
+                    centerCell.z
+                );
+
+                if (destructibleTilemap.HasTile(cellPosition))
+                {
+                    destructibleTilemap.SetTile(cellPosition, null);
+                    Debug.Log("Destroyed tile at: " + cellPosition);
+                }
+            }
+        }
+
+        destructibleTilemap.RefreshAllTiles();
     }
 }

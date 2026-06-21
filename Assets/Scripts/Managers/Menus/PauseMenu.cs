@@ -62,6 +62,16 @@ public class PauseMenu : MonoBehaviour
     // =========================
     public void ReloadLastSave()
     {
+        string sceneName = WorldStateManager.Instance.GetCurrentScene();
+        string benchID = WorldStateManager.Instance.GetCurrentBench();
+
+        if (string.IsNullOrEmpty(sceneName) || string.IsNullOrEmpty(benchID))
+        {
+            Debug.LogWarning("Cannot respawn: no bench has been activated yet.");
+            UISFXManager.Instance?.PlayUIBack();
+            return;
+        }
+
         UISFXManager.Instance?.PlayUIConfirm();
 
         Time.timeScale = 1f;
@@ -69,11 +79,7 @@ public class PauseMenu : MonoBehaviour
         isPaused = false;
         pauseMenuUI.SetActive(false);
 
-        SaveManager.Instance.RequestLoadGame(
-            SaveManager.Instance.currentSlot
-        );
-
-        SceneManager.LoadScene("Bootstrap");
+        SceneTransitionManager.Instance.RespawnAtBench(sceneName, benchID);
     }
 
     // =========================

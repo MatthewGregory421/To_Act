@@ -72,7 +72,9 @@ public class SceneTransitionManager : MonoBehaviour
         yield return null;
 
         // SPAWN PLAYER
-        SpawnPoint[] spawns = FindObjectsOfType<SpawnPoint>();
+        SpawnPoint[] spawns = FindObjectsByType<SpawnPoint>(
+            FindObjectsSortMode.None
+        );
 
         bool foundSpawn = false;
 
@@ -128,6 +130,62 @@ public class SceneTransitionManager : MonoBehaviour
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(sceneName));
 
         yield return null;
+
+        yield return FadeManager.Instance.FadeIn();
+
+        if (playerMovement != null)
+            playerMovement.enabled = true;
+
+        isTransitioning = false;
+    }
+
+    public void RespawnAtBench(string targetScene, string benchID)
+    {
+        if (isTransitioning)
+            return;
+
+        StartCoroutine(RespawnAtBenchRoutine(targetScene, benchID));
+    }
+
+    private IEnumerator RespawnAtBenchRoutine(string targetScene, string benchID)
+    {
+        isTransitioning = true;
+
+        if (playerMovement != null)
+            playerMovement.enabled = false;
+
+        Rigidbody2D rb = player ? player.GetComponent<Rigidbody2D>() : null;
+        if (rb != null)
+            rb.linearVelocity = Vector2.zero;
+
+        yield return FadeManager.Instance.FadeOut();
+
+        AsyncOperation op = SceneManager.LoadSceneAsync(targetScene, LoadSceneMode.Single);
+
+        while (!op.isDone)
+            yield return null;
+
+        Scene newScene = SceneManager.GetSceneByName(targetScene);
+        SceneManager.SetActiveScene(newScene);
+
+        HandleMusicForScene(targetScene);
+
+        yield return null;
+
+        Bench bench = BenchUtility.FindBench(benchID);
+
+        if (bench != null)
+        {
+            player.position = bench.transform.position + Vector3.up * spawnYOffset;
+            Debug.Log($"Respawned player at bench: {benchID}");
+        }
+        else
+        {
+            Debug.LogWarning($"Bench not found for respawn: {benchID}");
+        }
+
+        if (rb != null)
+            rb.linearVelocity = Vector2.zero;
 
         yield return FadeManager.Instance.FadeIn();
 

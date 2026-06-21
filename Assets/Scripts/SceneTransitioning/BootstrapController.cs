@@ -64,7 +64,7 @@ public class BootstrapController : MonoBehaviour
         yield return SceneTransitionManager.Instance.LoadSceneDirect(data.sceneName);
 
         Bench bench = BenchUtility.FindBench(data.benchID);
-        PlayerHealth player = FindObjectOfType<PlayerHealth>();
+        PlayerHealth player = FindFirstObjectByType<PlayerHealth>();
 
         if (bench != null && player != null)
             player.transform.position = bench.transform.position;
