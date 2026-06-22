@@ -135,6 +135,7 @@ MonoBehaviour:
   animator: {fileID: 3604576234126305653}
   moving: 0
   special: 0
+  velocity: {x: 0, y: 0}
 --- !u!95 &3604576234126305653
 Animator:
   serializedVersion: 7
@@ -513,7 +514,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0ae4ebff7432d642a64560862010422, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 1183213129730527439, guid: 43166b139d43c164b8e13ecf1d01622b, type: 3}
+  projectilePrefab: {fileID: 388596703213885179, guid: 9bc2bc5f8cafc4709aefc8b07aee4c32, type: 3}
   firePoint: {fileID: 5281292562668162332}
   aimTarget: {fileID: 0}
   fireRate: 1.5
