@@ -217,7 +217,7 @@ GameObject:
   - component: {fileID: 36388586}
   - component: {fileID: 36388585}
   - component: {fileID: 36388584}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: NarrativeTrigger (13)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -366,7 +366,7 @@ GameObject:
   - component: {fileID: 51496421}
   - component: {fileID: 51496420}
   - component: {fileID: 51496419}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: NarrativeTrigger (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1238,7 +1238,7 @@ Tilemap:
       - {fileID: 21300000, guid: 2f7bbc7c6a2bc4df78d6caee04218aa9, type: 3}
       - {fileID: 21300000, guid: 6e49cae33a74c47ccaf4b18b4467e9cc, type: 3}
       - {fileID: 21300000, guid: 419ea1766f5c9425ba583b7aae908f26, type: 3}
-      m_AnimationSpeed: 5.0000005
+      m_AnimationSpeed: 5
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 144, y: 0, z: 0}
@@ -1360,7 +1360,7 @@ GameObject:
   - component: {fileID: 317998318}
   - component: {fileID: 317998317}
   - component: {fileID: 317998316}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: NarrativeTrigger (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1680,7 +1680,7 @@ GameObject:
   - component: {fileID: 462823414}
   - component: {fileID: 462823413}
   - component: {fileID: 462823412}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: NarrativeTrigger (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2133,7 +2133,7 @@ GameObject:
   - component: {fileID: 649456588}
   - component: {fileID: 649456587}
   - component: {fileID: 649456586}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: NarrativeTrigger (12)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2364,7 +2364,7 @@ GameObject:
   - component: {fileID: 676540063}
   - component: {fileID: 676540062}
   - component: {fileID: 676540061}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: NarrativeTrigger (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2673,7 +2673,7 @@ GameObject:
   - component: {fileID: 692580503}
   - component: {fileID: 692580502}
   - component: {fileID: 692580501}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: NarrativeTrigger (14)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3250,7 +3250,7 @@ GameObject:
   - component: {fileID: 863111802}
   - component: {fileID: 863111801}
   - component: {fileID: 863111800}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: NarrativeTrigger (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3730,7 +3730,7 @@ GameObject:
   - component: {fileID: 1074912531}
   - component: {fileID: 1074912530}
   - component: {fileID: 1074912529}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: NarrativeTrigger (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3879,7 +3879,7 @@ GameObject:
   - component: {fileID: 1081266583}
   - component: {fileID: 1081266582}
   - component: {fileID: 1081266581}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: NarrativeTrigger (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4392,7 +4392,7 @@ GameObject:
   - component: {fileID: 1304507056}
   - component: {fileID: 1304507055}
   - component: {fileID: 1304507054}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: NarrativeTrigger (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7682,7 +7682,7 @@ GameObject:
   - component: {fileID: 1361509384}
   - component: {fileID: 1361509383}
   - component: {fileID: 1361509382}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: NarrativeTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8276,7 +8276,7 @@ GameObject:
   - component: {fileID: 1447314463}
   - component: {fileID: 1447314462}
   - component: {fileID: 1447314461}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: NarrativeTrigger (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13711,7 +13711,7 @@ GameObject:
   - component: {fileID: 1726252560}
   - component: {fileID: 1726252559}
   - component: {fileID: 1726252558}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: NarrativeTrigger (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14676,7 +14676,7 @@ GameObject:
   - component: {fileID: 1910777597}
   - component: {fileID: 1910777596}
   - component: {fileID: 1910777595}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: NarrativeTrigger (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

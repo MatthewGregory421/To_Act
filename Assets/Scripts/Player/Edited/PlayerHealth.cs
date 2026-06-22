@@ -21,6 +21,14 @@ public class PlayerHealth : MonoBehaviour
     [Header("I-Frames")]
     public float invincibilityDuration = 1f;
 
+    [Header("Damage Flash")]
+    public SpriteRenderer playerSprite;
+    public Color damageColor = Color.red;
+    public float flashSpeed = 0.1f;
+
+    private Color originalColor;
+    private Coroutine flashCoroutine;
+
     private Rigidbody2D rb;
 
     private void Start()
@@ -28,8 +36,13 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = maxHealth;
 
         rb = GetComponent<Rigidbody2D>();
-
         movement = GetComponent<PlayerMovementInputSystem>();
+
+        if (playerSprite == null)
+            playerSprite = GetComponentInChildren<SpriteRenderer>();
+
+        if (playerSprite != null)
+            originalColor = playerSprite.color;
     }
 
     public void TakeDamage(int damage, Vector2 knockbackDirection)
@@ -40,7 +53,11 @@ public class PlayerHealth : MonoBehaviour
         currentHealth -= damage;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
 
-        playerSFXManager.PlayPlayerDamage();
+        if (playerSFXManager != null)
+            playerSFXManager.PlayPlayerDamage();
+
+        if (CameraLag.Instance != null)
+            CameraLag.Instance.ShakeCamera();
 
         Debug.Log("Player took damage! HP: " + currentHealth);
 
@@ -63,9 +80,36 @@ public class PlayerHealth : MonoBehaviour
     {
         isInvincible = true;
 
+        if (flashCoroutine != null)
+            StopCoroutine(flashCoroutine);
+
+        flashCoroutine = StartCoroutine(DamageFlash());
+
         yield return new WaitForSeconds(invincibilityDuration);
 
         isInvincible = false;
+
+        if (flashCoroutine != null)
+            StopCoroutine(flashCoroutine);
+
+        if (playerSprite != null)
+            playerSprite.color = originalColor;
+    }
+
+    private IEnumerator DamageFlash()
+    {
+        while (isInvincible)
+        {
+            if (playerSprite != null)
+                playerSprite.color = damageColor;
+
+            yield return new WaitForSeconds(flashSpeed);
+
+            if (playerSprite != null)
+                playerSprite.color = originalColor;
+
+            yield return new WaitForSeconds(flashSpeed);
+        }
     }
 
     public void Knockback(
