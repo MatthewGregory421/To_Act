@@ -1238,7 +1238,7 @@ Tilemap:
       - {fileID: 21300000, guid: 2f7bbc7c6a2bc4df78d6caee04218aa9, type: 3}
       - {fileID: 21300000, guid: 6e49cae33a74c47ccaf4b18b4467e9cc, type: 3}
       - {fileID: 21300000, guid: 419ea1766f5c9425ba583b7aae908f26, type: 3}
-      m_AnimationSpeed: 5
+      m_AnimationSpeed: 5.0000005
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 144, y: 0, z: 0}
@@ -4185,6 +4185,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -7553,6 +7554,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -14906,6 +14908,7 @@ MonoBehaviour:
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -15117,6 +15120,7 @@ MonoBehaviour:
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -15462,8 +15466,8 @@ Transform:
   m_GameObject: {fileID: 2114002443}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 122.3942, y: 13.7328, z: -0.14257336}
-  m_LocalScale: {x: 2.924139, y: 2.423509, z: 1}
+  m_LocalPosition: {x: 122.3942, y: 13.733, z: -0.14257336}
+  m_LocalScale: {x: 4.724998, y: 3.9160502, z: 1.6158595}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
