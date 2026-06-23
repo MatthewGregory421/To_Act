@@ -25,7 +25,7 @@ public class EnemyBase : MonoBehaviour
     public string enemyID;
 
     [Header("Death")]
-    public bool destroyOnDeath = true;
+    public bool destroyOnDeath = false;
 
     [Header("Movement")]
     public float moveSpeed = 3f;
@@ -112,10 +112,19 @@ public class EnemyBase : MonoBehaviour
         if (rb != null)
             rb.linearVelocity = Vector2.zero;
 
-        if (destroyOnDeath)
-            Destroy(gameObject);
-        else
-            gameObject.SetActive(false);
+        gameObject.SetActive(false);
+    }
+
+    public void RespawnEnemy()
+    {
+        isDead = false;
+        isKnockedBack = false;
+        currentHealth = maxHealth;
+
+        if (rb != null)
+            rb.linearVelocity = Vector2.zero;
+
+        gameObject.SetActive(true);
     }
 
     protected void TryFindPlayer()

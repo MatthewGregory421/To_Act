@@ -4,12 +4,12 @@ using System.Collections;
 
 public class PlayerHealth : MonoBehaviour
 {
-
     private bool isDead;
     public bool isInvincible;
 
     private PlayerMovementInputSystem movement;
     public PlayerSFXManager playerSFXManager;
+    private HealthUI healthUI;
 
     [Header("Health")]
     public int maxHealth = 5;
@@ -43,6 +43,13 @@ public class PlayerHealth : MonoBehaviour
 
         if (playerSprite != null)
             originalColor = playerSprite.color;
+
+        healthUI = FindFirstObjectByType<HealthUI>();
+
+        if (healthUI != null)
+        {
+            healthUI.UpdateHealth(currentHealth, maxHealth);
+        }
     }
 
     public void TakeDamage(int damage, Vector2 knockbackDirection)
@@ -52,6 +59,10 @@ public class PlayerHealth : MonoBehaviour
 
         currentHealth -= damage;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+        if (healthUI != null)
+        {
+            healthUI.UpdateHealth(currentHealth, maxHealth);
+        }
 
         if (playerSFXManager != null)
             playerSFXManager.PlayPlayerDamage();
@@ -145,12 +156,13 @@ public class PlayerHealth : MonoBehaviour
         if (movement != null)
             movement.enabled = false;
 
-        currentHealth = maxHealth;
+        FullHeal();
         isDead = false;
 
         string sceneName = WorldStateManager.Instance.GetCurrentScene();
         string benchID = WorldStateManager.Instance.GetCurrentBench();
 
+        WorldStateManager.Instance.RespawnEnemiesFromBench();
 
         Debug.Log("Respawn scene: " + sceneName);
         Debug.Log("Respawn bench/spawn ID: " + benchID);
@@ -169,8 +181,29 @@ public class PlayerHealth : MonoBehaviour
             movement.enabled = true;
     }
 
+    public void Heal(int amount)
+    {
+        if (isDead)
+            return;
+
+        currentHealth += amount;
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+
+        if (healthUI != null)
+        {
+            healthUI.UpdateHealth(currentHealth, maxHealth);
+        }
+
+        Debug.Log("Player healed! HP: " + currentHealth);
+    }
+
     public void FullHeal()
     {
         currentHealth = maxHealth;
+
+        if (healthUI != null)
+        {
+            healthUI.UpdateHealth(currentHealth, maxHealth);
+        }
     }
 }

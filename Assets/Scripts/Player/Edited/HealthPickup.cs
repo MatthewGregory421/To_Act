@@ -21,13 +21,7 @@ public class HealthPickup : MonoBehaviour
 
         if (player != null)
         {
-            player.currentHealth = Mathf.Clamp(
-                player.currentHealth + healAmount,
-                0,
-                player.maxHealth
-            );
-
-            Debug.Log("Player healed!");
+            player.Heal(healAmount);
 
             sfxManager?.PlayPlayerHealthUp();
 

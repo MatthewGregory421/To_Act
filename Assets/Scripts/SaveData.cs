@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 [Serializable]
 public class SaveData
@@ -8,4 +9,6 @@ public class SaveData
 
     public bool hasShield;
     public bool hasGroundSlam;
+
+    public List<string> collectedPickups = new List<string>();
 }
