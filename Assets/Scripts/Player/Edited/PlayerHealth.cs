@@ -4,12 +4,12 @@ using System.Collections;
 
 public class PlayerHealth : MonoBehaviour
 {
-
     private bool isDead;
     public bool isInvincible;
 
     private PlayerMovementInputSystem movement;
     public PlayerSFXManager playerSFXManager;
+    private HealthUI healthUI;
 
     [Header("Health")]
     public int maxHealth = 5;
@@ -21,6 +21,14 @@ public class PlayerHealth : MonoBehaviour
     [Header("I-Frames")]
     public float invincibilityDuration = 1f;
 
+    [Header("Damage Flash")]
+    public SpriteRenderer playerSprite;
+    public Color damageColor = Color.red;
+    public float flashSpeed = 0.1f;
+
+    private Color originalColor;
+    private Coroutine flashCoroutine;
+
     private Rigidbody2D rb;
 
     private void Start()
@@ -28,8 +36,20 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = maxHealth;
 
         rb = GetComponent<Rigidbody2D>();
-
         movement = GetComponent<PlayerMovementInputSystem>();
+
+        if (playerSprite == null)
+            playerSprite = GetComponentInChildren<SpriteRenderer>();
+
+        if (playerSprite != null)
+            originalColor = playerSprite.color;
+
+        healthUI = FindFirstObjectByType<HealthUI>();
+
+        if (healthUI != null)
+        {
+            healthUI.UpdateHealth(currentHealth, maxHealth);
+        }
     }
 
     public void TakeDamage(int damage, Vector2 knockbackDirection)
@@ -39,8 +59,16 @@ public class PlayerHealth : MonoBehaviour
 
         currentHealth -= damage;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+        if (healthUI != null)
+        {
+            healthUI.UpdateHealth(currentHealth, maxHealth);
+        }
 
-        playerSFXManager.PlayPlayerDamage();
+        if (playerSFXManager != null)
+            playerSFXManager.PlayPlayerDamage();
+
+        if (CameraLag.Instance != null)
+            CameraLag.Instance.ShakeCamera();
 
         Debug.Log("Player took damage! HP: " + currentHealth);
 
@@ -63,9 +91,36 @@ public class PlayerHealth : MonoBehaviour
     {
         isInvincible = true;
 
+        if (flashCoroutine != null)
+            StopCoroutine(flashCoroutine);
+
+        flashCoroutine = StartCoroutine(DamageFlash());
+
         yield return new WaitForSeconds(invincibilityDuration);
 
         isInvincible = false;
+
+        if (flashCoroutine != null)
+            StopCoroutine(flashCoroutine);
+
+        if (playerSprite != null)
+            playerSprite.color = originalColor;
+    }
+
+    private IEnumerator DamageFlash()
+    {
+        while (isInvincible)
+        {
+            if (playerSprite != null)
+                playerSprite.color = damageColor;
+
+            yield return new WaitForSeconds(flashSpeed);
+
+            if (playerSprite != null)
+                playerSprite.color = originalColor;
+
+            yield return new WaitForSeconds(flashSpeed);
+        }
     }
 
     public void Knockback(
@@ -101,16 +156,19 @@ public class PlayerHealth : MonoBehaviour
         if (movement != null)
             movement.enabled = false;
 
-        yield return FadeManager.Instance.FadeOut();
-
-        currentHealth = maxHealth;
+        FullHeal();
         isDead = false;
 
         string sceneName = WorldStateManager.Instance.GetCurrentScene();
         string benchID = WorldStateManager.Instance.GetCurrentBench();
 
+        WorldStateManager.Instance.RespawnEnemiesFromBench();
+
+        Debug.Log("Respawn scene: " + sceneName);
+        Debug.Log("Respawn bench/spawn ID: " + benchID);
+
         // IMPORTANT: let SceneTransitionManager handle spawn + fade
-        SceneTransitionManager.Instance.TransitionToScene(sceneName, benchID);
+        SceneTransitionManager.Instance.RespawnAtBench(sceneName, benchID);
 
         // wait until transition finishes
         while (SceneTransitionManager.Instance.IsTransitioning)
@@ -123,8 +181,29 @@ public class PlayerHealth : MonoBehaviour
             movement.enabled = true;
     }
 
+    public void Heal(int amount)
+    {
+        if (isDead)
+            return;
+
+        currentHealth += amount;
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+
+        if (healthUI != null)
+        {
+            healthUI.UpdateHealth(currentHealth, maxHealth);
+        }
+
+        Debug.Log("Player healed! HP: " + currentHealth);
+    }
+
     public void FullHeal()
     {
         currentHealth = maxHealth;
+
+        if (healthUI != null)
+        {
+            healthUI.UpdateHealth(currentHealth, maxHealth);
+        }
     }
 }

@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.UI;
+using System.Collections;
 using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
@@ -7,6 +9,9 @@ public class PauseMenu : MonoBehaviour
     public GameObject pauseMenuUI;
 
     private bool isPaused = false;
+
+    [Header("Buttons")]
+    public Button respawnButton;
 
     private void Update()
     {
@@ -29,6 +34,8 @@ public class PauseMenu : MonoBehaviour
     {
         if (pauseMenuUI == null)
             return;
+
+        UpdateButtonStates();
 
         Debug.Log("PauseMenu opened");
 
@@ -62,18 +69,42 @@ public class PauseMenu : MonoBehaviour
     // =========================
     public void ReloadLastSave()
     {
+        string sceneName = WorldStateManager.Instance.GetCurrentScene();
+        string benchID = WorldStateManager.Instance.GetCurrentBench();
+
+        if (string.IsNullOrEmpty(sceneName) || string.IsNullOrEmpty(benchID))
+        {
+            Debug.LogWarning("Cannot respawn: no bench has been activated yet.");
+            UISFXManager.Instance?.PlayUIBack();
+            return;
+        }
+
         UISFXManager.Instance?.PlayUIConfirm();
+
+        // Reset enemies like a bench rest
+        WorldStateManager.Instance.RespawnEnemiesFromBench();
 
         Time.timeScale = 1f;
 
         isPaused = false;
         pauseMenuUI.SetActive(false);
 
-        SaveManager.Instance.RequestLoadGame(
-            SaveManager.Instance.currentSlot
-        );
+        SceneTransitionManager.Instance.RespawnAtBench(sceneName, benchID);
+    }
 
-        SceneManager.LoadScene("Bootstrap");
+    private void UpdateButtonStates()
+    {
+        if (respawnButton == null)
+            return;
+
+        string sceneName = WorldStateManager.Instance.GetCurrentScene();
+        string benchID = WorldStateManager.Instance.GetCurrentBench();
+
+        bool hasBench =
+            !string.IsNullOrEmpty(sceneName) &&
+            !string.IsNullOrEmpty(benchID);
+
+        respawnButton.interactable = hasBench;
     }
 
     // =========================
@@ -84,12 +115,11 @@ public class PauseMenu : MonoBehaviour
         UISFXManager.Instance?.PlayUIConfirm();
 
         Time.timeScale = 1f;
-
         isPaused = false;
         pauseMenuUI.SetActive(false);
 
-        StartCoroutine(
-            SceneTransitionManager.Instance.LoadSceneDirect("MainMenu")
+        SceneTransitionManager.Instance.StartCoroutine(
+            SceneTransitionManager.Instance.LoadMainMenuWithFade()
         );
     }
 }

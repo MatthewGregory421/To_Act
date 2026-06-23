@@ -27,8 +27,8 @@ TagManager:
   - EnemyShield
   - Ghost
   - Collide with nothing
-  - 
-  - 
+  - VoiceTriggers
+  - HealthPickup
   - 
   - 
   - 

@@ -61,17 +61,32 @@ public class BootstrapController : MonoBehaviour
             yield break;
         }
 
-        yield return SceneTransitionManager.Instance.LoadSceneDirect(data.sceneName);
+        WorldStateManager.Instance.ApplySave(data);
 
-        Bench bench = BenchUtility.FindBench(data.benchID);
-        PlayerHealth player = FindObjectOfType<PlayerHealth>();
+        SceneTransitionManager.Instance.RespawnAtBench(data.sceneName, data.benchID);
 
-        if (bench != null && player != null)
-            player.transform.position = bench.transform.position;
+        while (SceneTransitionManager.Instance.IsTransitioning)
+            yield return null;
 
-        var pm = player.GetComponent<PlayerMovementInputSystem>();
-        pm.hasShield = data.hasShield;
-        pm.hasGroundSlam = data.hasGroundSlam;
+        PlayerHealth player = FindFirstObjectByType<PlayerHealth>();
+
+        if (player == null)
+        {
+            Debug.LogWarning("Load failed: player missing.");
+            SaveManager.Instance.Clear();
+            yield break;
+        }
+
+        PlayerMovementInputSystem pm = player.GetComponent<PlayerMovementInputSystem>();
+
+        if (pm != null)
+        {
+            pm.hasShield = data.hasShield;
+            pm.hasGroundSlam = data.hasGroundSlam;
+            pm.UpdateAbilityUI();
+        }
+
+        Debug.Log("Loaded save at bench: " + data.benchID);
 
         SaveManager.Instance.Clear();
     }

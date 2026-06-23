@@ -56,7 +56,14 @@
 			<destination>{303db400-1498-4846-aec9-cc4602744b8c}</destination>
 		</relationship>
 	</object>
-	<object class="EventAutomatableProperties" id="{3585dada-5591-49b5-9e29-6729051d0bc5}" />
+	<object class="EventAutomatableProperties" id="{3585dada-5591-49b5-9e29-6729051d0bc5}">
+		<property name="maxVoices">
+			<value>3</value>
+		</property>
+		<property name="priority">
+			<value>1</value>
+		</property>
+	</object>
 	<object class="MarkerTrack" id="{32c3d432-a96a-468c-a488-35982635266d}" />
 	<object class="GroupTrack" id="{c2d6adda-566b-4442-8026-8852d295a02f}">
 		<relationship name="modules">
@@ -156,10 +163,31 @@
 	</object>
 	<object class="MixerBusEffectChain" id="{6981f0b3-39fd-441e-a48f-4fa7086c879c}">
 		<relationship name="effects">
+			<destination>{8d0aae1b-adcd-4ccd-88d4-15134e840afa}</destination>
+			<destination>{39f91a08-3b56-468b-84eb-9a930f27be70}</destination>
 			<destination>{1b048430-1276-49cc-8f44-84b7a70ee48e}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{36d72bf7-fd5a-4ba0-ad5a-49ebb7754eab}" />
 	<object class="MixerBusFader" id="{c47748cf-605c-4757-bed4-42c6fa9632c5}" />
+	<object class="CompressorEffect" id="{8d0aae1b-adcd-4ccd-88d4-15134e840afa}">
+		<property name="threshold">
+			<value>-28.5</value>
+		</property>
+		<property name="ratio">
+			<value>15</value>
+		</property>
+	</object>
+	<object class="DelayEffect" id="{39f91a08-3b56-468b-84eb-9a930f27be70}">
+		<property name="delay">
+			<value>340</value>
+		</property>
+		<property name="feedback">
+			<value>59</value>
+		</property>
+		<property name="level">
+			<value>-37</value>
+		</property>
+	</object>
 	<object class="MixerBusFader" id="{1b048430-1276-49cc-8f44-84b7a70ee48e}" />
 </objects>

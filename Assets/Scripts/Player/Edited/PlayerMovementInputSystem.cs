@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -15,6 +16,10 @@ public class PlayerMovementInputSystem : MonoBehaviour
     [Header("Abilities")]
     public bool hasShield;
     public bool hasGroundSlam;
+
+    [Header("Ability UI")]
+    [SerializeField] private GameObject shieldIcon;
+    [SerializeField] private GameObject groundSlamIcon;
 
     [Header("Movement")]
     public float moveSpeed = 5f;
@@ -82,6 +87,9 @@ public class PlayerMovementInputSystem : MonoBehaviour
     private bool isOnCooldown;
     private bool shieldSFXPlayed;
 
+    [Header("Shield UI")]
+    [SerializeField] private CoolDownIconUI shieldCooldownUI;
+
     [Header("Dazed State")]
     public bool isDazed;
     private float dazedTimer;
@@ -93,6 +101,16 @@ public class PlayerMovementInputSystem : MonoBehaviour
     {
         originalColliderSize = box.size;
         originalColliderOffset = box.offset;
+
+        if (shieldCooldownUI == null)
+            shieldCooldownUI = GameObject.Find("ShieldFill")?.GetComponent<CoolDownIconUI>();
+
+        UpdateAbilityUI();
+
+        if (WorldStateManager.Instance != null)
+        {
+            WorldStateManager.Instance.ApplyCollectedAbilitiesToPlayer();
+        }
     }
 
 
@@ -181,6 +199,15 @@ public class PlayerMovementInputSystem : MonoBehaviour
 
         playerAnimations.velocity = Mathf.Abs(rb.linearVelocity.x);
     }
+    public void UpdateAbilityUI()
+    {
+        if (shieldIcon != null)
+            shieldIcon.SetActive(hasShield);
+
+        if (groundSlamIcon != null)
+            groundSlamIcon.SetActive(hasGroundSlam);
+    }
+
 
     // =========================
     // INPUT
@@ -286,6 +313,21 @@ public class PlayerMovementInputSystem : MonoBehaviour
     // SHIELD
     // =========================
 
+    public void ApplyAbilitiesFromCollectedPickups(List<string> pickups)
+    {
+        if (pickups == null)
+            return;
+
+        hasShield = pickups.Contains("ShieldPickup");
+        hasGroundSlam = pickups.Contains("GroundSlamPickup");
+
+        UpdateAbilityUI();
+
+        Debug.Log(
+            $"Abilities applied. Shield: {hasShield}, Ground Slam: {hasGroundSlam}"
+        );
+    }
+
     private void TryActivateShield()
     {
         if (!hasShield)
@@ -351,9 +393,19 @@ public class PlayerMovementInputSystem : MonoBehaviour
         {
             cooldownTimer -= Time.deltaTime;
 
+            if (shieldCooldownUI != null)
+            {
+                shieldCooldownUI.SetCooldownProgress(cooldownTimer, shieldCooldown);
+            }
+
             if (cooldownTimer <= 0f)
             {
                 isOnCooldown = false;
+
+                if (shieldCooldownUI != null)
+                {
+                    shieldCooldownUI.SetReady();
+                }
             }
         }
     }
@@ -362,6 +414,11 @@ public class PlayerMovementInputSystem : MonoBehaviour
     {
         isOnCooldown = true;
         cooldownTimer = shieldCooldown;
+
+        if (shieldCooldownUI != null)
+        {
+            shieldCooldownUI.SetCooldownProgress(cooldownTimer, shieldCooldown);
+        }
     }
 
     // =========================
