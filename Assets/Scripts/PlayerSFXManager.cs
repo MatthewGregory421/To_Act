@@ -17,64 +17,79 @@ public class PlayerSFXManager : MonoBehaviour
     [ParamRef]
     private string PlayerSpecialController = null;
 
-    public void PlayPlayerHealthUp() 
+    private void PlaySafe()
+    {
+        if (PlayerSFX == null)
+            return;
+
+        try
+        {
+            PlayerSFX.Play();
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogWarning("Player SFX failed: " + e.Message);
+        }
+    }
+
+    public void PlayPlayerHealthUp()
     {
         RuntimeManager.StudioSystem.setParameterByName(PlayerActionSelector, 6);
-        PlayerSFX.Play();
+        PlaySafe();
     }
 
-    public void PlayPlayerJump() 
+    public void PlayPlayerJump()
     {
         RuntimeManager.StudioSystem.setParameterByName(PlayerActionSelector, 1);
-        PlayerSFX.Play();
+        PlaySafe();
     }
 
-    public void PlayPlayerAttack() 
+    public void PlayPlayerAttack()
     {
         RuntimeManager.StudioSystem.setParameterByName(PlayerActionSelector, 2);
-        PlayerSFX.Play();
+        PlaySafe();
     }
 
-    public void PlayPlayerFootsteps() 
+    public void PlayPlayerFootsteps()
     {
         RuntimeManager.StudioSystem.setParameterByName(PlayerActionSelector, 3);
-        PlayerSFX.Play();
+        PlaySafe();
     }
 
-    public void PlayPlayerDamage() 
+    public void PlayPlayerDamage()
     {
         RuntimeManager.StudioSystem.setParameterByName(PlayerActionSelector, 4);
-        PlayerSFX.Play();
+        PlaySafe();
     }
 
-    public void PlayGroundSlam() 
+    public void PlayGroundSlam()
     {
         RuntimeManager.StudioSystem.setParameterByName(PlayerActionSelector, 5);
         RuntimeManager.StudioSystem.setParameterByName(PlayerSpecialSelector, 1);
-        PlayerSFX.Play();
+        PlaySafe();
     }
 
-    public void PlayShieldActive() 
+    public void PlayShieldActive()
     {
         RuntimeManager.StudioSystem.setParameterByName(PlayerActionSelector, 5);
         RuntimeManager.StudioSystem.setParameterByName(PlayerSpecialSelector, 0);
         RuntimeManager.StudioSystem.setParameterByName(PlayerSpecialController, 0);
-        PlayerSFX.Play();
+        PlaySafe();
     }
 
-    public void PlayShieldConnect() 
+    public void PlayShieldConnect()
     {
         RuntimeManager.StudioSystem.setParameterByName(PlayerActionSelector, 5);
         RuntimeManager.StudioSystem.setParameterByName(PlayerSpecialSelector, 0);
-         RuntimeManager.StudioSystem.setParameterByName(PlayerSpecialController, 1);
-        PlayerSFX.Play();
+        RuntimeManager.StudioSystem.setParameterByName(PlayerSpecialController, 1);
+        PlaySafe();
     }
 
-    public void PlayShieldDeactive() 
+    public void PlayShieldDeactive()
     {
         RuntimeManager.StudioSystem.setParameterByName(PlayerActionSelector, 5);
         RuntimeManager.StudioSystem.setParameterByName(PlayerSpecialSelector, 0);
-         RuntimeManager.StudioSystem.setParameterByName(PlayerSpecialController, 2);
-        PlayerSFX.Play();
+        RuntimeManager.StudioSystem.setParameterByName(PlayerSpecialController, 2);
+        PlaySafe();
     }
 }

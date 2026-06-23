@@ -1,15 +1,17 @@
 using UnityEngine;
 using FMODUnity;
 
+[RequireComponent(typeof(StudioEventEmitter))]
 public class UISFXManager : MonoBehaviour
 {
-    public StudioEventEmitter UISFX;
+    public static UISFXManager Instance;
+
+    [Header("FMOD")]
+    [SerializeField] private StudioEventEmitter UISFX;
 
     [SerializeField]
     [ParamRef]
     private string UISelector = null;
-
-    public static UISFXManager Instance;
 
     private void Awake()
     {
@@ -21,35 +23,55 @@ public class UISFXManager : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
+
+        UISFX = GetComponent<StudioEventEmitter>();
     }
 
-    public void PlayUIBack() 
+    public void PlayUIBack()
     {
-        RuntimeManager.StudioSystem.setParameterByName(UISelector, 0);
-        UISFX.Play();
+        PlayUISound(0);
     }
 
-    public void PlayUICloseMenu() 
+    public void PlayUICloseMenu()
     {
-        RuntimeManager.StudioSystem.setParameterByName(UISelector, 1);
-        UISFX.Play();
+        PlayUISound(1);
     }
 
-    public void PlayUIConfirm() 
+    public void PlayUIConfirm()
     {
-        RuntimeManager.StudioSystem.setParameterByName(UISelector, 2);
-        UISFX.Play();
+        PlayUISound(2);
     }
 
-    public void PlayUIForward() 
+    public void PlayUIForward()
     {
-        RuntimeManager.StudioSystem.setParameterByName(UISelector, 3);
-        UISFX.Play();
+        PlayUISound(3);
     }
 
-    public void PlayUIOpenMenu() 
+    public void PlayUIOpenMenu()
     {
-        RuntimeManager.StudioSystem.setParameterByName(UISelector, 4);
+        PlayUISound(4);
+    }
+
+    private void PlayUISound(float selectorValue)
+    {
+        if (UISFX == null)
+        {
+            UISFX = GetComponent<StudioEventEmitter>();
+        }
+
+        if (UISFX == null)
+        {
+            Debug.LogWarning("UISFXManager: UISFX emitter is missing.");
+            return;
+        }
+
+        if (string.IsNullOrEmpty(UISelector))
+        {
+            Debug.LogWarning("UISFXManager: UISelector parameter is missing.");
+            return;
+        }
+
+        RuntimeManager.StudioSystem.setParameterByName(UISelector, selectorValue);
         UISFX.Play();
     }
 }

@@ -38,6 +38,11 @@ public class PlayerCombatInputSystem : MonoBehaviour
 
     private bool wasGrounded;
 
+    [Header("Ground Slam Cooldown")]
+    [SerializeField] private float groundSlamCooldown = 3f;
+    [SerializeField] private float groundSlamCooldownTimer;
+    [SerializeField] private CoolDownIconUI groundSlamCooldownUI;
+
     [Header("Tilemap Destruction")]
     [SerializeField] private Tilemap destructibleTilemap;
     [SerializeField] private string destructibleTilemapName = "DestructibleTilemap";
@@ -87,6 +92,9 @@ public class PlayerCombatInputSystem : MonoBehaviour
             rb = GetComponent<Rigidbody2D>();
 
         FindDestructibleTilemap();
+
+        if (groundSlamCooldownUI == null)
+            groundSlamCooldownUI = GameObject.Find("GroundSlamFill")?.GetComponent<CoolDownIconUI>();
     }
 
     // =====================================
@@ -97,6 +105,8 @@ public class PlayerCombatInputSystem : MonoBehaviour
     {
         if (attackTimer > 0)
             attackTimer -= Time.deltaTime;
+
+        HandleGroundSlamCooldown();
 
         // detect landing
         if (isSlamming && !wasGrounded && movement.isGrounded)
@@ -164,15 +174,28 @@ public class PlayerCombatInputSystem : MonoBehaviour
             if (!movement.hasGroundSlam)
                 return;
 
+            if (groundSlamCooldownTimer > 0f)
+                return;
+
+            if (movement.isGrounded)
+                return;
+
             playerSFXManager.PlayGroundSlam();
 
-            if (!movement.isGrounded)
-            {
-                rb.linearVelocity = new Vector2(rb.linearVelocity.x, -slamForce);
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, -slamForce);
 
-                isSlamming = true;
-                slammedEnemies.Clear();
-                slammedObjects.Clear();
+            isSlamming = true;
+            slammedEnemies.Clear();
+            slammedObjects.Clear();
+
+            groundSlamCooldownTimer = groundSlamCooldown;
+
+            if (groundSlamCooldownUI != null)
+            {
+                groundSlamCooldownUI.SetCooldownProgress(
+                    groundSlamCooldownTimer,
+                    groundSlamCooldown
+                );
             }
 
             return;
@@ -268,6 +291,32 @@ public class PlayerCombatInputSystem : MonoBehaviour
         BreakTileBelowPlayer();
 
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, slamBounceForce);
+    }
+
+    private void HandleGroundSlamCooldown()
+    {
+        if (groundSlamCooldownTimer <= 0f)
+            return;
+
+        groundSlamCooldownTimer -= Time.deltaTime;
+
+        if (groundSlamCooldownUI != null)
+        {
+            groundSlamCooldownUI.SetCooldownProgress(
+                groundSlamCooldownTimer,
+                groundSlamCooldown
+            );
+        }
+
+        if (groundSlamCooldownTimer <= 0f)
+        {
+            groundSlamCooldownTimer = 0f;
+
+            if (groundSlamCooldownUI != null)
+            {
+                groundSlamCooldownUI.SetReady();
+            }
+        }
     }
 
     private void BreakTileBelowPlayer()

@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class SFXBankLoaderManager : MonoBehaviour
 {
-    public static GameManager Instance;
+    public static SFXBankLoaderManager Instance;
 
     private void Awake()
     {
@@ -13,5 +13,6 @@ public class GameManager : MonoBehaviour
         }
 
         Instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 }

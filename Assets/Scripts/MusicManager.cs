@@ -53,17 +53,23 @@ public class MusicManager : MonoBehaviour
     {
         Debug.Log($"[MusicManager] Requested state: {state}, Current state: {currentMusicState}");
 
+        if (Music != null && !Music.IsPlaying())
+        {
+            Debug.Log("[MusicManager] Music was not playing. Starting emitter.");
+            Music.Play();
+        }
+
+        RuntimeManager.StudioSystem.setParameterByName(musicSelector, state);
+
         if (currentMusicState == state)
         {
-            Debug.Log($"[MusicManager] Staying on same music state: {state}");
+            Debug.Log($"[MusicManager] Reapplied same music state: {state}");
             return;
         }
 
-        Debug.Log($"[MusicManager] Switching music state: {currentMusicState} - {state}");
+        Debug.Log($"[MusicManager] Switching music state: {currentMusicState} -> {state}");
 
         currentMusicState = state;
-
-        RuntimeManager.StudioSystem.setParameterByName(musicSelector, state);
 
         Debug.Log($"[MusicManager] Now playing state: {currentMusicState}");
     }

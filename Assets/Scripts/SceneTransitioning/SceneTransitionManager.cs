@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class SceneTransitionManager : MonoBehaviour
 {
@@ -28,9 +29,6 @@ public class SceneTransitionManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    // =========================
-    // PUBLIC ENTRY POINT (USE THIS ALWAYS)
-    // =========================
     public void TransitionToScene(string targetScene, string spawnID)
     {
         if (isTransitioning)
@@ -39,26 +37,88 @@ public class SceneTransitionManager : MonoBehaviour
         StartCoroutine(TransitionRoutine(targetScene, spawnID));
     }
 
-    // =========================
-    // MAIN TRANSITION FLOW
-    // =========================
+    private void FindPlayerReferences()
+    {
+        if (player == null)
+        {
+            PlayerMovementInputSystem movementScript =
+                FindFirstObjectByType<PlayerMovementInputSystem>();
+
+            if (movementScript != null)
+            {
+                player = movementScript.transform;
+                playerMovement = movementScript;
+            }
+        }
+    }
+
+    private void LockPlayer()
+    {
+        FindPlayerReferences();
+
+        if (playerMovement != null)
+            playerMovement.enabled = false;
+
+        if (player != null)
+        {
+            Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
+
+            if (rb != null)
+                rb.linearVelocity = Vector2.zero;
+        }
+    }
+
+    private void UnlockPlayer()
+    {
+        FindPlayerReferences();
+
+        if (playerMovement != null)
+            playerMovement.enabled = true;
+
+        if (player != null)
+        {
+            PlayerMovementInputSystem movement =
+                player.GetComponent<PlayerMovementInputSystem>();
+
+            if (movement != null)
+                movement.enabled = true;
+
+            PlayerInput input =
+                player.GetComponent<PlayerInput>();
+
+            if (input != null)
+                input.enabled = true;
+
+            PlayerCombatInputSystem combat =
+                player.GetComponent<PlayerCombatInputSystem>();
+
+            if (combat != null)
+                combat.enabled = true;
+
+            Rigidbody2D rb =
+                player.GetComponent<Rigidbody2D>();
+
+            if (rb != null)
+            {
+                rb.simulated = true;
+                rb.bodyType = RigidbodyType2D.Dynamic;
+                rb.linearVelocity = Vector2.zero;
+            }
+        }
+    }
+
     private IEnumerator TransitionRoutine(string targetScene, string spawnID)
     {
         isTransitioning = true;
 
-        // LOCK PLAYER
-        if (playerMovement != null)
-            playerMovement.enabled = false;
+        LockPlayer();
 
-        Rigidbody2D rb = player ? player.GetComponent<Rigidbody2D>() : null;
-        if (rb != null)
-            rb.linearVelocity = Vector2.zero;
-
-        // FADE OUT
         yield return FadeManager.Instance.FadeOut();
 
-        // LOAD SCENE
-        AsyncOperation op = SceneManager.LoadSceneAsync(targetScene, LoadSceneMode.Single);
+        AsyncOperation op = SceneManager.LoadSceneAsync(
+            targetScene,
+            LoadSceneMode.Single
+        );
 
         while (!op.isDone)
             yield return null;
@@ -68,10 +128,10 @@ public class SceneTransitionManager : MonoBehaviour
 
         HandleMusicForScene(targetScene);
 
-        // WAIT ONE FRAME (important for spawn objects to exist)
         yield return null;
 
-        // SPAWN PLAYER
+        FindPlayerReferences();
+
         SpawnPoint[] spawns = FindObjectsByType<SpawnPoint>(
             FindObjectsSortMode.None
         );
@@ -82,7 +142,12 @@ public class SceneTransitionManager : MonoBehaviour
         {
             if (sp.spawnID == spawnID)
             {
-                player.position = sp.transform.position + Vector3.up * spawnYOffset;
+                if (player != null)
+                {
+                    player.position =
+                        sp.transform.position + Vector3.up * spawnYOffset;
+                }
+
                 foundSpawn = true;
                 break;
             }
@@ -93,23 +158,13 @@ public class SceneTransitionManager : MonoBehaviour
             Debug.LogWarning($"Spawn ID not found: {spawnID}");
         }
 
-        // STOP PHYSICS AFTER TELEPORT
-        if (rb != null)
-            rb.linearVelocity = Vector2.zero;
-
-        // FADE IN
         yield return FadeManager.Instance.FadeIn();
 
-        // UNLOCK PLAYER
-        if (playerMovement != null)
-            playerMovement.enabled = true;
+        UnlockPlayer();
 
         isTransitioning = false;
     }
 
-    // =========================
-    // DIRECT LOAD (ONLY USE FOR SPECIAL CASES LIKE BOOTSTRAP)
-    // =========================
     public IEnumerator LoadSceneDirect(string sceneName)
     {
         if (isTransitioning)
@@ -117,24 +172,63 @@ public class SceneTransitionManager : MonoBehaviour
 
         isTransitioning = true;
 
-        if (playerMovement != null)
-            playerMovement.enabled = false;
+        LockPlayer();
 
         yield return FadeManager.Instance.FadeOut();
 
-        AsyncOperation op = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
+        AsyncOperation op = SceneManager.LoadSceneAsync(
+            sceneName,
+            LoadSceneMode.Single
+        );
 
         while (!op.isDone)
             yield return null;
 
-        SceneManager.SetActiveScene(SceneManager.GetSceneByName(sceneName));
+        SceneManager.SetActiveScene(
+            SceneManager.GetSceneByName(sceneName)
+        );
 
         yield return null;
 
         yield return FadeManager.Instance.FadeIn();
 
-        if (playerMovement != null)
-            playerMovement.enabled = true;
+        if (sceneName != "MainMenu")
+            UnlockPlayer();
+
+        isTransitioning = false;
+    }
+
+    public IEnumerator LoadMainMenuWithFade()
+    {
+        if (isTransitioning)
+            yield break;
+
+        isTransitioning = true;
+
+        LockPlayer();
+
+        yield return FadeManager.Instance.FadeOut();
+
+        AsyncOperation op = SceneManager.LoadSceneAsync(
+            "MainMenu",
+            LoadSceneMode.Single
+        );
+
+        while (!op.isDone)
+            yield return null;
+
+        SceneManager.SetActiveScene(
+            SceneManager.GetSceneByName("MainMenu")
+        );
+
+        player = null;
+        playerMovement = null;
+
+        HandleMusicForScene("MainMenu");
+
+        yield return null;
+
+        yield return FadeManager.Instance.FadeIn();
 
         isTransitioning = false;
     }
@@ -151,16 +245,14 @@ public class SceneTransitionManager : MonoBehaviour
     {
         isTransitioning = true;
 
-        if (playerMovement != null)
-            playerMovement.enabled = false;
-
-        Rigidbody2D rb = player ? player.GetComponent<Rigidbody2D>() : null;
-        if (rb != null)
-            rb.linearVelocity = Vector2.zero;
+        LockPlayer();
 
         yield return FadeManager.Instance.FadeOut();
 
-        AsyncOperation op = SceneManager.LoadSceneAsync(targetScene, LoadSceneMode.Single);
+        AsyncOperation op = SceneManager.LoadSceneAsync(
+            targetScene,
+            LoadSceneMode.Single
+        );
 
         while (!op.isDone)
             yield return null;
@@ -172,25 +264,23 @@ public class SceneTransitionManager : MonoBehaviour
 
         yield return null;
 
+        FindPlayerReferences();
+
         Bench bench = BenchUtility.FindBench(benchID);
 
-        if (bench != null)
+        if (bench != null && player != null)
         {
-            player.position = bench.transform.position + Vector3.up * spawnYOffset;
-            Debug.Log($"Respawned player at bench: {benchID}");
+            player.position =
+                bench.transform.position + Vector3.up * spawnYOffset;
         }
         else
         {
-            Debug.LogWarning($"Bench not found for respawn: {benchID}");
+            Debug.LogWarning($"Bench/player not found for respawn: {benchID}");
         }
-
-        if (rb != null)
-            rb.linearVelocity = Vector2.zero;
 
         yield return FadeManager.Instance.FadeIn();
 
-        if (playerMovement != null)
-            playerMovement.enabled = true;
+        UnlockPlayer();
 
         isTransitioning = false;
     }
@@ -203,24 +293,16 @@ public class SceneTransitionManager : MonoBehaviour
             return;
         }
 
-        Debug.Log($"[Music] Scene triggered music check: {sceneName}");
-
         MusicManager.MusicState state = sceneName switch
         {
             "MainMenu" => MusicManager.MusicState.Menu,
             "Hub" => MusicManager.MusicState.Hub,
-
             "Anger_1" => MusicManager.MusicState.Anger,
-
             "Sadness_1" => MusicManager.MusicState.Sadness,
-            "Sadness_2" => MusicManager.MusicState.Sadness, // SAME STATE = NO RESTART
-
+            "Sadness_2" => MusicManager.MusicState.Sadness,
             "Joy_1" => MusicManager.MusicState.Joy,
-
             _ => MusicManager.MusicState.Hub
         };
-
-        Debug.Log($"[Music] Resolved state: {state} for scene: {sceneName}");
 
         MusicManager.Instance.SetMusic(state);
     }

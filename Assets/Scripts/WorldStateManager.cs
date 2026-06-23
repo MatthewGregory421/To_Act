@@ -6,9 +6,10 @@ public class WorldStateManager : MonoBehaviour
     public static WorldStateManager Instance;
 
     private HashSet<string> deadEnemies = new HashSet<string>();
+    private HashSet<string> collectedPickups = new HashSet<string>();
+    private HashSet<string> playedNarrations = new HashSet<string>();
 
     private string currentBenchID;
-
     private string currentSceneName;
 
     private void Awake()
@@ -20,7 +21,6 @@ public class WorldStateManager : MonoBehaviour
         }
 
         Instance = this;
-        DontDestroyOnLoad(gameObject);
     }
 
     // -------------------------
@@ -37,6 +37,58 @@ public class WorldStateManager : MonoBehaviour
         return deadEnemies.Contains(enemyID);
     }
 
+    public void PlayNarrationTrigger(string narrationID)
+    {
+        playedNarrations.Add(narrationID);
+    }
+
+    public bool HasPlayedNarrationTrigger(string narrationID)
+    {
+        return playedNarrations.Contains(narrationID);
+    }
+
+    public void RestAtBench()
+    {
+        RespawnEnemiesFromBench();
+
+        // Do NOT clear collectedPickups here.
+        // Ability pickups should stay collected permanently.
+    }
+
+    // -------------------------
+    // PICKUP PERSISTENCE
+    // -------------------------
+
+    public void CollectPickup(string pickupID)
+    {
+        collectedPickups.Add(pickupID);
+    }
+
+    public bool IsPickupCollected(string pickupID)
+    {
+        return collectedPickups.Contains(pickupID);
+    }
+
+    public List<string> GetCollectedPickups()
+    {
+        return new List<string>(collectedPickups);
+    }
+
+    public void SetCollectedPickups(List<string> pickups)
+    {
+        if (pickups == null)
+        {
+            collectedPickups = new HashSet<string>();
+            return;
+        }
+
+        collectedPickups = new HashSet<string>(pickups);
+    }
+
+    // -------------------------
+    // BENCH / SCENE
+    // -------------------------
+
     public void SetCurrentBench(string benchID)
     {
         currentBenchID = benchID;
@@ -52,9 +104,21 @@ public class WorldStateManager : MonoBehaviour
         return currentBenchID;
     }
 
-    public void RestAtBench()
+    public void RespawnEnemiesFromBench()
     {
         deadEnemies.Clear();
+
+        EnemyBase[] enemies = FindObjectsByType<EnemyBase>(
+            FindObjectsInactive.Include,
+            FindObjectsSortMode.None
+        );
+
+        foreach (EnemyBase enemy in enemies)
+        {
+            enemy.RespawnEnemy();
+        }
+
+        Debug.Log("WorldStateManager: Enemies reset from bench.");
     }
 
     public void SetCurrentScene(string sceneName)
@@ -71,5 +135,34 @@ public class WorldStateManager : MonoBehaviour
     {
         currentSceneName = data.sceneName;
         currentBenchID = data.benchID;
+
+        SetCollectedPickups(data.collectedPickups);
+
+        Debug.Log("Loaded pickups: " + string.Join(", ", GetCollectedPickups()));
+
+        ApplyCollectedAbilitiesToPlayer();
+    }
+
+    public void ApplyCollectedAbilitiesToPlayer()
+    {
+        PlayerMovementInputSystem player =
+            FindFirstObjectByType<PlayerMovementInputSystem>();
+
+        if (player == null)
+        {
+            Debug.LogWarning("No player found to apply collected abilities to.");
+            return;
+        }
+
+        List<string> pickups = GetCollectedPickups();
+
+        player.hasShield = pickups.Contains("ShieldPickup");
+        player.hasGroundSlam = pickups.Contains("GroundSlamPickup");
+
+        player.UpdateAbilityUI();
+
+        Debug.Log(
+            $"Abilities applied from pickups. Shield={player.hasShield}, GroundSlam={player.hasGroundSlam}"
+        );
     }
 }

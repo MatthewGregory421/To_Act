@@ -67,6 +67,7 @@ public class SaveManager : MonoBehaviour
         data.benchID = WorldStateManager.Instance.GetCurrentBench();
         data.hasShield = player.hasShield;
         data.hasGroundSlam = player.hasGroundSlam;
+        data.collectedPickups = WorldStateManager.Instance.GetCollectedPickups();
 
         File.WriteAllText(GetPath(slot), JsonUtility.ToJson(data, true));
     }

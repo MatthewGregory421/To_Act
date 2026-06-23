@@ -28,7 +28,6 @@ public class EnemySFXManager : MonoBehaviour
         }
 
         Instance = this;
-        DontDestroyOnLoad(gameObject);
     }
 
 

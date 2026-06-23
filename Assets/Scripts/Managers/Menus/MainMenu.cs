@@ -4,8 +4,6 @@ using TMPro;
 
 public class MainMenu : MonoBehaviour
 {
-    public UISFXManager uiSFXManager;
-
     [Header("Panels")]
     public GameObject mainMenuPanel;
     public GameObject slotSelectPanel;
@@ -18,7 +16,6 @@ public class MainMenu : MonoBehaviour
     public TextMeshProUGUI[] slotTexts;
 
     private int slotPendingDelete;
-
     private int selectedSlot;
 
     private void Start()
@@ -26,12 +23,21 @@ public class MainMenu : MonoBehaviour
         ShowMainMenu();
     }
 
-    // =========================
-    // MAIN MENU
-    // =========================
+    private void PlayConfirmSFX()
+    {
+        if (UISFXManager.Instance != null)
+            UISFXManager.Instance.PlayUIConfirm();
+    }
+
+    private void PlayOpenSFX()
+    {
+        if (UISFXManager.Instance != null)
+            UISFXManager.Instance.PlayUIOpenMenu();
+    }
+
     public void PlayGame()
     {
-        uiSFXManager?.PlayUIConfirm();
+        PlayConfirmSFX();
 
         RefreshSlotUI();
 
@@ -41,7 +47,7 @@ public class MainMenu : MonoBehaviour
 
     public void OpenOptions()
     {
-        uiSFXManager?.PlayUIOpenMenu();
+        PlayOpenSFX();
 
         mainMenuPanel.SetActive(false);
         optionsPanel.SetActive(true);
@@ -49,18 +55,15 @@ public class MainMenu : MonoBehaviour
 
     public void QuitGame()
     {
-        uiSFXManager?.PlayUIConfirm();
+        PlayConfirmSFX();
         Application.Quit();
     }
 
-    // =========================
-    // SLOT SELECTION
-    // =========================
     public void SelectSlot(int slot)
     {
         selectedSlot = slot;
 
-        uiSFXManager?.PlayUIOpenMenu();
+        PlayOpenSFX();
 
         if (SaveManager.Instance.HasSave(slot))
             LoadGame(slot);
@@ -70,26 +73,23 @@ public class MainMenu : MonoBehaviour
 
     public void OpenDeleteConfirm(int slot)
     {
-        uiSFXManager?.PlayUIOpenMenu();
+        PlayOpenSFX();
 
         slotPendingDelete = slot;
-
         deleteConfirmPanel.SetActive(true);
     }
 
     public void CancelDelete()
     {
-        uiSFXManager?.PlayUIOpenMenu();
-
+        PlayOpenSFX();
         deleteConfirmPanel.SetActive(false);
     }
 
     public void ConfirmDelete()
     {
-        uiSFXManager?.PlayUIConfirm();
+        PlayConfirmSFX();
 
         SaveManager.Instance.DeleteSave(slotPendingDelete);
-
         deleteConfirmPanel.SetActive(false);
 
         RefreshSlotUI();
@@ -97,23 +97,28 @@ public class MainMenu : MonoBehaviour
 
     public void NewGame(int slot)
     {
-        uiSFXManager?.PlayUIConfirm();
+        PlayConfirmSFX();
 
         SaveManager.Instance.DeleteSave(slot);
         SaveManager.Instance.RequestNewGame(slot);
 
-        SceneManager.LoadScene("Bootstrap");
+        StartGameThroughBootstrap();
     }
 
     public void LoadGame(int slot)
     {
-        uiSFXManager?.PlayUIConfirm();
+        PlayConfirmSFX();
 
         if (!SaveManager.Instance.HasSave(slot))
             return;
 
         SaveManager.Instance.RequestLoadGame(slot);
 
+        StartGameThroughBootstrap();
+    }
+
+    private void StartGameThroughBootstrap()
+    {
         SceneManager.LoadScene("Bootstrap");
     }
 
@@ -128,7 +133,7 @@ public class MainMenu : MonoBehaviour
 
     public void BackToMainMenu()
     {
-        uiSFXManager?.PlayUIOpenMenu();
+        PlayOpenSFX();
         ShowMainMenu();
     }
 
@@ -141,13 +146,9 @@ public class MainMenu : MonoBehaviour
                 SaveData data = SaveManager.Instance.LoadGame(i);
 
                 if (data != null)
-                {
                     slotTexts[i].text = "Last Checkpoint: " + data.benchID;
-                }
                 else
-                {
                     slotTexts[i].text = "Empty Slot";
-                }
             }
             else
             {
