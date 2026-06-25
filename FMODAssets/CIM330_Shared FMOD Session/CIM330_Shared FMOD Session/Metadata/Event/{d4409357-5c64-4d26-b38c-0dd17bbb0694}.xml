@@ -163,6 +163,7 @@
 			<destination>{ce6c30c6-591f-4298-8fb7-6a07862b3839}</destination>
 			<destination>{c0c0fe2d-dd1c-4250-a092-1306b2870c5f}</destination>
 			<destination>{b2168f96-12f4-4b21-a1c9-f3f44fc4d043}</destination>
+			<destination>{59069ae3-e229-4291-8efb-d1a1d11ddac0}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{0f36c428-6643-4d18-8251-2e8f999b5a34}" />
@@ -184,6 +185,7 @@
 			<destination>{e8a14575-c1f6-4960-8bf0-7ebd37722537}</destination>
 		</relationship>
 	</object>
+	<object class="SpectrumAnalyzer" id="{59069ae3-e229-4291-8efb-d1a1d11ddac0}" />
 	<object class="MixerBusFader" id="{d86f3638-2fed-4a1a-a83c-f96d4e1d63c9}" />
 	<object class="Automator" id="{507f1914-f8ee-4c96-88bc-b0b123d98169}">
 		<property name="nameOfPropertyBeingAutomated">
