@@ -123,10 +123,11 @@ public class PlayerMovementInputSystem : MonoBehaviour
         HandleShieldTimers();
         HandleDazed();
 
-        playerAnimations.grounded = isGrounded;
+        
         playerAnimations.crouch = isCrouching;
+        playerAnimations.grounded = isGrounded;
 
-        /*
+        
         if (isDazed)
         {
             playerAnimations.SetBool("Dazed", true);
@@ -135,7 +136,7 @@ public class PlayerMovementInputSystem : MonoBehaviour
          {
             playerAnimations.SetBool("Dazed", false);
         }
-        */
+        
     }
 
     private void FixedUpdate()
@@ -331,6 +332,7 @@ public class PlayerMovementInputSystem : MonoBehaviour
     private void TryActivateShield()
     {
         if (!hasShield)
+            
             return;
 
         if (isOnCooldown || isShieldActive)
@@ -480,7 +482,7 @@ public class PlayerMovementInputSystem : MonoBehaviour
     private void CheckGrounded()
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
-
+        
         if (isGrounded)
         {
             canDoubleJump = true;
