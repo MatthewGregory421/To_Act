@@ -5,6 +5,7 @@ public class EnemyBase : MonoBehaviour
     [Header("References")]
     public Rigidbody2D rb;
     public Transform player;
+    public EnemyAnimations animations;
 
     [Header("Health")]
     public int maxHealth = 3;
@@ -47,7 +48,15 @@ public class EnemyBase : MonoBehaviour
 
     protected virtual void Update()
     {
-        TryFindPlayer();
+        if(rb.linearVelocityX > 0)
+        {
+            animations.moving = true;
+        }
+        else
+        {
+            animations.moving = false;
+        }
+            TryFindPlayer();
 
         if (isKnockedBack)
         {
@@ -63,6 +72,7 @@ public class EnemyBase : MonoBehaviour
 
     public virtual void TakeDamage(int damage, Vector2 hitDirection)
     {
+        animations.EnemyTakeDamage();
         if (isDead || isInvincible) return;
 
         currentHealth -= damage;
