@@ -5,6 +5,7 @@ public class SadnessEnemyCombat : MonoBehaviour
     [Header("References")]
     public EnemyBase enemyBase;
     public EnemyMovement enemyMovement;
+    public EnemyAnimations animations;
     public EnemyProjectileSpawner projectileSpawner;
 
     private EnemySFXManager SFX => EnemySFXManager.Instance;
@@ -37,7 +38,7 @@ public class SadnessEnemyCombat : MonoBehaviour
     private void OnEnable()
     {
         enemyMovement.OnHitEdge += HandleEdgePause;
-
+        animations.EnemyAttack();
         projectileSpawner.onShoot += PlayShootSFX;
 
         enemyBase.OnDamaged += HandleDamageSFX;

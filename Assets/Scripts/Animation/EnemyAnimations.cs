@@ -18,7 +18,7 @@ public class EnemyAnimations : MonoBehaviour
     {
         animator.SetBool("Moving", moving);
         animator.SetBool("Special", special);
-        animator.SetFloat("vVelocity", velocity.y);
+        //animator.SetFloat("vVelocity", velocity.y);
     }
 
     public void EnemyAttack()
