@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{176036d9-6df8-4f57-bc2c-4b1e0c92ed13}">
+		<property name="assetPath">
+			<value>VO27062026/All/H5_CIM330_VOSession2706RH_1030726.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>2</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{76bd9cd1-baab-4003-97b3-f3d79e34a964}</destination>
+		</relationship>
+	</object>
+</objects>
