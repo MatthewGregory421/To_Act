@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1928960760893795796
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4753319126274884360}
+  m_Layer: 8
+  m_Name: Particle generator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4753319126274884360
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1928960760893795796}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 869342740396522503}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3115985974830910229
 GameObject:
   m_ObjectHideFlags: 0
@@ -474,11 +505,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 3348946070022157636}
+  pSpawner: {fileID: 5943848701776944366}
+  footstepeffect: {fileID: -2253911629886400664, guid: 61991e902416765438b6521353cfb1fe, type: 3}
+  landeffect: {fileID: -2253911629886400664, guid: d99ded2c21427974a8e295aa75dba317, type: 3}
   grounded: 0
   blocking: 0
   crouch: 0
   groundslam: 0
   velocity: 0
+  rb: {fileID: 7434933302114968927}
 --- !u!1 &5975033552503572674
 GameObject:
   m_ObjectHideFlags: 0
@@ -586,6 +621,7 @@ Transform:
   - {fileID: 2715774162392964243}
   - {fileID: 8034821831225191078}
   - {fileID: 7429310069455032814}
+  - {fileID: 4753319126274884360}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4579984464692511169
@@ -885,6 +921,8 @@ MonoBehaviour:
   playerHealth: {fileID: 1631968302464345722}
   hasShield: 0
   hasGroundSlam: 0
+  shieldIcon: {fileID: 0}
+  groundSlamIcon: {fileID: 0}
   moveSpeed: 5
   facingDirection: 1
   acceleration: 20
@@ -917,6 +955,7 @@ MonoBehaviour:
   shieldBubble: {fileID: 4153617515208640560}
   shieldDuration: 2
   shieldCooldown: 3
+  shieldCooldownUI: {fileID: 0}
   isDazed: 0
   dazedSpeedMultiplier: 0.25
 --- !u!114 &4102738230455616327
@@ -931,6 +970,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef686ca9e2e053945b41429a5b0de799, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 2930959834354033973}
   movement: {fileID: 9218632720723953954}
   rb: {fileID: 7434933302114968927}
   playerSFXManager: {fileID: 0}
@@ -941,6 +981,9 @@ MonoBehaviour:
   attackCooldown: 0.3
   slamForce: 20
   slamBounceForce: 4
+  groundSlamCooldown: 3
+  groundSlamCooldownTimer: 0
+  groundSlamCooldownUI: {fileID: 0}
   destructibleTilemap: {fileID: 0}
   destructibleTilemapName: DestructibleTilemap
   slamTileBreakRadius: 2
@@ -986,11 +1029,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 2497298793376529229}
+  pSpawner: {fileID: 0}
+  footstepeffect: {fileID: 0}
+  landeffect: {fileID: 0}
   grounded: 0
   blocking: 0
   crouch: 0
   groundslam: 0
   velocity: 0
+  rb: {fileID: 0}
 --- !u!114 &1631968302464345722
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1009,6 +1056,9 @@ MonoBehaviour:
   currentHealth: 0
   knockbackForce: 15
   invincibilityDuration: 0.5
+  playerSprite: {fileID: 0}
+  damageColor: {r: 1, g: 0, b: 0, a: 1}
+  flashSpeed: 0.1
 --- !u!114 &5209876767883424714
 MonoBehaviour:
   m_ObjectHideFlags: 0

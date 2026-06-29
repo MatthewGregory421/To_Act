@@ -65,7 +65,11 @@
 			<destination>{179459cb-f313-42cb-9a51-18ad8da96fd5}</destination>
 		</relationship>
 	</object>
-	<object class="Timeline" id="{532f654a-e341-4523-bd6c-7a1304fa4b85}" />
+	<object class="Timeline" id="{532f654a-e341-4523-bd6c-7a1304fa4b85}">
+		<property name="isProxyEnabled">
+			<value>false</value>
+		</property>
+	</object>
 	<object class="ParameterProxy" id="{d2b08008-8512-47ac-a72f-a34528b70f81}">
 		<relationship name="modules">
 			<destination>{1148eac7-46d3-46f8-97c4-fa17afdba15a}</destination>
@@ -77,6 +81,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{fd3eed37-ca92-4519-b7f1-8b321d0297fe}">
+		<property name="volume">
+			<value>-6</value>
+		</property>
 		<relationship name="effectChain">
 			<destination>{10d9c952-6d58-4e79-81e7-3c9b38ada04a}</destination>
 		</relationship>

@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class PlayerCombatInputSystem : MonoBehaviour
 {
     [Header("References")]
+    [SerializeField] PlayerAnimations anim;
     public PlayerMovementInputSystem movement;
     public Rigidbody2D rb;
 
@@ -103,6 +104,8 @@ public class PlayerCombatInputSystem : MonoBehaviour
 
     private void Update()
     {
+        anim.groundslam = isSlamming;
+        
         if (attackTimer > 0)
             attackTimer -= Time.deltaTime;
 
@@ -185,6 +188,7 @@ public class PlayerCombatInputSystem : MonoBehaviour
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, -slamForce);
 
             isSlamming = true;
+            
             slammedEnemies.Clear();
             slammedObjects.Clear();
 

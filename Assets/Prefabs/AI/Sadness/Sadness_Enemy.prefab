@@ -429,6 +429,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 4076520527289819032}
   player: {fileID: 0}
+  animations: {fileID: 8543985543333968434}
   maxHealth: 3
   knockbackForce: 20
   isKnockedBack: 0
@@ -451,6 +452,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 4076520527289819032}
   player: {fileID: 0}
+  animations: {fileID: 8543985543333968434}
   maxHealth: 3
   knockbackForce: 20
   isKnockedBack: 0
@@ -488,6 +490,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyBase: {fileID: 3397992061088002781}
   enemyMovement: {fileID: 1994670211412295503}
+  animations: {fileID: 8543985543333968434}
   projectileSpawner: {fileID: 8754054589000322083}
   detectionRange: 8
   lineOfSightMask:
