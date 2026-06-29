@@ -38,7 +38,6 @@ public class SadnessEnemyCombat : MonoBehaviour
     private void OnEnable()
     {
         enemyMovement.OnHitEdge += HandleEdgePause;
-        animations.EnemyAttack();
         projectileSpawner.onShoot += PlayShootSFX;
 
         enemyBase.OnDamaged += HandleDamageSFX;
@@ -94,8 +93,10 @@ public class SadnessEnemyCombat : MonoBehaviour
 
     void PlayShootSFX()
     {
-        if (!playerDetected) return;
-        SFX?.PlaySadnessAttack();
+        animations.EnemyAttack();
+
+        if (playerDetected)
+            SFX?.PlaySadnessAttack();
     }
 
     // =========================
