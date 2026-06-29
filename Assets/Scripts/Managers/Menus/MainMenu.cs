@@ -35,6 +35,12 @@ public class MainMenu : MonoBehaviour
             UISFXManager.Instance.PlayUIOpenMenu();
     }
 
+    private void PlayUIBackSFX()
+    {
+        if (UISFXManager.Instance != null)
+            UISFXManager.Instance.PlayUIBack();
+    }
+
     public void PlayGame()
     {
         PlayConfirmSFX();
@@ -133,7 +139,7 @@ public class MainMenu : MonoBehaviour
 
     public void BackToMainMenu()
     {
-        PlayOpenSFX();
+        PlayUIBackSFX();
         ShowMainMenu();
     }
 

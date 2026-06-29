@@ -216,6 +216,8 @@ public class PlayerCombatInputSystem : MonoBehaviour
             playerSFXManager.PlayPlayerAttack();
         }
 
+        anim.Attack();
+
         ShootProjectile(
             shootPoint.position,
             shootDirection

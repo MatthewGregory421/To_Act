@@ -24,9 +24,18 @@ public class EnemyProjectileSpawner : MonoBehaviour
 
         if (timer <= 0f)
         {
-            Shoot();
+            onShoot?.Invoke(); // plays animation/sfx
             timer = fireRate;
         }
+    }
+
+    public void SpawnProjectile()
+    {
+        GameObject proj = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
+
+        Vector2 direction = (aimTarget.position - firePoint.position).normalized;
+
+        proj.GetComponent<EnemyProjectile>()?.SetDirection(direction);
     }
 
     private void TryFindAimTarget()
@@ -40,17 +49,5 @@ public class EnemyProjectileSpawner : MonoBehaviour
 
         if (found != null)
             aimTarget = found;
-    }
-
-
-    private void Shoot()
-    {
-        onShoot?.Invoke();
-
-        GameObject proj = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
-
-        Vector2 direction = (aimTarget.position - firePoint.position).normalized;
-
-        proj.GetComponent<EnemyProjectile>()?.SetDirection(direction);
     }
 }

@@ -10,6 +10,7 @@ public class PlayerHealth : MonoBehaviour
     private PlayerMovementInputSystem movement;
     public PlayerSFXManager playerSFXManager;
     private HealthUI healthUI;
+    public PlayerAnimations playerAnimations;
 
     [Header("Health")]
     public int maxHealth = 5;
@@ -50,12 +51,16 @@ public class PlayerHealth : MonoBehaviour
         {
             healthUI.UpdateHealth(currentHealth, maxHealth);
         }
+
+        playerAnimations = GetComponentInChildren<PlayerAnimations>();
     }
 
     public void TakeDamage(int damage, Vector2 knockbackDirection)
     {
         if (isDead || isInvincible)
             return;
+
+        playerAnimations?.TakeDamage();
 
         currentHealth -= damage;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
