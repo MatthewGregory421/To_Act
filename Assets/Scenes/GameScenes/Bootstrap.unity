@@ -437,12 +437,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1209651312}
     - target: {fileID: 891080748193600368, guid: a56d984244eaa4143bdc3a3fc0045298, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 891080748193600368, guid: a56d984244eaa4143bdc3a3fc0045298, type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1405299141513636819, guid: a56d984244eaa4143bdc3a3fc0045298, type: 3}
       propertyPath: m_LocalPosition.y
       value: 2.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1631968302464345722, guid: a56d984244eaa4143bdc3a3fc0045298, type: 3}
+      propertyPath: maxHealth
+      value: 20000
       objectReference: {fileID: 0}
     - target: {fileID: 1631968302464345722, guid: a56d984244eaa4143bdc3a3fc0045298, type: 3}
       propertyPath: playerSprite
@@ -518,6 +526,8 @@ PrefabInstance:
       objectReference: {fileID: 2013199429}
     m_RemovedComponents:
     - {fileID: 5209876767883424714, guid: a56d984244eaa4143bdc3a3fc0045298, type: 3}
+    - {fileID: 2497298793376529229, guid: a56d984244eaa4143bdc3a3fc0045298, type: 3}
+    - {fileID: 891080748193600368, guid: a56d984244eaa4143bdc3a3fc0045298, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:

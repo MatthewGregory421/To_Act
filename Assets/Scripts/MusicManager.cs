@@ -51,11 +51,9 @@ public class MusicManager : MonoBehaviour
     // =========================
     private void SetMusicState(int state)
     {
-        Debug.Log($"[MusicManager] Requested state: {state}, Current state: {currentMusicState}");
 
         if (Music != null && !Music.IsPlaying())
         {
-            Debug.Log("[MusicManager] Music was not playing. Starting emitter.");
             Music.Play();
         }
 
@@ -63,15 +61,12 @@ public class MusicManager : MonoBehaviour
 
         if (currentMusicState == state)
         {
-            Debug.Log($"[MusicManager] Reapplied same music state: {state}");
             return;
         }
 
-        Debug.Log($"[MusicManager] Switching music state: {currentMusicState} -> {state}");
 
         currentMusicState = state;
 
-        Debug.Log($"[MusicManager] Now playing state: {currentMusicState}");
     }
 
     // =========================
@@ -79,7 +74,6 @@ public class MusicManager : MonoBehaviour
     // =========================
     public void SetMusic(MusicState state)
     {
-        Debug.Log($"[MusicManager] SetMusic called with enum: {state}");
 
         SetMusicState((int)state);
     }

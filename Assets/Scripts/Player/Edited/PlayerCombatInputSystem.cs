@@ -75,12 +75,10 @@ public class PlayerCombatInputSystem : MonoBehaviour
         if (found != null)
         {
             destructibleTilemap = found.GetComponent<Tilemap>();
-            Debug.Log("Found destructible tilemap: " + found.name);
         }
         else
         {
             destructibleTilemap = null;
-            Debug.Log("No destructible tilemap found in this scene.");
         }
     }
 
@@ -349,7 +347,6 @@ public class PlayerCombatInputSystem : MonoBehaviour
                 if (destructibleTilemap.HasTile(cellPosition))
                 {
                     destructibleTilemap.SetTile(cellPosition, null);
-                    Debug.Log("Destroyed tile at: " + cellPosition);
                 }
             }
         }

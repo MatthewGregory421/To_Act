@@ -60,7 +60,10 @@ public class PlayerHealth : MonoBehaviour
         if (isDead || isInvincible)
             return;
 
-        playerAnimations?.TakeDamage();
+        if (playerAnimations == null)
+            Debug.LogWarning("PlayerHealth: No PlayerAnimations found!");
+        else
+            playerAnimations.TakeDamage();
 
         currentHealth -= damage;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
@@ -74,8 +77,6 @@ public class PlayerHealth : MonoBehaviour
 
         if (CameraLag.Instance != null)
             CameraLag.Instance.ShakeCamera();
-
-        Debug.Log("Player took damage! HP: " + currentHealth);
 
         Knockback(
             knockbackDirection,
