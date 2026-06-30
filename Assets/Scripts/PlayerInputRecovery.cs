@@ -29,7 +29,5 @@ public class PlayerInputRecovery : MonoBehaviour
 
         if (playerInput != null)
             playerInput.enabled = true;
-
-        Debug.Log("Player input recovered after load.");
     }
 }

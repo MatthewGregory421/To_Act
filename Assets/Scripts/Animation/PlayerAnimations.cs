@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class PlayerAnimations : MonoBehaviour
 {
@@ -20,18 +21,23 @@ public class PlayerAnimations : MonoBehaviour
 
     private bool prevGrounded;
 
+    private bool takingDamage;
+
     private void Awake()
     {
         if (animator == null)
             animator = GetComponentInChildren<Animator>();
 
         if (rb == null)
-            rb = GetComponent<Rigidbody2D>();
+            rb = GetComponentInParent<Rigidbody2D>();
     }
 
     private void Update()
     {
         if (animator == null || rb == null)
+            return;
+
+        if (takingDamage)
             return;
 
         animator.SetBool("Grounded", grounded);
@@ -75,7 +81,12 @@ public class PlayerAnimations : MonoBehaviour
 
     public void TakeDamage()
     {
-        SetTrigger("TakeDamage");
+        animator.Play("Take damage", 0, 0f);
+
+        AnimatorStateInfo state = animator.GetCurrentAnimatorStateInfo(0);
+
+        Debug.Log("Current State: " + state.shortNameHash);
+        Debug.Log("Is in Take damage: " + state.IsName("Take damage"));
     }
 
     public void PlayFootstep()

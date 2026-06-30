@@ -33,7 +33,6 @@ public class NarrationManager : MonoBehaviour
 
     public void RequestNarration(int index)
     {
-        Debug.Log($"Narration requested: {index}");
 
         narrationQueue.Enqueue(index);
 
@@ -50,8 +49,6 @@ public class NarrationManager : MonoBehaviour
         while (narrationQueue.Count > 0)
         {
             int index = narrationQueue.Dequeue();
-
-            Debug.Log($"Playing narration area {areaValue}, line {index}");
 
             RuntimeManager.StudioSystem.setParameterByName(areaParameter, areaValue);
             RuntimeManager.StudioSystem.setParameterByName(narratorParameter, index);

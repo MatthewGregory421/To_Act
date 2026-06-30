@@ -9,16 +9,25 @@ public class EnemyProjectileSpawner : MonoBehaviour
 
     public System.Action onShoot;
 
+    public bool canShoot;
+
     [Header("Settings")]
-    public float fireRate = 1.5f;
+    private float fireRate = 3f;
 
     private float timer;
 
     private void Update()
     {
+        if (!canShoot)
+            return;
+
         TryFindAimTarget();
 
-        if (aimTarget == null || projectilePrefab == null) return;
+        if (aimTarget == null || projectilePrefab == null || firePoint == null)
+        {
+            Debug.LogWarning($"{name} cannot shoot. AimTarget: {aimTarget}, Projectile: {projectilePrefab}, FirePoint: {firePoint}");
+            return;
+        }
 
         timer -= Time.deltaTime;
 
@@ -47,7 +56,6 @@ public class EnemyProjectileSpawner : MonoBehaviour
 
         Transform found = player.transform.Find("AimTarget");
 
-        if (found != null)
-            aimTarget = found;
+        aimTarget = found != null ? found : player.transform;
     }
 }

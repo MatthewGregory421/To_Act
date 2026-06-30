@@ -38,8 +38,6 @@ public class FirstBenchTutorial : MonoBehaviour
 
             if (blockingWall != null)
                 Destroy(blockingWall);
-
-            Debug.Log("First bench used. Tutorial gate removed.");
         }
     }
 }

@@ -9979,12 +9979,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2076267419846607976, guid: 4a5b6bcb094e3354593307001f541fc0, type: 3}
       propertyPath: 'narrationLines.Array.data[0]'
-      value: Well good morning spark. Try to move around using the WASD keys, or
-        I suppose left stick if your on controller
+      value: Good Morning Spark. Try using the WASD keys to move around
       objectReference: {fileID: 0}
     - target: {fileID: 2076267419846607976, guid: 4a5b6bcb094e3354593307001f541fc0, type: 3}
       propertyPath: 'narrationLines.Array.data[1]'
-      value: Oh you can also use the Space bar or the X button to jump
+      value: You can also use the Spcae Bar to jump
       objectReference: {fileID: 0}
     - target: {fileID: 2076267419846607976, guid: 4a5b6bcb094e3354593307001f541fc0, type: 3}
       propertyPath: 'narrationLines.Array.data[2]'
@@ -10024,31 +10023,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2076267419846607976, guid: 4a5b6bcb094e3354593307001f541fc0, type: 3}
       propertyPath: 'narrationLines.Array.data[10]'
-      value: Now hit C to crouch, and lets get out of here.
+      value: Now press CTRL to crouch, and lets get out of here.
       objectReference: {fileID: 0}
     - target: {fileID: 2076267419846607976, guid: 4a5b6bcb094e3354593307001f541fc0, type: 3}
       propertyPath: 'narrationDurations.Array.data[0]'
-      value: 9
+      value: 4.2
       objectReference: {fileID: 0}
     - target: {fileID: 2076267419846607976, guid: 4a5b6bcb094e3354593307001f541fc0, type: 3}
       propertyPath: 'narrationDurations.Array.data[1]'
-      value: 5
+      value: 2.2
       objectReference: {fileID: 0}
     - target: {fileID: 2076267419846607976, guid: 4a5b6bcb094e3354593307001f541fc0, type: 3}
       propertyPath: 'narrationDurations.Array.data[2]'
-      value: 2
+      value: 1.8
       objectReference: {fileID: 0}
     - target: {fileID: 2076267419846607976, guid: 4a5b6bcb094e3354593307001f541fc0, type: 3}
       propertyPath: 'narrationDurations.Array.data[3]'
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2076267419846607976, guid: 4a5b6bcb094e3354593307001f541fc0, type: 3}
       propertyPath: 'narrationDurations.Array.data[4]'
-      value: 2
+      value: 1.8
       objectReference: {fileID: 0}
     - target: {fileID: 2076267419846607976, guid: 4a5b6bcb094e3354593307001f541fc0, type: 3}
       propertyPath: 'narrationDurations.Array.data[5]'
-      value: 1
+      value: 1.4
       objectReference: {fileID: 0}
     - target: {fileID: 2076267419846607976, guid: 4a5b6bcb094e3354593307001f541fc0, type: 3}
       propertyPath: 'narrationDurations.Array.data[6]'
@@ -10056,7 +10055,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2076267419846607976, guid: 4a5b6bcb094e3354593307001f541fc0, type: 3}
       propertyPath: 'narrationDurations.Array.data[7]'
-      value: 4
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 2076267419846607976, guid: 4a5b6bcb094e3354593307001f541fc0, type: 3}
       propertyPath: 'narrationDurations.Array.data[8]'
@@ -10064,7 +10063,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2076267419846607976, guid: 4a5b6bcb094e3354593307001f541fc0, type: 3}
       propertyPath: 'narrationDurations.Array.data[9]'
-      value: 3
+      value: 2.4
       objectReference: {fileID: 0}
     - target: {fileID: 2076267419846607976, guid: 4a5b6bcb094e3354593307001f541fc0, type: 3}
       propertyPath: 'narrationDurations.Array.data[10]'

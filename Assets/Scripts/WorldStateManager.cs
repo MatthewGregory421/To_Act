@@ -117,8 +117,6 @@ public class WorldStateManager : MonoBehaviour
         {
             enemy.RespawnEnemy();
         }
-
-        Debug.Log("WorldStateManager: Enemies reset from bench.");
     }
 
     public void SetCurrentScene(string sceneName)
@@ -137,8 +135,6 @@ public class WorldStateManager : MonoBehaviour
         currentBenchID = data.benchID;
 
         SetCollectedPickups(data.collectedPickups);
-
-        Debug.Log("Loaded pickups: " + string.Join(", ", GetCollectedPickups()));
 
         ApplyCollectedAbilitiesToPlayer();
     }
@@ -160,9 +156,5 @@ public class WorldStateManager : MonoBehaviour
         player.hasGroundSlam = pickups.Contains("GroundSlamPickup");
 
         player.UpdateAbilityUI();
-
-        Debug.Log(
-            $"Abilities applied from pickups. Shield={player.hasShield}, GroundSlam={player.hasGroundSlam}"
-        );
     }
 }
