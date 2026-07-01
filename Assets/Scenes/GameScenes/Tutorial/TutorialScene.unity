@@ -9115,6 +9115,53 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7471688622841425132, guid: 7c4dcd9ce54a0da43af1e7e23cf7b1f6, type: 3}
   m_PrefabInstance: {fileID: 951064730}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &980083127
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 980083129}
+  - component: {fileID: 980083128}
+  m_Layer: 0
+  m_Name: PesentationSkipScript
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &980083128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 980083127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83d6e6a1d7bf4d54aaf3fa4edc3618c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shortcutKey: 4
+  targetScene: Sadness_1
+  spawnID: Sadness_1_Spawn1
+--- !u!4 &980083129
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 980083127}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 23.540825, y: 2.8192644, z: 612.1289}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &994928775
 GameObject:
   m_ObjectHideFlags: 0
@@ -9954,9 +10001,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1516655853}
     - target: {fileID: 2076267419846607976, guid: 4a5b6bcb094e3354593307001f541fc0, type: 3}
+      propertyPath: NarrationPanel
+      value: 
+      objectReference: {fileID: 1358906011}
+    - target: {fileID: 2076267419846607976, guid: 4a5b6bcb094e3354593307001f541fc0, type: 3}
+      propertyPath: narrationPanel
+      value: 
+      objectReference: {fileID: 1358906011}
+    - target: {fileID: 2076267419846607976, guid: 4a5b6bcb094e3354593307001f541fc0, type: 3}
       propertyPath: narrationEvent.Path
       value: event:/Narration/Narration Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 2076267419846607976, guid: 4a5b6bcb094e3354593307001f541fc0, type: 3}
+      propertyPath: narrationPanelImage
+      value: 
+      objectReference: {fileID: 1358906013}
     - target: {fileID: 2076267419846607976, guid: 4a5b6bcb094e3354593307001f541fc0, type: 3}
       propertyPath: narrationEvent.Guid.Data1
       value: -356568994
@@ -10473,6 +10532,96 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5517442191572159264, guid: 30c75a1f4bd30674193b1163ec143270, type: 3}
   m_PrefabInstance: {fileID: 1289835980}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1358906011
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1358906012}
+  - component: {fileID: 1358906014}
+  - component: {fileID: 1358906013}
+  - component: {fileID: 1358906015}
+  m_Layer: 5
+  m_Name: Panel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1358906012
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1358906011}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.3905412, y: 0.19172025, z: 0.28402993}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1887469963}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 174}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1358906013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1358906011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.39215687}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1358906014
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1358906011}
+  m_CullTransparentMesh: 1
+--- !u!114 &1358906015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1358906011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cee7f3db735ea6f47826561601cc1a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  worldOffset: {x: 0, y: 5, z: 0}
 --- !u!1001 &1392423388
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12308,10 +12457,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -12354,6 +12503,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1358906012}
   - {fileID: 1516655852}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -12641,3 +12791,4 @@ SceneRoots:
   - {fileID: 1936803550}
   - {fileID: 1887469963}
   - {fileID: 558443257}
+  - {fileID: 980083129}

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using FMODUnity;
+using UnityEngine.UI;
 using TMPro;
 
 public class NarrationManager : MonoBehaviour
@@ -23,13 +24,24 @@ public class NarrationManager : MonoBehaviour
 
     [Header("Subtitle / Thought Text")]
     [SerializeField] private TMP_Text narrationText;
+    [SerializeField] private GameObject narrationPanel;
+    [SerializeField] private Image narrationPanelImage;
     [SerializeField] private string[] narrationLines;
     [SerializeField] private float textFadeTime = 0.25f;
+
+    [SerializeField]
+    [Range(0f, 1f)]
+    private float panelMaxAlpha = 100f / 255f;
 
     private readonly Queue<int> narrationQueue = new Queue<int>();
     private bool isPlaying = false;
 
     public bool IsPlaying => isPlaying;
+
+    private void Start()
+    {
+        narrationPanel.SetActive(false);
+    }
 
     public void RequestNarration(int index)
     {
@@ -90,42 +102,72 @@ public class NarrationManager : MonoBehaviour
 
     private IEnumerator ShowNarrationText(string line, float duration)
     {
-        if (narrationText == null)
+        if (narrationText == null || narrationPanel == null || narrationPanelImage == null)
             yield break;
 
         narrationText.text = line;
+        narrationPanel.SetActive(true);
 
-        Color color = narrationText.color;
-        color.a = 0f;
-        narrationText.color = color;
+        Color textColor = narrationText.color;
+        Color panelColor = narrationPanelImage.color;
+
+        textColor.a = 0f;
+        panelColor.a = 0f;
+
+        narrationText.color = textColor;
+        narrationPanelImage.color = panelColor;
 
         float timer = 0f;
 
+        // Fade In
         while (timer < textFadeTime)
         {
             timer += Time.deltaTime;
-            color.a = Mathf.Lerp(0f, 1f, timer / textFadeTime);
-            narrationText.color = color;
+
+            float t = timer / textFadeTime;
+
+            textColor.a = Mathf.Lerp(0f, 1f, t);
+            panelColor.a = Mathf.Lerp(0f, panelMaxAlpha, t);
+
+            narrationText.color = textColor;
+            narrationPanelImage.color = panelColor;
+
             yield return null;
         }
 
-        color.a = 1f;
-        narrationText.color = color;
+        textColor.a = 1f;
+        panelColor.a = panelMaxAlpha;
+
+        narrationText.color = textColor;
+        narrationPanelImage.color = panelColor;
 
         yield return new WaitForSeconds(duration);
 
         timer = 0f;
 
+        // Fade Out
         while (timer < textFadeTime)
         {
             timer += Time.deltaTime;
-            color.a = Mathf.Lerp(1f, 0f, timer / textFadeTime);
-            narrationText.color = color;
+
+            float t = timer / textFadeTime;
+
+            textColor.a = Mathf.Lerp(1f, 0f, t);
+            panelColor.a = Mathf.Lerp(panelMaxAlpha, 0f, t);
+
+            narrationText.color = textColor;
+            narrationPanelImage.color = panelColor;
+
             yield return null;
         }
 
-        color.a = 0f;
-        narrationText.color = color;
+        textColor.a = 0f;
+        panelColor.a = 0f;
+
+        narrationText.color = textColor;
+        narrationPanelImage.color = panelColor;
+
         narrationText.text = "";
+        narrationPanel.SetActive(false);
     }
 }
