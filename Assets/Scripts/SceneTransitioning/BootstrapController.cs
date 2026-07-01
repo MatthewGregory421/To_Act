@@ -30,6 +30,13 @@ public class BootstrapController : MonoBehaviour
 
     private IEnumerator NewGameRoutine()
     {
+        SaveManager.Instance.Clear();
+
+        if (WorldStateManager.Instance != null)
+        {
+            WorldStateManager.Instance.ResetWorldStateForNewGame();
+        }
+
         yield return FadeManager.Instance.FadeOut();
 
         SceneTransitionManager.Instance.TransitionToScene(
@@ -41,8 +48,6 @@ public class BootstrapController : MonoBehaviour
             yield return null;
 
         yield return FadeManager.Instance.FadeIn();
-
-        SaveManager.Instance.Clear();
     }
 
     private void StartLoadGame()

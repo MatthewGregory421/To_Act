@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using FMODUnity;
 
 public class SplashScreen : MonoBehaviour
 {
@@ -13,15 +14,8 @@ public class SplashScreen : MonoBehaviour
         if (loading)
             return;
 
-        // Any keyboard key
-        if (Input.anyKeyDown)
-        {
-            LoadMainMenu();
-            return;
-        }
-
-        // Mouse buttons
-        if (Input.GetMouseButtonDown(0) ||
+        if (Input.anyKeyDown ||
+            Input.GetMouseButtonDown(0) ||
             Input.GetMouseButtonDown(1) ||
             Input.GetMouseButtonDown(2))
         {
@@ -32,6 +26,12 @@ public class SplashScreen : MonoBehaviour
     private void LoadMainMenu()
     {
         loading = true;
+
+#if UNITY_WEBGL && !UNITY_EDITOR
+        RuntimeManager.CoreSystem.mixerSuspend();
+        RuntimeManager.CoreSystem.mixerResume();
+#endif
+
         SceneManager.LoadScene(mainMenuScene);
     }
 }
