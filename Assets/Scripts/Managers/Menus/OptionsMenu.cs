@@ -27,7 +27,8 @@ public class OptionsMenu : MonoBehaviour
     [Header("Panels")]
     public GameObject mainMenuPanel;
     public GameObject optionsPanel;
-    public UISFXManager uiSFXManager;
+
+    private UISFXManager UI => UISFXManager.Instance;
 
     private void Awake()
     {
@@ -136,7 +137,8 @@ public class OptionsMenu : MonoBehaviour
 
     public void CloseOptions()
     {
-        uiSFXManager?.PlayUIBack();
+        if (UISFXManager.Instance != null)
+            UISFXManager.Instance.PlayUIBack();
 
         optionsPanel.SetActive(false);
         mainMenuPanel.SetActive(true);
@@ -147,7 +149,7 @@ public class OptionsMenu : MonoBehaviour
         float master = PlayerPrefs.GetFloat("MasterVolume", 1f);
         float music = PlayerPrefs.GetFloat("MusicVolume", 1f);
         float sfx = PlayerPrefs.GetFloat("SFXVolume", 1f);
-        float narration = PlayerPrefs.GetFloat("NarrationVolume", 1f);
+        float narration = PlayerPrefs.GetFloat("NarrationVolume", 1f); 
 
         masterBus.setVolume(SliderToVolume(master));
         musicBus.setVolume(SliderToVolume(music));
