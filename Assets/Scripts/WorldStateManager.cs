@@ -157,4 +157,26 @@ public class WorldStateManager : MonoBehaviour
 
         player.UpdateAbilityUI();
     }
+
+    public void ResetWorldStateForNewGame()
+    {
+        deadEnemies.Clear();
+        collectedPickups.Clear();
+        playedNarrations.Clear();
+
+        currentBenchID = "";
+        currentSceneName = "";
+
+        PlayerMovementInputSystem player =
+            FindFirstObjectByType<PlayerMovementInputSystem>();
+
+        if (player != null)
+        {
+            player.hasShield = false;
+            player.hasGroundSlam = false;
+            player.UpdateAbilityUI();
+        }
+
+        Debug.Log("World state fully reset for new game.");
+    }
 }
