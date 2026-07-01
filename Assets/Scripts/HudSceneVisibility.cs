@@ -34,7 +34,5 @@ public class HudSceneVisibility : MonoBehaviour
 
         if (canvas != null)
             canvas.enabled = shouldShow;
-
-        Debug.Log($"HUD visible: {shouldShow} in scene {scene.name}");
     }
 }

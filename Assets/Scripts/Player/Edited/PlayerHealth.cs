@@ -10,6 +10,7 @@ public class PlayerHealth : MonoBehaviour
     private PlayerMovementInputSystem movement;
     public PlayerSFXManager playerSFXManager;
     private HealthUI healthUI;
+    public PlayerAnimations playerAnimations;
 
     [Header("Health")]
     public int maxHealth = 5;
@@ -50,12 +51,19 @@ public class PlayerHealth : MonoBehaviour
         {
             healthUI.UpdateHealth(currentHealth, maxHealth);
         }
+
+        playerAnimations = GetComponentInChildren<PlayerAnimations>();
     }
 
     public void TakeDamage(int damage, Vector2 knockbackDirection)
     {
         if (isDead || isInvincible)
             return;
+
+        if (playerAnimations == null)
+            Debug.LogWarning("PlayerHealth: No PlayerAnimations found!");
+        else
+            playerAnimations.TakeDamage();
 
         currentHealth -= damage;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
@@ -69,8 +77,6 @@ public class PlayerHealth : MonoBehaviour
 
         if (CameraLag.Instance != null)
             CameraLag.Instance.ShakeCamera();
-
-        Debug.Log("Player took damage! HP: " + currentHealth);
 
         Knockback(
             knockbackDirection,

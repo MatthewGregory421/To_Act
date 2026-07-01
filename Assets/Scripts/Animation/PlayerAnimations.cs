@@ -1,70 +1,64 @@
 using UnityEngine;
+using System.Collections;
 
 public class PlayerAnimations : MonoBehaviour
 {
     [SerializeField] private Animator animator;
-    [SerializeField] Transform pSpawner;
+    [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private PlayerSFXManager playerSFXManager;
+
+    [Header("Effects")]
+    [SerializeField] private Transform pSpawner;
     [SerializeField] private GameObject footstepeffect;
     [SerializeField] private GameObject landeffect;
+
+    [Header("Animation State")]
     public bool grounded;
-    private bool prevgrounded;
     public bool blocking;
     public bool crouch;
     public bool groundslam;
     public float velocity;
-    bool doublejump = true;
-    [SerializeField] Rigidbody2D rb;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private bool prevGrounded;
+
+    private bool takingDamage;
+
+    private void Awake()
     {
-        
+        if (animator == null)
+            animator = GetComponentInChildren<Animator>();
+
+        if (rb == null)
+            rb = GetComponentInParent<Rigidbody2D>();
     }
 
-    public void SpawnEffect(GameObject effect)
+    private void Update()
     {
-       GameObject spawnedEffect = Instantiate(effect, pSpawner);
-        spawnedEffect.transform.parent = null;
-    }
+        if (animator == null || rb == null)
+            return;
 
-    // Update is called once per frame
-    void Update()
-    
-    {
-        /*if (grounded && prevgrounded == false) {
-        
-            SpawnEffect(landeffect);
-        
-        } */
+        if (takingDamage)
+            return;
+
         animator.SetBool("Grounded", grounded);
         animator.SetBool("Blocking", blocking);
         animator.SetBool("Crouch", crouch);
         animator.SetBool("GroundSlam", groundslam);
+
         animator.SetFloat("Velocity", velocity);
-        animator.SetFloat("Vvelocity", rb.linearVelocityY);
+        animator.SetFloat("Vvelocity", rb.linearVelocity.y);
 
-        if (Input.GetKeyDown(KeyCode.Space)){
-            if (grounded)
-            {
-                SetTrigger("Jump");
-            }
-            else { 
-            
-            if(doublejump)
-                {
-                    SetTrigger("Jump");
-                    doublejump = false;
-                }
-            }
-        }
-        if(grounded)
-        {
-             doublejump = true;
-        }
-
-        prevgrounded = grounded;
-            
+        prevGrounded = grounded;
     }
+
+    public void SpawnEffect(GameObject effect)
+    {
+        if (effect == null || pSpawner == null)
+            return;
+
+        GameObject spawnedEffect = Instantiate(effect, pSpawner.position, Quaternion.identity);
+    }
+
     public void SetBool(string name, bool value)
     {
         animator.SetBool(name, value);
@@ -73,6 +67,36 @@ public class PlayerAnimations : MonoBehaviour
     public void SetTrigger(string trigger)
     {
         animator.SetTrigger(trigger);
-        //Damage, Attack, Jump, take damage
+    }
+
+    public void Jump()
+    {
+        SetTrigger("Jump");
+    }
+
+    public void Attack()
+    {
+        SetTrigger("Attack");
+    }
+
+    public void TakeDamage()
+    {
+        animator.Play("Take damage", 0, 0f);
+
+        AnimatorStateInfo state = animator.GetCurrentAnimatorStateInfo(0);
+
+        Debug.Log("Current State: " + state.shortNameHash);
+        Debug.Log("Is in Take damage: " + state.IsName("Take damage"));
+    }
+
+    public void PlayFootstep()
+    {
+        if (!grounded)
+            return;
+
+        if (velocity < 0.1f)
+            return;
+
+        playerSFXManager?.PlayPlayerFootsteps();
     }
 }

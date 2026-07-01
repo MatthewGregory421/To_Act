@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class EnemyBase : MonoBehaviour
 {
@@ -48,15 +49,9 @@ public class EnemyBase : MonoBehaviour
 
     protected virtual void Update()
     {
-        if(rb.linearVelocityX > 0)
-        {
-            animations.moving = true;
-        }
-        else
-        {
-            animations.moving = false;
-        }
-            TryFindPlayer();
+        animations.moving = Mathf.Abs(rb.linearVelocity.x) > 0.05f;
+
+        TryFindPlayer();
 
         if (isKnockedBack)
         {
@@ -72,9 +67,9 @@ public class EnemyBase : MonoBehaviour
 
     public virtual void TakeDamage(int damage, Vector2 hitDirection)
     {
-        animations.EnemyTakeDamage();
         if (isDead || isInvincible) return;
 
+        animations.EnemyTakeDamage();
         currentHealth -= damage;
 
         OnDamaged?.Invoke();

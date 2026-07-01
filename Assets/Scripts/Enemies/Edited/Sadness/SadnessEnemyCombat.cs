@@ -38,7 +38,6 @@ public class SadnessEnemyCombat : MonoBehaviour
     private void OnEnable()
     {
         enemyMovement.OnHitEdge += HandleEdgePause;
-        animations.EnemyAttack();
         projectileSpawner.onShoot += PlayShootSFX;
 
         enemyBase.OnDamaged += HandleDamageSFX;
@@ -63,7 +62,7 @@ public class SadnessEnemyCombat : MonoBehaviour
         DetectPlayer();
 
         // enable / disable shooting
-        projectileSpawner.enabled = playerDetected;
+        projectileSpawner.canShoot = playerDetected;
 
         if (!playerDetected && wasPlayerDetected)
         {
@@ -94,8 +93,10 @@ public class SadnessEnemyCombat : MonoBehaviour
 
     void PlayShootSFX()
     {
-        if (!playerDetected) return;
-        SFX?.PlaySadnessAttack();
+        animations.EnemyAttack();
+
+        if (playerDetected)
+            SFX?.PlaySadnessAttack();
     }
 
     // =========================
@@ -112,6 +113,7 @@ public class SadnessEnemyCombat : MonoBehaviour
         if (distance <= detectionRange && HasLineOfSight())
         {
             playerDetected = true;
+            Debug.Log($"{name} detected player: {playerDetected}");
         }
         else
         {
@@ -137,7 +139,10 @@ public class SadnessEnemyCombat : MonoBehaviour
 
         if (hit.collider != null)
         {
-            return hit.collider.transform == enemyMovement.player;
+            Debug.Log($"{name} LOS hit: {hit.collider.name}");
+
+            return hit.collider.transform == enemyMovement.player
+                || hit.collider.transform.IsChildOf(enemyMovement.player);
         }
 
         return false;

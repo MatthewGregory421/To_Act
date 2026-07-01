@@ -9,24 +9,42 @@ public class EnemyProjectileSpawner : MonoBehaviour
 
     public System.Action onShoot;
 
+    public bool canShoot;
+
     [Header("Settings")]
-    public float fireRate = 1.5f;
+    private float fireRate = 3f;
 
     private float timer;
 
     private void Update()
     {
+        if (!canShoot)
+            return;
+
         TryFindAimTarget();
 
-        if (aimTarget == null || projectilePrefab == null) return;
+        if (aimTarget == null || projectilePrefab == null || firePoint == null)
+        {
+            Debug.LogWarning($"{name} cannot shoot. AimTarget: {aimTarget}, Projectile: {projectilePrefab}, FirePoint: {firePoint}");
+            return;
+        }
 
         timer -= Time.deltaTime;
 
         if (timer <= 0f)
         {
-            Shoot();
+            onShoot?.Invoke(); // plays animation/sfx
             timer = fireRate;
         }
+    }
+
+    public void SpawnProjectile()
+    {
+        GameObject proj = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
+
+        Vector2 direction = (aimTarget.position - firePoint.position).normalized;
+
+        proj.GetComponent<EnemyProjectile>()?.SetDirection(direction);
     }
 
     private void TryFindAimTarget()
@@ -38,19 +56,6 @@ public class EnemyProjectileSpawner : MonoBehaviour
 
         Transform found = player.transform.Find("AimTarget");
 
-        if (found != null)
-            aimTarget = found;
-    }
-
-
-    private void Shoot()
-    {
-        onShoot?.Invoke();
-
-        GameObject proj = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
-
-        Vector2 direction = (aimTarget.position - firePoint.position).normalized;
-
-        proj.GetComponent<EnemyProjectile>()?.SetDirection(direction);
+        aimTarget = found != null ? found : player.transform;
     }
 }

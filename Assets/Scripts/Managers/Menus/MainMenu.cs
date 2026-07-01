@@ -1,6 +1,7 @@
-using UnityEngine;
-using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
@@ -33,6 +34,12 @@ public class MainMenu : MonoBehaviour
     {
         if (UISFXManager.Instance != null)
             UISFXManager.Instance.PlayUIOpenMenu();
+    }
+
+    private void PlayUIBackSFX()
+    {
+        if (UISFXManager.Instance != null)
+            UISFXManager.Instance.PlayUIBack();
     }
 
     public void PlayGame()
@@ -133,7 +140,7 @@ public class MainMenu : MonoBehaviour
 
     public void BackToMainMenu()
     {
-        PlayOpenSFX();
+        PlayUIBackSFX();
         ShowMainMenu();
     }
 

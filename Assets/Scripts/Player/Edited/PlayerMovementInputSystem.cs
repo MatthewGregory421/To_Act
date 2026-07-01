@@ -176,26 +176,6 @@ public class PlayerMovementInputSystem : MonoBehaviour
             velocity.y = Mathf.Max(velocity.y, -wallSlideSpeed);
         }
 
-        bool isMoving = Mathf.Abs(rb.linearVelocity.x) > 0.1f;
-
-        if (isMoving && isGrounded)
-        {
-            footstepTimer -= Time.fixedDeltaTime;
-
-            if (footstepTimer <= 0f)
-            {
-                playerSFXManager.PlayPlayerFootsteps();
-
-                float speedPercent = Mathf.Abs(rb.linearVelocity.x) / moveSpeed;
-
-                footstepTimer = Mathf.Lerp(0.6f, 0.25f, speedPercent);
-            }
-        }
-        else
-        {
-            footstepTimer = 0f;
-        }
-
         rb.linearVelocity = velocity;
 
         playerAnimations.velocity = Mathf.Abs(rb.linearVelocity.x);
@@ -235,7 +215,8 @@ public class PlayerMovementInputSystem : MonoBehaviour
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
 
             playerSFXManager.PlayPlayerJump();
-            
+
+            playerAnimations.Jump();
 
             canDoubleJump = true;
         }
@@ -244,7 +225,8 @@ public class PlayerMovementInputSystem : MonoBehaviour
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
 
             playerSFXManager.PlayPlayerJump();
-            
+
+            playerAnimations.Jump();
 
             canDoubleJump = false;
         }

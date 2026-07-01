@@ -7,11 +7,7 @@ public class EnemyAnimations : MonoBehaviour
     public bool special;
     public Vector2 velocity;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [SerializeField] private EnemyProjectileSpawner projectileSpawner;
 
     // Update is called once per frame
     void Update()
@@ -25,6 +21,7 @@ public class EnemyAnimations : MonoBehaviour
     {
         animator.SetTrigger("Attack");
     }
+
     public void EnemyTakeDamage()
     {
         animator.SetTrigger("TakeDamage");
@@ -33,5 +30,11 @@ public class EnemyAnimations : MonoBehaviour
     public void SpecialConnect()
     {
         animator.SetTrigger("SpecialConnect");
+    }
+
+    public void SpawnProjectile()
+    {
+        if (projectileSpawner != null)
+            projectileSpawner.SpawnProjectile();
     }
 }
