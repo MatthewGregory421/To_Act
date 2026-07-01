@@ -7,23 +7,27 @@ public class MusicManager : MonoBehaviour
 
     public StudioEventEmitter Music;
 
-   [SerializeField]
-   [ParamRef]
-   private string musicSelector = null;
+    [SerializeField, ParamRef] private string musicSelector = null;
+    [SerializeField, ParamRef] private string musicState = null;
+    [SerializeField, ParamRef] private string Dead = null;
 
-   [SerializeField]
-   [ParamRef]
-   private string Dead = null;
+    private int currentMusicSelector = -1;
+    private int currentEnergyState = -1;
 
-    private int currentMusicState = -1;
-
-    public enum MusicState
+    public enum MusicArea
     {
         Menu,
         Hub,
         Anger,
         Sadness,
         Joy
+    }
+
+    public enum EnergyState
+    {
+        Neutral = 0,
+        MostTense = 1,
+        MostEnergetic = 2
     }
 
     private void Awake()
@@ -40,49 +44,54 @@ public class MusicManager : MonoBehaviour
 
     private void Start()
     {
+        EnsureMusicPlaying();
+
+        // Default for WebGL/main menu
+        SetEnergyState(EnergyState.MostEnergetic);
+    }
+
+    private void EnsureMusicPlaying()
+    {
         if (Music != null && !Music.IsPlaying())
         {
             Music.Play();
         }
     }
 
-    // =========================
-    // CORE MUSIC SWITCH
-    // =========================
-    private void SetMusicState(int state)
+    private void SetMusicArea(int area)
     {
+        EnsureMusicPlaying();
 
-        if (Music != null && !Music.IsPlaying())
-        {
-            Music.Play();
-        }
+        RuntimeManager.StudioSystem.setParameterByName(musicSelector, area);
 
-        RuntimeManager.StudioSystem.setParameterByName(musicSelector, state);
+        currentMusicSelector = area;
+    }
 
-        if (currentMusicState == state)
-        {
+    private void SetEnergyState(EnergyState state)
+    {
+        EnsureMusicPlaying();
+
+        int value = (int)state;
+
+        if (currentEnergyState == value)
             return;
-        }
 
+        RuntimeManager.StudioSystem.setParameterByName(musicState, value);
 
-        currentMusicState = state;
-
+        currentEnergyState = value;
     }
 
-    // =========================
-    // PUBLIC API
-    // =========================
-    public void SetMusic(MusicState state)
+    public void SetMusic(MusicArea area)
     {
-
-        SetMusicState((int)state);
+        SetMusicArea((int)area);
+        SetEnergyState(EnergyState.MostEnergetic);
     }
 
-    public void MenuMusicSelect() => SetMusicState(0);
-    public void HubMusicSelect() => SetMusicState(1);
-    public void AngerMusicSelect() => SetMusicState(2);
-    public void SadnessMusicSelect() => SetMusicState(3);
-    public void JoyMusicSelect() => SetMusicState(4);
+    public void MenuMusicSelect() => SetMusic(MusicArea.Menu);
+    public void HubMusicSelect() => SetMusic(MusicArea.Hub);
+    public void AngerMusicSelect() => SetMusic(MusicArea.Anger);
+    public void SadnessMusicSelect() => SetMusic(MusicArea.Sadness);
+    public void JoyMusicSelect() => SetMusic(MusicArea.Joy);
 
     public void DeathStingerSelect()
     {

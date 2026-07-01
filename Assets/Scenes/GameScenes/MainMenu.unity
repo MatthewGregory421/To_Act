@@ -3104,7 +3104,6 @@ MonoBehaviour:
   fullscreenToggle: {fileID: 1816391077}
   mainMenuPanel: {fileID: 926293947}
   optionsPanel: {fileID: 663409837}
-  uiSFXManager: {fileID: 84824729}
 --- !u!1 &711118374
 GameObject:
   m_ObjectHideFlags: 0
@@ -4341,6 +4340,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Music: {fileID: 924158924}
   musicSelector: Music Selector
+  musicState: Music State
   Dead: Dead
 --- !u!114 &924158924
 MonoBehaviour:
