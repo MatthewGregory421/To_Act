@@ -27,6 +27,12 @@ public class UISFXManager : MonoBehaviour
         UISFX = GetComponent<StudioEventEmitter>();
     }
 
+    private void OnDestroy()
+    {
+        if (Instance == this)
+            Instance = null;
+    }
+
     public void PlayUIBack()
     {
         PlayUISound(0);
