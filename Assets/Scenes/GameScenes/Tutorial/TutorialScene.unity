@@ -13268,7 +13268,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  worldOffset: {x: 0, y: 5, z: 0}
+  worldOffset: {x: 0, y: -2.15, z: 0}
 --- !u!1 &1361347350
 GameObject:
   m_ObjectHideFlags: 0
@@ -14148,7 +14148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  worldOffset: {x: 0, y: 5, z: 0}
+  worldOffset: {x: 0, y: -2.15, z: 0}
 --- !u!1001 &1518836051
 PrefabInstance:
   m_ObjectHideFlags: 0
