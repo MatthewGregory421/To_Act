@@ -1,8 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using FMODUnity;
-using FMOD.Studio;
 using System.Collections.Generic;
 
 public class PauseOptionMenu : MonoBehaviour
@@ -17,26 +15,11 @@ public class PauseOptionMenu : MonoBehaviour
     public TMP_Dropdown resolutionDropdown;
     public Toggle fullscreenToggle;
 
-    private Bus masterBus;
-    private Bus musicBus;
-    private Bus sfxBus;
-    private Bus narrationBus;
-
     private Resolution[] resolutions;
 
     [Header("Panels")]
     public GameObject pauseMenuPanel;
     public GameObject optionsPanel;
-
-    private UISFXManager UI => UISFXManager.Instance;
-
-    private void Awake()
-    {
-        masterBus = RuntimeManager.GetBus("bus:/");
-        musicBus = RuntimeManager.GetBus("bus:/Music");
-        sfxBus = RuntimeManager.GetBus("bus:/SFX");
-        narrationBus = RuntimeManager.GetBus("bus:/Narration");
-    }
 
     private void Start()
     {
@@ -46,44 +29,34 @@ public class PauseOptionMenu : MonoBehaviour
 
     public void SetMasterVolume(float volume)
     {
-        float adjustedVolume = SliderToVolume(volume);
-        Debug.Log("Master Volume: " + volume + " Adjusted: " + adjustedVolume);
-        masterBus.setVolume(adjustedVolume);
-        PlayerPrefs.SetFloat("MasterVolume", volume);
+        if (AudioSettingsManager.Instance != null)
+            AudioSettingsManager.Instance.SetMasterVolume(volume);
+        else
+            PlayerPrefs.SetFloat("MasterVolume", volume);
     }
 
     public void SetMusicVolume(float volume)
     {
-        float adjustedVolume = SliderToVolume(volume);
-        Debug.Log("Music Volume: " + volume + " Adjusted: " + adjustedVolume);
-        musicBus.setVolume(adjustedVolume);
-        PlayerPrefs.SetFloat("MusicVolume", volume);
+        if (AudioSettingsManager.Instance != null)
+            AudioSettingsManager.Instance.SetMusicVolume(volume);
+        else
+            PlayerPrefs.SetFloat("MusicVolume", volume);
     }
 
     public void SetSFXVolume(float volume)
     {
-        float adjustedVolume = SliderToVolume(volume);
-        Debug.Log("SFX Volume: " + volume + " Adjusted: " + adjustedVolume);
-        sfxBus.setVolume(adjustedVolume);
-        PlayerPrefs.SetFloat("SFXVolume", volume);
+        if (AudioSettingsManager.Instance != null)
+            AudioSettingsManager.Instance.SetSFXVolume(volume);
+        else
+            PlayerPrefs.SetFloat("SFXVolume", volume);
     }
 
     public void SetNarrationVolume(float volume)
     {
-        float adjustedVolume = SliderToVolume(volume);
-        Debug.Log("Narration Volume: " + volume + " Adjusted: " + adjustedVolume);
-        narrationBus.setVolume(adjustedVolume);
-        PlayerPrefs.SetFloat("NarrationVolume", volume);
-    }
-
-    private float SliderToVolume(float sliderValue)
-    {
-        sliderValue = Mathf.Clamp01(sliderValue);
-
-        if (sliderValue <= 0.0001f)
-            return 0f;
-
-        return Mathf.Pow(sliderValue, 2f);
+        if (AudioSettingsManager.Instance != null)
+            AudioSettingsManager.Instance.SetNarrationVolume(volume);
+        else
+            PlayerPrefs.SetFloat("NarrationVolume", volume);
     }
 
     private void SetupResolutions()
@@ -109,7 +82,7 @@ public class PauseOptionMenu : MonoBehaviour
         }
 
         resolutionDropdown.AddOptions(options);
-        resolutionDropdown.value = currentResolutionIndex;
+        resolutionDropdown.SetValueWithoutNotify(currentResolutionIndex);
         resolutionDropdown.RefreshShownValue();
     }
 
@@ -137,8 +110,15 @@ public class PauseOptionMenu : MonoBehaviour
 
     public void CloseOptions()
     {
+        if (AudioSettingsManager.Instance != null)
+        {
+            AudioSettingsManager.Instance.SaveSettings();
+        }
+
         if (UISFXManager.Instance != null)
+        {
             UISFXManager.Instance.PlayUIBack();
+        }
 
         optionsPanel.SetActive(false);
         pauseMenuPanel.SetActive(true);
@@ -151,24 +131,19 @@ public class PauseOptionMenu : MonoBehaviour
         float sfx = PlayerPrefs.GetFloat("SFXVolume", 1f);
         float narration = PlayerPrefs.GetFloat("NarrationVolume", 1f);
 
-        masterBus.setVolume(SliderToVolume(master));
-        musicBus.setVolume(SliderToVolume(music));
-        sfxBus.setVolume(SliderToVolume(sfx));
-        narrationBus.setVolume(SliderToVolume(narration));
-
-        masterVolumeSlider.value = master;
-        musicVolumeSlider.value = music;
-        sfxVolumeSlider.value = sfx;
-        narrationVolumeSlider.value = narration;
+        masterVolumeSlider.SetValueWithoutNotify(master);
+        musicVolumeSlider.SetValueWithoutNotify(music);
+        sfxVolumeSlider.SetValueWithoutNotify(sfx);
+        narrationVolumeSlider.SetValueWithoutNotify(narration);
 
         bool fullscreen = PlayerPrefs.GetInt("Fullscreen", 1) == 1;
         Screen.fullScreen = fullscreen;
-        fullscreenToggle.isOn = fullscreen;
+        fullscreenToggle.SetIsOnWithoutNotify(fullscreen);
 
         int resolutionIndex = PlayerPrefs.GetInt("ResolutionIndex", resolutions.Length - 1);
         resolutionIndex = Mathf.Clamp(resolutionIndex, 0, resolutions.Length - 1);
 
-        resolutionDropdown.value = resolutionIndex;
+        resolutionDropdown.SetValueWithoutNotify(resolutionIndex);
         resolutionDropdown.RefreshShownValue();
 
         SetResolution(resolutionIndex);
