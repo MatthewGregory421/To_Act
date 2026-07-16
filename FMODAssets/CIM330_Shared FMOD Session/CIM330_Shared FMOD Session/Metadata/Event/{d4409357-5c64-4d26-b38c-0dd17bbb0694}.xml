@@ -5,7 +5,7 @@
 			<value>UISFXManager</value>
 		</property>
 		<property name="outputFormat">
-			<value>0</value>
+			<value>1</value>
 		</property>
 		<relationship name="folder">
 			<destination>{8261e98e-b29c-4b22-b861-57cfa0bdcb53}</destination>
@@ -68,6 +68,7 @@
 			<destination>{ff2736f8-20e8-4068-b5d5-6fabc2f9a326}</destination>
 			<destination>{8ee8d4ba-d676-43c1-9360-b1bdfa419544}</destination>
 			<destination>{d8f5fec9-58fe-46e1-8b00-52da5b32f528}</destination>
+			<destination>{21789331-c7be-42e5-a0b1-143a22ba5ac7}</destination>
 		</relationship>
 		<relationship name="mixerGroup">
 			<destination>{7c22ac84-68ba-47d5-a200-336d598980a1}</destination>
@@ -85,6 +86,7 @@
 			<destination>{ff2736f8-20e8-4068-b5d5-6fabc2f9a326}</destination>
 			<destination>{8ee8d4ba-d676-43c1-9360-b1bdfa419544}</destination>
 			<destination>{d8f5fec9-58fe-46e1-8b00-52da5b32f528}</destination>
+			<destination>{21789331-c7be-42e5-a0b1-143a22ba5ac7}</destination>
 		</relationship>
 		<relationship name="preset">
 			<destination>{ae6be87b-7e92-49e8-95c1-08267d8f2780}</destination>
@@ -142,6 +144,14 @@
 		</property>
 		<relationship name="event">
 			<destination>{1cbf4d90-bc58-4926-9671-14c418e0199e}</destination>
+		</relationship>
+	</object>
+	<object class="EventSound" id="{21789331-c7be-42e5-a0b1-143a22ba5ac7}">
+		<property name="start">
+			<value>5</value>
+		</property>
+		<relationship name="event">
+			<destination>{cacc8053-2b15-4d3a-8406-ff79aa67cfc6}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{7c22ac84-68ba-47d5-a200-336d598980a1}">
