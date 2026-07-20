@@ -2,13 +2,13 @@
 <objects serializationModel="Studio.02.03.00">
 	<object class="Event" id="{c6316c87-f6fd-4816-bcde-57f4a36f3d5b}">
 		<property name="name">
-			<value>Hub Music</value>
+			<value>Hub Music (old)</value>
 		</property>
 		<property name="outputFormat">
 			<value>1</value>
 		</property>
 		<relationship name="folder">
-			<destination>{46b74aec-ec02-4039-8046-6834a54a90e2}</destination>
+			<destination>{02993e84-8698-478f-ba31-b0bc5c841776}</destination>
 		</relationship>
 		<relationship name="mixer">
 			<destination>{667b463f-1b53-4b99-883e-fe2ddf003bd9}</destination>
@@ -82,7 +82,7 @@
 			<destination>{fd29e0a1-a339-4fd8-981d-79ff37715958}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{d676599e-c194-46a8-beb1-ccf584cf6364}</destination>
+			<destination>{239698b4-3331-48bf-9167-21a46ebbf6cc}</destination>
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{0ad93246-6e06-430f-ae3e-815d7d3a10af}">
