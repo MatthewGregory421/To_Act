@@ -88,3 +88,6 @@ crashlytics-build.properties
 # (OPTIONAL) FMOD banks — see note below before enabling
 # /[Aa]ssets/[Ss]treamingAssets/*.bank
 # /[Aa]ssets/[Ss]treamingAssets/*.strings.bank
+
+Icon?
+
