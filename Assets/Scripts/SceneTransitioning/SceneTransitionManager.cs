@@ -188,6 +188,8 @@ public class SceneTransitionManager : MonoBehaviour
             SceneManager.GetSceneByName(sceneName)
         );
 
+        HandleMusicForScene(sceneName);
+
         yield return null;
 
         yield return FadeManager.Instance.FadeIn();
@@ -293,17 +295,17 @@ public class SceneTransitionManager : MonoBehaviour
             return;
         }
 
-        MusicManager.MusicState state = sceneName switch
+        MusicManager.MusicArea area = sceneName switch
         {
-            "MainMenu" => MusicManager.MusicState.Menu,
-            "Hub" => MusicManager.MusicState.Hub,
-            "Anger_1" => MusicManager.MusicState.Anger,
-            "Sadness_1" => MusicManager.MusicState.Sadness,
-            "Sadness_2" => MusicManager.MusicState.Sadness,
-            "Joy_1" => MusicManager.MusicState.Joy,
-            _ => MusicManager.MusicState.Hub
+            "MainMenu" => MusicManager.MusicArea.Menu,
+            "Hub" => MusicManager.MusicArea.Hub,
+            "Anger_1" => MusicManager.MusicArea.Anger,
+            "Sadness_1" => MusicManager.MusicArea.Sadness,
+            "Sadness_2" => MusicManager.MusicArea.Sadness,
+            "Joy_1" => MusicManager.MusicArea.Joy,
+            _ => MusicManager.MusicArea.Hub
         };
 
-        MusicManager.Instance.SetMusic(state);
+        MusicManager.Instance.SetMusic(area);
     }
 }

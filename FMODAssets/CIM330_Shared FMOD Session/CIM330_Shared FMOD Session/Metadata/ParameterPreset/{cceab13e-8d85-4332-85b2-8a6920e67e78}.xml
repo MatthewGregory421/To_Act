@@ -16,7 +16,7 @@
 			<value>2</value>
 		</property>
 		<property name="maximum">
-			<value>5</value>
+			<value>6</value>
 		</property>
 		<property name="enumerationLabels">
 			<value>Back</value>
@@ -24,6 +24,7 @@
 			<value>Confirm</value>
 			<value>Forward</value>
 			<value>Open Menu</value>
+			<value>Easter Egg</value>
 		</property>
 		<property name="isGlobal">
 			<value>true</value>

@@ -1,6 +1,5 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
@@ -16,8 +15,14 @@ public class MainMenu : MonoBehaviour
     [Header("Slot UI Text")]
     public TextMeshProUGUI[] slotTexts;
 
+    [Header("Slot Ability Icons")]
+    [Tooltip("One shield icon for each save slot, in slot order.")]
+    public GameObject[] shieldIcons;
+
+    [Tooltip("One ground-slam icon for each save slot, in slot order.")]
+    public GameObject[] groundSlamIcons;
+
     private int slotPendingDelete;
-    private int selectedSlot;
 
     private void Start()
     {
@@ -68,8 +73,6 @@ public class MainMenu : MonoBehaviour
 
     public void SelectSlot(int slot)
     {
-        selectedSlot = slot;
-
         PlayOpenSFX();
 
         if (SaveManager.Instance.HasSave(slot))
@@ -134,6 +137,7 @@ public class MainMenu : MonoBehaviour
         mainMenuPanel.SetActive(true);
         slotSelectPanel.SetActive(false);
         optionsPanel.SetActive(false);
+        deleteConfirmPanel.SetActive(false);
 
         RefreshSlotUI();
     }
@@ -148,19 +152,40 @@ public class MainMenu : MonoBehaviour
     {
         for (int i = 0; i < slotTexts.Length; i++)
         {
-            if (SaveManager.Instance.HasSave(i))
-            {
-                SaveData data = SaveManager.Instance.LoadGame(i);
+            SaveData data = SaveManager.Instance.LoadGame(i);
 
-                if (data != null)
-                    slotTexts[i].text = "Last Checkpoint: " + data.benchID;
-                else
-                    slotTexts[i].text = "Empty Slot";
+            if (data != null)
+            {
+                slotTexts[i].text = "Last Checkpoint: " + data.benchID;
+
+                SetShieldIcon(i, data.hasShield);
+                SetGroundSlamIcon(i, data.hasGroundSlam);
             }
             else
             {
                 slotTexts[i].text = "Empty Slot";
+
+                SetShieldIcon(i, false);
+                SetGroundSlamIcon(i, false);
             }
         }
+    }
+
+    private void SetShieldIcon(int slot, bool shouldShow)
+    {
+        if (slot < 0 || slot >= shieldIcons.Length)
+            return;
+
+        if (shieldIcons[slot] != null)
+            shieldIcons[slot].SetActive(shouldShow);
+    }
+
+    private void SetGroundSlamIcon(int slot, bool shouldShow)
+    {
+        if (slot < 0 || slot >= groundSlamIcons.Length)
+            return;
+
+        if (groundSlamIcons[slot] != null)
+            groundSlamIcons[slot].SetActive(shouldShow);
     }
 }

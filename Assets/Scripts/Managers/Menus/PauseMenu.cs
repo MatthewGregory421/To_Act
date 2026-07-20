@@ -7,6 +7,7 @@ public class PauseMenu : MonoBehaviour
 {
     [Header("Pause Menu")]
     public GameObject pauseMenuUI;
+    public GameObject optionsPanel;
 
     private bool isPaused = false;
 
@@ -90,6 +91,17 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(false);
 
         SceneTransitionManager.Instance.RespawnAtBench(sceneName, benchID);
+    }
+
+    public void OpenOptions()
+    {
+        UISFXManager.Instance?.PlayUIConfirm();
+
+        if (pauseMenuUI != null)
+            pauseMenuUI.SetActive(false);
+
+        if (optionsPanel != null)
+            optionsPanel.SetActive(true);
     }
 
     private void UpdateButtonStates()
