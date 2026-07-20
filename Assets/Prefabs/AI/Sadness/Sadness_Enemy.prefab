@@ -136,6 +136,7 @@ MonoBehaviour:
   moving: 0
   special: 0
   velocity: {x: 0, y: 0}
+  projectileSpawner: {fileID: 0}
 --- !u!95 &3604576234126305653
 Animator:
   serializedVersion: 7
@@ -251,6 +252,87 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6929633388782591551}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7921390026833356503
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1756862633129228627}
+  - component: {fileID: 3776397202359470541}
+  - component: {fileID: 4948408311377282547}
+  m_Layer: 3
+  m_Name: MusicDetectionRange
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1756862633129228627
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7921390026833356503}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 25, y: 25, z: 29.736528}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6929633388782591551}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &3776397202359470541
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7921390026833356503}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 0.5
+--- !u!114 &4948408311377282547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7921390026833356503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aca3d2970a3fb994589e050635abbba5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8263701023392740770
 GameObject:
   m_ObjectHideFlags: 0
@@ -294,6 +376,7 @@ Transform:
   - {fileID: 7738534361864209356}
   - {fileID: 5281292562668162332}
   - {fileID: 2906079918327584562}
+  - {fileID: 1756862633129228627}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3762833087879877057
@@ -520,7 +603,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 388596703213885179, guid: 9bc2bc5f8cafc4709aefc8b07aee4c32, type: 3}
   firePoint: {fileID: 5281292562668162332}
   aimTarget: {fileID: 0}
-  fireRate: 1.5
+  canShoot: 0
 --- !u!114 &6600898420250281094
 MonoBehaviour:
   m_ObjectHideFlags: 0

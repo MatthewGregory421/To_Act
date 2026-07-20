@@ -20,6 +20,7 @@ public class OptionsMenu : MonoBehaviour
     [Header("Panels")]
     public GameObject mainMenuPanel;
     public GameObject optionsPanel;
+    public GameObject keyBindingsPanel;
 
     private void Start()
     {
@@ -122,6 +123,17 @@ public class OptionsMenu : MonoBehaviour
 
         optionsPanel.SetActive(false);
         mainMenuPanel.SetActive(true);
+    }
+
+    public void OpenKeyBindings()
+    {
+        if (UISFXManager.Instance != null)
+        {
+            UISFXManager.Instance.PlayUIConfirm();
+        }
+
+        optionsPanel.SetActive(false);
+        keyBindingsPanel.SetActive(true);
     }
 
     private void LoadSettings()
