@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 using FMODUnity;
 
 public class MusicManager : MonoBehaviour
@@ -8,11 +9,18 @@ public class MusicManager : MonoBehaviour
     public StudioEventEmitter Music;
 
     [SerializeField, ParamRef] private string musicSelector = null;
-    [SerializeField, ParamRef] private string musicState = null;
+
+    [FormerlySerializedAs("musicState")]
+    [SerializeField, ParamRef]
+    private string musicIntensity = "Music Intensity";
+
     [SerializeField, ParamRef] private string Dead = null;
 
     private int currentMusicSelector = -1;
-    private int currentEnergyState = -1;
+    private int currentMusicIntensity = -1;
+
+    private int enemiesInDetectionRange = 0;
+    private bool playerIsAtOneHealth = false;
 
     public enum MusicArea
     {
@@ -23,11 +31,11 @@ public class MusicManager : MonoBehaviour
         Joy
     }
 
-    public enum EnergyState
+    public enum MusicIntensity
     {
-        Neutral = 0,
-        MostTense = 1,
-        MostEnergetic = 2
+        Tense = 1,
+        Neutral = 2,
+        Energetic = 3
     }
 
     private void Awake()
@@ -45,9 +53,7 @@ public class MusicManager : MonoBehaviour
     private void Start()
     {
         EnsureMusicPlaying();
-
-        // Default for WebGL/main menu
-        SetEnergyState(EnergyState.MostEnergetic);
+        RefreshMusicIntensity();
     }
 
     private void EnsureMusicPlaying()
@@ -62,29 +68,85 @@ public class MusicManager : MonoBehaviour
     {
         EnsureMusicPlaying();
 
-        RuntimeManager.StudioSystem.setParameterByName(musicSelector, area);
+        if (currentMusicSelector == area)
+            return;
+
+        RuntimeManager.StudioSystem.setParameterByName(
+            musicSelector,
+            area
+        );
 
         currentMusicSelector = area;
     }
 
-    private void SetEnergyState(EnergyState state)
+    private void SetMusicIntensity(MusicIntensity intensity)
     {
         EnsureMusicPlaying();
 
-        int value = (int)state;
+        int value = (int)intensity;
 
-        if (currentEnergyState == value)
+        if (currentMusicIntensity == value)
             return;
 
-        RuntimeManager.StudioSystem.setParameterByName(musicState, value);
+        RuntimeManager.StudioSystem.setParameterByName(
+            musicIntensity,
+            value
+        );
 
-        currentEnergyState = value;
+        currentMusicIntensity = value;
+    }
+
+    private void RefreshMusicIntensity()
+    {
+        // Highest priority: player is at 1 HP.
+        if (playerIsAtOneHealth)
+        {
+            SetMusicIntensity(MusicIntensity.Tense);
+            return;
+        }
+
+        // Second priority: player is near at least one enemy.
+        if (enemiesInDetectionRange > 0)
+        {
+            SetMusicIntensity(MusicIntensity.Energetic);
+            return;
+        }
+
+        // Default state.
+        SetMusicIntensity(MusicIntensity.Neutral);
+    }
+
+    public void SetPlayerAtOneHealth(bool isAtOneHealth)
+    {
+        if (playerIsAtOneHealth == isAtOneHealth)
+            return;
+
+        playerIsAtOneHealth = isAtOneHealth;
+        RefreshMusicIntensity();
+    }
+
+    public void EnterEnemyDetectionRange()
+    {
+        enemiesInDetectionRange++;
+        RefreshMusicIntensity();
+    }
+
+    public void ExitEnemyDetectionRange()
+    {
+        enemiesInDetectionRange = Mathf.Max(
+            0,
+            enemiesInDetectionRange - 1
+        );
+
+        RefreshMusicIntensity();
     }
 
     public void SetMusic(MusicArea area)
     {
         SetMusicArea((int)area);
-        SetEnergyState(EnergyState.MostEnergetic);
+
+        // Re-check health and combat instead of always forcing Neutral.
+        RefreshMusicIntensity();
     }
 
     public void MenuMusicSelect() => SetMusic(MusicArea.Menu);

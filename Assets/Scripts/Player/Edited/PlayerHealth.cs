@@ -1,7 +1,6 @@
 using UnityEngine;
 using System.Collections;
 
-
 public class PlayerHealth : MonoBehaviour
 {
     private bool isDead;
@@ -53,6 +52,9 @@ public class PlayerHealth : MonoBehaviour
         }
 
         playerAnimations = GetComponentInChildren<PlayerAnimations>();
+
+        // Make sure the music knows the player's starting health.
+        UpdateHealthMusic();
     }
 
     public void TakeDamage(int damage, Vector2 knockbackDirection)
@@ -67,10 +69,14 @@ public class PlayerHealth : MonoBehaviour
 
         currentHealth -= damage;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+
         if (healthUI != null)
         {
             healthUI.UpdateHealth(currentHealth, maxHealth);
         }
+
+        // Update music after taking damage.
+        UpdateHealthMusic();
 
         if (playerSFXManager != null)
             playerSFXManager.PlayPlayerDamage();
@@ -148,9 +154,10 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    void Die()
+    private void Die()
     {
-        if (isDead) return;
+        if (isDead)
+            return;
 
         isDead = true;
 
@@ -173,10 +180,8 @@ public class PlayerHealth : MonoBehaviour
         Debug.Log("Respawn scene: " + sceneName);
         Debug.Log("Respawn bench/spawn ID: " + benchID);
 
-        // IMPORTANT: let SceneTransitionManager handle spawn + fade
         SceneTransitionManager.Instance.RespawnAtBench(sceneName, benchID);
 
-        // wait until transition finishes
         while (SceneTransitionManager.Instance.IsTransitioning)
             yield return null;
 
@@ -200,6 +205,9 @@ public class PlayerHealth : MonoBehaviour
             healthUI.UpdateHealth(currentHealth, maxHealth);
         }
 
+        // Change from tense back to combat or neutral after healing.
+        UpdateHealthMusic();
+
         Debug.Log("Player healed! HP: " + currentHealth);
     }
 
@@ -211,5 +219,18 @@ public class PlayerHealth : MonoBehaviour
         {
             healthUI.UpdateHealth(currentHealth, maxHealth);
         }
+
+        // Used when resting or respawning.
+        UpdateHealthMusic();
+    }
+
+    private void UpdateHealthMusic()
+    {
+        if (MusicManager.Instance == null)
+            return;
+
+        MusicManager.Instance.SetPlayerAtOneHealth(
+            currentHealth == 1
+        );
     }
 }

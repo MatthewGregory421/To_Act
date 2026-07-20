@@ -62,6 +62,87 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5242604152250584573}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4634243430574840302
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3007728076833635992}
+  - component: {fileID: 5885239029665817797}
+  - component: {fileID: 1170950411937293916}
+  m_Layer: 3
+  m_Name: MusicDetectionRange
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3007728076833635992
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4634243430574840302}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 30.45104, y: 30.45104, z: 30.45104}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5242604152250584573}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &5885239029665817797
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4634243430574840302}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 0.5
+--- !u!114 &1170950411937293916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4634243430574840302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aca3d2970a3fb994589e050635abbba5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7639432823056591042
 GameObject:
   m_ObjectHideFlags: 0
@@ -189,9 +270,10 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 35.654884, y: -8.865761, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2121, y: 1.2121, z: 1.2121}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 3007728076833635992}
   - {fileID: 1333562870980883390}
   - {fileID: 962082802618280416}
   - {fileID: 734509717259969597}
@@ -333,11 +415,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 5165320507400424816}
   player: {fileID: 0}
+  animations: {fileID: 0}
   maxHealth: 3
   knockbackForce: 20
   isKnockedBack: 0
   isDead: 0
   isInvincible: 0
+  enemyID: 
   destroyOnDeath: 1
   moveSpeed: 3
 --- !u!114 &89268650317244167
@@ -354,11 +438,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 5165320507400424816}
   player: {fileID: 0}
+  animations: {fileID: 0}
   maxHealth: 3
   knockbackForce: 20
   isKnockedBack: 0
   isDead: 0
   isInvincible: 0
+  enemyID: 
   destroyOnDeath: 1
   moveSpeed: 3
   direction: 1
@@ -390,6 +476,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyBase: {fileID: 4321403250036066107}
   enemyMovement: {fileID: 89268650317244167}
+  animations: {fileID: 0}
   projectileSpawner: {fileID: 1876615254929525560}
   detectionRange: 8
   lineOfSightMask:
@@ -419,7 +506,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 1183213129730527439, guid: 43166b139d43c164b8e13ecf1d01622b, type: 3}
   firePoint: {fileID: 3716003133823240748}
   aimTarget: {fileID: 0}
-  fireRate: 1.5
+  canShoot: 0
 --- !u!114 &8803815802288675595
 MonoBehaviour:
   m_ObjectHideFlags: 0

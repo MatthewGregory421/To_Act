@@ -50,6 +50,12 @@ public class PlayerSFXManager : MonoBehaviour
         PlaySafe();
     }
 
+    public void PlayPopSFX()
+    {
+        RuntimeManager.StudioSystem.setParameterByName(PlayerActionSelector, 7);
+        PlaySafe();
+    }
+
     public void PlayPlayerFootsteps()
     {
         RuntimeManager.StudioSystem.setParameterByName(PlayerActionSelector, 3);

@@ -10,6 +10,8 @@ public class PlayerProjectile : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 moveDirection;
 
+    private PlayerSFXManager sfxManager;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
