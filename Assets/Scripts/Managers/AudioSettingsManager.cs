@@ -15,12 +15,14 @@ public class AudioSettingsManager : MonoBehaviour
     private Bus musicBus;
     private Bus sfxBus;
     private Bus narrationBus;
+    private Bus ambienceBus;
     private Bus uiBus;
 
     private const string MasterVolumeKey = "MasterVolume";
     private const string MusicVolumeKey = "MusicVolume";
     private const string SFXVolumeKey = "SFXVolume";
     private const string NarrationVolumeKey = "NarrationVolume";
+    private const string AmbienceVolumeKey = "AmbienceVolume";
 
     private void Awake()
     {
@@ -50,11 +52,23 @@ public class AudioSettingsManager : MonoBehaviour
         {
             try
             {
-                masterBus = RuntimeManager.GetBus("bus:/");
-                musicBus = RuntimeManager.GetBus("bus:/Music");
-                sfxBus = RuntimeManager.GetBus("bus:/SFX");
-                narrationBus = RuntimeManager.GetBus("bus:/Narration");
-                uiBus = RuntimeManager.GetBus("bus:/UI");
+                masterBus =
+                    RuntimeManager.GetBus("bus:/");
+
+                musicBus =
+                    RuntimeManager.GetBus("bus:/Mix Buss/Music");
+
+                sfxBus =
+                    RuntimeManager.GetBus("bus:/Mix Buss/SFX");
+
+                narrationBus =
+                    RuntimeManager.GetBus("bus:/Mix Buss/Narration");
+
+                ambienceBus =
+                    RuntimeManager.GetBus("bus:/Ambience");
+
+                uiBus =
+                    RuntimeManager.GetBus("bus:/Mix Buss/UI");
 
                 lastException = null;
             }
@@ -68,6 +82,7 @@ public class AudioSettingsManager : MonoBehaviour
                 musicBus.isValid() &&
                 sfxBus.isValid() &&
                 narrationBus.isValid() &&
+                ambienceBus.isValid() &&
                 uiBus.isValid();
 
             if (allBusesValid)
@@ -93,17 +108,28 @@ public class AudioSettingsManager : MonoBehaviour
 
     public void ApplySavedVolumes()
     {
-        float master = PlayerPrefs.GetFloat(MasterVolumeKey, 1f);
-        float music = PlayerPrefs.GetFloat(MusicVolumeKey, 1f);
-        float sfx = PlayerPrefs.GetFloat(SFXVolumeKey, 1f);
-        float narration = PlayerPrefs.GetFloat(NarrationVolumeKey, 1f);
+        float master =
+            PlayerPrefs.GetFloat(MasterVolumeKey, 1f);
+
+        float music =
+            PlayerPrefs.GetFloat(MusicVolumeKey, 1f);
+
+        float sfx =
+            PlayerPrefs.GetFloat(SFXVolumeKey, 1f);
+
+        float narration =
+            PlayerPrefs.GetFloat(NarrationVolumeKey, 1f);
+
+        float ambience =
+            PlayerPrefs.GetFloat(AmbienceVolumeKey, 1f);
 
         SetBusVolume(masterBus, master, "Master");
         SetBusVolume(musicBus, music, "Music");
         SetBusVolume(sfxBus, sfx, "SFX");
         SetBusVolume(narrationBus, narration, "Narration");
+        SetBusVolume(ambienceBus, ambience, "Ambience");
 
-        // UI sounds will be controlled by the SFX slider too.
+        // UI sounds are controlled by the SFX slider.
         SetBusVolume(uiBus, sfx, "UI");
     }
 
@@ -114,7 +140,9 @@ public class AudioSettingsManager : MonoBehaviour
         PlayerPrefs.SetFloat(MasterVolumeKey, value);
 
         if (IsReady)
+        {
             SetBusVolume(masterBus, value, "Master");
+        }
     }
 
     public void SetMusicVolume(float value)
@@ -124,7 +152,9 @@ public class AudioSettingsManager : MonoBehaviour
         PlayerPrefs.SetFloat(MusicVolumeKey, value);
 
         if (IsReady)
+        {
             SetBusVolume(musicBus, value, "Music");
+        }
     }
 
     public void SetSFXVolume(float value)
@@ -138,7 +168,7 @@ public class AudioSettingsManager : MonoBehaviour
 
         SetBusVolume(sfxBus, value, "SFX");
 
-        // This makes UI sounds use the SFX setting as well.
+        // UI sounds use the SFX setting too.
         SetBusVolume(uiBus, value, "UI");
     }
 
@@ -149,7 +179,21 @@ public class AudioSettingsManager : MonoBehaviour
         PlayerPrefs.SetFloat(NarrationVolumeKey, value);
 
         if (IsReady)
+        {
             SetBusVolume(narrationBus, value, "Narration");
+        }
+    }
+
+    public void SetAmbienceVolume(float value)
+    {
+        value = Mathf.Clamp01(value);
+
+        PlayerPrefs.SetFloat(AmbienceVolumeKey, value);
+
+        if (IsReady)
+        {
+            SetBusVolume(ambienceBus, value, "Ambience");
+        }
     }
 
     public void SaveSettings()
@@ -157,7 +201,11 @@ public class AudioSettingsManager : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-    private void SetBusVolume(Bus bus, float sliderValue, string busName)
+    private void SetBusVolume(
+        Bus bus,
+        float sliderValue,
+        string busName
+    )
     {
         if (!bus.isValid())
         {
@@ -168,9 +216,11 @@ public class AudioSettingsManager : MonoBehaviour
             return;
         }
 
-        float adjustedVolume = SliderToVolume(sliderValue);
+        float adjustedVolume =
+            SliderToVolume(sliderValue);
 
-        FMOD.RESULT result = bus.setVolume(adjustedVolume);
+        FMOD.RESULT result =
+            bus.setVolume(adjustedVolume);
 
         if (result != FMOD.RESULT.OK)
         {
@@ -193,7 +243,9 @@ public class AudioSettingsManager : MonoBehaviour
     private void OnApplicationPause(bool paused)
     {
         if (paused)
+        {
             PlayerPrefs.Save();
+        }
     }
 
     private void OnApplicationQuit()

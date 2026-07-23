@@ -18,7 +18,6 @@ public class PlayerCombatInputSystem : MonoBehaviour
 
     [Header("Shoot Points")]
     public Transform sideShootPoint;
-    public Transform upShootPoint;
     public Transform downShootPoint;
 
     [Header("Attack")]
@@ -156,21 +155,39 @@ public class PlayerCombatInputSystem : MonoBehaviour
 
     private void PerformAttack()
     {
-        Vector2 shootDirection;
-        Transform shootPoint;
-
         float y = attackInput.y;
 
-        // UP SHOT
+        // =====================================
+        // UP INPUT — NORMAL FACING-DIRECTION SHOT
+        // =====================================
         if (y > 0.1f)
         {
-            shootDirection = Vector2.up;
-            shootPoint = upShootPoint;
+            Vector2 shootDirection =
+                movement.facingDirection == 1
+                    ? Vector2.right
+                    : Vector2.left;
+
+            if (sideShootPoint == null)
+            {
+                Debug.LogWarning("No side shoot point assigned.");
+                return;
+            }
 
             playerSFXManager.PlayPlayerAttack();
+            anim.Attack();
+
+            ShootProjectile(
+                sideShootPoint.position,
+                shootDirection
+            );
+
+            return;
         }
-        // DOWN SLAM
-        else if (y < -0.1f)
+
+        // =====================================
+        // DOWN INPUT — GROUND SLAM
+        // =====================================
+        if (y < -0.1f)
         {
             if (!movement.hasGroundSlam)
                 return;
@@ -183,10 +200,13 @@ public class PlayerCombatInputSystem : MonoBehaviour
 
             playerSFXManager.PlayGroundSlam();
 
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, -slamForce);
+            rb.linearVelocity = new Vector2(
+                rb.linearVelocity.x,
+                -slamForce
+            );
 
             isSlamming = true;
-            
+
             slammedEnemies.Clear();
             slammedObjects.Clear();
 
@@ -202,24 +222,6 @@ public class PlayerCombatInputSystem : MonoBehaviour
 
             return;
         }
-        // NORMAL SHOT (FACE DIRECTION)
-        else
-        {
-            shootDirection = movement.facingDirection == 1
-                ? Vector2.right
-                : Vector2.left;
-
-            shootPoint = sideShootPoint;
-
-            playerSFXManager.PlayPlayerAttack();
-        }
-
-        anim.Attack();
-
-        ShootProjectile(
-            shootPoint.position,
-            shootDirection
-        );
     }
 
     private void ShootProjectile(Vector2 spawnPosition, Vector2 direction)

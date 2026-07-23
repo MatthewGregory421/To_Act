@@ -15,6 +15,9 @@ public class PlayerProjectile : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        // Finds the player's SFX manager in the scene
+        sfxManager = FindFirstObjectByType<PlayerSFXManager>();
     }
 
     public void SetDirection(Vector2 direction)
@@ -27,26 +30,41 @@ public class PlayerProjectile : MonoBehaviour
     {
         Debug.Log("Hit: " + collision.name);
 
-        int layer = collision.gameObject.layer;
-
-        // ENEMY HIT ONLY
-        if (((1 << layer) & enemyLayer) != 0)
-        {
-            Vector2 dir = rb.linearVelocity.normalized;
-            collision.GetComponent<EnemyBase>()?.TakeDamage(damage, dir);
-
-            Destroy(gameObject);
-            return;
-        }
-
-        // IMPORTANT CHANGE:
-        // Ignore shield completely
+        // Ignore the player's shield
         if (collision.CompareTag("PlayerShield"))
         {
             return;
         }
 
-        // Optional: only destroy on actual world collision if you want
+        int layer = collision.gameObject.layer;
+
+        // Play the pop sound before destroying the projectile
+        if (sfxManager != null)
+        {
+            sfxManager.PlayPopSFX();
+        }
+        else
+        {
+            Debug.LogWarning("PlayerProjectile could not find PlayerSFXManager.");
+        }
+
+        // Enemy hit
+        if (((1 << layer) & enemyLayer) != 0)
+        {
+            Vector2 dir = rb.linearVelocity.normalized;
+
+            EnemyBase enemy = collision.GetComponent<EnemyBase>();
+
+            if (enemy != null)
+            {
+                enemy.TakeDamage(damage, dir);
+            }
+
+            Destroy(gameObject);
+            return;
+        }
+
+        // World hit
         Destroy(gameObject);
     }
 }
