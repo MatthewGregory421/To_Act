@@ -73,7 +73,7 @@ GameObject:
   - component: {fileID: 3007728076833635992}
   - component: {fileID: 5885239029665817797}
   - component: {fileID: 1170950411937293916}
-  m_Layer: 3
+  m_Layer: 17
   m_Name: MusicDetectionRange
   m_TagString: Untagged
   m_Icon: {fileID: 0}

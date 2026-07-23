@@ -10,6 +10,7 @@ public class PauseOptionMenu : MonoBehaviour
     public Slider musicVolumeSlider;
     public Slider sfxVolumeSlider;
     public Slider narrationVolumeSlider;
+    public Slider ambienceVolumeSlider;
 
     [Header("Display")]
     public TMP_Dropdown resolutionDropdown;
@@ -59,6 +60,14 @@ public class PauseOptionMenu : MonoBehaviour
             PlayerPrefs.SetFloat("NarrationVolume", volume);
     }
 
+    public void SetAmbienceVolume(float volume)
+    {
+        if (AudioSettingsManager.Instance != null)
+            AudioSettingsManager.Instance.SetAmbienceVolume(volume);
+        else
+            PlayerPrefs.SetFloat("AmbienceVolume", volume);
+    }
+
     private void SetupResolutions()
     {
         resolutions = Screen.resolutions;
@@ -70,7 +79,8 @@ public class PauseOptionMenu : MonoBehaviour
 
         for (int i = 0; i < resolutions.Length; i++)
         {
-            string option = resolutions[i].width + " x " + resolutions[i].height;
+            string option =
+                resolutions[i].width + " x " + resolutions[i].height;
 
             options.Add(option);
 
@@ -126,22 +136,43 @@ public class PauseOptionMenu : MonoBehaviour
 
     private void LoadSettings()
     {
-        float master = PlayerPrefs.GetFloat("MasterVolume", 1f);
-        float music = PlayerPrefs.GetFloat("MusicVolume", 1f);
-        float sfx = PlayerPrefs.GetFloat("SFXVolume", 1f);
-        float narration = PlayerPrefs.GetFloat("NarrationVolume", 1f);
+        float master =
+            PlayerPrefs.GetFloat("MasterVolume", 1f);
+
+        float music =
+            PlayerPrefs.GetFloat("MusicVolume", 1f);
+
+        float sfx =
+            PlayerPrefs.GetFloat("SFXVolume", 1f);
+
+        float narration =
+            PlayerPrefs.GetFloat("NarrationVolume", 1f);
+
+        float ambience =
+            PlayerPrefs.GetFloat("AmbienceVolume", 1f);
 
         masterVolumeSlider.SetValueWithoutNotify(master);
         musicVolumeSlider.SetValueWithoutNotify(music);
         sfxVolumeSlider.SetValueWithoutNotify(sfx);
         narrationVolumeSlider.SetValueWithoutNotify(narration);
+        ambienceVolumeSlider.SetValueWithoutNotify(ambience);
 
-        bool fullscreen = PlayerPrefs.GetInt("Fullscreen", 1) == 1;
+        bool fullscreen =
+            PlayerPrefs.GetInt("Fullscreen", 1) == 1;
+
         Screen.fullScreen = fullscreen;
         fullscreenToggle.SetIsOnWithoutNotify(fullscreen);
 
-        int resolutionIndex = PlayerPrefs.GetInt("ResolutionIndex", resolutions.Length - 1);
-        resolutionIndex = Mathf.Clamp(resolutionIndex, 0, resolutions.Length - 1);
+        int resolutionIndex = PlayerPrefs.GetInt(
+            "ResolutionIndex",
+            resolutions.Length - 1
+        );
+
+        resolutionIndex = Mathf.Clamp(
+            resolutionIndex,
+            0,
+            resolutions.Length - 1
+        );
 
         resolutionDropdown.SetValueWithoutNotify(resolutionIndex);
         resolutionDropdown.RefreshShownValue();
