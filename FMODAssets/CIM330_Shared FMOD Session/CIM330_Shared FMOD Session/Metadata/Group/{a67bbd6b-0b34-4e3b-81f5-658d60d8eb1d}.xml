@@ -11,14 +11,42 @@
 			<destination>{debea25f-c21f-4ff2-9195-621489a66d60}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{303db400-1498-4846-aec9-cc4602744b8c}</destination>
+			<destination>{ca96bce6-b8d8-4cae-b772-130a29ca84aa}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusEffectChain" id="{d8255200-0900-412c-814e-6072cbcf738f}">
 		<relationship name="effects">
 			<destination>{069f1700-5202-47dc-8fdb-f15e420912ea}</destination>
+			<destination>{df8bb929-a75e-4fc2-a39e-5b8052010ce1}</destination>
+			<destination>{dd8b4617-82e2-487a-abbd-6d89ede212d0}</destination>
+			<destination>{21d63f67-2215-4498-9748-cc2151a07f1a}</destination>
+			<destination>{e5b9376a-42c3-4ee1-9f34-47998fe692eb}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{debea25f-c21f-4ff2-9195-621489a66d60}" />
 	<object class="MixerBusFader" id="{069f1700-5202-47dc-8fdb-f15e420912ea}" />
+	<object class="SpectrumAnalyzer" id="{df8bb929-a75e-4fc2-a39e-5b8052010ce1}" />
+	<object class="MultibandEqEffect" id="{dd8b4617-82e2-487a-abbd-6d89ede212d0}">
+		<property name="filterTypeA">
+			<value>9</value>
+		</property>
+		<property name="frequencyA">
+			<value>98.6033401</value>
+		</property>
+		<property name="gainA">
+			<value>-12.6435547</value>
+		</property>
+	</object>
+	<object class="MixerSend" id="{21d63f67-2215-4498-9748-cc2151a07f1a}">
+		<property name="level">
+			<value>-28</value>
+		</property>
+		<property name="inputFormat">
+			<value>1</value>
+		</property>
+		<relationship name="mixerReturn">
+			<destination>{85c0ff12-7108-419f-9b51-49a91ab0eb6a}</destination>
+		</relationship>
+	</object>
+	<object class="GainEffect" id="{e5b9376a-42c3-4ee1-9f34-47998fe692eb}" />
 </objects>

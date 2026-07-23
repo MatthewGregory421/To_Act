@@ -198,6 +198,9 @@
 	</object>
 	<object class="MixerBusPanner" id="{82cc3c31-b6d4-4322-8974-e8963fcfc43d}" />
 	<object class="MultibandEqEffect" id="{d62b5852-a01e-44d1-a4e0-d36fba3147e2}">
+		<property name="bypass">
+			<value>true</value>
+		</property>
 		<property name="filterTypeA">
 			<value>9</value>
 		</property>
@@ -233,6 +236,9 @@
 		</property>
 	</object>
 	<object class="CompressorEffect" id="{56887f81-ad94-46c6-be49-9dded9343245}">
+		<property name="bypass">
+			<value>true</value>
+		</property>
 		<property name="threshold">
 			<value>-18</value>
 		</property>
@@ -243,10 +249,13 @@
 			<value>100</value>
 		</property>
 		<property name="gain">
-			<value>1.5</value>
+			<value>1</value>
 		</property>
 	</object>
 	<object class="CompressorEffect" id="{61815331-2db6-4db1-a19b-500b101f53d5}">
+		<property name="bypass">
+			<value>true</value>
+		</property>
 		<property name="threshold">
 			<value>-18</value>
 		</property>
@@ -254,10 +263,13 @@
 			<value>4</value>
 		</property>
 		<property name="gain">
-			<value>1.5</value>
+			<value>1</value>
 		</property>
 	</object>
 	<object class="CompressorEffect" id="{c5f2ad32-7b10-4ebf-b671-5bd15a21b416}">
+		<property name="bypass">
+			<value>true</value>
+		</property>
 		<property name="threshold">
 			<value>-18</value>
 		</property>
@@ -268,15 +280,21 @@
 			<value>0.100000001</value>
 		</property>
 		<property name="gain">
-			<value>1.5</value>
+			<value>1</value>
 		</property>
 	</object>
 	<object class="SFXReverbEffect" id="{ce182b7c-39cb-44e6-a551-08a7e4af7a4b}">
+		<property name="bypass">
+			<value>true</value>
+		</property>
 		<property name="wetLevel">
 			<value>-18</value>
 		</property>
 	</object>
 	<object class="LimiterEffect" id="{2d492c01-0868-414d-a949-1de6ba8a7712}">
+		<property name="bypass">
+			<value>true</value>
+		</property>
 		<property name="boost">
 			<value>6</value>
 		</property>
@@ -286,11 +304,17 @@
 	</object>
 	<object class="MixerBusFader" id="{c620175d-0fc6-4e66-bf72-55ad20cf18db}" />
 	<object class="GainEffect" id="{3ff18e80-4a89-461a-8f8a-a9c3a62f78f3}">
+		<property name="bypass">
+			<value>true</value>
+		</property>
 		<relationship name="automators">
 			<destination>{5d3810d7-98b4-4cf5-8fc6-4a9dc51cb64f}</destination>
 		</relationship>
 	</object>
 	<object class="GainEffect" id="{4d4c8817-838b-45e5-a48c-da9737a1f94f}">
+		<property name="bypass">
+			<value>true</value>
+		</property>
 		<relationship name="automators">
 			<destination>{c909918a-408f-4ffc-85eb-efaf1b8b1db4}</destination>
 		</relationship>

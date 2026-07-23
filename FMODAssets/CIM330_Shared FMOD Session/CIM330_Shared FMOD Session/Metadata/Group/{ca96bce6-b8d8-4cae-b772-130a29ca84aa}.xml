@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="MixerGroup" id="{ca96bce6-b8d8-4cae-b772-130a29ca84aa}">
+		<property name="name">
+			<value>Mix Buss</value>
+		</property>
+		<relationship name="effectChain">
+			<destination>{01dbff4e-03f6-4ca1-8416-7ae84a84e9eb}</destination>
+		</relationship>
+		<relationship name="panner">
+			<destination>{973de4c6-55a1-40b9-9c47-d6bc398df9d1}</destination>
+		</relationship>
+		<relationship name="output">
+			<destination>{303db400-1498-4846-aec9-cc4602744b8c}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusEffectChain" id="{01dbff4e-03f6-4ca1-8416-7ae84a84e9eb}">
+		<relationship name="effects">
+			<destination>{122721e0-d0b8-4418-a401-4f20a6c04e7c}</destination>
+			<destination>{db807511-40e0-4033-817d-bbdd030e50dd}</destination>
+			<destination>{0eff407f-7870-4140-a5a8-cfc79d2469bc}</destination>
+			<destination>{6bc5d50a-5a12-47ae-bc60-77a34e8376ff}</destination>
+			<destination>{9dd10637-49bb-4231-8571-489987d8efea}</destination>
+			<destination>{1b56c4af-51e8-4e0b-bb76-e665dea38bc7}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusPanner" id="{973de4c6-55a1-40b9-9c47-d6bc398df9d1}" />
+	<object class="MixerBusFader" id="{122721e0-d0b8-4418-a401-4f20a6c04e7c}" />
+	<object class="CompressorEffect" id="{db807511-40e0-4033-817d-bbdd030e50dd}">
+		<property name="threshold">
+			<value>-9</value>
+		</property>
+		<property name="ratio">
+			<value>4</value>
+		</property>
+		<property name="attackTime">
+			<value>100</value>
+		</property>
+		<property name="gain">
+			<value>0.5</value>
+		</property>
+	</object>
+	<object class="CompressorEffect" id="{0eff407f-7870-4140-a5a8-cfc79d2469bc}">
+		<property name="threshold">
+			<value>-9</value>
+		</property>
+		<property name="ratio">
+			<value>4</value>
+		</property>
+		<property name="gain">
+			<value>0.5</value>
+		</property>
+	</object>
+	<object class="CompressorEffect" id="{6bc5d50a-5a12-47ae-bc60-77a34e8376ff}">
+		<property name="threshold">
+			<value>-9</value>
+		</property>
+		<property name="ratio">
+			<value>4</value>
+		</property>
+		<property name="attackTime">
+			<value>0.100000001</value>
+		</property>
+		<property name="gain">
+			<value>0.5</value>
+		</property>
+	</object>
+	<object class="MultibandEqEffect" id="{9dd10637-49bb-4231-8571-489987d8efea}">
+		<property name="filterTypeA">
+			<value>9</value>
+		</property>
+		<property name="filterTypeB">
+			<value>9</value>
+		</property>
+		<property name="filterTypeE">
+			<value>8</value>
+		</property>
+		<property name="frequencyA">
+			<value>60</value>
+		</property>
+		<property name="frequencyB">
+			<value>500</value>
+		</property>
+		<property name="frequencyE">
+			<value>2000</value>
+		</property>
+		<property name="qualityA">
+			<value>2.10000014</value>
+		</property>
+		<property name="qualityB">
+			<value>1.05000007</value>
+		</property>
+		<property name="gainA">
+			<value>-1</value>
+		</property>
+		<property name="gainB">
+			<value>-1</value>
+		</property>
+		<property name="gainE">
+			<value>-1</value>
+		</property>
+	</object>
+	<object class="LimiterEffect" id="{1b56c4af-51e8-4e0b-bb76-e665dea38bc7}">
+		<property name="boost">
+			<value>3</value>
+		</property>
+		<property name="ceiling">
+			<value>-6</value>
+		</property>
+	</object>
+</objects>

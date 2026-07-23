@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.03.00">
 	<object class="MixerGroup" id="{4527d83a-5b0a-4056-9aaf-1ac3b3f2a04b}">
-		<property name="volume">
-			<value>-5</value>
-		</property>
 		<property name="name">
 			<value>Narration</value>
 		</property>
@@ -14,14 +11,20 @@
 			<destination>{cf0663a1-e766-4368-93b3-02e2b6d1a3dc}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{303db400-1498-4846-aec9-cc4602744b8c}</destination>
+			<destination>{ca96bce6-b8d8-4cae-b772-130a29ca84aa}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusEffectChain" id="{df1312a1-883f-4c55-8921-5e1cdc36f5a9}">
 		<relationship name="effects">
 			<destination>{7ada866d-e3c9-487e-ab28-4c0fc461d08a}</destination>
+			<destination>{41ba642c-1388-4771-b8da-8ea6f7bf9245}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{cf0663a1-e766-4368-93b3-02e2b6d1a3dc}" />
 	<object class="MixerBusFader" id="{7ada866d-e3c9-487e-ab28-4c0fc461d08a}" />
+	<object class="GainEffect" id="{41ba642c-1388-4771-b8da-8ea6f7bf9245}">
+		<property name="gain">
+			<value>-4</value>
+		</property>
+	</object>
 </objects>
