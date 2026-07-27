@@ -118,8 +118,6 @@ public class MusicManager : MonoBehaviour
         );
 
         currentMusicIntensity = value;
-
-        Debug.Log("Music intensity changed to: " + intensity);
     }
 
     private void RefreshMusicIntensity(

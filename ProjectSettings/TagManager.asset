@@ -10,7 +10,7 @@ TagManager:
   - PlayerShield
   - EnemyShield
   - NarrationBox
-  - PauseMenuUI
+  - MusicDetectionTrigger
   layers:
   - Default
   - TransparentFX
@@ -29,7 +29,7 @@ TagManager:
   - Collide with nothing
   - VoiceTriggers
   - HealthPickup
-  - MusicDetectionTrigger
+  - MusicDetection
   - 
   - 
   - 
