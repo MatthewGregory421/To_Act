@@ -50,8 +50,8 @@ public class PlayerAnimations : MonoBehaviour
         animator.SetFloat("YVel", velY);
         leganimator.SetFloat("VelX",Mathf.Abs( velX));
         leganimator.SetFloat("VelY", velY);
-        animator.SetFloat("AimX", aimX);
-        animator.SetFloat("AimY", aimY);
+        //animator.SetFloat("AimX", aimX);
+        //animator.SetFloat("AimY", aimY);
 
         //Bools
         animator.SetBool("Grounded", grounded);
@@ -60,12 +60,16 @@ public class PlayerAnimations : MonoBehaviour
         animator.SetBool("Crouched", crouch);
         animator.SetBool("Groundslam", groundslam);
 
-        
-
-        if (groundslam || blocking)
+        if(animator.GetCurrentAnimatorStateInfo(0).IsName("Groundslam")
+            || animator.GetCurrentAnimatorStateInfo(0).IsName("Dazed")
+            || animator.GetCurrentAnimatorStateInfo(0).IsName("TakeDamage")
+            || animator.GetCurrentAnimatorStateInfo(0).IsName("Groundslam")|| blocking)
         {
             fullbody = true;
         }
+        else { fullbody = false; }
+
+        
 
         if (animator == null || rb == null)
             return;
