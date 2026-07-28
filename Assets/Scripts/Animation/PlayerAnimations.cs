@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using JetBrains.Annotations;
 
 public class PlayerAnimations : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class PlayerAnimations : MonoBehaviour
     [SerializeField] private Transform pSpawner;
     [SerializeField] private GameObject footstepeffect;
     [SerializeField] private GameObject landeffect;
+    [SerializeField] private GameObject slameffect;
 
     [Header("Animation State")]
     public bool grounded;
@@ -23,8 +25,10 @@ public class PlayerAnimations : MonoBehaviour
     public bool crouch;
     public bool groundslam;
     //public float velocity;
-
+    bool landeffectprimed;
+    bool animgrounded;
     private bool prevGrounded;
+    bool prevslamming;
 
     private bool takingDamage;
 
@@ -41,6 +45,26 @@ public class PlayerAnimations : MonoBehaviour
 
     private void Update()
     {
+        if(!groundslam && prevslamming != groundslam)
+        {
+            SpawnEffect(slameffect);
+        }
+
+        if(prevGrounded != grounded) 
+            {
+            landeffectprimed = true;
+        }
+
+        if(grounded && Mathf.Abs( velY) <= 0f || Mathf.Abs(velY) >= 0f)
+        {
+            animgrounded = true;
+        }
+
+        if (landeffectprimed && animgrounded) {
+
+            SpawnEffect(landeffect);
+            landeffectprimed = false;
+        }
         handlearrows();
         velX = rb.linearVelocityX;
         velY = rb.linearVelocityY;
@@ -86,7 +110,8 @@ public class PlayerAnimations : MonoBehaviour
             leganimator.gameObject.SetActive(true);
         }
 
-
+        prevslamming = groundslam;
+        prevGrounded = grounded;
         //Old
         /*
         if (animator == null || rb == null)
@@ -160,11 +185,36 @@ public class PlayerAnimations : MonoBehaviour
     public void TakeDamage()
     {
         animator.SetTrigger("TakeDamage");
+        AnimatorStateInfo state = animator.GetCurrentAnimatorStateInfo(0);
+
+        Debug.Log("Current State: " + state.shortNameHash);
+        Debug.Log("Is in Take damage: " + state.IsName("Take damage"));
     }
 
     public void Attack()
     {
         animator.SetTrigger("Attack");
+    }
+
+    public void PlayFootstep()
+    {
+        if (!grounded)
+            return;
+
+        if (Mathf.Abs( velX) < 0.1f)
+            return;
+
+        playerSFXManager?.PlayPlayerFootsteps();
+        //SpawnEffect(footstepeffect);
+
+    }
+
+    public void SpawnEffect(GameObject effect)
+    {
+        if (effect == null || pSpawner == null)
+            return;
+
+        GameObject spawnedEffect = Instantiate(effect, pSpawner.position, Quaternion.identity);
     }
 
     //Old

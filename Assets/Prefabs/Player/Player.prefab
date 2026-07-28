@@ -135,7 +135,7 @@ Transform:
   m_GameObject: {fileID: 1928960760893795796}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -1.62, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -618,14 +618,14 @@ MonoBehaviour:
   leganimator: {fileID: 8869141820051266340}
   rb: {fileID: 7434933302114968927}
   playerSFXManager: {fileID: 0}
-  pSpawner: {fileID: 5943848701776944366}
-  footstepeffect: {fileID: -2253911629886400664, guid: 61991e902416765438b6521353cfb1fe, type: 3}
-  landeffect: {fileID: -2253911629886400664, guid: d99ded2c21427974a8e295aa75dba317, type: 3}
+  pSpawner: {fileID: 4753319126274884360}
+  footstepeffect: {fileID: 6536150352619834169, guid: 72c2e9e0da7741c4da1f0bde264e6b88, type: 3}
+  landeffect: {fileID: 1204644718591752576, guid: 18436d63c00df774e819f14c7ca47eb8, type: 3}
+  slameffect: {fileID: 3200410229714692696, guid: b6514ca5730a92b4fac139fc5ab1fb9e, type: 3}
   grounded: 0
   blocking: 0
   crouch: 0
   groundslam: 0
-  velocity: 0
 --- !u!1 &5975033552503572674
 GameObject:
   m_ObjectHideFlags: 0
@@ -1148,11 +1148,11 @@ MonoBehaviour:
   pSpawner: {fileID: 0}
   footstepeffect: {fileID: 0}
   landeffect: {fileID: 0}
+  slameffect: {fileID: 0}
   grounded: 0
   blocking: 0
   crouch: 0
   groundslam: 0
-  velocity: 0
 --- !u!114 &1631968302464345722
 MonoBehaviour:
   m_ObjectHideFlags: 0
