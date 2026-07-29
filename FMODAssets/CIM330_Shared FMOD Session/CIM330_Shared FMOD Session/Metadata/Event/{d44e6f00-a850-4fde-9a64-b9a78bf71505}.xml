@@ -122,6 +122,8 @@
 	</object>
 	<object class="MixerBusEffectChain" id="{5d452944-2a6e-447e-a41b-e39a0e8d43da}">
 		<relationship name="effects">
+			<destination>{6c04f9b1-ca59-4d37-a4d1-58977fcc990b}</destination>
+			<destination>{6ed7f3c6-fd2e-4c94-89a0-434ac4cedefc}</destination>
 			<destination>{6ec7ae7b-8124-47dc-a9e3-6b80441f86e7}</destination>
 		</relationship>
 	</object>
@@ -146,6 +148,31 @@
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{bac3d1cf-ee52-4820-bd96-80f94f7c5d37}" />
+	<object class="ThreeEQEffect" id="{6c04f9b1-ca59-4d37-a4d1-58977fcc990b}">
+		<property name="highGain">
+			<value>-10.5</value>
+		</property>
+		<property name="highCrossover">
+			<value>9000</value>
+		</property>
+	</object>
+	<object class="DelayEffect" id="{6ed7f3c6-fd2e-4c94-89a0-434ac4cedefc}">
+		<property name="delay">
+			<value>58</value>
+		</property>
+		<property name="feedback">
+			<value>40</value>
+		</property>
+		<property name="level">
+			<value>-16.5</value>
+		</property>
+		<property name="dryLevel">
+			<value>0.5</value>
+		</property>
+		<property name="delayChangeMode">
+			<value>1</value>
+		</property>
+	</object>
 	<object class="MixerBusFader" id="{6ec7ae7b-8124-47dc-a9e3-6b80441f86e7}" />
 	<object class="MixerBusFader" id="{3ec5dfac-8b20-4162-9e29-e51023096e3f}" />
 </objects>
