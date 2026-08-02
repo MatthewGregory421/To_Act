@@ -21,6 +21,7 @@
 			<destination>{dd8b4617-82e2-487a-abbd-6d89ede212d0}</destination>
 			<destination>{21d63f67-2215-4498-9748-cc2151a07f1a}</destination>
 			<destination>{e5b9376a-42c3-4ee1-9f34-47998fe692eb}</destination>
+			<destination>{1e3317cd-4902-426f-9023-70dfa243ffd5}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{debea25f-c21f-4ff2-9195-621489a66d60}" />
@@ -38,8 +39,8 @@
 		</property>
 	</object>
 	<object class="MixerSend" id="{21d63f67-2215-4498-9748-cc2151a07f1a}">
-		<property name="level">
-			<value>-28</value>
+		<property name="bypass">
+			<value>true</value>
 		</property>
 		<property name="inputFormat">
 			<value>1</value>
@@ -49,4 +50,5 @@
 		</relationship>
 	</object>
 	<object class="GainEffect" id="{e5b9376a-42c3-4ee1-9f34-47998fe692eb}" />
+	<object class="Sidechain" id="{1e3317cd-4902-426f-9023-70dfa243ffd5}" />
 </objects>

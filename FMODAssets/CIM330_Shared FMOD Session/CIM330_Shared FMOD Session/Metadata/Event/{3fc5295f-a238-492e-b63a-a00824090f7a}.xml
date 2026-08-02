@@ -5,7 +5,7 @@
 			<value>PlayerSFXManager</value>
 		</property>
 		<property name="outputFormat">
-			<value>1</value>
+			<value>5</value>
 		</property>
 		<relationship name="folder">
 			<destination>{1ef83060-3853-4c17-91dc-d5136540c81d}</destination>

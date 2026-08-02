@@ -540,7 +540,7 @@ MonoBehaviour:
     FMOD Session.fspro
   sourceBankPath: FMODAssets/CIM330_Shared FMOD Session/CIM330_Shared FMOD Session/Build
   sourceBankPathUnformatted: 
-  BankRefreshCooldown: 5
+  BankRefreshCooldown: 1
   ShowBankRefreshWindow: 1
   AutomaticEventLoading: 0
   BankLoadType: 1
