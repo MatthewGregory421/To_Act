@@ -130,11 +130,11 @@ public class PlayerMovementInputSystem : MonoBehaviour
         
         if (isDazed)
         {
-            playerAnimations.SetBool("Dazed", true);
+            //playerAnimations.SetBool("Dazed", true);
         }
         else
          {
-            playerAnimations.SetBool("Dazed", false);
+            //playerAnimations.SetBool("Dazed", false);
         }
         
     }
@@ -178,7 +178,7 @@ public class PlayerMovementInputSystem : MonoBehaviour
 
         rb.linearVelocity = velocity;
 
-        playerAnimations.velocity = Mathf.Abs(rb.linearVelocity.x);
+        //playerAnimations.velocity = Mathf.Abs(rb.linearVelocity.x);
     }
     public void UpdateAbilityUI()
     {

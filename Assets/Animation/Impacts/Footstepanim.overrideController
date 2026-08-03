@@ -1,0 +1,13 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Footstepanim
+  m_Controller: {fileID: 9100000, guid: ddebaba619c826f4eacb3cbebe940340, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: -3020330341995652472, guid: ba1d63dece4c4294fb3fa43ac9219cb9, type: 3}
+    m_OverrideClip: {fileID: 8456204357859720047, guid: 61991e902416765438b6521353cfb1fe, type: 3}
