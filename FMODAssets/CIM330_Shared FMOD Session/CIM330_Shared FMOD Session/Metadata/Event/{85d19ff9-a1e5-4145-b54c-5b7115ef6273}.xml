@@ -5,7 +5,7 @@
 			<value>Projectile Pop</value>
 		</property>
 		<property name="outputFormat">
-			<value>0</value>
+			<value>2</value>
 		</property>
 		<relationship name="folder">
 			<destination>{1ef83060-3853-4c17-91dc-d5136540c81d}</destination>
@@ -59,6 +59,15 @@
 	<object class="EventAutomatableProperties" id="{590fc4aa-0d55-469e-872e-7d49cbf83e5c}">
 		<property name="maxVoices">
 			<value>2</value>
+		</property>
+		<property name="priority">
+			<value>1</value>
+		</property>
+		<property name="minimumDistance">
+			<value>10</value>
+		</property>
+		<property name="maximumDistance">
+			<value>700</value>
 		</property>
 	</object>
 	<object class="MarkerTrack" id="{74a887de-1a09-4bfb-93e0-3bb86a6f8dcf}" />
@@ -124,6 +133,8 @@
 	</object>
 	<object class="MixerBusEffectChain" id="{40ccc0b9-dd83-4040-86a4-3ea200352c2c}">
 		<relationship name="effects">
+			<destination>{f7538ed7-361d-412b-9827-d497b882ea51}</destination>
+			<destination>{f2188c09-805c-4058-b3c2-1cdd91263fc7}</destination>
 			<destination>{290799ef-6abd-49bb-bb22-5faf14743c9e}</destination>
 		</relationship>
 	</object>
@@ -158,6 +169,46 @@
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{18ea2e96-a49f-44ee-b187-fa17debc69e0}" />
+	<object class="SpatialiserEffect" id="{f7538ed7-361d-412b-9827-d497b882ea51}">
+		<property name="bypass">
+			<value>true</value>
+		</property>
+		<property name="distanceRolloffType">
+			<value>2</value>
+		</property>
+		<property name="minimumDistance">
+			<value>9.40000057</value>
+		</property>
+		<property name="maximumDistance">
+			<value>2200</value>
+		</property>
+		<property name="extentMode">
+			<value>1</value>
+		</property>
+		<property name="soundSize">
+			<value>4.20000029</value>
+		</property>
+		<property name="minimumExtent">
+			<value>132</value>
+		</property>
+	</object>
+	<object class="MultibandEqEffect" id="{f2188c09-805c-4058-b3c2-1cdd91263fc7}">
+		<property name="filterTypeB">
+			<value>7</value>
+		</property>
+		<property name="frequencyA">
+			<value>14155.6396</value>
+		</property>
+		<property name="frequencyB">
+			<value>78.0513916</value>
+		</property>
+		<property name="qualityA">
+			<value>0.819960237</value>
+		</property>
+		<property name="gainB">
+			<value>-16.8102398</value>
+		</property>
+	</object>
 	<object class="MixerBusFader" id="{290799ef-6abd-49bb-bb22-5faf14743c9e}" />
 	<object class="MixerBusFader" id="{902d84fe-f3ea-4c39-8bee-83655d57c48d}" />
 </objects>

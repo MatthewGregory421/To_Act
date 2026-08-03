@@ -1,27 +1,38 @@
 using UnityEngine;
 using System.Collections;
+using JetBrains.Annotations;
 
 public class PlayerAnimations : MonoBehaviour
 {
     [SerializeField] private Animator animator;
+    [SerializeField] private Animator leganimator;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private PlayerSFXManager playerSFXManager;
 
+    float velX;
+    float velY;
+    float aimX;
+    float aimY;
     [Header("Effects")]
     [SerializeField] private Transform pSpawner;
     [SerializeField] private GameObject footstepeffect;
     [SerializeField] private GameObject landeffect;
+    [SerializeField] private GameObject slameffect;
 
     [Header("Animation State")]
     public bool grounded;
     public bool blocking;
     public bool crouch;
     public bool groundslam;
-    public float velocity;
-
+    //public float velocity;
+    bool landeffectprimed;
+    bool animgrounded;
     private bool prevGrounded;
+    bool prevslamming;
 
     private bool takingDamage;
+
+    bool fullbody = false;
 
     private void Awake()
     {
@@ -34,12 +45,82 @@ public class PlayerAnimations : MonoBehaviour
 
     private void Update()
     {
+        if(!groundslam && prevslamming != groundslam)
+        {
+            SpawnEffect(slameffect);
+        }
+
+        if(prevGrounded != grounded) 
+            {
+            landeffectprimed = true;
+        }
+
+        if(grounded && Mathf.Abs( velY) <= 0f || Mathf.Abs(velY) >= 0f)
+        {
+            animgrounded = true;
+        }
+
+        if (landeffectprimed && animgrounded) {
+
+            SpawnEffect(landeffect);
+            landeffectprimed = false;
+        }
+        handlearrows();
+        velX = rb.linearVelocityX;
+        velY = rb.linearVelocityY;
+
+        //Velocities
+        animator.SetFloat("XVel", Mathf.Abs( velX));
+        animator.SetFloat("YVel", velY);
+        leganimator.SetFloat("VelX",Mathf.Abs( velX));
+        leganimator.SetFloat("VelY", velY);
+        //animator.SetFloat("AimX", aimX);
+        //animator.SetFloat("AimY", aimY);
+
+        //Bools
+        animator.SetBool("Grounded", grounded);
+        leganimator.SetBool("Grounded", grounded);
+        animator.SetBool("Blocking", blocking);
+        animator.SetBool("Crouched", crouch);
+        animator.SetBool("Groundslam", groundslam);
+
+        if(animator.GetCurrentAnimatorStateInfo(0).IsName("Groundslam")
+            || animator.GetCurrentAnimatorStateInfo(0).IsName("Dazed")
+            || animator.GetCurrentAnimatorStateInfo(0).IsName("TakeDamage")
+            || animator.GetCurrentAnimatorStateInfo(0).IsName("Groundslam")|| blocking)
+        {
+            fullbody = true;
+        }
+        else { fullbody = false; }
+
+        
+
         if (animator == null || rb == null)
             return;
 
         if (takingDamage)
             return;
 
+        if (fullbody)
+        {
+            leganimator.gameObject.SetActive(false);
+        }
+        else
+        {
+            leganimator.gameObject.SetActive(true);
+        }
+
+        prevslamming = groundslam;
+        prevGrounded = grounded;
+        //Old
+        /*
+        if (animator == null || rb == null)
+            return;
+
+        if (takingDamage)
+            return;
+
+        
         animator.SetBool("Grounded", grounded);
         animator.SetBool("Blocking", blocking);
         animator.SetBool("Crouch", crouch);
@@ -49,8 +130,95 @@ public class PlayerAnimations : MonoBehaviour
         animator.SetFloat("Vvelocity", rb.linearVelocity.y);
 
         prevGrounded = grounded;
+        */
     }
 
+    void handlearrows()
+    {
+        //It has to be done...
+        //Velocity doesn't change with orientation
+        //AimX; 1 = forward, -1 = backward
+        if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            //If velocity right, and press left
+           if(velX > 0)
+            {
+                aimX = -1;
+            }
+            else
+            {
+                aimX = 1;
+            }
+        }
+        if (Input.GetKey(KeyCode.RightArrow))
+        {
+            //If velocity right and press right
+            if(velX > 0)
+            {
+                aimX = 1;
+            }
+            else
+            {
+                aimX = -1;
+            }
+        }
+        if (Input.GetKey(KeyCode.UpArrow))
+        {
+            aimY = 1;
+        }
+        if (Input.GetKey(KeyCode.DownArrow))
+        {
+            aimY = -1;
+        }
+    }
+
+    public void ResetFullbody()
+    {
+        fullbody = false;
+    }
+
+    public void Jump()
+    {
+
+    }
+
+    public void TakeDamage()
+    {
+        animator.SetTrigger("TakeDamage");
+        AnimatorStateInfo state = animator.GetCurrentAnimatorStateInfo(0);
+
+        Debug.Log("Current State: " + state.shortNameHash);
+        Debug.Log("Is in Take damage: " + state.IsName("Take damage"));
+    }
+
+    public void Attack()
+    {
+        animator.SetTrigger("Attack");
+    }
+
+    public void PlayFootstep()
+    {
+        if (!grounded)
+            return;
+
+        if (Mathf.Abs( velX) < 0.1f)
+            return;
+
+        playerSFXManager?.PlayPlayerFootsteps();
+        //SpawnEffect(footstepeffect);
+
+    }
+
+    public void SpawnEffect(GameObject effect)
+    {
+        if (effect == null || pSpawner == null)
+            return;
+
+        GameObject spawnedEffect = Instantiate(effect, pSpawner.position, Quaternion.identity);
+    }
+
+    //Old
+    /*
     public void SpawnEffect(GameObject effect)
     {
         if (effect == null || pSpawner == null)
@@ -99,4 +267,5 @@ public class PlayerAnimations : MonoBehaviour
 
         playerSFXManager?.PlayPlayerFootsteps();
     }
+    */
 }
