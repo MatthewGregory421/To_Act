@@ -1,0 +1,689 @@
+fileFormatVersion: 2
+guid: 9e0c65b5fcb8646ecac3e31002acb26c
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -3514523105058826250
+    second: BreakShield7_CIM330_HOWARD_1030726_0
+  - first:
+      213: 7955623790224336106
+    second: BreakShield7_CIM330_HOWARD_1030726_1
+  - first:
+      213: -744486971203056626
+    second: BreakShield7_CIM330_HOWARD_1030726_2
+  - first:
+      213: -6319085912125913083
+    second: BreakShield7_CIM330_HOWARD_1030726_3
+  - first:
+      213: -2812846520900833687
+    second: BreakShield7_CIM330_HOWARD_1030726_4
+  - first:
+      213: -2354366240082820733
+    second: BreakShield7_CIM330_HOWARD_1030726_5
+  - first:
+      213: 3606655761308372744
+    second: BreakShield7_CIM330_HOWARD_1030726_6
+  - first:
+      213: -3485022496937035475
+    second: BreakShield7_CIM330_HOWARD_1030726_7
+  - first:
+      213: -2668446854957181481
+    second: BreakShield7_CIM330_HOWARD_1030726_8
+  - first:
+      213: -1100096729665575533
+    second: BreakShield7_CIM330_HOWARD_1030726_9
+  - first:
+      213: 4835166403736278577
+    second: BreakShield7_CIM330_HOWARD_1030726_10
+  - first:
+      213: -306132896024153836
+    second: BreakShield7_CIM330_HOWARD_1030726_11
+  - first:
+      213: -4066030512333875694
+    second: BreakShield7_CIM330_HOWARD_1030726_12
+  - first:
+      213: 1637982919656261175
+    second: BreakShield7_CIM330_HOWARD_1030726_13
+  - first:
+      213: -3301574639282740376
+    second: BreakShield7_CIM330_HOWARD_1030726_14
+  - first:
+      213: 7449054525085002694
+    second: BreakShield7_CIM330_HOWARD_1030726_15
+  - first:
+      213: 5698973643545293118
+    second: BreakShield7_CIM330_HOWARD_1030726_16
+  - first:
+      213: 5336294621606009138
+    second: BreakShield7_CIM330_HOWARD_1030726_17
+  - first:
+      213: -7930434392596664516
+    second: BreakShield7_CIM330_HOWARD_1030726_18
+  - first:
+      213: 6014050052851790900
+    second: BreakShield7_CIM330_HOWARD_1030726_19
+  - first:
+      213: -5471015646341502242
+    second: BreakShield7_CIM330_HOWARD_1030726_20
+  - first:
+      213: 344215091542965324
+    second: BreakShield7_CIM330_HOWARD_1030726_21
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: BreakShield7_CIM330_HOWARD_1030726_0
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 203
+        width: 71
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f7d0105bd7e93fc0800000000000000
+      internalID: -3514523105058826250
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BreakShield7_CIM330_HOWARD_1030726_1
+      rect:
+        serializedVersion: 2
+        x: 1461
+        y: 265
+        width: 72
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae4e7febfad086e60800000000000000
+      internalID: 7955623790224336106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BreakShield7_CIM330_HOWARD_1030726_2
+      rect:
+        serializedVersion: 2
+        x: 1629
+        y: 289
+        width: 51
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0c098d4b0d0ba5f0800000000000000
+      internalID: -744486971203056626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BreakShield7_CIM330_HOWARD_1030726_3
+      rect:
+        serializedVersion: 2
+        x: 1689
+        y: 245
+        width: 82
+        height: 145
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5084f86c7d81e48a0800000000000000
+      internalID: -6319085912125913083
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BreakShield7_CIM330_HOWARD_1030726_4
+      rect:
+        serializedVersion: 2
+        x: 369
+        y: 179
+        width: 42
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96e230a0ef2c6f8d0800000000000000
+      internalID: -2812846520900833687
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BreakShield7_CIM330_HOWARD_1030726_5
+      rect:
+        serializedVersion: 2
+        x: 445
+        y: 214
+        width: 53
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 38101bce06c935fd0800000000000000
+      internalID: -2354366240082820733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BreakShield7_CIM330_HOWARD_1030726_6
+      rect:
+        serializedVersion: 2
+        x: 731
+        y: 182
+        width: 46
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 80fc6e75e4a6d0230800000000000000
+      internalID: 3606655761308372744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BreakShield7_CIM330_HOWARD_1030726_7
+      rect:
+        serializedVersion: 2
+        x: 842
+        y: 185
+        width: 73
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d29b2d3e086b2afc0800000000000000
+      internalID: -3485022496937035475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BreakShield7_CIM330_HOWARD_1030726_8
+      rect:
+        serializedVersion: 2
+        x: 996
+        y: 155
+        width: 92
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d5d44439b5c7fad0800000000000000
+      internalID: -2668446854957181481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BreakShield7_CIM330_HOWARD_1030726_9
+      rect:
+        serializedVersion: 2
+        x: 1356
+        y: 199
+        width: 113
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 395e6b95adbabb0f0800000000000000
+      internalID: -1100096729665575533
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BreakShield7_CIM330_HOWARD_1030726_10
+      rect:
+        serializedVersion: 2
+        x: 1569
+        y: 118
+        width: 69
+        height: 101
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1369a94f936f91340800000000000000
+      internalID: 4835166403736278577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BreakShield7_CIM330_HOWARD_1030726_11
+      rect:
+        serializedVersion: 2
+        x: 1749
+        y: 132
+        width: 63
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4113b66c0c560cbf0800000000000000
+      internalID: -306132896024153836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BreakShield7_CIM330_HOWARD_1030726_12
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 105
+        width: 45
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2169072bace8297c0800000000000000
+      internalID: -4066030512333875694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BreakShield7_CIM330_HOWARD_1030726_13
+      rect:
+        serializedVersion: 2
+        x: 493
+        y: 149
+        width: 91
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 736c44a79c84bb610800000000000000
+      internalID: 1637982919656261175
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BreakShield7_CIM330_HOWARD_1030726_14
+      rect:
+        serializedVersion: 2
+        x: 726
+        y: 103
+        width: 42
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8632d1aab537e22d0800000000000000
+      internalID: -3301574639282740376
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BreakShield7_CIM330_HOWARD_1030726_15
+      rect:
+        serializedVersion: 2
+        x: 847
+        y: 8
+        width: 362
+        height: 191
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6cb2530bf9b506760800000000000000
+      internalID: 7449054525085002694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BreakShield7_CIM330_HOWARD_1030726_16
+      rect:
+        serializedVersion: 2
+        x: 1225
+        y: 120
+        width: 121
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e31b4d79552d61f40800000000000000
+      internalID: 5698973643545293118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BreakShield7_CIM330_HOWARD_1030726_17
+      rect:
+        serializedVersion: 2
+        x: 407
+        y: 52
+        width: 64
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 23957a97fa35e0a40800000000000000
+      internalID: 5336294621606009138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BreakShield7_CIM330_HOWARD_1030726_18
+      rect:
+        serializedVersion: 2
+        x: 556
+        y: 63
+        width: 109
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c3f2cbaefef61f190800000000000000
+      internalID: -7930434392596664516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BreakShield7_CIM330_HOWARD_1030726_19
+      rect:
+        serializedVersion: 2
+        x: 1363
+        y: 17
+        width: 71
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43476a5c8a2367350800000000000000
+      internalID: 6014050052851790900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BreakShield7_CIM330_HOWARD_1030726_20
+      rect:
+        serializedVersion: 2
+        x: 1371
+        y: 84
+        width: 54
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: edae53f914c0314b0800000000000000
+      internalID: -5471015646341502242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BreakShield7_CIM330_HOWARD_1030726_21
+      rect:
+        serializedVersion: 2
+        x: 1485
+        y: 70
+        width: 47
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4c3fb15dc5e6c400800000000000000
+      internalID: 344215091542965324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      BreakShield7_CIM330_HOWARD_1030726_0: -3514523105058826250
+      BreakShield7_CIM330_HOWARD_1030726_1: 7955623790224336106
+      BreakShield7_CIM330_HOWARD_1030726_10: 4835166403736278577
+      BreakShield7_CIM330_HOWARD_1030726_11: -306132896024153836
+      BreakShield7_CIM330_HOWARD_1030726_12: -4066030512333875694
+      BreakShield7_CIM330_HOWARD_1030726_13: 1637982919656261175
+      BreakShield7_CIM330_HOWARD_1030726_14: -3301574639282740376
+      BreakShield7_CIM330_HOWARD_1030726_15: 7449054525085002694
+      BreakShield7_CIM330_HOWARD_1030726_16: 5698973643545293118
+      BreakShield7_CIM330_HOWARD_1030726_17: 5336294621606009138
+      BreakShield7_CIM330_HOWARD_1030726_18: -7930434392596664516
+      BreakShield7_CIM330_HOWARD_1030726_19: 6014050052851790900
+      BreakShield7_CIM330_HOWARD_1030726_2: -744486971203056626
+      BreakShield7_CIM330_HOWARD_1030726_20: -5471015646341502242
+      BreakShield7_CIM330_HOWARD_1030726_21: 344215091542965324
+      BreakShield7_CIM330_HOWARD_1030726_3: -6319085912125913083
+      BreakShield7_CIM330_HOWARD_1030726_4: -2812846520900833687
+      BreakShield7_CIM330_HOWARD_1030726_5: -2354366240082820733
+      BreakShield7_CIM330_HOWARD_1030726_6: 3606655761308372744
+      BreakShield7_CIM330_HOWARD_1030726_7: -3485022496937035475
+      BreakShield7_CIM330_HOWARD_1030726_8: -2668446854957181481
+      BreakShield7_CIM330_HOWARD_1030726_9: -1100096729665575533
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

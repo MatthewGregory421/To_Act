@@ -64,10 +64,10 @@
 			<value>1</value>
 		</property>
 		<property name="minimumDistance">
-			<value>10</value>
+			<value>2</value>
 		</property>
 		<property name="maximumDistance">
-			<value>700</value>
+			<value>10000</value>
 		</property>
 	</object>
 	<object class="MarkerTrack" id="{74a887de-1a09-4bfb-93e0-3bb86a6f8dcf}" />
@@ -170,26 +170,23 @@
 	</object>
 	<object class="MixerBusPanner" id="{18ea2e96-a49f-44ee-b187-fa17debc69e0}" />
 	<object class="SpatialiserEffect" id="{f7538ed7-361d-412b-9827-d497b882ea51}">
-		<property name="bypass">
-			<value>true</value>
-		</property>
-		<property name="distanceRolloffType">
-			<value>2</value>
-		</property>
 		<property name="minimumDistance">
-			<value>9.40000057</value>
+			<value>350</value>
 		</property>
 		<property name="maximumDistance">
-			<value>2200</value>
+			<value>500</value>
+		</property>
+		<property name="overrideRange">
+			<value>true</value>
 		</property>
 		<property name="extentMode">
 			<value>1</value>
 		</property>
 		<property name="soundSize">
-			<value>4.20000029</value>
+			<value>5</value>
 		</property>
 		<property name="minimumExtent">
-			<value>132</value>
+			<value>360</value>
 		</property>
 	</object>
 	<object class="MultibandEqEffect" id="{f2188c09-805c-4058-b3c2-1cdd91263fc7}">
