@@ -53,12 +53,15 @@
 			<destination>{bf6b33af-4531-4dc3-935c-dafb60a57c17}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{a67bbd6b-0b34-4e3b-81f5-658d60d8eb1d}</destination>
+			<destination>{e849d099-3778-4738-9a47-a6d1f5e37e46}</destination>
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{c55e67c9-5155-4533-97e1-da9146eb8596}">
 		<property name="maxVoices">
 			<value>1</value>
+		</property>
+		<property name="priority">
+			<value>3</value>
 		</property>
 	</object>
 	<object class="MarkerTrack" id="{d2d589a4-e5b0-4775-9fbc-dec6adee6bce}" />
@@ -123,7 +126,9 @@
 	</object>
 	<object class="MixerBusEffectChain" id="{95bddca2-0c4b-45ad-854e-94f4c670ccb0}">
 		<relationship name="effects">
+			<destination>{bb22e0e8-99d4-4cb1-8584-448aa1ed772b}</destination>
 			<destination>{d9f9a8fe-e6f6-4ecd-a96e-6dcb56912dba}</destination>
+			<destination>{55d7828f-ce78-413e-a8f0-9d0ba0aae2ab}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{25754985-74d2-4981-aed7-ed0175187dc6}" />
@@ -152,6 +157,28 @@
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{5297f663-ea56-4789-bc8b-86815fc388a6}" />
+	<object class="FlangerEffect" id="{bb22e0e8-99d4-4cb1-8584-448aa1ed772b}">
+		<property name="rate">
+			<value>3.79999995</value>
+		</property>
+		<property name="delay">
+			<value>0.340000004</value>
+		</property>
+		<property name="mix">
+			<value>27</value>
+		</property>
+	</object>
 	<object class="MixerBusFader" id="{d9f9a8fe-e6f6-4ecd-a96e-6dcb56912dba}" />
+	<object class="MixerSend" id="{55d7828f-ce78-413e-a8f0-9d0ba0aae2ab}">
+		<property name="level">
+			<value>-24.5</value>
+		</property>
+		<property name="inputFormat">
+			<value>0</value>
+		</property>
+		<relationship name="mixerReturn">
+			<destination>{85c0ff12-7108-419f-9b51-49a91ab0eb6a}</destination>
+		</relationship>
+	</object>
 	<object class="MixerBusFader" id="{e3f60dfc-f026-44c9-8d32-7000fb4826cf}" />
 </objects>

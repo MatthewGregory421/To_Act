@@ -113,7 +113,6 @@ public class SadnessEnemyCombat : MonoBehaviour
         if (distance <= detectionRange && HasLineOfSight())
         {
             playerDetected = true;
-            Debug.Log($"{name} detected player: {playerDetected}");
         }
         else
         {
@@ -139,7 +138,6 @@ public class SadnessEnemyCombat : MonoBehaviour
 
         if (hit.collider != null)
         {
-            Debug.Log($"{name} LOS hit: {hit.collider.name}");
 
             return hit.collider.transform == enemyMovement.player
                 || hit.collider.transform.IsChildOf(enemyMovement.player);

@@ -206,28 +206,6 @@
                     "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": true
-                },
-                {
-                    "name": "left",
-                    "id": "73eb6abc-ca54-4d0b-8126-c6ef8790ba8a",
-                    "path": "<Keyboard>/leftArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Attack",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "right",
-                    "id": "f0acd7e9-f538-4c8d-8011-ef3db0f1dbee",
-                    "path": "<Keyboard>/rightArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Attack",
-                    "isComposite": false,
-                    "isPartOfComposite": true
                 }
             ]
         },

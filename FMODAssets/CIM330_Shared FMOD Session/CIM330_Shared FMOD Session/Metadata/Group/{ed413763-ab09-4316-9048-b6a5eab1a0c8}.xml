@@ -11,14 +11,32 @@
 			<destination>{c61d34ae-9f54-472b-bb39-56e6418fc11d}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{303db400-1498-4846-aec9-cc4602744b8c}</destination>
+			<destination>{ca96bce6-b8d8-4cae-b772-130a29ca84aa}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusEffectChain" id="{b4a3a7c1-42fd-4073-b782-3fa8cdfb5a50}">
 		<relationship name="effects">
 			<destination>{a2a9d244-9e5f-4214-9ff5-f5d3bc26ae11}</destination>
+			<destination>{ac4f2a94-bf7b-4b8a-93a8-99a147c5f5a4}</destination>
+			<destination>{4e3ef7fa-6885-43bb-ba20-6d878a119f05}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{c61d34ae-9f54-472b-bb39-56e6418fc11d}" />
 	<object class="MixerBusFader" id="{a2a9d244-9e5f-4214-9ff5-f5d3bc26ae11}" />
+	<object class="GainEffect" id="{ac4f2a94-bf7b-4b8a-93a8-99a147c5f5a4}">
+		<property name="gain">
+			<value>-0.5</value>
+		</property>
+	</object>
+	<object class="MixerSend" id="{4e3ef7fa-6885-43bb-ba20-6d878a119f05}">
+		<property name="level">
+			<value>-28</value>
+		</property>
+		<property name="inputFormat">
+			<value>1</value>
+		</property>
+		<relationship name="mixerReturn">
+			<destination>{85c0ff12-7108-419f-9b51-49a91ab0eb6a}</destination>
+		</relationship>
+	</object>
 </objects>

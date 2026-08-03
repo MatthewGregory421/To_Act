@@ -5,7 +5,7 @@
 			<value>PlayerSFXManager</value>
 		</property>
 		<property name="outputFormat">
-			<value>1</value>
+			<value>5</value>
 		</property>
 		<relationship name="folder">
 			<destination>{1ef83060-3853-4c17-91dc-d5136540c81d}</destination>
@@ -56,7 +56,7 @@
 			<destination>{d93ea9b7-e846-419e-a8b6-00db67fdefd3}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{a67bbd6b-0b34-4e3b-81f5-658d60d8eb1d}</destination>
+			<destination>{e849d099-3778-4738-9a47-a6d1f5e37e46}</destination>
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{6f0dea5c-1ba3-4139-8ebb-c2022aff061b}" />

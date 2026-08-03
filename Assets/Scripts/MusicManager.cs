@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Serialization;
 using FMODUnity;
@@ -8,19 +9,32 @@ public class MusicManager : MonoBehaviour
 
     public StudioEventEmitter Music;
 
-    [SerializeField, ParamRef] private string musicSelector = null;
+    [SerializeField, ParamRef]
+    private string musicSelector = null;
 
     [FormerlySerializedAs("musicState")]
     [SerializeField, ParamRef]
     private string musicIntensity = "Music Intensity";
 
-    [SerializeField, ParamRef] private string Dead = null;
+    [SerializeField, ParamRef]
+    private string Dead = null;
+
+    [Header("Intensity Timing")]
+    [Tooltip(
+        "How long the enemy range condition must remain unchanged " +
+        "before switching between Neutral and Energetic."
+    )]
+    [SerializeField, Min(0f)]
+    private float intensityConfirmationDelay = 1f;
 
     private int currentMusicSelector = -1;
     private int currentMusicIntensity = -1;
 
-    private int enemiesInDetectionRange = 0;
-    private bool playerIsAtOneHealth = false;
+    private int enemiesInDetectionRange;
+    private bool playerIsAtOneHealth;
+
+    private Coroutine intensityConfirmationCoroutine;
+    private MusicIntensity? pendingMusicIntensity;
 
     public enum MusicArea
     {
@@ -53,7 +67,17 @@ public class MusicManager : MonoBehaviour
     private void Start()
     {
         EnsureMusicPlaying();
-        RefreshMusicIntensity();
+
+        // Initial state is applied immediately.
+        RefreshMusicIntensity(true);
+    }
+
+    private void OnDestroy()
+    {
+        if (Instance == this)
+        {
+            Instance = null;
+        }
     }
 
     private void EnsureMusicPlaying()
@@ -96,24 +120,119 @@ public class MusicManager : MonoBehaviour
         currentMusicIntensity = value;
     }
 
-    private void RefreshMusicIntensity()
+    private void RefreshMusicIntensity(
+        bool skipNeutralEnergeticConfirmation = false
+    )
     {
-        // Highest priority: player is at 1 HP.
+        // Tense always has immediate priority.
         if (playerIsAtOneHealth)
         {
+            CancelPendingIntensityChange();
             SetMusicIntensity(MusicIntensity.Tense);
             return;
         }
 
-        // Second priority: player is near at least one enemy.
-        if (enemiesInDetectionRange > 0)
+        MusicIntensity desiredIntensity =
+            GetDesiredNonTenseIntensity();
+
+        bool hasNoCurrentIntensity =
+            currentMusicIntensity == -1;
+
+        bool isLeavingTense =
+            currentMusicIntensity == (int)MusicIntensity.Tense;
+
+        // Initial setup and transitions involving Tense happen immediately.
+        if (skipNeutralEnergeticConfirmation ||
+            hasNoCurrentIntensity ||
+            isLeavingTense)
         {
-            SetMusicIntensity(MusicIntensity.Energetic);
+            CancelPendingIntensityChange();
+            SetMusicIntensity(desiredIntensity);
             return;
         }
 
-        // Default state.
-        SetMusicIntensity(MusicIntensity.Neutral);
+        RequestConfirmedIntensityChange(desiredIntensity);
+    }
+
+    private MusicIntensity GetDesiredNonTenseIntensity()
+    {
+        if (enemiesInDetectionRange > 0)
+        {
+            return MusicIntensity.Energetic;
+        }
+
+        return MusicIntensity.Neutral;
+    }
+
+    private void RequestConfirmedIntensityChange(
+        MusicIntensity desiredIntensity
+    )
+    {
+        // We have returned to the current state before the pending
+        // transition was confirmed.
+        if (currentMusicIntensity == (int)desiredIntensity)
+        {
+            CancelPendingIntensityChange();
+            return;
+        }
+
+        // This exact transition is already being checked.
+        if (intensityConfirmationCoroutine != null &&
+            pendingMusicIntensity == desiredIntensity)
+        {
+            return;
+        }
+
+        CancelPendingIntensityChange();
+
+        pendingMusicIntensity = desiredIntensity;
+
+        intensityConfirmationCoroutine = StartCoroutine(
+            ConfirmIntensityChange(desiredIntensity)
+        );
+    }
+
+    private IEnumerator ConfirmIntensityChange(
+        MusicIntensity requestedIntensity
+    )
+    {
+        yield return new WaitForSeconds(
+            intensityConfirmationDelay
+        );
+
+        // Tense may have activated while we were waiting.
+        if (playerIsAtOneHealth)
+        {
+            ClearPendingIntensityChange();
+            yield break;
+        }
+
+        // Check the enemy range condition for a second time.
+        MusicIntensity currentDesiredIntensity =
+            GetDesiredNonTenseIntensity();
+
+        if (currentDesiredIntensity == requestedIntensity)
+        {
+            SetMusicIntensity(requestedIntensity);
+        }
+
+        ClearPendingIntensityChange();
+    }
+
+    private void CancelPendingIntensityChange()
+    {
+        if (intensityConfirmationCoroutine != null)
+        {
+            StopCoroutine(intensityConfirmationCoroutine);
+        }
+
+        ClearPendingIntensityChange();
+    }
+
+    private void ClearPendingIntensityChange()
+    {
+        intensityConfirmationCoroutine = null;
+        pendingMusicIntensity = null;
     }
 
     public void SetPlayerAtOneHealth(bool isAtOneHealth)
@@ -122,12 +241,16 @@ public class MusicManager : MonoBehaviour
             return;
 
         playerIsAtOneHealth = isAtOneHealth;
-        RefreshMusicIntensity();
+
+        // Entering or leaving Tense should happen immediately.
+        RefreshMusicIntensity(true);
     }
 
     public void EnterEnemyDetectionRange()
     {
         enemiesInDetectionRange++;
+
+        // Neutral to Energetic requires confirmation.
         RefreshMusicIntensity();
     }
 
@@ -138,25 +261,36 @@ public class MusicManager : MonoBehaviour
             enemiesInDetectionRange - 1
         );
 
+        // Energetic to Neutral requires confirmation.
         RefreshMusicIntensity();
     }
 
     public void SetMusic(MusicArea area)
     {
         SetMusicArea((int)area);
-
-        // Re-check health and combat instead of always forcing Neutral.
         RefreshMusicIntensity();
     }
 
-    public void MenuMusicSelect() => SetMusic(MusicArea.Menu);
-    public void HubMusicSelect() => SetMusic(MusicArea.Hub);
-    public void AngerMusicSelect() => SetMusic(MusicArea.Anger);
-    public void SadnessMusicSelect() => SetMusic(MusicArea.Sadness);
-    public void JoyMusicSelect() => SetMusic(MusicArea.Joy);
+    public void MenuMusicSelect() =>
+        SetMusic(MusicArea.Menu);
+
+    public void HubMusicSelect() =>
+        SetMusic(MusicArea.Hub);
+
+    public void AngerMusicSelect() =>
+        SetMusic(MusicArea.Anger);
+
+    public void SadnessMusicSelect() =>
+        SetMusic(MusicArea.Sadness);
+
+    public void JoyMusicSelect() =>
+        SetMusic(MusicArea.Joy);
 
     public void DeathStingerSelect()
     {
-        RuntimeManager.StudioSystem.setParameterByName(Dead, 1);
+        RuntimeManager.StudioSystem.setParameterByName(
+            Dead,
+            1
+        );
     }
 }

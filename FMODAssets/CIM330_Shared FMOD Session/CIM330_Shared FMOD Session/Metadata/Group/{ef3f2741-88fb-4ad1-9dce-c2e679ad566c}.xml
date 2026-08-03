@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="MixerGroup" id="{ef3f2741-88fb-4ad1-9dce-c2e679ad566c}">
+		<property name="name">
+			<value>Enemy</value>
+		</property>
+		<relationship name="effectChain">
+			<destination>{376bd729-cc7d-4579-b1fc-da5d62b735ca}</destination>
+		</relationship>
+		<relationship name="panner">
+			<destination>{fe6745f6-6996-4c6f-b7e7-a59a7cd7d3dc}</destination>
+		</relationship>
+		<relationship name="output">
+			<destination>{a67bbd6b-0b34-4e3b-81f5-658d60d8eb1d}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusEffectChain" id="{376bd729-cc7d-4579-b1fc-da5d62b735ca}">
+		<relationship name="effects">
+			<destination>{488bdedd-6f65-4713-8ef4-59d09252d4e2}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusPanner" id="{fe6745f6-6996-4c6f-b7e7-a59a7cd7d3dc}" />
+	<object class="MixerBusFader" id="{488bdedd-6f65-4713-8ef4-59d09252d4e2}" />
+</objects>

@@ -53,7 +53,7 @@
 			<destination>{0d40168b-c02f-4f63-beed-2109e094c604}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{a67bbd6b-0b34-4e3b-81f5-658d60d8eb1d}</destination>
+			<destination>{e849d099-3778-4738-9a47-a6d1f5e37e46}</destination>
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{8ffaea0c-2b5e-49ae-89f6-a53e84428c0a}">
@@ -178,7 +178,7 @@
 	</object>
 	<object class="PlayPercentage" id="{b8816e9e-ebd6-49a9-9b00-dfb4481e7d22}">
 		<property name="percentage">
-			<value>4</value>
+			<value>2</value>
 		</property>
 		<relationship name="sound">
 			<destination>{a1541099-317c-4039-a7af-ce8998f83f5a}</destination>

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="SandboxScene" id="{cbc95ebf-c4c1-4649-92d1-f8689dc592d6}">
+		<property name="name">
+			<value>music sfx test</value>
+		</property>
+		<relationship name="folder">
+			<destination>{18931679-f952-499c-9642-54371e0fc65c}</destination>
+		</relationship>
+		<relationship name="markerTracks">
+			<destination>{d784e291-d6c4-4071-a677-2653dfdcf3d4}</destination>
+		</relationship>
+		<relationship name="timeline">
+			<destination>{16d606f5-1e0f-425f-9f74-397c0f01e73e}</destination>
+		</relationship>
+		<relationship name="sandboxParameters">
+			<destination>{094a21e6-9c5d-48e3-a5fd-754e02c3f426}</destination>
+		</relationship>
+		<relationship name="emitters">
+			<destination>{7e35c883-4d93-46bd-83e3-1f98f29de3d1}</destination>
+			<destination>{7bb2d13d-f1f8-47c3-850c-da2dbe6d986f}</destination>
+			<destination>{7ad0d3fe-1031-4229-9b67-a04978aa293d}</destination>
+			<destination>{8f65939a-0e78-46e4-b023-22bc1a5afc83}</destination>
+			<destination>{824b7271-08b8-4936-b968-bb09e177a44b}</destination>
+			<destination>{93fd2b01-6b27-4581-9c2d-1f12018edb75}</destination>
+		</relationship>
+	</object>
+	<object class="MarkerTrack" id="{d784e291-d6c4-4071-a677-2653dfdcf3d4}" />
+	<object class="Timeline" id="{16d606f5-1e0f-425f-9f74-397c0f01e73e}" />
+	<object class="SandboxParameter" id="{094a21e6-9c5d-48e3-a5fd-754e02c3f426}">
+		<property name="parameterValue">
+			<value>0</value>
+		</property>
+		<relationship name="parameter">
+			<destination>{c4ab953e-cbfa-47c7-85c7-b0f44393d9ab}</destination>
+		</relationship>
+	</object>
+	<object class="SandboxEmitter" id="{7e35c883-4d93-46bd-83e3-1f98f29de3d1}">
+		<property name="positionX">
+			<value>-4.4000001</value>
+		</property>
+		<property name="positionZ">
+			<value>2.7750001</value>
+		</property>
+		<property name="rotationY">
+			<value>-83.8264694</value>
+		</property>
+		<property name="loopPlayback">
+			<value>true</value>
+		</property>
+		<relationship name="event">
+			<destination>{c215b1ff-bd1a-4892-a9d2-fb7cfe08925b}</destination>
+		</relationship>
+	</object>
+	<object class="SandboxEmitter" id="{7bb2d13d-f1f8-47c3-850c-da2dbe6d986f}">
+		<property name="positionX">
+			<value>-0.800000012</value>
+		</property>
+		<property name="positionZ">
+			<value>1.5</value>
+		</property>
+		<property name="loopPlayback">
+			<value>true</value>
+		</property>
+		<relationship name="event">
+			<destination>{8de897ac-a68f-4b75-af59-5dfa6c521eae}</destination>
+		</relationship>
+	</object>
+	<object class="SandboxEmitter" id="{7ad0d3fe-1031-4229-9b67-a04978aa293d}">
+		<property name="positionX">
+			<value>-4.82500029</value>
+		</property>
+		<property name="positionZ">
+			<value>-1</value>
+		</property>
+		<relationship name="event">
+			<destination>{d44e6f00-a850-4fde-9a64-b9a78bf71505}</destination>
+		</relationship>
+	</object>
+	<object class="SandboxEmitter" id="{8f65939a-0e78-46e4-b023-22bc1a5afc83}">
+		<property name="positionX">
+			<value>0.600000024</value>
+		</property>
+		<property name="positionZ">
+			<value>4.6500001</value>
+		</property>
+		<property name="loopPlayback">
+			<value>true</value>
+		</property>
+		<relationship name="event">
+			<destination>{c76ad516-5897-4878-b7bf-5c8435b630ce}</destination>
+		</relationship>
+	</object>
+	<object class="SandboxEmitter" id="{824b7271-08b8-4936-b968-bb09e177a44b}">
+		<property name="positionX">
+			<value>4.92500019</value>
+		</property>
+		<property name="positionZ">
+			<value>1</value>
+		</property>
+		<relationship name="event">
+			<destination>{3c7e3425-b0eb-440b-91da-170deeecf157}</destination>
+		</relationship>
+	</object>
+	<object class="SandboxEmitter" id="{93fd2b01-6b27-4581-9c2d-1f12018edb75}">
+		<property name="positionX">
+			<value>2.2750001</value>
+		</property>
+		<property name="positionZ">
+			<value>2.54999995</value>
+		</property>
+		<property name="loopPlayback">
+			<value>true</value>
+		</property>
+		<relationship name="event">
+			<destination>{cfa2b47f-f437-43cc-82e9-37ea2749b3b4}</destination>
+		</relationship>
+	</object>
+</objects>
