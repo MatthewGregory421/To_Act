@@ -175,6 +175,15 @@ public class PlayerCombatInputSystem : MonoBehaviour
 
     private void TryAttack()
     {
+        // Stop the attack if the movement reference is missing.
+        if (movement == null)
+            return;
+
+        // Prevent the player from shooting or attacking while crouching.
+        if (movement.isCrouching)
+            return;
+
+        // Prevent attacking until the cooldown has finished.
         if (attackTimer > 0f)
             return;
 
