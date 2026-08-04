@@ -154,6 +154,14 @@ public class PlayerCombatInputSystem : MonoBehaviour
         InputAction.CallbackContext context
     )
     {
+        // Do not allow attacking or ground slamming while sitting.
+        if (movement != null && movement.IsSitting)
+        {
+            attackInput = Vector2.zero;
+            attackLocked = false;
+            return;
+        }
+
         attackInput =
             context.ReadValue<Vector2>();
 
@@ -177,6 +185,10 @@ public class PlayerCombatInputSystem : MonoBehaviour
     {
         // Stop the attack if the movement reference is missing.
         if (movement == null)
+            return;
+
+        // Prevent attacking or ground slamming while sitting.
+        if (movement.IsSitting)
             return;
 
         // Prevent the player from shooting or attacking while crouching.

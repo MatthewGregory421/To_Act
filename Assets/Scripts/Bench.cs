@@ -8,9 +8,11 @@ public class Bench : MonoBehaviour
     public bool healPlayer = true;
     public bool resetEnemiesOnRest = true;
 
+    [Header("Sitting")]
+    [SerializeField] private Transform sitPoint;
+
     [Header("Audio")]
-    [SerializeField]
-    private EventReference benchSitSound;
+    [SerializeField] private EventReference benchSitSound;
 
     private bool playerInRange;
 
@@ -27,6 +29,16 @@ public class Bench : MonoBehaviour
 
     private void Sit()
     {
+        PlayerMovementInputSystem player =
+            FindFirstObjectByType<PlayerMovementInputSystem>();
+
+        if (player == null)
+            return;
+
+        // Prevent repeatedly sitting while already seated.
+        if (player.IsSitting)
+            return;
+
         Debug.Log("Sitting at bench: " + benchID);
 
         PlayBenchSitSound();
@@ -36,10 +48,10 @@ public class Bench : MonoBehaviour
             gameObject.scene.name
         );
 
-        PlayerMovementInputSystem player =
-            FindFirstObjectByType<PlayerMovementInputSystem>();
+        // Lock the player to the bench.
+        player.SitAtBench(sitPoint);
 
-        if (player != null)
+        if (SaveManager.Instance != null)
         {
             SaveManager.Instance.SaveGame(
                 player,
@@ -51,7 +63,7 @@ public class Bench : MonoBehaviour
         if (healPlayer)
         {
             PlayerHealth playerHealth =
-                FindFirstObjectByType<PlayerHealth>();
+                player.GetComponent<PlayerHealth>();
 
             if (playerHealth != null)
             {
@@ -59,7 +71,8 @@ public class Bench : MonoBehaviour
             }
         }
 
-        if (resetEnemiesOnRest)
+        if (resetEnemiesOnRest &&
+            WorldStateManager.Instance != null)
         {
             WorldStateManager.Instance.RestAtBench();
         }
