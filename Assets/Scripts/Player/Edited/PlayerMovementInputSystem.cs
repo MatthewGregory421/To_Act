@@ -27,6 +27,11 @@ public class PlayerMovementInputSystem : MonoBehaviour
 
     public int facingDirection = 1;
 
+    [Header("Bench Sitting")]
+    public bool IsSitting { get; private set; }
+
+    private RigidbodyConstraints2D constraintsBeforeSitting;
+
     [Header("Movement Feel")]
     public float acceleration = 20f;
     public float deceleration = 25f;
@@ -141,6 +146,12 @@ public class PlayerMovementInputSystem : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (IsSitting)
+        {
+            rb.linearVelocity = Vector2.zero;
+            return;
+        }
+
         float speed = moveSpeed;
 
         if (isCrouching)
@@ -196,11 +207,30 @@ public class PlayerMovementInputSystem : MonoBehaviour
 
     public void Move(InputAction.CallbackContext context)
     {
-        horizontalMovement = context.ReadValue<Vector2>().x;
+        Vector2 movementInput = context.ReadValue<Vector2>();
+
+        if (IsSitting)
+        {
+            horizontalMovement = 0f;
+
+            // Pressing left or right gets the player off the bench.
+            if (Mathf.Abs(movementInput.x) > 0.01f)
+            {
+                ExitBench();
+                horizontalMovement = movementInput.x;
+            }
+
+            return;
+        }
+
+        horizontalMovement = movementInput.x;
     }
 
     public void Jump(InputAction.CallbackContext context)
     {
+        if (IsSitting)
+            return;
+
         if (!context.performed)
             return;
 
@@ -234,6 +264,9 @@ public class PlayerMovementInputSystem : MonoBehaviour
 
     public void Crouch(InputAction.CallbackContext context)
     {
+        if (IsSitting)
+            return;
+
         if (isDazed)
             return;
 
@@ -253,6 +286,9 @@ public class PlayerMovementInputSystem : MonoBehaviour
 
     public void Shield(InputAction.CallbackContext context)
     {
+        if (IsSitting)
+            return;
+
         if (isDazed)
             return;
 
@@ -486,5 +522,49 @@ public class PlayerMovementInputSystem : MonoBehaviour
             wallCheckDistance,
             obstacleLayer
         );
+    }
+
+    public void SitAtBench(Transform sitPoint)
+    {
+        if (IsSitting)
+            return;
+
+        IsSitting = true;
+        horizontalMovement = 0f;
+
+        if (isCrouching)
+        {
+            ExitCrouch();
+        }
+
+        rb.linearVelocity = Vector2.zero;
+
+        // Remember the player's normal constraints.
+        constraintsBeforeSitting = rb.constraints;
+
+        if (sitPoint != null)
+        {
+            rb.position = sitPoint.position;
+        }
+
+        // Prevent gravity or movement from pulling the player off the bench.
+        rb.constraints = RigidbodyConstraints2D.FreezeAll;
+
+        // Add this when your sitting animation is implemented:
+        // playerAnimations.SetSitting(true);
+    }
+
+    private void ExitBench()
+    {
+        if (!IsSitting)
+            return;
+
+        IsSitting = false;
+
+        // Restore the constraints the player had before sitting.
+        rb.constraints = constraintsBeforeSitting;
+
+        // Add this when your sitting animation is implemented:
+        // playerAnimations.SetSitting(false);
     }
 }
