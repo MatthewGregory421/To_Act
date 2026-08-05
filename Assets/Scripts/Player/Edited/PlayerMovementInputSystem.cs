@@ -551,7 +551,7 @@ public class PlayerMovementInputSystem : MonoBehaviour
         rb.constraints = RigidbodyConstraints2D.FreezeAll;
 
         // Add this when your sitting animation is implemented:
-        // playerAnimations.SetSitting(true);
+        playerAnimations.UpdateSittingAnim(IsSitting);
     }
 
     private void ExitBench()
@@ -565,6 +565,6 @@ public class PlayerMovementInputSystem : MonoBehaviour
         rb.constraints = constraintsBeforeSitting;
 
         // Add this when your sitting animation is implemented:
-        // playerAnimations.SetSitting(false);
+        playerAnimations.UpdateSittingAnim(IsSitting);
     }
 }

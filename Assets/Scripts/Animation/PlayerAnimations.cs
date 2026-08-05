@@ -43,6 +43,11 @@ public class PlayerAnimations : MonoBehaviour
             rb = GetComponentInParent<Rigidbody2D>();
     }
 
+    public void UpdateSittingAnim(bool yea)
+    {
+        animator.SetBool("Sitting", yea);
+    }
+
     private void Update()
     {
         if(!groundslam && prevslamming != groundslam)
@@ -87,7 +92,9 @@ public class PlayerAnimations : MonoBehaviour
         if(animator.GetCurrentAnimatorStateInfo(0).IsName("Groundslam")
             || animator.GetCurrentAnimatorStateInfo(0).IsName("Dazed")
             || animator.GetCurrentAnimatorStateInfo(0).IsName("TakeDamage")
-            || animator.GetCurrentAnimatorStateInfo(0).IsName("Groundslam")|| blocking)
+            || animator.GetCurrentAnimatorStateInfo(0).IsName("Groundslam")||
+            animator.GetCurrentAnimatorStateInfo(0).IsName("Sitting")||
+            blocking)
         {
             fullbody = true;
         }
