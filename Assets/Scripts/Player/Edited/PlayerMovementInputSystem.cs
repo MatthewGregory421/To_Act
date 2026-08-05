@@ -286,6 +286,14 @@ public class PlayerMovementInputSystem : MonoBehaviour
 
     public void Shield(InputAction.CallbackContext context)
     {
+        if (context.performed)
+        {
+            Debug.Log(
+                $"SHIELD INPUT TRIGGERED BY: " +
+                $"{context.control?.displayName}"
+            );
+        }
+
         if (IsSitting)
             return;
 
