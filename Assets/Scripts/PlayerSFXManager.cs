@@ -70,32 +70,95 @@ public class PlayerSFXManager : MonoBehaviour
 
     public void PlayGroundSlam()
     {
-        RuntimeManager.StudioSystem.setParameterByName(PlayerActionSelector, 5);
-        RuntimeManager.StudioSystem.setParameterByName(PlayerSpecialSelector, 1);
+        Debug.Log("PlayGroundSlam called");
+
+        RuntimeManager.StudioSystem.setParameterByName(
+            PlayerActionSelector,
+            5,
+            true
+        );
+
+        RuntimeManager.StudioSystem.setParameterByName(
+            PlayerSpecialSelector,
+            1,
+            true
+        );
+
+        // Make FMOD apply both global parameter changes
+        // before the event begins playing.
+        RuntimeManager.StudioSystem.flushCommands();
+
         PlaySafe();
     }
 
     public void PlayShieldActive()
     {
-        RuntimeManager.StudioSystem.setParameterByName(PlayerActionSelector, 5);
-        RuntimeManager.StudioSystem.setParameterByName(PlayerSpecialSelector, 0);
-        RuntimeManager.StudioSystem.setParameterByName(PlayerSpecialController, 0);
+        Debug.Log("PlayShieldActive called");
+
+        RuntimeManager.StudioSystem.setParameterByName(
+            PlayerActionSelector,
+            5,
+            true
+        );
+
+        RuntimeManager.StudioSystem.setParameterByName(
+            PlayerSpecialSelector,
+            0,
+            true
+        );
+
+        RuntimeManager.StudioSystem.setParameterByName(
+            PlayerSpecialController,
+            0,
+            true
+        );
+
         PlaySafe();
     }
 
     public void PlayShieldConnect()
     {
-        RuntimeManager.StudioSystem.setParameterByName(PlayerActionSelector, 5);
-        RuntimeManager.StudioSystem.setParameterByName(PlayerSpecialSelector, 0);
-        RuntimeManager.StudioSystem.setParameterByName(PlayerSpecialController, 1);
+        RuntimeManager.StudioSystem.setParameterByName(
+            PlayerActionSelector,
+            5,
+            true
+        );
+
+        RuntimeManager.StudioSystem.setParameterByName(
+            PlayerSpecialSelector,
+            0,
+            true
+        );
+
+        RuntimeManager.StudioSystem.setParameterByName(
+            PlayerSpecialController,
+            1,
+            true
+        );
+
         PlaySafe();
     }
 
     public void PlayShieldDeactive()
     {
-        RuntimeManager.StudioSystem.setParameterByName(PlayerActionSelector, 5);
-        RuntimeManager.StudioSystem.setParameterByName(PlayerSpecialSelector, 0);
-        RuntimeManager.StudioSystem.setParameterByName(PlayerSpecialController, 2);
+        RuntimeManager.StudioSystem.setParameterByName(
+            PlayerActionSelector,
+            5,
+            true
+        );
+
+        RuntimeManager.StudioSystem.setParameterByName(
+            PlayerSpecialSelector,
+            0,
+            true
+        );
+
+        RuntimeManager.StudioSystem.setParameterByName(
+            PlayerSpecialController,
+            2,
+            true
+        );
+
         PlaySafe();
     }
 }

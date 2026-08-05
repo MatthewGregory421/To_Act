@@ -154,6 +154,15 @@ public class PlayerCombatInputSystem : MonoBehaviour
         InputAction.CallbackContext context
     )
     {
+        if (context.started)
+        {
+            Debug.Log(
+                $"ATTACK INPUT TRIGGERED BY: " +
+                $"{context.control?.displayName} | " +
+                $"Value: {context.ReadValue<Vector2>()}"
+            );
+        }
+
         // Do not allow attacking or ground slamming while sitting.
         if (movement != null && movement.IsSitting)
         {
