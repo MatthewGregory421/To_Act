@@ -65,7 +65,7 @@ public class AudioSettingsManager : MonoBehaviour
                     RuntimeManager.GetBus("bus:/Mix Buss/Narration");
 
                 ambienceBus =
-                    RuntimeManager.GetBus("bus:/Ambience");
+                    RuntimeManager.GetBus("bus:/Mix Buss/Ambience");
 
                 uiBus =
                     RuntimeManager.GetBus("bus:/Mix Buss/UI");
