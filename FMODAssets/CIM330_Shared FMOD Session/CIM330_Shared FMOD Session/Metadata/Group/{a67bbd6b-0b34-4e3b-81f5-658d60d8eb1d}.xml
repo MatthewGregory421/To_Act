@@ -21,6 +21,7 @@
 			<destination>{dd8b4617-82e2-487a-abbd-6d89ede212d0}</destination>
 			<destination>{21d63f67-2215-4498-9748-cc2151a07f1a}</destination>
 			<destination>{e5b9376a-42c3-4ee1-9f34-47998fe692eb}</destination>
+			<destination>{42f84512-3f2e-4c80-a00f-6289731719d1}</destination>
 			<destination>{1e3317cd-4902-426f-9023-70dfa243ffd5}</destination>
 		</relationship>
 	</object>
@@ -50,5 +51,25 @@
 		</relationship>
 	</object>
 	<object class="GainEffect" id="{e5b9376a-42c3-4ee1-9f34-47998fe692eb}" />
+	<object class="CompressorEffect" id="{42f84512-3f2e-4c80-a00f-6289731719d1}">
+		<property name="threshold">
+			<value>-25.5</value>
+		</property>
+		<property name="ratio">
+			<value>4.70000029</value>
+		</property>
+		<property name="attackTime">
+			<value>22</value>
+		</property>
+		<property name="releaseTime">
+			<value>60</value>
+		</property>
+		<property name="gain">
+			<value>-0.5</value>
+		</property>
+		<relationship name="sidechains">
+			<destination>{230dca05-cb0f-4383-ad8a-2d446d0512de}</destination>
+		</relationship>
+	</object>
 	<object class="Sidechain" id="{1e3317cd-4902-426f-9023-70dfa243ffd5}" />
 </objects>

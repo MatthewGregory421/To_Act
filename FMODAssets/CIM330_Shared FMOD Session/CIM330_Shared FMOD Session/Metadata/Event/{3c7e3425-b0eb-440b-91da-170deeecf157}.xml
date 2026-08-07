@@ -129,6 +129,7 @@
 			<destination>{bb22e0e8-99d4-4cb1-8584-448aa1ed772b}</destination>
 			<destination>{d9f9a8fe-e6f6-4ecd-a96e-6dcb56912dba}</destination>
 			<destination>{55d7828f-ce78-413e-a8f0-9d0ba0aae2ab}</destination>
+			<destination>{b9d00d34-f262-4cca-ba8e-94c0faea63dc}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{25754985-74d2-4981-aed7-ed0175187dc6}" />
@@ -179,6 +180,11 @@
 		<relationship name="mixerReturn">
 			<destination>{85c0ff12-7108-419f-9b51-49a91ab0eb6a}</destination>
 		</relationship>
+	</object>
+	<object class="GainEffect" id="{b9d00d34-f262-4cca-ba8e-94c0faea63dc}">
+		<property name="gain">
+			<value>-4</value>
+		</property>
 	</object>
 	<object class="MixerBusFader" id="{e3f60dfc-f026-44c9-8d32-7000fb4826cf}" />
 </objects>

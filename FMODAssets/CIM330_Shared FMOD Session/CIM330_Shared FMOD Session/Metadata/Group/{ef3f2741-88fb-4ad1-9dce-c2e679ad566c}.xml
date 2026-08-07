@@ -16,9 +16,32 @@
 	</object>
 	<object class="MixerBusEffectChain" id="{376bd729-cc7d-4579-b1fc-da5d62b735ca}">
 		<relationship name="effects">
+			<destination>{44fca53f-889e-4480-95da-07ebed37b43e}</destination>
 			<destination>{488bdedd-6f65-4713-8ef4-59d09252d4e2}</destination>
+			<destination>{3cf0a406-cbb2-4ac6-9f2f-2ae8d3d66a31}</destination>
+			<destination>{9524a5d6-9602-4095-bdba-a8a08fe80fa7}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{fe6745f6-6996-4c6f-b7e7-a59a7cd7d3dc}" />
+	<object class="SpectrumAnalyzer" id="{44fca53f-889e-4480-95da-07ebed37b43e}" />
 	<object class="MixerBusFader" id="{488bdedd-6f65-4713-8ef4-59d09252d4e2}" />
+	<object class="MultibandEqEffect" id="{3cf0a406-cbb2-4ac6-9f2f-2ae8d3d66a31}">
+		<property name="filterTypeA">
+			<value>13</value>
+		</property>
+		<property name="frequencyA">
+			<value>7490.58887</value>
+		</property>
+		<property name="qualityA">
+			<value>0.528780103</value>
+		</property>
+		<property name="gainA">
+			<value>-12.6435547</value>
+		</property>
+	</object>
+	<object class="SFXReverbEffect" id="{9524a5d6-9602-4095-bdba-a8a08fe80fa7}">
+		<property name="wetLevel">
+			<value>-36</value>
+		</property>
+	</object>
 </objects>

@@ -11,14 +11,64 @@
 			<destination>{ed30fa33-935b-4fad-9162-96ac71d1f3d3}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{303db400-1498-4846-aec9-cc4602744b8c}</destination>
+			<destination>{ca96bce6-b8d8-4cae-b772-130a29ca84aa}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusEffectChain" id="{b23e654b-cfad-4aa4-85fd-d7df6cd69f1d}">
 		<relationship name="effects">
+			<destination>{ccc2befc-9221-43b1-a30a-91ae39dc5d7e}</destination>
 			<destination>{b86f9ef5-b616-40cb-97cd-4915963f1a49}</destination>
+			<destination>{94434d4c-ba78-4e91-9416-05e3659161d5}</destination>
+			<destination>{01f0aff5-5b2d-45b8-b53a-bc53a4cbe0c3}</destination>
+			<destination>{b62c85e4-25be-4050-86c7-42ceaff0193d}</destination>
+			<destination>{e114c596-49ef-4aba-83aa-521e9b8aa025}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{ed30fa33-935b-4fad-9162-96ac71d1f3d3}" />
+	<object class="SpectrumAnalyzer" id="{ccc2befc-9221-43b1-a30a-91ae39dc5d7e}" />
 	<object class="MixerBusFader" id="{b86f9ef5-b616-40cb-97cd-4915963f1a49}" />
+	<object class="CompressorEffect" id="{94434d4c-ba78-4e91-9416-05e3659161d5}">
+		<property name="threshold">
+			<value>-20</value>
+		</property>
+		<property name="ratio">
+			<value>12</value>
+		</property>
+		<property name="attackTime">
+			<value>0.100000001</value>
+		</property>
+		<property name="releaseTime">
+			<value>70</value>
+		</property>
+		<property name="gain">
+			<value>1</value>
+		</property>
+		<relationship name="sidechains">
+			<destination>{640bc880-0508-4c5f-8b4a-ccaa4fee24f6}</destination>
+		</relationship>
+	</object>
+	<object class="MultibandEqEffect" id="{01f0aff5-5b2d-45b8-b53a-bc53a4cbe0c3}">
+		<property name="filterTypeA">
+			<value>11</value>
+		</property>
+		<property name="frequencyA">
+			<value>850.559509</value>
+		</property>
+		<property name="qualityA">
+			<value>1.89999998</value>
+		</property>
+		<property name="gainA">
+			<value>-5.88299084</value>
+		</property>
+	</object>
+	<object class="SFXReverbEffect" id="{b62c85e4-25be-4050-86c7-42ceaff0193d}">
+		<property name="wetLevel">
+			<value>-36</value>
+		</property>
+	</object>
+	<object class="GainEffect" id="{e114c596-49ef-4aba-83aa-521e9b8aa025}">
+		<property name="gain">
+			<value>-6</value>
+		</property>
+	</object>
 </objects>

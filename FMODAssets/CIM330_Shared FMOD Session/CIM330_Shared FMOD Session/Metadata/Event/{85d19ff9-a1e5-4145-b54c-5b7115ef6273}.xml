@@ -136,6 +136,7 @@
 			<destination>{f7538ed7-361d-412b-9827-d497b882ea51}</destination>
 			<destination>{f2188c09-805c-4058-b3c2-1cdd91263fc7}</destination>
 			<destination>{290799ef-6abd-49bb-bb22-5faf14743c9e}</destination>
+			<destination>{5985fbe1-0cf1-47a9-8ad8-71db3e8c556a}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{2d3e8cb1-fa99-4644-a1da-3aff4f1ca49d}" />
@@ -170,6 +171,9 @@
 	</object>
 	<object class="MixerBusPanner" id="{18ea2e96-a49f-44ee-b187-fa17debc69e0}" />
 	<object class="SpatialiserEffect" id="{f7538ed7-361d-412b-9827-d497b882ea51}">
+		<property name="bypass">
+			<value>true</value>
+		</property>
 		<property name="minimumDistance">
 			<value>350</value>
 		</property>
@@ -207,5 +211,10 @@
 		</property>
 	</object>
 	<object class="MixerBusFader" id="{290799ef-6abd-49bb-bb22-5faf14743c9e}" />
+	<object class="GainEffect" id="{5985fbe1-0cf1-47a9-8ad8-71db3e8c556a}">
+		<property name="gain">
+			<value>-18</value>
+		</property>
+	</object>
 	<object class="MixerBusFader" id="{902d84fe-f3ea-4c39-8bee-83655d57c48d}" />
 </objects>
