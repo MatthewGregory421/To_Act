@@ -12657,7 +12657,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2076267419846607976, guid: 4a5b6bcb094e3354593307001f541fc0, type: 3}
       propertyPath: 'narrationLines.Array.data[1]'
-      value: You can also use the Spcae Bar to jump
+      value: You can also use the Space Bar to jump
       objectReference: {fileID: 0}
     - target: {fileID: 2076267419846607976, guid: 4a5b6bcb094e3354593307001f541fc0, type: 3}
       propertyPath: 'narrationLines.Array.data[2]'

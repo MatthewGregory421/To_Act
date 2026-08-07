@@ -5826,63 +5826,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1005042695}
   m_CullTransparentMesh: 1
---- !u!1001 &1018991818
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1634964598072153571, guid: 331861c39ac25d14ab9bf8e5e45ca3f8, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 141.1515
-      objectReference: {fileID: 0}
-    - target: {fileID: 1634964598072153571, guid: 331861c39ac25d14ab9bf8e5e45ca3f8, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.7970582
-      objectReference: {fileID: 0}
-    - target: {fileID: 1634964598072153571, guid: 331861c39ac25d14ab9bf8e5e45ca3f8, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1634964598072153571, guid: 331861c39ac25d14ab9bf8e5e45ca3f8, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1634964598072153571, guid: 331861c39ac25d14ab9bf8e5e45ca3f8, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1634964598072153571, guid: 331861c39ac25d14ab9bf8e5e45ca3f8, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1634964598072153571, guid: 331861c39ac25d14ab9bf8e5e45ca3f8, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1634964598072153571, guid: 331861c39ac25d14ab9bf8e5e45ca3f8, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1634964598072153571, guid: 331861c39ac25d14ab9bf8e5e45ca3f8, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1634964598072153571, guid: 331861c39ac25d14ab9bf8e5e45ca3f8, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6818884267265246357, guid: 331861c39ac25d14ab9bf8e5e45ca3f8, type: 3}
-      propertyPath: m_Name
-      value: Shield pickup
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 331861c39ac25d14ab9bf8e5e45ca3f8, type: 3}
 --- !u!1 &1021422780
 GameObject:
   m_ObjectHideFlags: 0
@@ -22071,7 +22014,7 @@ MonoBehaviour:
   - 3.25
   - 4.6
   - 2.5
-  - 7
+  - 3.5
   - 11.5
   - 4.5
   - 2.5
@@ -22091,10 +22034,9 @@ MonoBehaviour:
   - I've got about 5 more minutes before this demo ends
   - So we're gonna do a little something called an exposition dump
   - These little guys are Emotions
-  - Use the Up Arrow Key to launch some love at them. If your on an old version of
-    the game, it might be the Left and Right Arrows
-  - The Emotions with Blue cirlce's around them are super bummed, so youll have to
-    do a little grounding excersize before they are ready for love and acceptance,
+  - Use the Up Arrow Key to launch some love at them
+  - The Emotions with Blue cirlce's around them are super bummed, so you'll have
+    to do a little grounding excersize before they are ready for love and acceptance,
     press the Down arrow in the air to do a grounding exercise
   - John's been pushing these emotions down for a long, long time
   - So no they are kicking up a fuse and overwelming him
@@ -22175,4 +22117,3 @@ SceneRoots:
   - {fileID: 1524595752}
   - {fileID: 443941140}
   - {fileID: 1633861211}
-  - {fileID: 1018991818}
