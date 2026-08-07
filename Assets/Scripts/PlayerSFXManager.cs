@@ -73,14 +73,14 @@ public class PlayerSFXManager : MonoBehaviour
         Debug.Log("PlayGroundSlam called");
 
         RuntimeManager.StudioSystem.setParameterByName(
-            PlayerActionSelector,
-            5,
-            true
-        );
-
-        RuntimeManager.StudioSystem.setParameterByName(
             PlayerSpecialSelector,
             1,
+            true
+        );
+        
+        RuntimeManager.StudioSystem.setParameterByName(
+            PlayerActionSelector,
+            5,
             true
         );
 
@@ -96,12 +96,6 @@ public class PlayerSFXManager : MonoBehaviour
         Debug.Log("PlayShieldActive called");
 
         RuntimeManager.StudioSystem.setParameterByName(
-            PlayerActionSelector,
-            5,
-            true
-        );
-
-        RuntimeManager.StudioSystem.setParameterByName(
             PlayerSpecialSelector,
             0,
             true
@@ -113,16 +107,17 @@ public class PlayerSFXManager : MonoBehaviour
             true
         );
 
-        PlaySafe();
-    }
-
-    public void PlayShieldConnect()
-    {
         RuntimeManager.StudioSystem.setParameterByName(
             PlayerActionSelector,
             5,
             true
         );
+
+        PlaySafe();
+    }
+
+    public void PlayShieldConnect()
+    {
 
         RuntimeManager.StudioSystem.setParameterByName(
             PlayerSpecialSelector,
@@ -136,16 +131,17 @@ public class PlayerSFXManager : MonoBehaviour
             true
         );
 
-        PlaySafe();
-    }
-
-    public void PlayShieldDeactive()
-    {
         RuntimeManager.StudioSystem.setParameterByName(
             PlayerActionSelector,
             5,
             true
         );
+
+        PlaySafe();
+    }
+
+    public void PlayShieldDeactive()
+    {
 
         RuntimeManager.StudioSystem.setParameterByName(
             PlayerSpecialSelector,
@@ -156,6 +152,12 @@ public class PlayerSFXManager : MonoBehaviour
         RuntimeManager.StudioSystem.setParameterByName(
             PlayerSpecialController,
             2,
+            true
+        );
+
+        RuntimeManager.StudioSystem.setParameterByName(
+            PlayerActionSelector,
+            5,
             true
         );
 
