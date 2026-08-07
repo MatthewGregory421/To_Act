@@ -18,7 +18,9 @@
 		<relationship name="effects">
 			<destination>{7ada866d-e3c9-487e-ab28-4c0fc461d08a}</destination>
 			<destination>{41ba642c-1388-4771-b8da-8ea6f7bf9245}</destination>
+			<destination>{230dca05-cb0f-4383-ad8a-2d446d0512de}</destination>
 			<destination>{a636b55c-afb1-4ca8-aacd-18084aed6715}</destination>
+			<destination>{5cb7e8cb-b358-4380-8cfc-7be6dc92ef54}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{cf0663a1-e766-4368-93b3-02e2b6d1a3dc}" />
@@ -28,7 +30,11 @@
 			<value>-4</value>
 		</property>
 	</object>
+	<object class="Sidechain" id="{230dca05-cb0f-4383-ad8a-2d446d0512de}" />
 	<object class="CompressorEffect" id="{a636b55c-afb1-4ca8-aacd-18084aed6715}">
+		<property name="bypass">
+			<value>true</value>
+		</property>
 		<property name="threshold">
 			<value>-25.5</value>
 		</property>
@@ -47,5 +53,10 @@
 		<relationship name="sidechains">
 			<destination>{1e3317cd-4902-426f-9023-70dfa243ffd5}</destination>
 		</relationship>
+	</object>
+	<object class="GainEffect" id="{5cb7e8cb-b358-4380-8cfc-7be6dc92ef54}">
+		<property name="gain">
+			<value>-1</value>
+		</property>
 	</object>
 </objects>

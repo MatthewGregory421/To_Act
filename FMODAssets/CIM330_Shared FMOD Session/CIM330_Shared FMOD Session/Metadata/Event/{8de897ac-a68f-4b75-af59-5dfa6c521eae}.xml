@@ -106,13 +106,9 @@
 			<destination>{472df1e3-206e-4616-85cf-602a00eb5c1a}</destination>
 		</relationship>
 		<relationship name="sounds">
-			<destination>{a1541099-317c-4039-a7af-ce8998f83f5a}</destination>
 			<destination>{9a5c1411-af53-4ae5-bf9e-0d60f1c3dd1a}</destination>
 			<destination>{9a654e81-9eef-4361-9d6b-7f06ccd99be5}</destination>
 			<destination>{8fea303f-b66d-4924-a1e4-35dfecd29dcc}</destination>
-		</relationship>
-		<relationship name="playPercentages">
-			<destination>{b8816e9e-ebd6-49a9-9b00-dfb4481e7d22}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{b2cbf127-eb00-42f6-b666-cb9097f82f8f}">
@@ -132,6 +128,7 @@
 	<object class="MixerBusEffectChain" id="{eab2f3c6-32cb-4c31-aa52-c749a9547dd3}">
 		<relationship name="effects">
 			<destination>{a04f393a-3071-4a1a-bb6f-48296f4d3d4e}</destination>
+			<destination>{953cd7d5-3b34-43e8-b3a7-4896dc8ec036}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{ddb03776-742b-4a53-8efa-f3e3f27804ad}" />
@@ -143,14 +140,6 @@
 		<property name="amount">
 			<value>13.5</value>
 		</property>
-	</object>
-	<object class="SingleSound" id="{a1541099-317c-4039-a7af-ce8998f83f5a}">
-		<property name="startOffset">
-			<value>1.5</value>
-		</property>
-		<relationship name="audioFile">
-			<destination>{b1b97293-da70-47c6-a423-a334d8aec446}</destination>
-		</relationship>
 	</object>
 	<object class="SingleSound" id="{9a5c1411-af53-4ae5-bf9e-0d60f1c3dd1a}">
 		<property name="startOffset">
@@ -176,14 +165,6 @@
 			<destination>{eecf027c-3e2c-4853-a4b3-5b27639dd740}</destination>
 		</relationship>
 	</object>
-	<object class="PlayPercentage" id="{b8816e9e-ebd6-49a9-9b00-dfb4481e7d22}">
-		<property name="percentage">
-			<value>2</value>
-		</property>
-		<relationship name="sound">
-			<destination>{a1541099-317c-4039-a7af-ce8998f83f5a}</destination>
-		</relationship>
-	</object>
 	<object class="MixerBusEffectChain" id="{3e0c9ecf-0e21-4513-aeb4-5bb5fb026275}">
 		<relationship name="effects">
 			<destination>{a773b538-0a8e-45c5-85d2-b5096c43d28f}</destination>
@@ -191,5 +172,6 @@
 	</object>
 	<object class="MixerBusPanner" id="{c14bec47-3d49-4bc4-b7ec-345339f685ab}" />
 	<object class="MixerBusFader" id="{a04f393a-3071-4a1a-bb6f-48296f4d3d4e}" />
+	<object class="GainEffect" id="{953cd7d5-3b34-43e8-b3a7-4896dc8ec036}" />
 	<object class="MixerBusFader" id="{a773b538-0a8e-45c5-85d2-b5096c43d28f}" />
 </objects>

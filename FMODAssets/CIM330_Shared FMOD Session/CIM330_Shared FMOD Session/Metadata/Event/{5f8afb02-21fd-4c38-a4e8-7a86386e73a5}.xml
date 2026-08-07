@@ -5,7 +5,7 @@
 			<value>PlayerSpecialManager</value>
 		</property>
 		<property name="outputFormat">
-			<value>0</value>
+			<value>1</value>
 		</property>
 		<relationship name="folder">
 			<destination>{009cc198-31c7-4f7b-8de2-988f9b2be43e}</destination>
@@ -111,6 +111,9 @@
 		</relationship>
 	</object>
 	<object class="EventSound" id="{91016391-392e-48f8-92a0-b4f45bbe737e}">
+		<relationship name="triggerConditions">
+			<destination>{e8002961-1466-4022-8e16-fb1ed69342f8}</destination>
+		</relationship>
 		<relationship name="event">
 			<destination>{5d8e45bd-a621-437c-8878-3250f57aab04}</destination>
 		</relationship>
@@ -136,6 +139,17 @@
 	</object>
 	<object class="MixerBusPanner" id="{b57cd941-8b1b-4779-822c-b654afb7aad2}" />
 	<object class="MixerBusFader" id="{dbae963e-7005-423d-8e5d-d0a9c39d536a}" />
+	<object class="ParameterCondition" id="{e8002961-1466-4022-8e16-fb1ed69342f8}">
+		<property name="minimum">
+			<value>5</value>
+		</property>
+		<property name="maximum">
+			<value>5</value>
+		</property>
+		<relationship name="parameter">
+			<destination>{ce45f4f8-041d-4799-b98f-2b5e5d84acfe}</destination>
+		</relationship>
+	</object>
 	<object class="MixerBusEffectChain" id="{6987c707-a542-4ecd-9cab-065cfb4391c3}">
 		<relationship name="effects">
 			<destination>{151a4446-d4ba-4f53-aa4e-3c7f8bc688af}</destination>
