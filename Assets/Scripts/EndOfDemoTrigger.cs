@@ -6,13 +6,16 @@ using FMOD.Studio;
 
 public class EndOfDemoTrigger : MonoBehaviour
 {
-    [Header("End UI")]
+    [Header("End Screen")]
     [SerializeField] private GameObject endScreen;
 
-    [Header("Outro Cutscene")]
-    [SerializeField] private GameObject outroCanvas;
+    [Header("Outro Video")]
+    [SerializeField] private GameObject blackBackground;
     [SerializeField] private VideoPlayer videoPlayer;
     [SerializeField] private string videoFileName = "Closer.mp4";
+
+    [Header("Cutscene Audio")]
+    [SerializeField] private CutscenesAudioManager cutscenesAudioManager;
 
     private const string MusicBusPath =
         "bus:/Mix Buss/Music";
@@ -20,9 +23,11 @@ public class EndOfDemoTrigger : MonoBehaviour
     private bool triggered;
     private bool returningToMenu;
     private bool videoFinished;
+    private bool cutsceneAudioStarted;
 
     private PlayerInput playerInput;
     private Rigidbody2D playerRigidbody;
+
     private PauseMenu pauseMenu;
 
     private bool previousRigidbodySimulated;
@@ -33,11 +38,23 @@ public class EndOfDemoTrigger : MonoBehaviour
 
     private void Start()
     {
-        if (endScreen != null)
-            endScreen.SetActive(false);
+        // =========================
+        // INITIAL UI STATE
+        // =========================
 
-        if (outroCanvas != null)
-            outroCanvas.SetActive(false);
+        // Congratulations screen should not
+        // appear until the video has finished.
+        if (endScreen != null)
+        {
+            endScreen.SetActive(false);
+        }
+
+        // Video display should not appear
+        // until the player reaches the portal.
+        if (blackBackground != null)
+        {
+            blackBackground.SetActive(false);
+        }
     }
 
     private void Update()
@@ -45,16 +62,24 @@ public class EndOfDemoTrigger : MonoBehaviour
         if (!triggered || videoFinished)
             return;
 
-        // Keep the game locked during the outro.
-        if (Time.timeScale != 0f)
-            Time.timeScale = 0f;
+        // =========================
+        // CUTSCENE SAFETY LOCK
+        // =========================
 
+        // Keep the game frozen.
+        if (Time.timeScale != 0f)
+        {
+            Time.timeScale = 0f;
+        }
+
+        // Keep player controls disabled.
         if (playerInput != null &&
             playerInput.enabled)
         {
             playerInput.enabled = false;
         }
 
+        // Keep player physics disabled.
         if (playerRigidbody != null &&
             playerRigidbody.simulated)
         {
@@ -88,7 +113,9 @@ public class EndOfDemoTrigger : MonoBehaviour
             player.GetComponent<Rigidbody2D>();
 
         if (playerInput != null)
+        {
             playerInput.enabled = false;
+        }
 
         if (playerRigidbody != null)
         {
@@ -122,7 +149,7 @@ public class EndOfDemoTrigger : MonoBehaviour
         Time.timeScale = 0f;
 
         // =========================
-        // PAUSE FMOD MUSIC
+        // PAUSE GAME MUSIC
         // =========================
 
         musicBus =
@@ -136,15 +163,57 @@ public class EndOfDemoTrigger : MonoBehaviour
                 musicBus.setPaused(true);
 
             if (result == FMOD.RESULT.OK)
+            {
                 musicWasPaused = true;
+            }
+            else
+            {
+                Debug.LogWarning(
+                    "Could not pause Music bus: " +
+                    result
+                );
+            }
+        }
+        else
+        {
+            Debug.LogWarning(
+                "Could not find FMOD Music bus."
+            );
+        }
+
+        if (blackBackground != null)
+        {
+            blackBackground.SetActive(true);
         }
 
         // =========================
-        // SHOW CUTSCENE
+        // GET CUTSCENE AUDIO MANAGER
         // =========================
 
-        if (outroCanvas != null)
-            outroCanvas.SetActive(true);
+        /*
+         * Since your CutscenesManager is underneath
+         * BlackBackground, we search AFTER turning
+         * BlackBackground on.
+         */
+
+        if (cutscenesAudioManager == null)
+        {
+            cutscenesAudioManager =
+                FindFirstObjectByType<CutscenesAudioManager>(
+                    FindObjectsInactive.Include
+                );
+        }
+
+        if (cutscenesAudioManager == null)
+        {
+            Debug.LogWarning(
+                "Could not find CutscenesAudioManager."
+            );
+        }
+
+        // =========================
+        // START OUTRO
+        // =========================
 
         PlayOutro();
     }
@@ -161,8 +230,32 @@ public class EndOfDemoTrigger : MonoBehaviour
             return;
         }
 
+        // Make sure the VideoPlayer itself is enabled.
+        if (!videoPlayer.enabled)
+        {
+            videoPlayer.enabled = true;
+        }
+
+        // The VideoPlayer is outside the hidden
+        // BlackBackground, so it should always
+        // remain active in the hierarchy.
+        if (!videoPlayer.gameObject.activeInHierarchy)
+        {
+            Debug.LogError(
+                "Outro VideoPlayer GameObject is inactive."
+            );
+
+            FinishOutro();
+            return;
+        }
+
+        // Video continues while Time.timeScale = 0.
         videoPlayer.timeUpdateMode =
             VideoTimeUpdateMode.UnscaledGameTime;
+
+        // =========================
+        // VIDEO FILE
+        // =========================
 
         videoPlayer.source =
             VideoSource.Url;
@@ -192,10 +285,18 @@ public class EndOfDemoTrigger : MonoBehaviour
             videoPlayer.url
         );
 
-        // Unity Audio is disabled in this project.
-        // Outro audio can be handled through FMOD later.
+        // =========================
+        // VIDEO AUDIO
+        // =========================
+
+        // Unity Audio is disabled.
+        // FMOD handles the cutscene sound.
         videoPlayer.audioOutputMode =
             VideoAudioOutputMode.None;
+
+        // =========================
+        // VIDEO SETTINGS
+        // =========================
 
         videoPlayer.isLooping = false;
         videoPlayer.playOnAwake = false;
@@ -216,6 +317,29 @@ public class EndOfDemoTrigger : MonoBehaviour
         VideoPlayer source
     )
     {
+        Debug.Log(
+            "Outro video prepared."
+        );
+
+        // =========================
+        // START FMOD CLOSER AUDIO
+        // =========================
+
+        if (cutscenesAudioManager != null)
+        {
+            cutscenesAudioManager
+                .PlayCloserCutscene();
+
+            cutsceneAudioStarted = true;
+        }
+        else
+        {
+            Debug.LogWarning(
+                "Outro prepared, but CutscenesAudioManager is missing."
+            );
+        }
+
+        // Start video immediately after starting FMOD.
         source.Play();
     }
 
@@ -236,7 +360,8 @@ public class EndOfDemoTrigger : MonoBehaviour
             message
         );
 
-        // Still show the end screen if the video fails.
+        // If the video breaks, don't trap
+        // the player forever.
         FinishOutro();
     }
 
@@ -247,28 +372,54 @@ public class EndOfDemoTrigger : MonoBehaviour
 
         videoFinished = true;
 
+        // =========================
+        // STOP VIDEO
+        // =========================
+
         if (videoPlayer != null)
+        {
             videoPlayer.Stop();
+        }
 
-        // Remove the video canvas.
-        if (outroCanvas != null)
-            Destroy(outroCanvas);
+        // =========================
+        // STOP FMOD CUTSCENE AUDIO
+        // =========================
 
-        // Show your existing completion screen.
+        StopCutsceneAudio();
+
+        // =========================
+        // HIDE VIDEO
+        // =========================
+
+        if (blackBackground != null)
+        {
+            blackBackground.SetActive(false);
+        }
+
+        // =========================
+        // SHOW CONGRATULATIONS
+        // =========================
+
         if (endScreen != null)
+        {
             endScreen.SetActive(true);
+        }
 
         /*
-         * We deliberately DO NOT:
+         * IMPORTANT:
          *
-         * - re-enable the player
-         * - turn physics back on
-         * - unpause the game
+         * We intentionally keep:
+         *
+         * Time.timeScale = 0
+         * PlayerInput disabled
+         * Rigidbody2D disabled
+         * PauseMenu disabled
+         * Game music paused
          *
          * because the demo is finished.
          *
-         * The player should only be able to use
-         * the Return To Main Menu button now.
+         * The player now only interacts
+         * with the EndScreen button.
          */
     }
 
@@ -280,6 +431,12 @@ public class EndOfDemoTrigger : MonoBehaviour
         returningToMenu = true;
 
         UISFXManager.Instance?.PlayUIConfirm();
+
+        // =========================
+        // STOP CUTSCENE AUDIO
+        // =========================
+
+        StopCutsceneAudio();
 
         // =========================
         // RESTORE MUSIC
@@ -298,7 +455,7 @@ public class EndOfDemoTrigger : MonoBehaviour
         }
 
         // =========================
-        // RESTORE PLAYER
+        // RESTORE PLAYER PHYSICS
         // =========================
 
         if (playerRigidbody != null)
@@ -307,16 +464,27 @@ public class EndOfDemoTrigger : MonoBehaviour
                 previousRigidbodySimulated;
         }
 
+        // =========================
+        // RESTORE PLAYER INPUT
+        // =========================
+
         if (playerInput != null)
         {
             playerInput.enabled = true;
         }
 
-        // Scene transitions need normal game time.
+        // Scene transition needs normal time.
         Time.timeScale = 1f;
 
+        // Hide congratulations screen.
         if (endScreen != null)
+        {
             endScreen.SetActive(false);
+        }
+
+        // =========================
+        // LOAD MAIN MENU
+        // =========================
 
         if (SceneTransitionManager.Instance != null)
         {
@@ -332,6 +500,20 @@ public class EndOfDemoTrigger : MonoBehaviour
                 "Cannot return to MainMenu."
             );
         }
+    }
+
+    private void StopCutsceneAudio()
+    {
+        if (!cutsceneAudioStarted)
+            return;
+
+        if (cutscenesAudioManager != null)
+        {
+            cutscenesAudioManager
+                .StopCutscene();
+        }
+
+        cutsceneAudioStarted = false;
     }
 
     private void RestoreMusic()
@@ -360,5 +542,7 @@ public class EndOfDemoTrigger : MonoBehaviour
             videoPlayer.errorReceived -=
                 OnVideoError;
         }
+
+        StopCutsceneAudio();
     }
 }
