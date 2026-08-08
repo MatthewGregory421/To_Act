@@ -11649,53 +11649,6 @@ RectTransform:
   m_AnchoredPosition: {x: 136.19, y: 227.97}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &980083127
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 980083129}
-  - component: {fileID: 980083128}
-  m_Layer: 0
-  m_Name: PesentationSkipScript
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &980083128
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 980083127}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83d6e6a1d7bf4d54aaf3fa4edc3618c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shortcutKey: 4
-  targetScene: Sadness_1
-  spawnID: Sadness_1_Spawn1
---- !u!4 &980083129
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 980083127}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 23.540825, y: 2.8192644, z: 612.1289}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &994928775
 GameObject:
   m_ObjectHideFlags: 0
@@ -18689,5 +18642,4 @@ SceneRoots:
   - {fileID: 1936803550}
   - {fileID: 1887469963}
   - {fileID: 558443257}
-  - {fileID: 980083129}
   - {fileID: 169498867}
