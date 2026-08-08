@@ -257,6 +257,7 @@ public class PlayerMovementInputSystem : MonoBehaviour
             playerSFXManager.PlayPlayerJump();
 
             playerAnimations.Jump();
+            playerAnimations.PlayDoubleJumpEffect();
 
             canDoubleJump = false;
         }

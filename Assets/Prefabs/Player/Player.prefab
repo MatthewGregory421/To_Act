@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7012782242127971404}
   - component: {fileID: 8869141820051266340}
   - component: {fileID: 7842359634468423611}
+  - component: {fileID: 5807809132433097155}
   m_Layer: 8
   m_Name: PlayerLegs
   m_TagString: Untagged
@@ -110,6 +111,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &5807809132433097155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 11481054321059438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92475b774b9efd1419cba6dc2ab33de0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  p: {fileID: 2930959834354033973}
 --- !u!1 &1928960760893795796
 GameObject:
   m_ObjectHideFlags: 0
@@ -622,6 +636,7 @@ MonoBehaviour:
   footstepeffect: {fileID: 6536150352619834169, guid: 72c2e9e0da7741c4da1f0bde264e6b88, type: 3}
   landeffect: {fileID: 1204644718591752576, guid: 18436d63c00df774e819f14c7ca47eb8, type: 3}
   slameffect: {fileID: 3200410229714692696, guid: b6514ca5730a92b4fac139fc5ab1fb9e, type: 3}
+  doublejumpeffect: {fileID: 7786804622575271856, guid: 504474fb7f915e546aee9e9beb39d12e, type: 3}
   grounded: 0
   blocking: 0
   crouch: 0
@@ -1149,6 +1164,7 @@ MonoBehaviour:
   footstepeffect: {fileID: 0}
   landeffect: {fileID: 0}
   slameffect: {fileID: 0}
+  doublejumpeffect: {fileID: 0}
   grounded: 0
   blocking: 0
   crouch: 0
