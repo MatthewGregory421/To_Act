@@ -61,7 +61,7 @@
 			<value>1</value>
 		</property>
 		<property name="priority">
-			<value>3</value>
+			<value>4</value>
 		</property>
 	</object>
 	<object class="MarkerTrack" id="{d2d589a4-e5b0-4775-9fbc-dec6adee6bce}" />
@@ -96,6 +96,9 @@
 	</object>
 	<object class="MixerBusPanner" id="{bf6b33af-4531-4dc3-935c-dafb60a57c17}" />
 	<object class="MultiSound" id="{f766e5bf-1f64-44d2-8e2b-2f9565464d42}">
+		<property name="isAsync">
+			<value>true</value>
+		</property>
 		<property name="length">
 			<value>2</value>
 		</property>
@@ -172,7 +175,7 @@
 	<object class="MixerBusFader" id="{d9f9a8fe-e6f6-4ecd-a96e-6dcb56912dba}" />
 	<object class="MixerSend" id="{55d7828f-ce78-413e-a8f0-9d0ba0aae2ab}">
 		<property name="level">
-			<value>-24.5</value>
+			<value>-23.5</value>
 		</property>
 		<property name="inputFormat">
 			<value>0</value>

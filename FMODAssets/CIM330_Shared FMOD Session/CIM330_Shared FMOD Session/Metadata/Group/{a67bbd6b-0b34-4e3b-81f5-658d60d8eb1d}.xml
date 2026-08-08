@@ -50,10 +50,14 @@
 			<destination>{85c0ff12-7108-419f-9b51-49a91ab0eb6a}</destination>
 		</relationship>
 	</object>
-	<object class="GainEffect" id="{e5b9376a-42c3-4ee1-9f34-47998fe692eb}" />
+	<object class="GainEffect" id="{e5b9376a-42c3-4ee1-9f34-47998fe692eb}">
+		<property name="gain">
+			<value>-1</value>
+		</property>
+	</object>
 	<object class="CompressorEffect" id="{42f84512-3f2e-4c80-a00f-6289731719d1}">
 		<property name="threshold">
-			<value>-25.5</value>
+			<value>-23.5</value>
 		</property>
 		<property name="ratio">
 			<value>4.70000029</value>
