@@ -20,19 +20,46 @@ public class CutscenesAudioManager : MonoBehaviour
         }
         catch (System.Exception e)
         {
-            Debug.LogWarning("CutscenesManager failed: " + e.Message);
+            Debug.LogWarning(
+                "CutscenesManager failed: " + e.Message
+            );
         }
     }
 
     public void PlayOpenerCutscene()
     {
-        RuntimeManager.StudioSystem.setParameterByName(CutsceneSelection, 0);
+        RuntimeManager.StudioSystem.setParameterByName(
+            CutsceneSelection,
+            0
+        );
+
         PlaySafe();
     }
 
     public void PlayCloserCutscene()
     {
-        RuntimeManager.StudioSystem.setParameterByName(CutsceneSelection, 1);
+        RuntimeManager.StudioSystem.setParameterByName(
+            CutsceneSelection,
+            1
+        );
+
         PlaySafe();
+    }
+
+    public void StopCutscene()
+    {
+        if (CutscenesManager == null)
+            return;
+
+        try
+        {
+            CutscenesManager.Stop();
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogWarning(
+                "CutscenesManager stop failed: " + e.Message
+            );
+        }
     }
 }
