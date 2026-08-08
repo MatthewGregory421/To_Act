@@ -131,9 +131,6 @@
 		</relationship>
 	</object>
 	<object class="SingleSound" id="{bd022f24-240b-415c-ac65-d40e52c7f416}">
-		<property name="start">
-			<value>0.26000000000000001</value>
-		</property>
 		<property name="length">
 			<value>1.5745625000000001</value>
 		</property>
@@ -175,7 +172,10 @@
 	<object class="MixerBusPanner" id="{bb76f3cf-e2fc-4bac-84dd-bb3acda98059}" />
 	<object class="MixerBusEffectChain" id="{d9a86094-73c1-4503-8dc0-8b0d3d96bbf7}">
 		<relationship name="effects">
+			<destination>{b3f08243-4113-4299-8393-0f74240546e5}</destination>
+			<destination>{92dfea92-91af-4f5f-ac02-7c93864aa61f}</destination>
 			<destination>{91f615e9-53de-4ad9-9912-55d3b8d9be59}</destination>
+			<destination>{4fb8fdfa-afd4-4b48-8a04-54c4f92cc10c}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{823c8da5-927c-4c6e-af1f-d904cd2d6f9c}" />
@@ -212,5 +212,44 @@
 		</relationship>
 	</object>
 	<object class="MixerBusFader" id="{02fd6cee-53c2-49fa-8555-921aef23e78d}" />
+	<object class="DelayEffect" id="{b3f08243-4113-4299-8393-0f74240546e5}">
+		<property name="delay">
+			<value>340</value>
+		</property>
+		<property name="feedback">
+			<value>43</value>
+		</property>
+		<property name="level">
+			<value>-23.5</value>
+		</property>
+		<property name="dryLevel">
+			<value>-2</value>
+		</property>
+	</object>
+	<object class="SFXReverbEffect" id="{92dfea92-91af-4f5f-ac02-7c93864aa61f}">
+		<property name="decayTime">
+			<value>4900</value>
+		</property>
+		<property name="HFDecayRatio">
+			<value>43.5</value>
+		</property>
+		<property name="lowShelfGain">
+			<value>-5</value>
+		</property>
+		<property name="wetLevel">
+			<value>-11.5</value>
+		</property>
+	</object>
 	<object class="MixerBusFader" id="{91f615e9-53de-4ad9-9912-55d3b8d9be59}" />
+	<object class="CompressorEffect" id="{4fb8fdfa-afd4-4b48-8a04-54c4f92cc10c}">
+		<property name="threshold">
+			<value>-16</value>
+		</property>
+		<property name="ratio">
+			<value>3.29999995</value>
+		</property>
+		<property name="gain">
+			<value>4</value>
+		</property>
+	</object>
 </objects>

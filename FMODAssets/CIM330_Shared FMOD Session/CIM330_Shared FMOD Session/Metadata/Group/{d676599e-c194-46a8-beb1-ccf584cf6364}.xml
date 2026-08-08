@@ -124,7 +124,7 @@
 	<object class="Sidechain" id="{640bc880-0508-4c5f-8b4a-ccaa4fee24f6}" />
 	<object class="GainEffect" id="{88f56aa5-1374-4d83-9697-f708d9eb5f09}">
 		<property name="gain">
-			<value>-3</value>
+			<value>-6.5</value>
 		</property>
 	</object>
 	<object class="CompressorEffect" id="{18952bf0-003d-4274-bca9-fcef6ab7b537}">

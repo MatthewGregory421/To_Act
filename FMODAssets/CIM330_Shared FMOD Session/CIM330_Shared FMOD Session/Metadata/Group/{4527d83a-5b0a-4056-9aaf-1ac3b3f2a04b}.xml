@@ -56,7 +56,7 @@
 	</object>
 	<object class="GainEffect" id="{5cb7e8cb-b358-4380-8cfc-7be6dc92ef54}">
 		<property name="gain">
-			<value>-1</value>
+			<value>-4</value>
 		</property>
 	</object>
 </objects>
