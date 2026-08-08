@@ -8,15 +8,16 @@ public class IntroCutsceneController : MonoBehaviour
 {
     [Header("Video")]
     [SerializeField] private VideoPlayer videoPlayer;
-    [SerializeField] private AudioSource videoAudioSource;
     [SerializeField] private string videoFileName = "Opener.mp4";
+
+    [Header("Cutscene Audio")]
+    [SerializeField] private CutscenesAudioManager cutscenesAudioManager;
 
     private const string MusicBusPath =
         "bus:/Mix Buss/Music";
 
     private PlayerInput playerInput;
     private Rigidbody2D playerRigidbody;
-
     private PauseMenu pauseMenu;
 
     private Bus musicBus;
@@ -28,9 +29,29 @@ public class IntroCutsceneController : MonoBehaviour
 
     private bool musicWasPaused;
     private bool hasFinished;
+    private bool cutsceneAudioStarted;
 
     private void Awake()
     {
+        // =========================
+        // FIND CUTSCENE AUDIO MANAGER
+        // =========================
+
+        if (cutscenesAudioManager == null)
+        {
+            cutscenesAudioManager =
+                FindFirstObjectByType<CutscenesAudioManager>(
+                    FindObjectsInactive.Include
+                );
+        }
+
+        if (cutscenesAudioManager == null)
+        {
+            Debug.LogWarning(
+                "IntroCutsceneController could not find CutscenesAudioManager."
+            );
+        }
+
         // =========================
         // FIND PLAYER
         // =========================
@@ -46,7 +67,6 @@ public class IntroCutsceneController : MonoBehaviour
             playerRigidbody =
                 player.GetComponent<Rigidbody2D>();
 
-            // Disable input.
             if (playerInput != null)
             {
                 playerInput.enabled = false;
@@ -58,7 +78,6 @@ public class IntroCutsceneController : MonoBehaviour
                 );
             }
 
-            // Completely stop the player's physics.
             if (playerRigidbody != null)
             {
                 previousRigidbodySimulated =
@@ -96,12 +115,6 @@ public class IntroCutsceneController : MonoBehaviour
 
             pauseMenu.enabled = false;
         }
-        else
-        {
-            Debug.LogWarning(
-                "IntroCutsceneController could not find PauseMenu."
-            );
-        }
 
         // =========================
         // FREEZE GAME
@@ -127,10 +140,6 @@ public class IntroCutsceneController : MonoBehaviour
             if (result == FMOD.RESULT.OK)
             {
                 musicWasPaused = true;
-
-                Debug.Log(
-                    "Intro cutscene paused FMOD Music bus."
-                );
             }
             else
             {
@@ -139,13 +148,6 @@ public class IntroCutsceneController : MonoBehaviour
                     result
                 );
             }
-        }
-        else
-        {
-            Debug.LogWarning(
-                "Could not find FMOD Music bus: " +
-                MusicBusPath
-            );
         }
     }
 
@@ -159,26 +161,20 @@ public class IntroCutsceneController : MonoBehaviour
         if (hasFinished)
             return;
 
-        // =========================
-        // CUTSCENE SAFETY LOCK
-        // =========================
+        // Keep gameplay completely locked
+        // for the entire cutscene.
 
-        // If another script tries to unpause the game,
-        // immediately force it back to paused.
         if (Time.timeScale != 0f)
         {
             Time.timeScale = 0f;
         }
 
-        // If another script tries to re-enable input,
-        // disable it again.
         if (playerInput != null &&
             playerInput.enabled)
         {
             playerInput.enabled = false;
         }
 
-        // Keep physics completely disabled.
         if (playerRigidbody != null &&
             playerRigidbody.simulated)
         {
@@ -188,7 +184,7 @@ public class IntroCutsceneController : MonoBehaviour
 
     private void PlayIntro()
     {
-        // Video continues while game time is frozen.
+        // Video continues despite Time.timeScale = 0.
         videoPlayer.timeUpdateMode =
             VideoTimeUpdateMode.UnscaledGameTime;
 
@@ -225,67 +221,13 @@ public class IntroCutsceneController : MonoBehaviour
         );
 
         // =========================
-        // AUDIO TRACK
+        // VIDEO AUDIO
         // =========================
 
-        // Our MP4 contains one AAC audio track.
-        //
-        // This is especially important for URL-based
-        // VideoPlayers because Unity does not know
-        // the track count until preparation.
-        videoPlayer.controlledAudioTrackCount = 1;
-
-        videoPlayer.EnableAudioTrack(
-            0,
-            true
-        );
-
-#if UNITY_WEBGL && !UNITY_EDITOR
-
-        // Web builds can send the video's audio
-        // directly through the browser/platform.
+        // Unity Audio is disabled.
+        // FMOD handles all cutscene audio.
         videoPlayer.audioOutputMode =
-            VideoAudioOutputMode.Direct;
-
-        videoPlayer.SetDirectAudioMute(
-            0,
-            false
-        );
-
-        videoPlayer.SetDirectAudioVolume(
-            0,
-            1f
-        );
-
-#else
-
-        // Windows Editor/native backend complained
-        // about Direct output, so use an AudioSource.
-        videoPlayer.audioOutputMode =
-            VideoAudioOutputMode.AudioSource;
-
-        if (videoAudioSource != null)
-        {
-            videoAudioSource.playOnAwake = false;
-            videoAudioSource.loop = false;
-            videoAudioSource.mute = false;
-            videoAudioSource.volume = 1f;
-            videoAudioSource.spatialBlend = 0f;
-            videoAudioSource.ignoreListenerPause = true;
-
-            videoPlayer.SetTargetAudioSource(
-                0,
-                videoAudioSource
-            );
-        }
-        else
-        {
-            Debug.LogWarning(
-                "No Video Audio Source assigned."
-            );
-        }
-
-#endif
+            VideoAudioOutputMode.None;
 
         // =========================
         // VIDEO SETTINGS
@@ -306,66 +248,28 @@ public class IntroCutsceneController : MonoBehaviour
         videoPlayer.Prepare();
     }
 
-    private void OnVideoPrepared(VideoPlayer source)
+    private void OnVideoPrepared(
+        VideoPlayer source
+    )
     {
-        Debug.Log("Intro video prepared.");
-
         Debug.Log(
-            "Video audio tracks found: " +
-            source.audioTrackCount
+            "Intro video prepared."
         );
 
-        if (source.audioTrackCount > 0)
-        {
-            Debug.Log(
-                "Audio channels: " +
-                source.GetAudioChannelCount(0)
-            );
+        // =========================
+        // START FMOD CUTSCENE AUDIO
+        // =========================
 
-            Debug.Log(
-                "Audio sample rate: " +
-                source.GetAudioSampleRate(0)
-            );
+        if (cutscenesAudioManager != null)
+        {
+            cutscenesAudioManager
+                .PlayOpenerCutscene();
+
+            cutsceneAudioStarted = true;
         }
 
-        if (videoAudioSource != null)
-        {
-            // Make absolutely sure the AudioSource
-            // can still make sound while gameplay is paused.
-            videoAudioSource.enabled = true;
-            videoAudioSource.mute = false;
-            videoAudioSource.volume = 1f;
-            videoAudioSource.spatialBlend = 0f;
-
-            // Important if another system uses AudioListener.pause.
-            videoAudioSource.ignoreListenerPause = true;
-
-            Debug.Log(
-                "AudioSource enabled: " +
-                videoAudioSource.enabled
-            );
-
-            Debug.Log(
-                "AudioSource muted: " +
-                videoAudioSource.mute
-            );
-
-            Debug.Log(
-                "AudioSource volume: " +
-                videoAudioSource.volume
-            );
-
-            Debug.Log(
-                "AudioListener paused: " +
-                AudioListener.pause
-            );
-
-            Debug.Log(
-                "AudioListener volume: " +
-                AudioListener.volume
-            );
-        }
-
+        // Start the video immediately after
+        // starting the FMOD audio.
         source.Play();
     }
 
@@ -404,6 +308,12 @@ public class IntroCutsceneController : MonoBehaviour
         {
             videoPlayer.Stop();
         }
+
+        // =========================
+        // STOP CUTSCENE AUDIO
+        // =========================
+
+        StopCutsceneAudio();
 
         // =========================
         // RESTORE MUSIC
@@ -447,8 +357,22 @@ public class IntroCutsceneController : MonoBehaviour
         Time.timeScale =
             previousTimeScale;
 
-        // Destroy entire intro canvas.
+        // Remove entire cutscene canvas.
         Destroy(gameObject);
+    }
+
+    private void StopCutsceneAudio()
+    {
+        if (!cutsceneAudioStarted)
+            return;
+
+        if (cutscenesAudioManager != null)
+        {
+            cutscenesAudioManager
+                .StopCutscene();
+        }
+
+        cutsceneAudioStarted = false;
     }
 
     private void RestoreMusic()
@@ -478,10 +402,11 @@ public class IntroCutsceneController : MonoBehaviour
                 OnVideoError;
         }
 
-        // Emergency cleanup if the canvas gets
-        // destroyed without FinishIntro().
+        // Emergency cleanup if something destroys
+        // the cutscene before it ends normally.
         if (!hasFinished)
         {
+            StopCutsceneAudio();
             RestoreMusic();
 
             if (playerRigidbody != null)
