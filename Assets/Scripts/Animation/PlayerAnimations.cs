@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections;
-using JetBrains.Annotations;
 
 public class PlayerAnimations : MonoBehaviour
 {
@@ -8,11 +7,25 @@ public class PlayerAnimations : MonoBehaviour
     [SerializeField] private Animator leganimator;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private PlayerSFXManager playerSFXManager;
+    [SerializeField] private PlayerMovementInputSystem playerMovement;
 
     float velX;
     float velY;
-    float aimX;
-    float aimY;
+
+    // =========================
+    // FOOTSTEPS
+    // =========================
+
+    [Header("Footsteps")]
+    [SerializeField] private float footstepCooldown = 0.30f;
+
+    private float lastFootstepTime = -999f;
+
+
+    // =========================
+    // EFFECTS
+    // =========================
+
     [Header("Effects")]
     [SerializeField] private Transform pSpawner;
     [SerializeField] private GameObject footstepeffect;
@@ -20,14 +33,20 @@ public class PlayerAnimations : MonoBehaviour
     [SerializeField] private GameObject slameffect;
     [SerializeField] private GameObject doublejumpeffect;
 
+
+    // =========================
+    // ANIMATION STATE
+    // =========================
+
     [Header("Animation State")]
     public bool grounded;
     public bool blocking;
     public bool crouch;
     public bool groundslam;
-    //public float velocity;
+
     bool landeffectprimed;
     bool animgrounded;
+
     private bool prevGrounded;
     bool prevslamming;
 
@@ -35,10 +54,11 @@ public class PlayerAnimations : MonoBehaviour
 
     bool fullbody = false;
 
-    public void PlayDoubleJumpEffect()
-    {
-        SpawnEffect(doublejumpeffect);
-    }
+
+    // =========================
+    // UNITY
+    // =========================
+
     private void Awake()
     {
         if (animator == null)
@@ -46,73 +66,109 @@ public class PlayerAnimations : MonoBehaviour
 
         if (rb == null)
             rb = GetComponentInParent<Rigidbody2D>();
-    }
 
-    public void UpdateSittingAnim(bool yea)
-    {
-        animator.SetBool("Sitting", yea);
+        if (playerMovement == null)
+            playerMovement =
+                GetComponentInParent<PlayerMovementInputSystem>();
     }
 
     private void Update()
     {
-        if(!groundslam && prevslamming != groundslam)
+        if (animator == null || rb == null)
+            return;
+
+
+        // =========================
+        // SLAM EFFECT
+        // =========================
+
+        if (!groundslam && prevslamming != groundslam)
         {
             SpawnEffect(slameffect);
         }
 
-        if(prevGrounded != grounded) 
-            {
+
+        // =========================
+        // LAND EFFECT
+        // =========================
+
+        if (prevGrounded != grounded)
+        {
             landeffectprimed = true;
         }
 
-        if(grounded && Mathf.Abs( velY) <= 0f || Mathf.Abs(velY) >= 0f)
+        if (grounded && Mathf.Abs(velY) <= 0f || Mathf.Abs(velY) >= 0f)
         {
             animgrounded = true;
         }
 
-        if (landeffectprimed && animgrounded) {
-
+        if (landeffectprimed && animgrounded)
+        {
             SpawnEffect(landeffect);
             landeffectprimed = false;
         }
-        handlearrows();
+
+
+        // =========================
+        // INPUT / VELOCITY
+        // =========================
+
         velX = rb.linearVelocityX;
         velY = rb.linearVelocityY;
 
-        //Velocities
-        animator.SetFloat("XVel", Mathf.Abs( velX));
-        animator.SetFloat("YVel", velY);
-        leganimator.SetFloat("VelX",Mathf.Abs( velX));
-        leganimator.SetFloat("VelY", velY);
-        //animator.SetFloat("AimX", aimX);
-        //animator.SetFloat("AimY", aimY);
 
-        //Bools
+        // =========================
+        // ANIMATOR VELOCITIES
+        // =========================
+
+        animator.SetFloat("XVel", Mathf.Abs(velX));
+        animator.SetFloat("YVel", velY);
+
+        leganimator.SetFloat("VelX", Mathf.Abs(velX));
+        leganimator.SetFloat("VelY", velY);
+
+
+        // =========================
+        // ANIMATOR BOOLS
+        // =========================
+
         animator.SetBool("Grounded", grounded);
         leganimator.SetBool("Grounded", grounded);
+
         animator.SetBool("Blocking", blocking);
         animator.SetBool("Crouched", crouch);
         animator.SetBool("Groundslam", groundslam);
 
-        if(animator.GetCurrentAnimatorStateInfo(0).IsName("Groundslam")
-            || animator.GetCurrentAnimatorStateInfo(0).IsName("Dazed")
-            || animator.GetCurrentAnimatorStateInfo(0).IsName("TakeDamage")
-            || animator.GetCurrentAnimatorStateInfo(0).IsName("Groundslam")||
-            animator.GetCurrentAnimatorStateInfo(0).IsName("Sitting")||
+
+        // =========================
+        // FULL BODY ANIMATIONS
+        // =========================
+
+        if (
+            animator.GetCurrentAnimatorStateInfo(0).IsName("Groundslam") ||
+            animator.GetCurrentAnimatorStateInfo(0).IsName("Dazed") ||
+            animator.GetCurrentAnimatorStateInfo(0).IsName("TakeDamage") ||
+            animator.GetCurrentAnimatorStateInfo(0).IsName("Sitting") ||
             animator.GetCurrentAnimatorStateInfo(0).IsName("Crouch movement") ||
-            blocking)
+            animator.GetCurrentAnimatorStateInfo(0).IsName("Pickup") ||
+            blocking
+        )
         {
             fullbody = true;
         }
-        else { fullbody = false; }
+        else
+        {
+            fullbody = false;
+        }
 
-        
-
-        if (animator == null || rb == null)
-            return;
 
         if (takingDamage)
             return;
+
+
+        // =========================
+        // LEG ANIMATOR
+        // =========================
 
         if (fullbody)
         {
@@ -123,66 +179,19 @@ public class PlayerAnimations : MonoBehaviour
             leganimator.gameObject.SetActive(true);
         }
 
+
         prevslamming = groundslam;
         prevGrounded = grounded;
-        //Old
-        /*
-        if (animator == null || rb == null)
-            return;
-
-        if (takingDamage)
-            return;
-
-        
-        animator.SetBool("Grounded", grounded);
-        animator.SetBool("Blocking", blocking);
-        animator.SetBool("Crouch", crouch);
-        animator.SetBool("GroundSlam", groundslam);
-
-        animator.SetFloat("Velocity", velocity);
-        animator.SetFloat("Vvelocity", rb.linearVelocity.y);
-
-        prevGrounded = grounded;
-        */
     }
 
-    void handlearrows()
+
+    // =========================
+    // ANIMATION FUNCTIONS
+    // =========================
+
+    public void UpdateSittingAnim(bool yea)
     {
-        //It has to be done...
-        //Velocity doesn't change with orientation
-        //AimX; 1 = forward, -1 = backward
-        if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            //If velocity right, and press left
-           if(velX > 0)
-            {
-                aimX = -1;
-            }
-            else
-            {
-                aimX = 1;
-            }
-        }
-        if (Input.GetKey(KeyCode.RightArrow))
-        {
-            //If velocity right and press right
-            if(velX > 0)
-            {
-                aimX = 1;
-            }
-            else
-            {
-                aimX = -1;
-            }
-        }
-        if (Input.GetKey(KeyCode.UpArrow))
-        {
-            aimY = 1;
-        }
-        if (Input.GetKey(KeyCode.DownArrow))
-        {
-            aimY = -1;
-        }
+        animator.SetBool("Sitting", yea);
     }
 
     public void ResetFullbody()
@@ -192,16 +201,6 @@ public class PlayerAnimations : MonoBehaviour
 
     public void Jump()
     {
-
-    }
-
-    public void TakeDamage()
-    {
-        animator.SetTrigger("TakeDamage");
-        AnimatorStateInfo state = animator.GetCurrentAnimatorStateInfo(0);
-
-        Debug.Log("Current State: " + state.shortNameHash);
-        Debug.Log("Is in Take damage: " + state.IsName("Take damage"));
     }
 
     public void Attack()
@@ -209,76 +208,95 @@ public class PlayerAnimations : MonoBehaviour
         animator.SetTrigger("Attack");
     }
 
-    public void PlayFootstep()
-    {
-        if (!grounded)
-            return;
-
-        if (Mathf.Abs( velX) < 0.1f)
-            return;
-
-        playerSFXManager?.PlayPlayerFootsteps();
-        //SpawnEffect(footstepeffect);
-
-    }
-
-    public void SpawnEffect(GameObject effect)
-    {
-        if (effect == null || pSpawner == null)
-            return;
-
-        GameObject spawnedEffect = Instantiate(effect, pSpawner.position, Quaternion.identity);
-    }
-
-    //Old
-    /*
-    public void SpawnEffect(GameObject effect)
-    {
-        if (effect == null || pSpawner == null)
-            return;
-
-        GameObject spawnedEffect = Instantiate(effect, pSpawner.position, Quaternion.identity);
-    }
-
-    public void SetBool(string name, bool value)
-    {
-        animator.SetBool(name, value);
-    }
-
-    public void SetTrigger(string trigger)
-    {
-        animator.SetTrigger(trigger);
-    }
-
-    public void Jump()
-    {
-        SetTrigger("Jump");
-    }
-
-    public void Attack()
-    {
-        SetTrigger("Attack");
-    }
-
     public void TakeDamage()
     {
-        animator.Play("Take damage", 0, 0f);
+        animator.SetTrigger("TakeDamage");
 
-        AnimatorStateInfo state = animator.GetCurrentAnimatorStateInfo(0);
+        AnimatorStateInfo state =
+            animator.GetCurrentAnimatorStateInfo(0);
 
         Debug.Log("Current State: " + state.shortNameHash);
-        Debug.Log("Is in Take damage: " + state.IsName("Take damage"));
+        Debug.Log(
+            "Is in Take damage: " +
+            state.IsName("Take damage")
+        );
     }
+
+
+    // =========================
+    // FOOTSTEP SOUND
+    // =========================
 
     public void PlayFootstep()
     {
+        // Don't make footsteps while in the air.
         if (!grounded)
             return;
 
-        if (velocity < 0.1f)
+        // Don't make footsteps while standing still.
+        if (Mathf.Abs(velX) < 0.1f)
             return;
 
+        // Stop the animation event from spamming footsteps.
+        if (Time.time - lastFootstepTime < footstepCooldown)
+            return;
+
+        // Record when this footstep played.
+        lastFootstepTime = Time.time;
+
+        // Play the actual FMOD footstep.
         playerSFXManager?.PlayPlayerFootsteps();
+
+        // Optional visual footstep effect.
+        // SpawnEffect(footstepeffect);
     }
-    */
+
+
+    // =========================
+    // DOUBLE JUMP EFFECT
+    // =========================
+
+    public void PlayDoubleJumpEffect()
+    {
+        SpawnEffect(doublejumpeffect);
+    }
+
+
+    // =========================
+    // EFFECT SPAWNER
+    // =========================
+
+    public void SpawnEffect(GameObject effect)
+    {
+        if (effect == null || pSpawner == null)
+            return;
+
+        GameObject spawnedEffect =
+            Instantiate(
+                effect,
+                pSpawner.position,
+                Quaternion.identity
+            );
+    }
+
+    // =========================
+    // PICKUP ANIMATION
+    // =========================
+
+    public void PlayPickupAnimation()
+    {
+        if (animator == null)
+            return;
+
+        animator.ResetTrigger("Pickup");
+        animator.SetTrigger("Pickup");
+    }
+
+    public void FinishPickupAnimation()
+    {
+        if (playerMovement != null)
+        {
+            playerMovement.FinishPickupAnimation();
+        }
+    }
 }
