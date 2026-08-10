@@ -469,6 +469,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2930959834354033973, guid: a56d984244eaa4143bdc3a3fc0045298, type: 3}
+      propertyPath: footstepCooldown
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2930959834354033973, guid: a56d984244eaa4143bdc3a3fc0045298, type: 3}
       propertyPath: playerSFXManager
       value: 
       objectReference: {fileID: 1216116240}

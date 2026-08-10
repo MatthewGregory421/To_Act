@@ -2,21 +2,15 @@ using UnityEngine;
 
 public class tellanimatortoplayfootstep : MonoBehaviour
 {
-    [SerializeField] PlayerAnimations p;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [SerializeField] private PlayerAnimations p;
 
     public void PlayFootstep()
     {
         p.PlayFootstep();
+    }
+
+    public void FinishPickupAnimation()
+    {
+        p.FinishPickupAnimation();
     }
 }
