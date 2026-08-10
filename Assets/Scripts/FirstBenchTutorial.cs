@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class FirstBenchTutorial : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class FirstBenchTutorial : MonoBehaviour
     public GameObject tutorialCanvas;
     public GameObject blockingWall;
 
+    [Header("Tilemap Destruction")]
+    [SerializeField] private Tilemap wallTilemap;
 
     private bool unlocked;
 
@@ -27,17 +30,39 @@ public class FirstBenchTutorial : MonoBehaviour
 
     private void CheckBench()
     {
-        string currentBench = WorldStateManager.Instance.GetCurrentBench();
+        if (WorldStateManager.Instance == null)
+            return;
 
-        if (currentBench == requiredBenchID)
+        string currentBench =
+            WorldStateManager.Instance.GetCurrentBench();
+
+        if (currentBench != requiredBenchID)
+            return;
+
+        UnlockTutorial();
+    }
+
+    private void UnlockTutorial()
+    {
+        unlocked = true;
+
+        Debug.Log(
+            "First bench reached. Removing tutorial blockers."
+        );
+
+        if (tutorialCanvas != null)
         {
-            unlocked = true;
+            Destroy(tutorialCanvas);
+        }
 
-            if (tutorialCanvas != null)
-                Destroy(tutorialCanvas);
+        if (blockingWall != null)
+        {
+            Destroy(blockingWall);
+        }
 
-            if (blockingWall != null)
-                Destroy(blockingWall);
+        if (wallTilemap != null)
+        {
+            Destroy(wallTilemap.gameObject);
         }
     }
 }

@@ -32,6 +32,17 @@ public class PlayerMovementInputSystem : MonoBehaviour
 
     private RigidbodyConstraints2D constraintsBeforeSitting;
 
+    // =========================
+    // PICKUP ANIMATION
+    // =========================
+
+    [Header("Pickup Animation")]
+    [SerializeField] private PlayerInput playerInput;
+
+    public bool IsPlayingPickupAnimation { get; private set; }
+
+    private RigidbodyConstraints2D constraintsBeforePickup;
+
     [Header("Movement Feel")]
     public float acceleration = 20f;
     public float deceleration = 25f;
@@ -107,8 +118,17 @@ public class PlayerMovementInputSystem : MonoBehaviour
         originalColliderSize = box.size;
         originalColliderOffset = box.offset;
 
+        if (playerInput == null)
+        {
+            playerInput = GetComponent<PlayerInput>();
+
+            if (playerInput == null)
+                playerInput = GetComponentInParent<PlayerInput>();
+        }
+
         if (shieldCooldownUI == null)
-            shieldCooldownUI = GameObject.Find("ShieldFill")?.GetComponent<CoolDownIconUI>();
+            shieldCooldownUI =
+                GameObject.Find("ShieldFill")?.GetComponent<CoolDownIconUI>();
 
         UpdateAbilityUI();
 
@@ -146,7 +166,7 @@ public class PlayerMovementInputSystem : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (IsSitting)
+        if (IsSitting || IsPlayingPickupAnimation)
         {
             rb.linearVelocity = Vector2.zero;
             return;
@@ -575,5 +595,66 @@ public class PlayerMovementInputSystem : MonoBehaviour
 
         // Add this when your sitting animation is implemented:
         playerAnimations.UpdateSittingAnim(IsSitting);
+    }
+
+    // =========================
+    // PICKUP ANIMATION
+    // =========================
+
+    public void StartPickupAnimation()
+    {
+        if (IsPlayingPickupAnimation)
+            return;
+
+        Debug.Log("Starting pickup animation");
+
+        IsPlayingPickupAnimation = true;
+
+        // Kill any movement that was happening.
+        horizontalMovement = 0f;
+        rb.linearVelocity = Vector2.zero;
+
+        // Don't stay crouched during the pickup.
+        if (isCrouching)
+        {
+            ExitCrouch();
+        }
+
+        // Remember the player's normal Rigidbody constraints.
+        constraintsBeforePickup = rb.constraints;
+
+        // Completely hold the player in place.
+        rb.constraints = RigidbodyConstraints2D.FreezeAll;
+
+        // Disable gameplay input.
+        if (playerInput != null)
+        {
+            playerInput.DeactivateInput();
+        }
+
+        // Play the animation.
+        if (playerAnimations != null)
+        {
+            playerAnimations.PlayPickupAnimation();
+        }
+    }
+
+    public void FinishPickupAnimation()
+    {
+        if (!IsPlayingPickupAnimation)
+            return;
+
+        Debug.Log("Pickup animation finished");
+
+        // Restore Rigidbody.
+        rb.constraints = constraintsBeforePickup;
+
+        IsPlayingPickupAnimation = false;
+
+        // Give control back.
+        if (playerInput != null)
+        {
+            playerInput.ActivateInput();
+        }
     }
 }
