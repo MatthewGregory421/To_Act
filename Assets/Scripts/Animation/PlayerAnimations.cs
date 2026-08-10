@@ -18,6 +18,7 @@ public class PlayerAnimations : MonoBehaviour
     [SerializeField] private GameObject footstepeffect;
     [SerializeField] private GameObject landeffect;
     [SerializeField] private GameObject slameffect;
+    [SerializeField] private GameObject doublejumpeffect;
 
     [Header("Animation State")]
     public bool grounded;
@@ -34,6 +35,10 @@ public class PlayerAnimations : MonoBehaviour
 
     bool fullbody = false;
 
+    public void PlayDoubleJumpEffect()
+    {
+        SpawnEffect(doublejumpeffect);
+    }
     private void Awake()
     {
         if (animator == null)
@@ -94,6 +99,7 @@ public class PlayerAnimations : MonoBehaviour
             || animator.GetCurrentAnimatorStateInfo(0).IsName("TakeDamage")
             || animator.GetCurrentAnimatorStateInfo(0).IsName("Groundslam")||
             animator.GetCurrentAnimatorStateInfo(0).IsName("Sitting")||
+            animator.GetCurrentAnimatorStateInfo(0).IsName("Crouch movement") ||
             blocking)
         {
             fullbody = true;
