@@ -1337,6 +1337,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: GroundSlam pickup
       objectReference: {fileID: 0}
+    - target: {fileID: 9176945272641950931, guid: c38480e5274e68041ba9c19eebaf5afd, type: 3}
+      propertyPath: PickUpSFX.Path
+      value: event:/SFX/Interactables/Ability Pickup
+      objectReference: {fileID: 0}
+    - target: {fileID: 9176945272641950931, guid: c38480e5274e68041ba9c19eebaf5afd, type: 3}
+      propertyPath: PickUpSFX.Guid.Data1
+      value: -1323949570
+      objectReference: {fileID: 0}
+    - target: {fileID: 9176945272641950931, guid: c38480e5274e68041ba9c19eebaf5afd, type: 3}
+      propertyPath: PickUpSFX.Guid.Data2
+      value: 1098622554
+      objectReference: {fileID: 0}
+    - target: {fileID: 9176945272641950931, guid: c38480e5274e68041ba9c19eebaf5afd, type: 3}
+      propertyPath: PickUpSFX.Guid.Data3
+      value: -1403342426
+      objectReference: {fileID: 0}
+    - target: {fileID: 9176945272641950931, guid: c38480e5274e68041ba9c19eebaf5afd, type: 3}
+      propertyPath: PickUpSFX.Guid.Data4
+      value: -635260037
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
