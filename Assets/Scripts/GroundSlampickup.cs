@@ -1,3 +1,4 @@
+using FMODUnity;
 using UnityEngine;
 
 public class GroundSlamPickup : MonoBehaviour
@@ -7,6 +8,8 @@ public class GroundSlamPickup : MonoBehaviour
 
     private bool collected;
 
+    [Header("Audio")]
+    [SerializeField] private EventReference PickUpSFX;
 
     private void Start()
     {
@@ -64,6 +67,11 @@ public class GroundSlamPickup : MonoBehaviour
         // =========================
 
         player.StartPickupAnimation();
+
+        RuntimeManager.PlayOneShot(
+            PickUpSFX,
+            transform.position
+        );
 
 
         // The pickup itself can disappear now.
